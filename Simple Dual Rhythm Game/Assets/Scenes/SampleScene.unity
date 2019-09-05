@@ -239,7 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bpm: 70
   frequency: 0
-  counter: 0
+  statesSeries: 0200000000000000010000000200000001000000
 --- !u!4 &1204704990
 Transform:
   m_ObjectHideFlags: 0

@@ -23,6 +23,8 @@ public class PlayersManager : MonoBehaviour
     Player player1;
     Player player2;
 
+
+
     public class Player {
         public Dictionary<int, KeyCode> playerInputs;
 
@@ -38,8 +40,8 @@ public class PlayersManager : MonoBehaviour
 
         player1 = new Player(Player1Inputs);
         player2 = new Player(Player2Inputs);
-        currentPlayer = player1;
-        currentInputs = player1.playerInputs;
+        currentPlayer = player2;
+        currentInputs = player2.playerInputs;
     }
 
     void Update(){
@@ -63,10 +65,7 @@ public class PlayersManager : MonoBehaviour
     }
 
     public void changeCurrentPlayer() {
-        /*if (currentPlayer == null) {
-            currentPlayer = player1
-        }
-        else*/ if (currentPlayer.Equals(player1)) {
+        if (currentPlayer.Equals(player1)) {
             currentPlayer = player2;
         }
         else {

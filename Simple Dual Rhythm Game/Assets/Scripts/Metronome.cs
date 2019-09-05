@@ -4,24 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Metronome : MonoBehaviour {
-    /*
-     2 1
-     3 2 
-     4 3
-     5 4
-
-        6 5
-        7 6
-        8 7
-        9 8
-
-        10 9 
-        11 10
-        12 11
-        13 12
-         
-         */
-
     public int bpm;
 
     [HideInInspector]
@@ -30,6 +12,7 @@ public class Metronome : MonoBehaviour {
     private int counter = 0;
 
     private float initialTime;
+    private float newBarTime;
 
     private AudioSource tickSound;
     private AudioSource[] instrumentSounds;
@@ -43,7 +26,20 @@ public class Metronome : MonoBehaviour {
 
     PlayersManager playersScript;
 
-    void Start() {
+    List<Dictionary<float, int>> riff;
+
+    public enum GameState{
+        Recording,
+        Playing,
+        Silence
+    };
+
+    GameState currentState = GameState.Playing;
+
+    public GameState[] statesSeries;
+    int currentStateIndex;
+
+    void Awake() {
         frequency = 60f / bpm;
 
         sounds = GetComponents<AudioSource>();
@@ -56,14 +52,29 @@ public class Metronome : MonoBehaviour {
         }
 
         playersScript = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
+
+        currentStateIndex = statesSeries.Length - 1;
+
         initialTime = Time.time;
     }
 
     void tick() {
         tickSound.Play();
 
-        if (counter != 0 && counter % 4 == 0) {
+        //TODO: Can be something else than 4
+        //Check if we're at the beginning of a new bar
+        if (counter % 4 == 0) {
+            //Change state of the game
+            currentStateIndex++;
+            if (currentStateIndex == statesSeries.Length) {
+                currentStateIndex = 0;
+            }
+            currentState = statesSeries[currentStateIndex];
+
+            //Reset the riff if we're recording again, change player if it's a silence...
+
             playersScript.changeCurrentPlayer();
+            newBarTime = Time.time;
         }
 
         counter++;
@@ -101,8 +112,18 @@ public class Metronome : MonoBehaviour {
     }
 
     public void PlayNote(int noteIndex) {
-        if (isOnTime()) {
+        if (currentState == GameState.Silence){
+            return;
+        }
+        else if (currentState == GameState.Recording){
+            Dictionary<float, int> newNote = new Dictionary<float, int>();
+            newNote[Time.time - newBarTime] = noteIndex;
+            riff.Add(newNote);
+        }
+        else {
+            /*if (isOnTime()) {
             makePoints();
+            }*/
         }
 
         Debug.Log("Note " + noteIndex);

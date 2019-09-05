@@ -1,0 +1,7 @@
+-Record
+-Have a silent bar
+-Have a repeat
+-Have to play
+-Gauge the error margin
+
+Remove the != 0 in tick
