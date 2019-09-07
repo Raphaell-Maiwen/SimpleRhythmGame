@@ -239,7 +239,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bpm: 70
   frequency: 0
-  statesSeries: 0200000000000000010000000200000001000000
+  strongTick: 1
+  weakTick: 0.6
+  statesSeries: 020000000000000001000000020000000300000001000000
 --- !u!4 &1204704990
 Transform:
   m_ObjectHideFlags: 0

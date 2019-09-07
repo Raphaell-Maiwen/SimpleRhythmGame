@@ -40,8 +40,8 @@ public class PlayersManager : MonoBehaviour
 
         player1 = new Player(Player1Inputs);
         player2 = new Player(Player2Inputs);
-        currentPlayer = player2;
-        currentInputs = player2.playerInputs;
+        currentPlayer = player1;
+        currentInputs = player1.playerInputs;
     }
 
     void Update(){

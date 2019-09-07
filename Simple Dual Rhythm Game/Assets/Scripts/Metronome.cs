@@ -9,7 +9,7 @@ public class Metronome : MonoBehaviour {
     [HideInInspector]
     public float frequency;
 
-    private int counter = 0;
+    private int metronomeCounter = 0;
 
     private float initialTime;
     private float newBarTime;
@@ -21,17 +21,24 @@ public class Metronome : MonoBehaviour {
     private float points = 0;
     private float errorMargin = 0.2f;
 
-    private bool bipAllowed = true;
+    [Range(0,1)]
+    public float strongTick;
+    [Range(0, 1)]
+    public float weakTick;
+
     private int lastCounter = 1;
 
     PlayersManager playersScript;
 
     List<Dictionary<float, int>> riff;
+    private int riffCounter = 0;
 
+    //TODO: Maybe make a "ChangePlayer" state?? Would skip a state immediately
     public enum GameState{
         Recording,
         Playing,
-        Silence
+        Silence,
+        ChangePlayer
     };
 
     GameState currentState = GameState.Playing;
@@ -52,56 +59,65 @@ public class Metronome : MonoBehaviour {
         }
 
         playersScript = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
-
         currentStateIndex = statesSeries.Length - 1;
-
         initialTime = Time.time;
+        riff = new List<Dictionary<float, int>>();
     }
 
     void tick() {
-        tickSound.Play();
-
         //TODO: Can be something else than 4
         //Check if we're at the beginning of a new bar
-        if (counter % 4 == 0) {
-            //Change state of the game
-            currentStateIndex++;
-            if (currentStateIndex == statesSeries.Length) {
-                currentStateIndex = 0;
-            }
-            currentState = statesSeries[currentStateIndex];
-
+        if (metronomeCounter % 4 == 0) {
+            tickSound.volume = strongTick;
+            ChangeState();
             //Reset the riff if we're recording again, change player if it's a silence...
+            //TODO: How to take the error margin into account?
+            if (currentState == GameState.ChangePlayer) {
+                playersScript.changeCurrentPlayer();
+                ChangeState();
+            }
+            if (currentState == GameState.Recording) {
+                riff.Clear();
+            }
 
-            playersScript.changeCurrentPlayer();
             newBarTime = Time.time;
+            Debug.Log(currentState.ToString());
         }
+        else {
+            tickSound.volume = weakTick;
+        }
+        //TODO: Reset counter at 0 instead??
+        metronomeCounter++;
+        tickSound.Play();
+    }
 
-        counter++;
+    void ChangeState() {
+        currentStateIndex++;
+        if (currentStateIndex == statesSeries.Length) {
+            currentStateIndex = 0;
+        }
+        currentState = statesSeries[currentStateIndex];
     }
 
     void Update() {
         float timeSpent = Time.time - initialTime;
-        if (timeSpent >= frequency * (counter) + errorMargin) {
-            bipAllowed = true;
-        }
 
-        if (timeSpent >= frequency * counter + 1) {
+        if (timeSpent >= frequency * metronomeCounter + 1) {
             tick();
         }
     }
 
     bool isOnTime() {
         float currentTime = Time.time - initialTime;
-        float validTime = frequency * counter;
+        float validTime = frequency * metronomeCounter;
         //Debug.Log ("Guitar:" + currentTime + " " + validTime);
-        if (bipAllowed && (currentTime <= frequency * (counter - 1) + errorMargin)) {
-            lastCounter = counter;
-            bipAllowed = false;
+
+        if ((currentTime <= frequency * (metronomeCounter - 1) + errorMargin)) {
+            lastCounter = metronomeCounter;
             return true;
         }
-        else if (bipAllowed && currentTime >= validTime - errorMargin) {
-            lastCounter = counter + 1;
+        else if (currentTime >= validTime - errorMargin) {
+            lastCounter = metronomeCounter + 1;
         }
         return false;
     }
@@ -120,7 +136,7 @@ public class Metronome : MonoBehaviour {
             newNote[Time.time - newBarTime] = noteIndex;
             riff.Add(newNote);
         }
-        else {
+        else if (currentState == GameState.Playing) {
             /*if (isOnTime()) {
             makePoints();
             }*/
