@@ -27,6 +27,7 @@ public class PlayersManager : MonoBehaviour
 
     public class Player {
         public Dictionary<int, KeyCode> playerInputs;
+        public int points;
 
         public Player(Dictionary<int, KeyCode> inputs) {
             playerInputs = inputs;

@@ -239,6 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bpm: 70
   frequency: 0
+  beatPerBar: 3
   strongTick: 1
   weakTick: 0.6
   statesSeries: 020000000000000001000000020000000300000001000000

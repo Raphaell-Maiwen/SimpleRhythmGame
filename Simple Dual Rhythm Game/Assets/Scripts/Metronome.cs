@@ -9,6 +9,8 @@ public class Metronome : MonoBehaviour {
     [HideInInspector]
     public float frequency;
 
+    public int beatPerBar;
+
     private int metronomeCounter = 0;
 
     private float initialTime;
@@ -30,8 +32,18 @@ public class Metronome : MonoBehaviour {
 
     PlayersManager playersScript;
 
-    List<Dictionary<float, int>> riff;
+    List<Note> riff;
     private int riffCounter = 0;
+
+    public class Note {
+        public int noteCode;
+        public float time;
+
+        public Note(int note, float timeInSec) {
+            noteCode = note;
+            time = timeInSec;
+        }
+    }
 
     //TODO: Maybe make a "ChangePlayer" state?? Would skip a state immediately
     public enum GameState{
@@ -61,13 +73,12 @@ public class Metronome : MonoBehaviour {
         playersScript = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
         currentStateIndex = statesSeries.Length - 1;
         initialTime = Time.time;
-        riff = new List<Dictionary<float, int>>();
+        riff = new List<Note>();
     }
 
     void tick() {
-        //TODO: Can be something else than 4
         //Check if we're at the beginning of a new bar
-        if (metronomeCounter % 4 == 0) {
+        if (metronomeCounter % beatPerBar == 0) {
             tickSound.volume = strongTick;
             ChangeState();
             //Reset the riff if we're recording again, change player if it's a silence...
@@ -78,6 +89,9 @@ public class Metronome : MonoBehaviour {
             }
             if (currentState == GameState.Recording) {
                 riff.Clear();
+            }
+            else if (currentState == GameState.Playing) {
+                riffCounter = 0;
             }
 
             newBarTime = Time.time;
@@ -102,23 +116,33 @@ public class Metronome : MonoBehaviour {
     void Update() {
         float timeSpent = Time.time - initialTime;
 
+        if (currentState == GameState.Playing && riff.Count > 0 && riffCounter < riff.Count &&
+            ((Time.time - newBarTime) > riff[riffCounter].time + errorMargin)) {
+            riffCounter++;
+        }
+
         if (timeSpent >= frequency * metronomeCounter + 1) {
             tick();
         }
     }
 
-    bool isOnTime() {
-        float currentTime = Time.time - initialTime;
-        float validTime = frequency * metronomeCounter;
-        //Debug.Log ("Guitar:" + currentTime + " " + validTime);
+    bool IsRightNote(int noteIndex) {
+        float noteTime = Time.time - newBarTime;
 
-        if ((currentTime <= frequency * (metronomeCounter - 1) + errorMargin)) {
-            lastCounter = metronomeCounter;
-            return true;
+        for (int i = riffCounter; i < riff.Count; i++) {
+            if (Mathf.Abs(riff[i].time - noteTime) <= errorMargin) {
+                if (riff[i].noteCode == noteIndex) {
+                    riffCounter++;
+                    Debug.Log("Good note");
+                    return true;
+                }
+            }
+            else {
+                Debug.Log("Bad note");
+                break;
+            }
         }
-        else if (currentTime >= validTime - errorMargin) {
-            lastCounter = metronomeCounter + 1;
-        }
+
         return false;
     }
 
@@ -132,14 +156,14 @@ public class Metronome : MonoBehaviour {
             return;
         }
         else if (currentState == GameState.Recording){
-            Dictionary<float, int> newNote = new Dictionary<float, int>();
-            newNote[Time.time - newBarTime] = noteIndex;
+            Note newNote = new Note(noteIndex, Time.time - newBarTime);
             riff.Add(newNote);
         }
-        else if (currentState == GameState.Playing) {
-            /*if (isOnTime()) {
-            makePoints();
-            }*/
+        else if (currentState == GameState.Playing && riffCounter < riff.Count) {
+            if (IsRightNote(noteIndex)) {
+                //Call MakePoints in the PlayersManager script
+            }
+            //False tu perds des points
         }
 
         Debug.Log("Note " + noteIndex);
