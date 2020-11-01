@@ -31,6 +31,7 @@ public class Metronome : MonoBehaviour {
     private int lastCounter = 1;
 
     PlayersManager playersScript;
+    BarsUI UIScript;
 
     List<Note> riff;
     private int riffCounter = 0;
@@ -71,6 +72,8 @@ public class Metronome : MonoBehaviour {
         }
 
         playersScript = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
+        UIScript = GameObject.Find("Bar").GetComponent<BarsUI>();
+        UIScript.SetBarSpeed(this.bpm, this.beatPerBar);
         currentStateIndex = statesSeries.Length - 1;
         initialTime = Time.time;
         riff = new List<Note>();
@@ -95,6 +98,7 @@ public class Metronome : MonoBehaviour {
             }
 
             newBarTime = Time.time;
+            UIScript.NewBar();
             Debug.Log(currentState.ToString());
         }
         else {
