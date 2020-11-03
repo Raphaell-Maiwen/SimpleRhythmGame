@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 1165312296}
   - component: {fileID: 1165312295}
   m_Layer: 0
-  m_Name: BarTrigger
+  m_Name: TrackerTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -553,7 +553,7 @@ GameObject:
   - component: {fileID: 1179943224}
   - component: {fileID: 1179943225}
   m_Layer: 0
-  m_Name: Bar
+  m_Name: Part
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -590,11 +590,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff28f11e338852a4f87661873c12ff49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressBar: {fileID: 5423179180072095177, guid: 636ccc851cefa73478cc778c32687c6c,
-    type: 3}
-  progressBarAnchor: {fileID: 2113096679}
-  progressBarAnchorEnd: {fileID: 85012656}
-  currentBar: {fileID: 0}
+  tracker: {fileID: 5423179180072095177, guid: 636ccc851cefa73478cc778c32687c6c, type: 3}
+  trackerAnchor: {fileID: 2113096679}
+  trackerAnchorEnd: {fileID: 85012656}
+  currentTracker: {fileID: 0}
   arrowIcons:
   - {fileID: 7238977702187599154, guid: 2cd5f9474f5039c4cb93c178d9ff3e0b, type: 3}
   - {fileID: 8745379949416011252, guid: 7b10da8756f77ca43a2fc9171cb488ee, type: 3}
