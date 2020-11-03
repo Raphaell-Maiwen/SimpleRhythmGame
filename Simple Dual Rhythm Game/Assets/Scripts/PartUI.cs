@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PartUI : MonoBehaviour
 {
+    //Maybe this variable is not relevant anymore?
     public GameObject tracker;
     public GameObject trackerAnchor;
     public GameObject trackerAnchorEnd;
@@ -11,11 +12,12 @@ public class PartUI : MonoBehaviour
     [HideInInspector]
     public GameObject currentTracker;
 
+    //Maybe?
+    public List<GameObject> trackersList;
     Queue<Tracker> trackers;
 
     Vector3 Difference;
     float trackerSpeed;
-    float seconds = 12;
 
     public List<GameObject> arrowIcons;
     public List<GameObject> controllerIcons;
@@ -24,20 +26,32 @@ public class PartUI : MonoBehaviour
 
     List<GameObject> iconsInPlay;
 
-    private class Tracker {
+    bool firstTick;
+
+    public class Tracker {
         public GameObject trackerGO;
         public float timer;
         public float percent;
+        public Vector3 startingPos;
 
-        public Tracker(GameObject tgo, float thisTimer, float thisPercent) {
+        public Tracker(GameObject tgo, float thisTimer, float thisPercent, Vector3 thisStartingPos) {
             trackerGO = tgo;
             timer = thisTimer;
             percent = thisPercent;
+            startingPos = thisStartingPos;
         }
     }
 
     private void Awake() {
         trackers = new Queue<Tracker>();
+
+        PlaceTrackers();
+
+        for (int i = trackersList.Count -1; i > -1; i--) {
+            GameObject newTracker = trackersList[i];
+            trackers.Enqueue(new Tracker(newTracker, 0, 0, newTracker.transform.position));
+        }
+
         iconsInPlay = new List<GameObject>();
         Difference = trackerAnchorEnd.transform.position - trackerAnchor.transform.position;
     }
@@ -48,23 +62,25 @@ public class PartUI : MonoBehaviour
     }
 
     public void NewBar() {
-        GameObject newTracker = Instantiate(tracker, trackerAnchor.transform.position, Quaternion.identity);
-        trackers.Enqueue(new Tracker(newTracker, 0, 0));
+        firstTick = true;
 
-        //trackers.Enqueue(trackers.Dequeue());
-        //currentTracker = trackers.Peek().trackerGO;
+        Tracker newTracker = trackers.Dequeue();
+        newTracker.startingPos = trackerAnchor.transform.position;
+        newTracker.trackerGO.transform.position = newTracker.startingPos;
+        newTracker.timer = 0;
+        newTracker.percent = 0;
 
-        if (trackers.Count >= 4) {
-            Destroy(trackers.Dequeue().trackerGO);
-        }
+        trackers.Enqueue(newTracker);
     }
 
     private void Update() {
-        foreach (Tracker b in trackers) {
-            b.timer += Time.deltaTime;
-            b.percent = b.timer / trackerSpeed;
+        if (firstTick) {
+            foreach (Tracker b in trackers) {
+                b.timer += Time.deltaTime;
+                b.percent = b.timer / trackerSpeed;
 
-            b.trackerGO.transform.position = trackerAnchor.transform.position + Difference * b.percent;
+                b.trackerGO.transform.position = b.startingPos + Difference * b.percent;
+            }
         }
     }
 
@@ -81,5 +97,13 @@ public class PartUI : MonoBehaviour
 
         iconsInPlay.Clear();
         currentTracker = null;
+    }
+
+    private void PlaceTrackers() {
+        //trackersList[0].transform.position = trackerAnchor.transform.position;
+        //TODO: Place-les sti
+        //trackersList[1].transform.position;
+        trackersList[2].transform.position = trackerAnchorEnd.transform.position;
+        //trackersList[3].transform.position = trackerAnchorEnd.transform.position;
     }
 }
