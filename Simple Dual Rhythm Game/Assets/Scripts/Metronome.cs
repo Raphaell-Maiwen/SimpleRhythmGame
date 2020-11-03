@@ -23,10 +23,12 @@ public class Metronome : MonoBehaviour {
     private float points = 0;
     private float errorMargin = 0.2f;
 
-    [Range(0,1)]
+    [Range(0, 1)]
     public float strongTick;
     [Range(0, 1)]
     public float weakTick;
+
+    public Camera thisCamera;
 
     private int lastCounter = 1;
 
@@ -47,7 +49,7 @@ public class Metronome : MonoBehaviour {
     }
 
     //TODO: Maybe make a "ChangePlayer" state?? Would skip a state immediately
-    public enum GameState{
+    public enum GameState {
         Recording,
         Playing,
         Silence,
@@ -73,7 +75,7 @@ public class Metronome : MonoBehaviour {
 
         playersScript = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
         UIScript = GameObject.Find("Bar").GetComponent<BarsUI>();
-        UIScript.SetBarSpeed(this.bpm, this.beatPerBar);
+        UIScript.SetUp(this.bpm, this.beatPerBar);
         currentStateIndex = statesSeries.Length - 1;
         initialTime = Time.time;
         riff = new List<Note>();
@@ -113,8 +115,11 @@ public class Metronome : MonoBehaviour {
         currentStateIndex++;
         if (currentStateIndex == statesSeries.Length) {
             currentStateIndex = 0;
+            UIScript.EraseAllNotes();
         }
         currentState = statesSeries[currentStateIndex];
+
+        ChangeVisuals();
     }
 
     void Update() {
@@ -156,12 +161,13 @@ public class Metronome : MonoBehaviour {
     }
 
     public void PlayNote(int noteIndex) {
-        if (currentState == GameState.Silence){
+        if (currentState == GameState.Silence) {
             return;
         }
-        else if (currentState == GameState.Recording){
+        else if (currentState == GameState.Recording) {
             Note newNote = new Note(noteIndex, Time.time - newBarTime);
             riff.Add(newNote);
+            UIScript.DrawNewNote(noteIndex);
         }
         else if (currentState == GameState.Playing && riffCounter < riff.Count) {
             if (IsRightNote(noteIndex)) {
@@ -172,5 +178,17 @@ public class Metronome : MonoBehaviour {
 
         Debug.Log("Note " + noteIndex);
         instrumentSounds[noteIndex].Play();
+    }
+
+    void ChangeVisuals() {
+        if (currentState == GameState.Recording) {
+            thisCamera.backgroundColor = Color.red;
+        }
+        else if (currentState == GameState.Playing) {
+            thisCamera.backgroundColor = Color.green;
+        }
+        else if (currentState == GameState.Silence) {
+            thisCamera.backgroundColor = Color.blue;
+        }
     }
 }

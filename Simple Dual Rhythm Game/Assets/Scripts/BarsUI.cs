@@ -8,12 +8,21 @@ public class BarsUI : MonoBehaviour
     public GameObject progressBarAnchor;
     public GameObject progressBarAnchorEnd;
 
-    Vector3 Difference;
+    [HideInInspector]
+    public GameObject currentBar;
 
     Queue<Bar> bars;
 
+    Vector3 Difference;
     float barSpeed;
     float seconds = 12;
+
+    public List<GameObject> arrowIcons;
+    public List<GameObject> controllerIcons;
+    public List<GameObject> keyboardFIcons;
+    List<GameObject> currentIcons;
+
+    List<GameObject> iconsInPlay;
 
     private class Bar {
         public GameObject barGO;
@@ -29,15 +38,13 @@ public class BarsUI : MonoBehaviour
 
     private void Awake() {
         bars = new Queue<Bar>();
+        iconsInPlay = new List<GameObject>();
         Difference = progressBarAnchorEnd.transform.position - progressBarAnchor.transform.position;
     }
 
-    public void SetBarSpeed(float bpm, float beatPerBar) {
+    public void SetUp(float bpm, float beatPerBar) {
         barSpeed = 60 / bpm * beatPerBar * 3;
-        print(barSpeed);
-        //Hardcode pas ça sti
-        //float distanceToCross = 14 * 3;
-        //barSpeed = distanceToCross / timeToTravel;
+        currentIcons = arrowIcons;
     }
 
     public void NewBar() {
@@ -56,5 +63,20 @@ public class BarsUI : MonoBehaviour
 
             b.barGO.transform.position = progressBarAnchor.transform.position + Difference * b.percent;
         }
+    }
+
+    public void DrawNewNote(int i) {
+        Vector3 notePos = currentBar.transform.position;
+        notePos.z -= 0.5f;
+        iconsInPlay.Add(Instantiate(currentIcons[i], notePos, Quaternion.identity));
+    }
+
+    public void EraseAllNotes() {
+        foreach (GameObject icon in iconsInPlay) {
+            Destroy(icon);
+        }
+
+        iconsInPlay.Clear();
+        currentBar = null;
     }
 }
