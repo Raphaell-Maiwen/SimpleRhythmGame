@@ -4,16 +4,6 @@ using UnityEngine;
 
 public class PlayersManager : MonoBehaviour
 {
-    /*
-     In metronome: 
-        Change Player after 2 bars (ish)
-        Keep track of recorded inputs
-        
-        Put a margin (test by printing true and false)
-        Score system
-         */
-
-
     Dictionary<int, KeyCode> Player1Inputs;
     Dictionary<int, KeyCode> Player2Inputs;
     Dictionary<int, KeyCode> currentInputs;

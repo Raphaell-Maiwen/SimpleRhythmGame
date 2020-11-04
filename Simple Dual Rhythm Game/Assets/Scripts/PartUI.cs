@@ -24,6 +24,8 @@ public class PartUI : MonoBehaviour
     public List<GameObject> keyboardFIcons;
     List<GameObject> currentIcons;
 
+    //TODO: A function to place entry and exit black bars based on amount of musical bars
+
     List<GameObject> iconsInPlay;
 
     bool firstTick;
@@ -53,7 +55,10 @@ public class PartUI : MonoBehaviour
         }
 
         iconsInPlay = new List<GameObject>();
-        Difference = trackerAnchorEnd.transform.position - trackerAnchor.transform.position;
+
+        //Function to place entry and exit bars here
+
+        PlacerTrackerAnchors();
     }
 
     public void SetUp(float bpm, float beatPerBar) {
@@ -105,5 +110,22 @@ public class PartUI : MonoBehaviour
         //trackersList[1].transform.position;
         trackersList[2].transform.position = trackerAnchorEnd.transform.position;
         //trackersList[3].transform.position = trackerAnchorEnd.transform.position;
+    }
+
+    private void PlacerTrackerAnchors() {
+        Vector3 entryBarPos = GameObject.Find("EntryBar").transform.position;
+        Vector3 exitBarPos = GameObject.Find("ExitBar").transform.position;
+
+        float partLength = Mathf.Abs(exitBarPos.x - entryBarPos.x);
+
+        Vector3 trackerAnchorPos = entryBarPos;
+        trackerAnchorPos.x -= partLength;
+        trackerAnchor.transform.position = trackerAnchorPos;
+
+        Vector3 trackerAnchorEndPos = exitBarPos;
+        trackerAnchorEndPos.x += partLength;
+        trackerAnchorEnd.transform.position = trackerAnchorEndPos;
+
+        Difference = trackerAnchorEnd.transform.position - trackerAnchor.transform.position;
     }
 }
