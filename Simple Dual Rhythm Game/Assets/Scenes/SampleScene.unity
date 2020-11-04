@@ -322,7 +322,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &681197778
 PrefabInstance:
@@ -459,7 +459,7 @@ PrefabInstance:
     - target: {fileID: 5423179180072095178, guid: 636ccc851cefa73478cc778c32687c6c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5423179180072095178, guid: 636ccc851cefa73478cc778c32687c6c,
         type: 3}
@@ -769,10 +769,10 @@ MonoBehaviour:
   - {fileID: 1937064788}
   - {fileID: 681197779}
   arrowIcons:
-  - {fileID: 7238977702187599154, guid: 2cd5f9474f5039c4cb93c178d9ff3e0b, type: 3}
   - {fileID: 8745379949416011252, guid: 7b10da8756f77ca43a2fc9171cb488ee, type: 3}
   - {fileID: 5006008471610966133, guid: 8187066591dd36b4e882eda09a3663cd, type: 3}
   - {fileID: 3253638588402762266, guid: d6efa16a95212be4eb8b20a29231b8f7, type: 3}
+  - {fileID: 7238977702187599154, guid: 2cd5f9474f5039c4cb93c178d9ff3e0b, type: 3}
   controllerIcons: []
   keyboardFIcons: []
 --- !u!1 &1204704988

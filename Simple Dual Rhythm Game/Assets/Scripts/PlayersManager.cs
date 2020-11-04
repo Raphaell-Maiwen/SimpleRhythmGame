@@ -25,8 +25,8 @@ public class PlayersManager : MonoBehaviour
     }
 
     void Awake(){
-        Player1Inputs = SetPlayerInputs(KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow);
-        Player2Inputs = SetPlayerInputs(KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D);
+        Player1Inputs = SetPlayerInputs(KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow);
+        Player2Inputs = SetPlayerInputs(KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.W);
         metronomeScript = GameObject.Find("Metronome").GetComponent<Metronome>();
 
         player1 = new Player(Player1Inputs);

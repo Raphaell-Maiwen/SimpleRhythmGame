@@ -47,8 +47,6 @@ public class PartUI : MonoBehaviour
     private void Awake() {
         trackers = new Queue<Tracker>();
 
-        PlaceTrackers();
-
         for (int i = trackersList.Count -1; i > -1; i--) {
             GameObject newTracker = trackersList[i];
             trackers.Enqueue(new Tracker(newTracker, 0, 0, newTracker.transform.position));
@@ -59,11 +57,25 @@ public class PartUI : MonoBehaviour
         //Function to place entry and exit bars here
 
         PlacerTrackerAnchors();
+        PlaceTrackers();
     }
 
     public void SetUp(float bpm, float beatPerBar) {
         trackerSpeed = 60 / bpm * beatPerBar * 3;
+
+        //Assign icons according to controller / keyboard style
         currentIcons = arrowIcons;
+
+        Vector3 lowestIconsPosition = trackerAnchor.transform.position;
+        lowestIconsPosition.y -= 1.5f;
+
+        for (int i = 0; i < currentIcons.Count; i++) {
+            Vector3 iconPos = lowestIconsPosition;
+            iconPos.y += 0.55f * i;
+            currentIcons[i].transform.position = iconPos;
+        }
+
+        //currentIcons[0].transform.position = lowestIconsPosition;
     }
 
     public void NewBar() {
@@ -90,7 +102,8 @@ public class PartUI : MonoBehaviour
     }
 
     public void DrawNewNote(int i) {
-        Vector3 notePos = currentTracker.transform.position;
+        Vector3 notePos = currentIcons[i].transform.position;
+        notePos.x = currentTracker.transform.position.x;
         notePos.z -= 0.5f;
         iconsInPlay.Add(Instantiate(currentIcons[i], notePos, Quaternion.identity));
     }
