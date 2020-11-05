@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayersManager : MonoBehaviour
 {
@@ -13,14 +14,17 @@ public class PlayersManager : MonoBehaviour
     Player player1;
     Player player2;
 
-
+    public Text score1;
+    public Text score2;
 
     public class Player {
         public Dictionary<int, KeyCode> playerInputs;
         public int points;
+        public Text scoreUI;
 
-        public Player(Dictionary<int, KeyCode> inputs) {
+        public Player(Dictionary<int, KeyCode> inputs, Text UI) {
             playerInputs = inputs;
+            scoreUI = UI;
         }
     }
 
@@ -29,8 +33,8 @@ public class PlayersManager : MonoBehaviour
         Player2Inputs = SetPlayerInputs(KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.W);
         metronomeScript = GameObject.Find("Metronome").GetComponent<Metronome>();
 
-        player1 = new Player(Player1Inputs);
-        player2 = new Player(Player2Inputs);
+        player1 = new Player(Player1Inputs, score1);
+        player2 = new Player(Player2Inputs, score2);
         currentPlayer = player1;
         currentInputs = player1.playerInputs;
     }
@@ -63,5 +67,11 @@ public class PlayersManager : MonoBehaviour
             currentPlayer = player1;
         }
         currentInputs = currentPlayer.playerInputs;
+    }
+
+    public void MakePoints(int points) {
+        currentPlayer.points += points;
+        currentPlayer.scoreUI.text = "Score: " + currentPlayer.points;
+        Debug.Log("Points: " + currentPlayer.points);
     }
 }

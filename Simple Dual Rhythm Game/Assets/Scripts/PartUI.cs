@@ -74,8 +74,6 @@ public class PartUI : MonoBehaviour
             iconPos.y += 0.55f * i;
             currentIcons[i].transform.position = iconPos;
         }
-
-        //currentIcons[0].transform.position = lowestIconsPosition;
     }
 
     public void NewBar() {

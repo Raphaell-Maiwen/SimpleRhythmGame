@@ -19,9 +19,10 @@ public class Metronome : MonoBehaviour {
     private AudioSource tickSound;
     private AudioSource[] instrumentSounds;
     private AudioSource[] sounds;
+    private AudioSource beat;
 
-    private float points = 0;
     private float errorMargin = 0.2f;
+    private int notesSucceeded;
 
     [Range(0, 1)]
     public float strongTick;
@@ -37,6 +38,9 @@ public class Metronome : MonoBehaviour {
 
     List<Note> riff;
     private int riffCounter = 0;
+
+    bool firstTick = true;
+    bool madeMistake = false;
 
     public class Note {
         public int noteCode;
@@ -79,9 +83,19 @@ public class Metronome : MonoBehaviour {
         currentStateIndex = statesSeries.Length - 1;
         initialTime = Time.time;
         riff = new List<Note>();
+
+        beat = sounds[sounds.Length - 1];
+        //beat.Play();
     }
 
     void tick() {
+        if (firstTick) {
+            firstTick = false;
+
+            //Edit sound on Audacity
+            //beat.Play();
+        }
+
         //Check if we're at the beginning of a new bar
         if (metronomeCounter % beatPerBar == 0) {
             tickSound.volume = strongTick;
@@ -101,7 +115,10 @@ public class Metronome : MonoBehaviour {
 
             newBarTime = Time.time;
             UIScript.NewBar();
-            Debug.Log(currentState.ToString());
+
+            //Change this code slightly when supporting multiple bars
+            notesSucceeded = 0;
+            madeMistake = false;
         }
         else {
             tickSound.volume = weakTick;
@@ -155,11 +172,6 @@ public class Metronome : MonoBehaviour {
         return false;
     }
 
-    void makePoints() {
-        points++;
-        Debug.Log("Points: " + points);
-    }
-
     public void PlayNote(int noteIndex) {
         if (currentState == GameState.Silence) {
             return;
@@ -171,9 +183,21 @@ public class Metronome : MonoBehaviour {
         }
         else if (currentState == GameState.Playing && riffCounter < riff.Count) {
             if (IsRightNote(noteIndex)) {
-                //Call MakePoints in the PlayersManager script
+                notesSucceeded++;
+                int points = notesSucceeded * 10;
+                playersScript.MakePoints(points);
+
+                //Bonus points for a perfect solo
+                if (notesSucceeded == riff.Count && !madeMistake) {
+                    //Should be 200 for composer and 400 for the other, will change at some point
+                    playersScript.MakePoints(400);
+                }
             }
-            //False tu perds des points
+            else {
+                madeMistake = true;
+                int penalty = ((riff.Count * (riff.Count + 1)) / 2 * 10) / riff.Count;
+                playersScript.MakePoints(-penalty);
+            }
         }
 
         Debug.Log("Note " + noteIndex);
