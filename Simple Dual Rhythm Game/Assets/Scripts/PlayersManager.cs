@@ -71,6 +71,7 @@ public class PlayersManager : MonoBehaviour
 
     public void MakePoints(int points) {
         currentPlayer.points += points;
+        if (currentPlayer.points < 0) currentPlayer.points = 0;
         currentPlayer.scoreUI.text = "Score: " + currentPlayer.points;
         Debug.Log("Points: " + currentPlayer.points);
     }

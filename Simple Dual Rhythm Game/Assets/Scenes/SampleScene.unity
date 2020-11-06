@@ -1057,7 +1057,7 @@ MonoBehaviour:
   frequency: 0
   beatPerBar: 4
   strongTick: 1
-  weakTick: 0.6
+  weakTick: 0.071
   thisCamera: {fileID: 519420031}
   statesSeries: 020000000000000001000000020000000300000001000000
 --- !u!4 &1204704990
@@ -1566,7 +1566,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8713fb0cd8d5e3545b68b5faf585dc84, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.65
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1650,6 +1650,51 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1498790759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1498790761}
+  - component: {fileID: 1498790760}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1498790760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498790759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de20bc9aa8968d5498d74e86ab12cf3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soloIndex: 0
+  solosToDo: 2
+--- !u!4 &1498790761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498790759}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 305.98676, y: 206.61513, z: -172.625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1634438300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,6 +1893,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7c8a2f739f866a45b95f1ada9d7a4e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score1: {fileID: 1634438302}
+  score2: {fileID: 385836525}
 --- !u!4 &1840136375
 Transform:
   m_ObjectHideFlags: 0

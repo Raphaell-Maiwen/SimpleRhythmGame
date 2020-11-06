@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Metronome : MonoBehaviour {
     public int bpm;
@@ -66,7 +67,7 @@ public class Metronome : MonoBehaviour {
     int currentStateIndex;
 
     void Awake() {
-        frequency = 60f / bpm;
+        
 
         sounds = GetComponents<AudioSource>();
         tickSound = sounds[0];
@@ -79,21 +80,36 @@ public class Metronome : MonoBehaviour {
 
         playersScript = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
         UIScript = GameObject.Find("Part").GetComponent<PartUI>();
-        UIScript.SetUp(this.bpm, this.beatPerBar);
+
+        SetTempo();
+
         currentStateIndex = statesSeries.Length - 1;
-        initialTime = Time.time;
         riff = new List<Note>();
 
         beat = sounds[sounds.Length - 1];
+
         //beat.Play();
+    }
+
+    private void Start() {
+        AudioMixerGroup pitchBendGroup = Resources.Load<AudioMixerGroup>("MyAudioMixer");
+        beat.outputAudioMixerGroup = pitchBendGroup;
+        float speed = bpm / 60f;
+        beat.pitch = speed;
+        pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / speed);
+    }
+
+    public void SetTempo() {
+        frequency = 60f / bpm;
+        UIScript.SetUp(this.bpm, this.beatPerBar);
+        initialTime = Time.time;
+        metronomeCounter = 0;
     }
 
     void tick() {
         if (firstTick) {
             firstTick = false;
-
-            //Edit sound on Audacity
-            //beat.Play();
+            beat.Play();
         }
 
         //Check if we're at the beginning of a new bar
@@ -125,7 +141,7 @@ public class Metronome : MonoBehaviour {
         }
         //TODO: Reset counter at 0 instead??
         metronomeCounter++;
-        tickSound.Play();
+        //tickSound.Play();
     }
 
     void ChangeState() {
@@ -133,6 +149,7 @@ public class Metronome : MonoBehaviour {
         if (currentStateIndex == statesSeries.Length) {
             currentStateIndex = 0;
             UIScript.EraseAllNotes();
+            GameObject.FindObjectOfType<GameManager>().AddSolo();
         }
         currentState = statesSeries[currentStateIndex];
 
