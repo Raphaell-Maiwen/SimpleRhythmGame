@@ -71,7 +71,7 @@ public class PartUI : MonoBehaviour
 
         for (int i = 0; i < currentIcons.Count; i++) {
             Vector3 iconPos = lowestIconsPosition;
-            iconPos.y += 0.55f * i;
+            iconPos.y += 0.7f * i;
             currentIcons[i].transform.position = iconPos;
         }
     }
