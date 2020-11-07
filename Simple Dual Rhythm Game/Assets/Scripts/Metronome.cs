@@ -67,8 +67,6 @@ public class Metronome : MonoBehaviour {
     int currentStateIndex;
 
     void Awake() {
-        
-
         sounds = GetComponents<AudioSource>();
         tickSound = sounds[0];
 
@@ -127,6 +125,9 @@ public class Metronome : MonoBehaviour {
             }
             else if (currentState == GameState.Playing) {
                 riffCounter = 0;
+            }
+            else {
+                UIScript.UnPlayedAllNotes();
             }
 
             newBarTime = Time.time;
@@ -203,6 +204,8 @@ public class Metronome : MonoBehaviour {
                 notesSucceeded++;
                 int points = notesSucceeded * 10;
                 playersScript.MakePoints(points);
+
+                UIScript.PlayedNote(riffCounter - 1);
 
                 //Bonus points for a perfect solo
                 if (notesSucceeded == riff.Count && !madeMistake) {

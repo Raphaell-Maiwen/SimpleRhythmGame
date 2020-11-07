@@ -106,6 +106,10 @@ public class PartUI : MonoBehaviour
         iconsInPlay.Add(Instantiate(currentIcons[i], notePos, Quaternion.identity));
     }
 
+    public void PlayedNote(int index) {
+        iconsInPlay[index].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = new Color32(128,128,128, 255);
+    }
+
     public void EraseAllNotes() {
         foreach (GameObject icon in iconsInPlay) {
             Destroy(icon);
@@ -113,6 +117,12 @@ public class PartUI : MonoBehaviour
 
         iconsInPlay.Clear();
         currentTracker = null;
+    }
+
+    public void UnPlayedAllNotes() {
+        for (int i = 0; i < iconsInPlay.Count; i++) {
+            iconsInPlay[i].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = new Color32(255, 255, 255, 255);
+        }
     }
 
     private void PlaceTrackers() {
