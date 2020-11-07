@@ -79,7 +79,7 @@ public class Metronome : MonoBehaviour {
         playersScript = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
         UIScript = GameObject.Find("Part").GetComponent<PartUI>();
 
-        SetTempo();
+        SetUp();
 
         currentStateIndex = statesSeries.Length - 1;
         riff = new List<Note>();
@@ -90,6 +90,10 @@ public class Metronome : MonoBehaviour {
     }
 
     private void Start() {
+        SetBeatSpeed();
+    }
+
+    void SetBeatSpeed() {
         AudioMixerGroup pitchBendGroup = Resources.Load<AudioMixerGroup>("MyAudioMixer");
         beat.outputAudioMixerGroup = pitchBendGroup;
         float speed = bpm / 60f;
@@ -97,11 +101,19 @@ public class Metronome : MonoBehaviour {
         pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / speed);
     }
 
-    public void SetTempo() {
+    public void SetUp() {
         frequency = 60f / bpm;
         UIScript.SetUp(this.bpm, this.beatPerBar);
         initialTime = Time.time;
         metronomeCounter = 0;
+    }
+
+    public void ChangeTempo() {
+        frequency = 60f / bpm;
+        metronomeCounter *= 2;
+        SetBeatSpeed();
+
+        UIScript.ChangeTempo(bpm, beatPerBar);
     }
 
     void tick() {

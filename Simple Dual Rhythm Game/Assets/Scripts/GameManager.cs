@@ -9,17 +9,34 @@ public class GameManager : MonoBehaviour{
 
     public void AddSolo() {
         soloIndex++;
-        if (soloIndex == solosToDo)
+        if (soloIndex == solosToDo - 1)
             LastSolo();
+        else if (soloIndex == solosToDo)
+            EndOfGame();
     }
 
     private void Awake() {
         metronomeScript = GameObject.Find("Metronome").GetComponent<Metronome>();
+
+        //So that each player plays the required amount of solos
+        solosToDo *= 2;
     }
 
     void LastSolo() {
-       /* metronomeScript.bpm *= 2;
-        metronomeScript.SetTempo();*/
+        metronomeScript.bpm *= 2;
+        metronomeScript.ChangeTempo();
         //Change visuals?
+    }
+
+    void EndOfGame() {
+        Time.timeScale = 0f;
+
+        AudioSource[] sounds = GameObject.FindObjectsOfType<AudioSource>();
+
+        foreach (AudioSource sound in sounds) {
+            sound.Stop();
+        }
+
+        print("end");
     }
 }
