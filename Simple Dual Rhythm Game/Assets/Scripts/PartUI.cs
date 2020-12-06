@@ -79,7 +79,7 @@ public class PartUI : MonoBehaviour
     public void ChangeTempo(float bpm, float beatPerBar) {
         trackerSpeed = 60 / bpm * beatPerBar * 3;
         foreach (Tracker b in trackers) {
-            b.timer /= 2;
+            b.timer /= 1.2f;
         }
     }
 

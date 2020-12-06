@@ -17,6 +17,8 @@ public class PlayersManager : MonoBehaviour
     public Text score1;
     public Text score2;
 
+    GameManager gameManager;
+
     public class Player {
         public Dictionary<int, KeyCode> playerInputs;
         public int points;
@@ -28,9 +30,22 @@ public class PlayersManager : MonoBehaviour
         }
     }
 
-    void Awake(){
-        Player1Inputs = SetPlayerInputs(KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow);
-        Player2Inputs = SetPlayerInputs(KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.W);
+    void Start(){
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+        switch (gameManager.controlsSettings) {
+            case GameManager.Controls.arrows:
+                Player1Inputs = SetPlayerInputs(KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow);
+                Player2Inputs = SetPlayerInputs(KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.W);
+                break;
+            case GameManager.Controls.controller:
+                Player1Inputs = SetPlayerInputs(KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow);
+                Player2Inputs = SetPlayerInputs(KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.W);
+                break;
+            case GameManager.Controls.keytar:
+                
+                break;
+        }
+
         metronomeScript = GameObject.Find("Metronome").GetComponent<Metronome>();
 
         player1 = new Player(Player1Inputs, score1);
@@ -48,6 +63,7 @@ public class PlayersManager : MonoBehaviour
         }
     }
 
+    //Send a list or array of KeyCode
     Dictionary<int, KeyCode> SetPlayerInputs(KeyCode KeyCode1, KeyCode KeyCode2, KeyCode KeyCode3, KeyCode KeyCode4) {
         Dictionary<int, KeyCode> playersInput = new Dictionary<int, KeyCode>();
 

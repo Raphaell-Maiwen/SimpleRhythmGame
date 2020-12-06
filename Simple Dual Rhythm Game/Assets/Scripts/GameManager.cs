@@ -7,11 +7,19 @@ public class GameManager : MonoBehaviour{
     public int solosToDo;
     Metronome metronomeScript;
 
+    public Controls controlsSettings;
+
+    public enum Controls {
+        arrows,
+        keytar,
+        controller
+    }
+
     public void AddSolo() {
         soloIndex++;
         if (soloIndex == solosToDo - 1)
             LastSolo();
-        else if (soloIndex == solosToDo)
+        else if (soloIndex == solosToDo + 1)
             EndOfGame();
     }
 
@@ -23,7 +31,7 @@ public class GameManager : MonoBehaviour{
     }
 
     void LastSolo() {
-        metronomeScript.bpm *= 2;
+        metronomeScript.bpm += (metronomeScript.bpm / 5);
         metronomeScript.ChangeTempo();
         //Change visuals?
     }

@@ -11,7 +11,6 @@ public class Metronome : MonoBehaviour {
     public float frequency;
 
     public int beatPerBar;
-
     private int metronomeCounter = 0;
 
     private float initialTime;
@@ -20,6 +19,7 @@ public class Metronome : MonoBehaviour {
     private AudioSource tickSound;
     private AudioSource[] instrumentSounds;
     private AudioSource[] sounds;
+    private AudioSource badNoteSound;
     private AudioSource beat;
 
     private float errorMargin = 0.2f;
@@ -84,6 +84,8 @@ public class Metronome : MonoBehaviour {
         currentStateIndex = statesSeries.Length - 1;
         riff = new List<Note>();
 
+        badNoteSound = sounds[5];
+
         beat = sounds[sounds.Length - 1];
 
         //beat.Play();
@@ -110,7 +112,7 @@ public class Metronome : MonoBehaviour {
 
     public void ChangeTempo() {
         frequency = 60f / bpm;
-        metronomeCounter *= 2;
+        metronomeCounter = (int)(metronomeCounter * 1.2f);
         SetBeatSpeed();
 
         UIScript.ChangeTempo(bpm, beatPerBar);
@@ -210,6 +212,8 @@ public class Metronome : MonoBehaviour {
             Note newNote = new Note(noteIndex, Time.time - newBarTime);
             riff.Add(newNote);
             UIScript.DrawNewNote(noteIndex);
+
+            instrumentSounds[noteIndex].Play();
         }
         else if (currentState == GameState.Playing && riffCounter < riff.Count) {
             if (IsRightNote(noteIndex)) {
@@ -224,16 +228,21 @@ public class Metronome : MonoBehaviour {
                     //Should be 200 for composer and 400 for the other, will change at some point
                     playersScript.MakePoints(400);
                 }
+
+                instrumentSounds[noteIndex].Play();
             }
             else {
                 madeMistake = true;
                 int penalty = ((riff.Count * (riff.Count + 1)) / 2 * 10) / riff.Count;
                 playersScript.MakePoints(-penalty);
+
+                badNoteSound.Play();
             }
         }
 
         Debug.Log("Note " + noteIndex);
-        instrumentSounds[noteIndex].Play();
+
+        //instrumentSounds[noteIndex].Play();
     }
 
     void ChangeVisuals() {
