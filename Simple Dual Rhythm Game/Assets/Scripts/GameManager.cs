@@ -7,9 +7,9 @@ public class GameManager : MonoBehaviour{
     public int solosToDo;
     Metronome metronomeScript;
 
-    public Controls controlsSettings;
+    public ControlsSettings controlsSettings;
 
-    public enum Controls {
+    public enum ControlsSettings {
         arrows,
         keytar,
         controller
@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour{
 
         //So that each player plays the required amount of solos
         solosToDo *= 2;
+
+        
     }
 
     void LastSolo() {

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PlayersManager : MonoBehaviour
 {
-    Dictionary<int, KeyCode> Player1Inputs;
-    Dictionary<int, KeyCode> Player2Inputs;
-    Dictionary<int, KeyCode> currentInputs;
+    Dictionary<int, InputAction> Player1Inputs;
+    Dictionary<int, InputAction> Player2Inputs;
+    Dictionary<int, InputAction> currentInputs;
     Metronome metronomeScript;
 
     Player currentPlayer;
@@ -19,30 +20,43 @@ public class PlayersManager : MonoBehaviour
 
     GameManager gameManager;
 
+    Controls controls;
+
     public class Player {
-        public Dictionary<int, KeyCode> playerInputs;
+        public Dictionary<int, InputAction> playerInputs;
         public int points;
         public Text scoreUI;
 
-        public Player(Dictionary<int, KeyCode> inputs, Text UI) {
+        public Player(Dictionary<int, InputAction> inputs, Text UI) {
             playerInputs = inputs;
             scoreUI = UI;
         }
     }
 
+    private void Awake() {
+        controls = new Controls();
+    }
+
     void Start(){
         gameManager = GameObject.FindObjectOfType<GameManager>();
+
+        //controls = new Controls();
+
         switch (gameManager.controlsSettings) {
-            case GameManager.Controls.arrows:
-                Player1Inputs = SetPlayerInputs(KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow);
-                Player2Inputs = SetPlayerInputs(KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.W);
-                break;
-            case GameManager.Controls.controller:
-                Player1Inputs = SetPlayerInputs(KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow);
-                Player2Inputs = SetPlayerInputs(KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.W);
-                break;
-            case GameManager.Controls.keytar:
+            case GameManager.ControlsSettings.arrows:
+                Player1Inputs = SetPlayerInputs(controls.Instruments.Down, controls.Instruments.Left,
+                    controls.Instruments.Right, controls.Instruments.Up);
+
+                Player2Inputs = SetPlayerInputs(controls.Instruments.S, controls.Instruments.A,
+                    controls.Instruments.D, controls.Instruments.W);
                 
+                break;
+            case GameManager.ControlsSettings.controller:
+                /*Player1Inputs = SetPlayerInputs(KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow);
+                Player2Inputs = SetPlayerInputs(KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.W);*/
+                break;
+            case GameManager.ControlsSettings.keytar:
+                //Todo something for the keytar
                 break;
         }
 
@@ -56,21 +70,24 @@ public class PlayersManager : MonoBehaviour
 
     void Update(){
         for (int i = 0; i < currentInputs.Count; i++) {
-            if (Input.GetKeyDown(currentInputs[i])) {
+            //print(currentInputs[0]);
+            //print(Input.GetKeyDown(currentInputs[0]));
+
+            if (currentInputs[i].triggered) {
                 metronomeScript.PlayNote(i);
                 break;
             }
         }
     }
 
-    //Send a list or array of KeyCode
-    Dictionary<int, KeyCode> SetPlayerInputs(KeyCode KeyCode1, KeyCode KeyCode2, KeyCode KeyCode3, KeyCode KeyCode4) {
-        Dictionary<int, KeyCode> playersInput = new Dictionary<int, KeyCode>();
+    //Send a list or array of InputAction
+    Dictionary<int, InputAction> SetPlayerInputs(InputAction Action1, InputAction Action2, InputAction Action3, InputAction Action4) {
+        Dictionary<int, InputAction> playersInput = new Dictionary<int, InputAction>();
 
-        playersInput[0] = KeyCode1;
-        playersInput[1] = KeyCode2;
-        playersInput[2] = KeyCode3;
-        playersInput[3] = KeyCode4;
+        playersInput[0] = Action1;
+        playersInput[1] = Action2;
+        playersInput[2] = Action3;
+        playersInput[3] = Action4;
 
         return playersInput;
     }
@@ -90,5 +107,13 @@ public class PlayersManager : MonoBehaviour
         if (currentPlayer.points < 0) currentPlayer.points = 0;
         currentPlayer.scoreUI.text = "Score: " + currentPlayer.points;
         Debug.Log("Points: " + currentPlayer.points);
+    }
+
+    private void OnEnable() {
+        controls.Instruments.Enable();
+    }
+
+    private void OnDisable() {
+        controls.Instruments.Disable();
     }
 }
