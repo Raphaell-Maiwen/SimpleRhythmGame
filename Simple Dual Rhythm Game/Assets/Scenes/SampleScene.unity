@@ -2272,7 +2272,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soloIndex: 0
   solosToDo: 3
-  controlsSettings: 0
 --- !u!4 &1498790761
 Transform:
   m_ObjectHideFlags: 0
@@ -2490,7 +2489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score1: {fileID: 1634438302}
   score2: {fileID: 385836525}
-  inputMode: 1
+  inputMode: 0
 --- !u!4 &1840136375
 Transform:
   m_ObjectHideFlags: 0

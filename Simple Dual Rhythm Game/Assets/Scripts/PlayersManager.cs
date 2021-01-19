@@ -66,24 +66,6 @@ public class PlayersManager : MonoBehaviour
         }
     }
 
-    public void SetControls(int controlScheme) {
-        /*controls.Arrows.Disable();
-        controls.Controller.Disable();
-        //keytar
-
-        switch (controlScheme) {
-            case 0:
-                controls.Arrows.Enable();
-                break;
-            case 1:
-                controls.Controller.Enable();
-                break;
-            case 2:
-                //keytar
-                break;
-        }*/
-    }
-
     public void ProcessInput(int playerIndex, int note) {
         if (playerIndex == currentPlayer.index) {
             metronomeScript.PlayNote(note);
@@ -116,15 +98,5 @@ public class PlayersManager : MonoBehaviour
         if (currentPlayer.points < 0) currentPlayer.points = 0;
         currentPlayer.scoreUI.text = "Score: " + currentPlayer.points;
         Debug.Log("Points: " + currentPlayer.points);
-    }
-
-    private void OnEnable() {
-        /*controls.Arrows.Enable();
-        controls.Gamepad.Enable();*/
-    }
-
-    private void OnDisable() {
-        /*controls.Arrows.Disable();
-        controls.Gamepad.Disable();*/
     }
 }

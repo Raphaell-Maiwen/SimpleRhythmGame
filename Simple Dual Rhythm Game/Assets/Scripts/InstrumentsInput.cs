@@ -28,34 +28,7 @@ public class InstrumentsInput : MonoBehaviour
         //FKeysPressed = new bool[5];
 
         playersManager = GameObject.FindObjectOfType<PlayersManager>();
-
-        /*switch (inputMode) {
-            case InputMode.gamepad:
-                playerInput.defaultActionMap = "Controller";
-                break;
-            case InputMode.keyboard:
-                playerInput.defaultActionMap = "Arrows";
-                break;*/
-                /*case InputMode.keytar:
-                    playerInput.defaultActionMap = "PlayerKeytar";
-                    break;*/
-        //}
     }
-
-    void Start(){
-        /*switch (inputMode) {
-            case InputMode.gamepad:
-                playerInput.defaultActionMap = "Controller";
-                break;
-            case InputMode.keyboard:
-                playerInput.defaultActionMap = "Arrows";
-                break;*/
-            /*case InputMode.keytar:
-                playerInput.defaultActionMap = "PlayerKeytar";
-                break;*/
-        //}
-    }
-
 
     //Gamepad Inputs
 
