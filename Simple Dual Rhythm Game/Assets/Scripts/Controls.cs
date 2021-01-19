@@ -175,37 +175,13 @@ public class @Controls : IInputActionCollection, IDisposable
             ]
         },
         {
-            ""name"": ""Gamepad"",
-            ""id"": ""8e39d542-97b6-4431-be21-7f7badd682c1"",
+            ""name"": ""Yo"",
+            ""id"": ""c291d981-c6aa-4fa9-8059-3a0d64325eee"",
             ""actions"": [
                 {
-                    ""name"": ""A"",
+                    ""name"": ""Bouton"",
                     ""type"": ""Button"",
-                    ""id"": ""6e5d1b27-f04d-422b-b172-edd80a489d17"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""X"",
-                    ""type"": ""Button"",
-                    ""id"": ""f1bedbac-7e62-4ee0-91ae-24f8b3026f64"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""B"",
-                    ""type"": ""Button"",
-                    ""id"": ""05b749ba-d56f-4f1d-906f-641aa08dc5e9"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Y"",
-                    ""type"": ""Button"",
-                    ""id"": ""2c0a5a18-003c-485b-a970-4a533924639a"",
+                    ""id"": ""830cd4d0-0deb-4483-a41a-09fcdf26502b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -214,45 +190,96 @@ public class @Controls : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""50f79c9b-6cca-4472-8c88-6256754bf63f"",
+                    ""id"": ""10a85121-4ace-44d3-ade3-91d0d3078429"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""A"",
+                    ""action"": ""Bouton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Controller"",
+            ""id"": ""56ff9b38-4170-413f-ba3c-d97a702664e0"",
+            ""actions"": [
+                {
+                    ""name"": ""South"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e6f83f2-30f2-4dfb-a6c4-ded0b3c5ef9a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""West"",
+                    ""type"": ""Button"",
+                    ""id"": ""830d6f0e-c88d-4995-9958-f7422e922eb9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""East"",
+                    ""type"": ""Button"",
+                    ""id"": ""a1612863-b9c8-4823-910f-035f655045ab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""North"",
+                    ""type"": ""Button"",
+                    ""id"": ""bed95bf6-bb41-4991-b9c0-693a19fedb88"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""893992f7-98fa-4ab7-9585-281c3d5d2933"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""South"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a537d923-ae2c-4576-b279-14df9565f410"",
+                    ""id"": ""9fb207a2-3995-4e5b-9cb1-2250c3340d62"",
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""X"",
+                    ""action"": ""West"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""27f7d5d4-84ce-4279-b169-8884da9f56e0"",
+                    ""id"": ""7e2f4e5e-7643-48d1-a5d9-14f686294311"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""B"",
+                    ""action"": ""East"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8af5fef6-c309-47e7-b17f-ccd09399f96a"",
+                    ""id"": ""b0898b02-0a4b-4a2b-992f-662b86ddaf23"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Y"",
+                    ""action"": ""North"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -271,12 +298,15 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Arrows_A = m_Arrows.FindAction("A", throwIfNotFound: true);
         m_Arrows_D = m_Arrows.FindAction("D", throwIfNotFound: true);
         m_Arrows_W = m_Arrows.FindAction("W", throwIfNotFound: true);
-        // Gamepad
-        m_Gamepad = asset.FindActionMap("Gamepad", throwIfNotFound: true);
-        m_Gamepad_A = m_Gamepad.FindAction("A", throwIfNotFound: true);
-        m_Gamepad_X = m_Gamepad.FindAction("X", throwIfNotFound: true);
-        m_Gamepad_B = m_Gamepad.FindAction("B", throwIfNotFound: true);
-        m_Gamepad_Y = m_Gamepad.FindAction("Y", throwIfNotFound: true);
+        // Yo
+        m_Yo = asset.FindActionMap("Yo", throwIfNotFound: true);
+        m_Yo_Bouton = m_Yo.FindAction("Bouton", throwIfNotFound: true);
+        // Controller
+        m_Controller = asset.FindActionMap("Controller", throwIfNotFound: true);
+        m_Controller_South = m_Controller.FindAction("South", throwIfNotFound: true);
+        m_Controller_West = m_Controller.FindAction("West", throwIfNotFound: true);
+        m_Controller_East = m_Controller.FindAction("East", throwIfNotFound: true);
+        m_Controller_North = m_Controller.FindAction("North", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -412,62 +442,95 @@ public class @Controls : IInputActionCollection, IDisposable
     }
     public ArrowsActions @Arrows => new ArrowsActions(this);
 
-    // Gamepad
-    private readonly InputActionMap m_Gamepad;
-    private IGamepadActions m_GamepadActionsCallbackInterface;
-    private readonly InputAction m_Gamepad_A;
-    private readonly InputAction m_Gamepad_X;
-    private readonly InputAction m_Gamepad_B;
-    private readonly InputAction m_Gamepad_Y;
-    public struct GamepadActions
+    // Yo
+    private readonly InputActionMap m_Yo;
+    private IYoActions m_YoActionsCallbackInterface;
+    private readonly InputAction m_Yo_Bouton;
+    public struct YoActions
     {
         private @Controls m_Wrapper;
-        public GamepadActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @A => m_Wrapper.m_Gamepad_A;
-        public InputAction @X => m_Wrapper.m_Gamepad_X;
-        public InputAction @B => m_Wrapper.m_Gamepad_B;
-        public InputAction @Y => m_Wrapper.m_Gamepad_Y;
-        public InputActionMap Get() { return m_Wrapper.m_Gamepad; }
+        public YoActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Bouton => m_Wrapper.m_Yo_Bouton;
+        public InputActionMap Get() { return m_Wrapper.m_Yo; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(GamepadActions set) { return set.Get(); }
-        public void SetCallbacks(IGamepadActions instance)
+        public static implicit operator InputActionMap(YoActions set) { return set.Get(); }
+        public void SetCallbacks(IYoActions instance)
         {
-            if (m_Wrapper.m_GamepadActionsCallbackInterface != null)
+            if (m_Wrapper.m_YoActionsCallbackInterface != null)
             {
-                @A.started -= m_Wrapper.m_GamepadActionsCallbackInterface.OnA;
-                @A.performed -= m_Wrapper.m_GamepadActionsCallbackInterface.OnA;
-                @A.canceled -= m_Wrapper.m_GamepadActionsCallbackInterface.OnA;
-                @X.started -= m_Wrapper.m_GamepadActionsCallbackInterface.OnX;
-                @X.performed -= m_Wrapper.m_GamepadActionsCallbackInterface.OnX;
-                @X.canceled -= m_Wrapper.m_GamepadActionsCallbackInterface.OnX;
-                @B.started -= m_Wrapper.m_GamepadActionsCallbackInterface.OnB;
-                @B.performed -= m_Wrapper.m_GamepadActionsCallbackInterface.OnB;
-                @B.canceled -= m_Wrapper.m_GamepadActionsCallbackInterface.OnB;
-                @Y.started -= m_Wrapper.m_GamepadActionsCallbackInterface.OnY;
-                @Y.performed -= m_Wrapper.m_GamepadActionsCallbackInterface.OnY;
-                @Y.canceled -= m_Wrapper.m_GamepadActionsCallbackInterface.OnY;
+                @Bouton.started -= m_Wrapper.m_YoActionsCallbackInterface.OnBouton;
+                @Bouton.performed -= m_Wrapper.m_YoActionsCallbackInterface.OnBouton;
+                @Bouton.canceled -= m_Wrapper.m_YoActionsCallbackInterface.OnBouton;
             }
-            m_Wrapper.m_GamepadActionsCallbackInterface = instance;
+            m_Wrapper.m_YoActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @A.started += instance.OnA;
-                @A.performed += instance.OnA;
-                @A.canceled += instance.OnA;
-                @X.started += instance.OnX;
-                @X.performed += instance.OnX;
-                @X.canceled += instance.OnX;
-                @B.started += instance.OnB;
-                @B.performed += instance.OnB;
-                @B.canceled += instance.OnB;
-                @Y.started += instance.OnY;
-                @Y.performed += instance.OnY;
-                @Y.canceled += instance.OnY;
+                @Bouton.started += instance.OnBouton;
+                @Bouton.performed += instance.OnBouton;
+                @Bouton.canceled += instance.OnBouton;
             }
         }
     }
-    public GamepadActions @Gamepad => new GamepadActions(this);
+    public YoActions @Yo => new YoActions(this);
+
+    // Controller
+    private readonly InputActionMap m_Controller;
+    private IControllerActions m_ControllerActionsCallbackInterface;
+    private readonly InputAction m_Controller_South;
+    private readonly InputAction m_Controller_West;
+    private readonly InputAction m_Controller_East;
+    private readonly InputAction m_Controller_North;
+    public struct ControllerActions
+    {
+        private @Controls m_Wrapper;
+        public ControllerActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @South => m_Wrapper.m_Controller_South;
+        public InputAction @West => m_Wrapper.m_Controller_West;
+        public InputAction @East => m_Wrapper.m_Controller_East;
+        public InputAction @North => m_Wrapper.m_Controller_North;
+        public InputActionMap Get() { return m_Wrapper.m_Controller; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ControllerActions set) { return set.Get(); }
+        public void SetCallbacks(IControllerActions instance)
+        {
+            if (m_Wrapper.m_ControllerActionsCallbackInterface != null)
+            {
+                @South.started -= m_Wrapper.m_ControllerActionsCallbackInterface.OnSouth;
+                @South.performed -= m_Wrapper.m_ControllerActionsCallbackInterface.OnSouth;
+                @South.canceled -= m_Wrapper.m_ControllerActionsCallbackInterface.OnSouth;
+                @West.started -= m_Wrapper.m_ControllerActionsCallbackInterface.OnWest;
+                @West.performed -= m_Wrapper.m_ControllerActionsCallbackInterface.OnWest;
+                @West.canceled -= m_Wrapper.m_ControllerActionsCallbackInterface.OnWest;
+                @East.started -= m_Wrapper.m_ControllerActionsCallbackInterface.OnEast;
+                @East.performed -= m_Wrapper.m_ControllerActionsCallbackInterface.OnEast;
+                @East.canceled -= m_Wrapper.m_ControllerActionsCallbackInterface.OnEast;
+                @North.started -= m_Wrapper.m_ControllerActionsCallbackInterface.OnNorth;
+                @North.performed -= m_Wrapper.m_ControllerActionsCallbackInterface.OnNorth;
+                @North.canceled -= m_Wrapper.m_ControllerActionsCallbackInterface.OnNorth;
+            }
+            m_Wrapper.m_ControllerActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @South.started += instance.OnSouth;
+                @South.performed += instance.OnSouth;
+                @South.canceled += instance.OnSouth;
+                @West.started += instance.OnWest;
+                @West.performed += instance.OnWest;
+                @West.canceled += instance.OnWest;
+                @East.started += instance.OnEast;
+                @East.performed += instance.OnEast;
+                @East.canceled += instance.OnEast;
+                @North.started += instance.OnNorth;
+                @North.performed += instance.OnNorth;
+                @North.canceled += instance.OnNorth;
+            }
+        }
+    }
+    public ControllerActions @Controller => new ControllerActions(this);
     public interface IArrowsActions
     {
         void OnDown(InputAction.CallbackContext context);
@@ -479,11 +542,15 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnD(InputAction.CallbackContext context);
         void OnW(InputAction.CallbackContext context);
     }
-    public interface IGamepadActions
+    public interface IYoActions
     {
-        void OnA(InputAction.CallbackContext context);
-        void OnX(InputAction.CallbackContext context);
-        void OnB(InputAction.CallbackContext context);
-        void OnY(InputAction.CallbackContext context);
+        void OnBouton(InputAction.CallbackContext context);
+    }
+    public interface IControllerActions
+    {
+        void OnSouth(InputAction.CallbackContext context);
+        void OnWest(InputAction.CallbackContext context);
+        void OnEast(InputAction.CallbackContext context);
+        void OnNorth(InputAction.CallbackContext context);
     }
 }

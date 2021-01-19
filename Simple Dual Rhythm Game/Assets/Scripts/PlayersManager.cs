@@ -22,6 +22,14 @@ public class PlayersManager : MonoBehaviour
 
     Controls controls;
 
+    public InputMode inputMode;
+
+    public enum InputMode {
+        gamepad,
+        keyboard
+        //eventually: keytar
+    }
+
     //TODO: A delegate to call a different function based on the control scheme?
 
     public class Player {
@@ -29,9 +37,12 @@ public class PlayersManager : MonoBehaviour
         public int points;
         public Text scoreUI;
 
-        public Player(Dictionary<int, InputAction> inputs, Text UI) {
+        public int index;
+
+        public Player(Dictionary<int, InputAction> inputs, Text UI, int i) {
             playerInputs = inputs;
             scoreUI = UI;
+            index = i;
         }
     }
 
@@ -52,8 +63,8 @@ public class PlayersManager : MonoBehaviour
                 
                 break;
             case GameManager.ControlsSettings.controller:
-                Player1Inputs = SetPlayerInputs(controls.Gamepad.A, controls.Gamepad.X, controls.Gamepad.B, controls.Gamepad.Y);
-                Player2Inputs = SetPlayerInputs(controls.Gamepad.A, controls.Gamepad.X, controls.Gamepad.B, controls.Gamepad.Y);
+                //Player1Inputs = SetPlayerInputs(controls.Gamepad.A, controls.Gamepad.X, controls.Gamepad.B, controls.Gamepad.Y);
+                //Player2Inputs = SetPlayerInputs(controls.Gamepad.A, controls.Gamepad.X, controls.Gamepad.B, controls.Gamepad.Y);
                 break;
             case GameManager.ControlsSettings.keytar:
                 //Todo something for the keytar
@@ -62,10 +73,20 @@ public class PlayersManager : MonoBehaviour
 
         metronomeScript = GameObject.Find("Metronome").GetComponent<Metronome>();
 
-        player1 = new Player(Player1Inputs, score1);
-        player2 = new Player(Player2Inputs, score2);
+        player1 = new Player(Player1Inputs, score1, 0);
+        player2 = new Player(Player2Inputs, score2, 1);
         currentPlayer = player1;
         currentInputs = player1.playerInputs;
+
+        switch (inputMode) {
+            case InputMode.gamepad:
+                this.GetComponent<PlayerInputManager>().playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Controller";
+                break;
+
+            case InputMode.keyboard:
+                this.GetComponent<PlayerInputManager>().playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Arrows";
+                break;
+        }
     }
 
     void Update(){
@@ -73,10 +94,36 @@ public class PlayersManager : MonoBehaviour
             //print(currentInputs[0]);
             //print(Input.GetKeyDown(currentInputs[0]));
 
-            if (currentInputs[i].triggered) {
+
+
+            /*if (currentInputs[i].triggered) {
                 metronomeScript.PlayNote(i);
                 break;
-            }
+            }*/
+        }
+    }
+
+    public void SetControls(int controlScheme) {
+        /*controls.Arrows.Disable();
+        controls.Controller.Disable();
+        //keytar
+
+        switch (controlScheme) {
+            case 0:
+                controls.Arrows.Enable();
+                break;
+            case 1:
+                controls.Controller.Enable();
+                break;
+            case 2:
+                //keytar
+                break;
+        }*/
+    }
+
+    public void ProcessInput(int playerIndex, int note) {
+        if (playerIndex == currentPlayer.index) {
+            metronomeScript.PlayNote(note);
         }
     }
 
@@ -110,13 +157,12 @@ public class PlayersManager : MonoBehaviour
     }
 
     private void OnEnable() {
-        //Faire un switch pis tout'
-        controls.Arrows.Enable();
-        controls.Gamepad.Enable();
+        /*controls.Arrows.Enable();
+        controls.Gamepad.Enable();*/
     }
 
     private void OnDisable() {
-        controls.Arrows.Disable();
-        controls.Gamepad.Disable();
+        /*controls.Arrows.Disable();
+        controls.Gamepad.Disable();*/
     }
 }
