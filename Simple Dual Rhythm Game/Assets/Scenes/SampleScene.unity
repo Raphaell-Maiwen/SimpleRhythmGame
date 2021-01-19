@@ -2489,7 +2489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score1: {fileID: 1634438302}
   score2: {fileID: 385836525}
-  inputMode: 0
+  inputMode: 1
 --- !u!4 &1840136375
 Transform:
   m_ObjectHideFlags: 0

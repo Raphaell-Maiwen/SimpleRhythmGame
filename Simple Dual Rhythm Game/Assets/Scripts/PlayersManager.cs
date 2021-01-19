@@ -47,8 +47,6 @@ public class PlayersManager : MonoBehaviour
 
     void Start(){
         gameManager = GameObject.FindObjectOfType<GameManager>();
-
-
         metronomeScript = GameObject.Find("Metronome").GetComponent<Metronome>();
 
         player1 = new Player(score1, 0);
@@ -70,18 +68,6 @@ public class PlayersManager : MonoBehaviour
         if (playerIndex == currentPlayer.index) {
             metronomeScript.PlayNote(note);
         }
-    }
-
-    //Send a list or array of InputAction
-    Dictionary<int, InputAction> SetPlayerInputs(InputAction Action1, InputAction Action2, InputAction Action3, InputAction Action4) {
-        Dictionary<int, InputAction> playersInput = new Dictionary<int, InputAction>();
-
-        playersInput[0] = Action1;
-        playersInput[1] = Action2;
-        playersInput[2] = Action3;
-        playersInput[3] = Action4;
-
-        return playersInput;
     }
 
     public void changeCurrentPlayer() {

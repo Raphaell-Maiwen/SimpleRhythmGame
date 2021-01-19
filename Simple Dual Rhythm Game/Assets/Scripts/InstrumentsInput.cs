@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class InstrumentsInput : MonoBehaviour
 {
     PlayerInput playerInput;
-    //Controls controls;
 
     public InputMode inputMode;
 
@@ -22,8 +21,6 @@ public class InstrumentsInput : MonoBehaviour
 
     private void Awake() {
         playerInput = GetComponent<PlayerInput>();
-
-        //controls = new Controls();
 
         //FKeysPressed = new bool[5];
 
