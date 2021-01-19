@@ -25,10 +25,17 @@ public class InstrumentsInput : MonoBehaviour
         //FKeysPressed = new bool[5];
 
         playersManager = GameObject.FindObjectOfType<PlayersManager>();
+
+        //Making sure a device doesn't join if it's not supposed to (and doesn't prevent right devices to join)
+        if (typeof(Keyboard) == playerInput.devices[0].GetType()) {
+            if (playersManager.inputMode == PlayersManager.InputMode.gamepad) GameObject.Destroy(this.gameObject);
+        }
+        else if (typeof(Gamepad) == playerInput.devices[0].GetType()) {
+            if (playersManager.inputMode == PlayersManager.InputMode.keyboard) GameObject.Destroy(this.gameObject);
+        }
     }
 
     //Gamepad Inputs
-
     private void OnSouth() {
         print("Ok");
         playersManager.ProcessInput(playerInput.playerIndex, 0);
@@ -47,7 +54,6 @@ public class InstrumentsInput : MonoBehaviour
     }
 
     //Player 1 Keyboard Inputs
-
     private void OnS() {
         playersManager.ProcessInput(0, 0);
     }
