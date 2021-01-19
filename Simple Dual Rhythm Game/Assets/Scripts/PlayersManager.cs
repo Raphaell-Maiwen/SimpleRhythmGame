@@ -6,9 +6,6 @@ using UnityEngine.InputSystem;
 
 public class PlayersManager : MonoBehaviour
 {
-    Dictionary<int, InputAction> Player1Inputs;
-    Dictionary<int, InputAction> Player2Inputs;
-    Dictionary<int, InputAction> currentInputs;
     Metronome metronomeScript;
 
     Player currentPlayer;
@@ -33,14 +30,12 @@ public class PlayersManager : MonoBehaviour
     //TODO: A delegate to call a different function based on the control scheme?
 
     public class Player {
-        public Dictionary<int, InputAction> playerInputs;
         public int points;
         public Text scoreUI;
 
         public int index;
 
-        public Player(Dictionary<int, InputAction> inputs, Text UI, int i) {
-            playerInputs = inputs;
+        public Player(Text UI, int i) {
             scoreUI = UI;
             index = i;
         }
@@ -53,30 +48,12 @@ public class PlayersManager : MonoBehaviour
     void Start(){
         gameManager = GameObject.FindObjectOfType<GameManager>();
 
-        switch (gameManager.controlsSettings) {
-            case GameManager.ControlsSettings.arrows:
-                Player1Inputs = SetPlayerInputs(controls.Arrows.Down, controls.Arrows.Left,
-                    controls.Arrows.Right, controls.Arrows.Up);
-
-                Player2Inputs = SetPlayerInputs(controls.Arrows.S, controls.Arrows.A,
-                    controls.Arrows.D, controls.Arrows.W);
-                
-                break;
-            case GameManager.ControlsSettings.controller:
-                //Player1Inputs = SetPlayerInputs(controls.Gamepad.A, controls.Gamepad.X, controls.Gamepad.B, controls.Gamepad.Y);
-                //Player2Inputs = SetPlayerInputs(controls.Gamepad.A, controls.Gamepad.X, controls.Gamepad.B, controls.Gamepad.Y);
-                break;
-            case GameManager.ControlsSettings.keytar:
-                //Todo something for the keytar
-                break;
-        }
 
         metronomeScript = GameObject.Find("Metronome").GetComponent<Metronome>();
 
-        player1 = new Player(Player1Inputs, score1, 0);
-        player2 = new Player(Player2Inputs, score2, 1);
+        player1 = new Player(score1, 0);
+        player2 = new Player(score2, 1);
         currentPlayer = player1;
-        currentInputs = player1.playerInputs;
 
         switch (inputMode) {
             case InputMode.gamepad:
@@ -86,20 +63,6 @@ public class PlayersManager : MonoBehaviour
             case InputMode.keyboard:
                 this.GetComponent<PlayerInputManager>().playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Arrows";
                 break;
-        }
-    }
-
-    void Update(){
-        for (int i = 0; i < currentInputs.Count; i++) {
-            //print(currentInputs[0]);
-            //print(Input.GetKeyDown(currentInputs[0]));
-
-
-
-            /*if (currentInputs[i].triggered) {
-                metronomeScript.PlayNote(i);
-                break;
-            }*/
         }
     }
 
@@ -146,7 +109,6 @@ public class PlayersManager : MonoBehaviour
         else {
             currentPlayer = player1;
         }
-        currentInputs = currentPlayer.playerInputs;
     }
 
     public void MakePoints(int points) {

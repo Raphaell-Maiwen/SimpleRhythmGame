@@ -7,14 +7,6 @@ public class GameManager : MonoBehaviour{
     public int solosToDo;
     Metronome metronomeScript;
 
-    public ControlsSettings controlsSettings;
-
-    public enum ControlsSettings {
-        arrows,
-        keytar,
-        controller
-    }
-
     public void AddSolo() {
         soloIndex++;
         if (soloIndex == solosToDo - 1)
