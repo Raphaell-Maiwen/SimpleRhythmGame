@@ -22,6 +22,8 @@ public class PlayersManager : MonoBehaviour
 
     Controls controls;
 
+    //TODO: A delegate to call a different function based on the control scheme?
+
     public class Player {
         public Dictionary<int, InputAction> playerInputs;
         public int points;
@@ -40,20 +42,18 @@ public class PlayersManager : MonoBehaviour
     void Start(){
         gameManager = GameObject.FindObjectOfType<GameManager>();
 
-        //controls = new Controls();
-
         switch (gameManager.controlsSettings) {
             case GameManager.ControlsSettings.arrows:
-                Player1Inputs = SetPlayerInputs(controls.Instruments.Down, controls.Instruments.Left,
-                    controls.Instruments.Right, controls.Instruments.Up);
+                Player1Inputs = SetPlayerInputs(controls.Arrows.Down, controls.Arrows.Left,
+                    controls.Arrows.Right, controls.Arrows.Up);
 
-                Player2Inputs = SetPlayerInputs(controls.Instruments.S, controls.Instruments.A,
-                    controls.Instruments.D, controls.Instruments.W);
+                Player2Inputs = SetPlayerInputs(controls.Arrows.S, controls.Arrows.A,
+                    controls.Arrows.D, controls.Arrows.W);
                 
                 break;
             case GameManager.ControlsSettings.controller:
-                /*Player1Inputs = SetPlayerInputs(KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow);
-                Player2Inputs = SetPlayerInputs(KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.W);*/
+                Player1Inputs = SetPlayerInputs(controls.Gamepad.A, controls.Gamepad.X, controls.Gamepad.B, controls.Gamepad.Y);
+                Player2Inputs = SetPlayerInputs(controls.Gamepad.A, controls.Gamepad.X, controls.Gamepad.B, controls.Gamepad.Y);
                 break;
             case GameManager.ControlsSettings.keytar:
                 //Todo something for the keytar
@@ -110,10 +110,13 @@ public class PlayersManager : MonoBehaviour
     }
 
     private void OnEnable() {
-        controls.Instruments.Enable();
+        //Faire un switch pis tout'
+        controls.Arrows.Enable();
+        controls.Gamepad.Enable();
     }
 
     private void OnDisable() {
-        controls.Instruments.Disable();
+        controls.Arrows.Disable();
+        controls.Gamepad.Disable();
     }
 }

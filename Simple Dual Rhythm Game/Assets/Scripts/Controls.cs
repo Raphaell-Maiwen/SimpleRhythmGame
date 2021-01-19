@@ -15,7 +15,7 @@ public class @Controls : IInputActionCollection, IDisposable
     ""name"": ""Controls"",
     ""maps"": [
         {
-            ""name"": ""Instruments"",
+            ""name"": ""Arrows"",
             ""id"": ""17d02d40-6473-4e71-af1a-360d948d0789"",
             ""actions"": [
                 {
@@ -173,20 +173,110 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Gamepad"",
+            ""id"": ""8e39d542-97b6-4431-be21-7f7badd682c1"",
+            ""actions"": [
+                {
+                    ""name"": ""A"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e5d1b27-f04d-422b-b172-edd80a489d17"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""X"",
+                    ""type"": ""Button"",
+                    ""id"": ""f1bedbac-7e62-4ee0-91ae-24f8b3026f64"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""B"",
+                    ""type"": ""Button"",
+                    ""id"": ""05b749ba-d56f-4f1d-906f-641aa08dc5e9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Y"",
+                    ""type"": ""Button"",
+                    ""id"": ""2c0a5a18-003c-485b-a970-4a533924639a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""50f79c9b-6cca-4472-8c88-6256754bf63f"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""A"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a537d923-ae2c-4576-b279-14df9565f410"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""X"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""27f7d5d4-84ce-4279-b169-8884da9f56e0"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""B"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8af5fef6-c309-47e7-b17f-ccd09399f96a"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Y"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // Instruments
-        m_Instruments = asset.FindActionMap("Instruments", throwIfNotFound: true);
-        m_Instruments_Down = m_Instruments.FindAction("Down", throwIfNotFound: true);
-        m_Instruments_Left = m_Instruments.FindAction("Left", throwIfNotFound: true);
-        m_Instruments_Right = m_Instruments.FindAction("Right", throwIfNotFound: true);
-        m_Instruments_Up = m_Instruments.FindAction("Up", throwIfNotFound: true);
-        m_Instruments_S = m_Instruments.FindAction("S", throwIfNotFound: true);
-        m_Instruments_A = m_Instruments.FindAction("A", throwIfNotFound: true);
-        m_Instruments_D = m_Instruments.FindAction("D", throwIfNotFound: true);
-        m_Instruments_W = m_Instruments.FindAction("W", throwIfNotFound: true);
+        // Arrows
+        m_Arrows = asset.FindActionMap("Arrows", throwIfNotFound: true);
+        m_Arrows_Down = m_Arrows.FindAction("Down", throwIfNotFound: true);
+        m_Arrows_Left = m_Arrows.FindAction("Left", throwIfNotFound: true);
+        m_Arrows_Right = m_Arrows.FindAction("Right", throwIfNotFound: true);
+        m_Arrows_Up = m_Arrows.FindAction("Up", throwIfNotFound: true);
+        m_Arrows_S = m_Arrows.FindAction("S", throwIfNotFound: true);
+        m_Arrows_A = m_Arrows.FindAction("A", throwIfNotFound: true);
+        m_Arrows_D = m_Arrows.FindAction("D", throwIfNotFound: true);
+        m_Arrows_W = m_Arrows.FindAction("W", throwIfNotFound: true);
+        // Gamepad
+        m_Gamepad = asset.FindActionMap("Gamepad", throwIfNotFound: true);
+        m_Gamepad_A = m_Gamepad.FindAction("A", throwIfNotFound: true);
+        m_Gamepad_X = m_Gamepad.FindAction("X", throwIfNotFound: true);
+        m_Gamepad_B = m_Gamepad.FindAction("B", throwIfNotFound: true);
+        m_Gamepad_Y = m_Gamepad.FindAction("Y", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -233,64 +323,64 @@ public class @Controls : IInputActionCollection, IDisposable
         asset.Disable();
     }
 
-    // Instruments
-    private readonly InputActionMap m_Instruments;
-    private IInstrumentsActions m_InstrumentsActionsCallbackInterface;
-    private readonly InputAction m_Instruments_Down;
-    private readonly InputAction m_Instruments_Left;
-    private readonly InputAction m_Instruments_Right;
-    private readonly InputAction m_Instruments_Up;
-    private readonly InputAction m_Instruments_S;
-    private readonly InputAction m_Instruments_A;
-    private readonly InputAction m_Instruments_D;
-    private readonly InputAction m_Instruments_W;
-    public struct InstrumentsActions
+    // Arrows
+    private readonly InputActionMap m_Arrows;
+    private IArrowsActions m_ArrowsActionsCallbackInterface;
+    private readonly InputAction m_Arrows_Down;
+    private readonly InputAction m_Arrows_Left;
+    private readonly InputAction m_Arrows_Right;
+    private readonly InputAction m_Arrows_Up;
+    private readonly InputAction m_Arrows_S;
+    private readonly InputAction m_Arrows_A;
+    private readonly InputAction m_Arrows_D;
+    private readonly InputAction m_Arrows_W;
+    public struct ArrowsActions
     {
         private @Controls m_Wrapper;
-        public InstrumentsActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Down => m_Wrapper.m_Instruments_Down;
-        public InputAction @Left => m_Wrapper.m_Instruments_Left;
-        public InputAction @Right => m_Wrapper.m_Instruments_Right;
-        public InputAction @Up => m_Wrapper.m_Instruments_Up;
-        public InputAction @S => m_Wrapper.m_Instruments_S;
-        public InputAction @A => m_Wrapper.m_Instruments_A;
-        public InputAction @D => m_Wrapper.m_Instruments_D;
-        public InputAction @W => m_Wrapper.m_Instruments_W;
-        public InputActionMap Get() { return m_Wrapper.m_Instruments; }
+        public ArrowsActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Down => m_Wrapper.m_Arrows_Down;
+        public InputAction @Left => m_Wrapper.m_Arrows_Left;
+        public InputAction @Right => m_Wrapper.m_Arrows_Right;
+        public InputAction @Up => m_Wrapper.m_Arrows_Up;
+        public InputAction @S => m_Wrapper.m_Arrows_S;
+        public InputAction @A => m_Wrapper.m_Arrows_A;
+        public InputAction @D => m_Wrapper.m_Arrows_D;
+        public InputAction @W => m_Wrapper.m_Arrows_W;
+        public InputActionMap Get() { return m_Wrapper.m_Arrows; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(InstrumentsActions set) { return set.Get(); }
-        public void SetCallbacks(IInstrumentsActions instance)
+        public static implicit operator InputActionMap(ArrowsActions set) { return set.Get(); }
+        public void SetCallbacks(IArrowsActions instance)
         {
-            if (m_Wrapper.m_InstrumentsActionsCallbackInterface != null)
+            if (m_Wrapper.m_ArrowsActionsCallbackInterface != null)
             {
-                @Down.started -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnDown;
-                @Down.performed -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnDown;
-                @Down.canceled -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnDown;
-                @Left.started -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnLeft;
-                @Left.performed -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnLeft;
-                @Left.canceled -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnLeft;
-                @Right.started -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnRight;
-                @Right.performed -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnRight;
-                @Right.canceled -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnRight;
-                @Up.started -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnUp;
-                @Up.performed -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnUp;
-                @Up.canceled -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnUp;
-                @S.started -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnS;
-                @S.performed -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnS;
-                @S.canceled -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnS;
-                @A.started -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnA;
-                @A.performed -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnA;
-                @A.canceled -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnA;
-                @D.started -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnD;
-                @D.performed -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnD;
-                @D.canceled -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnD;
-                @W.started -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnW;
-                @W.performed -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnW;
-                @W.canceled -= m_Wrapper.m_InstrumentsActionsCallbackInterface.OnW;
+                @Down.started -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnDown;
+                @Down.performed -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnDown;
+                @Down.canceled -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnDown;
+                @Left.started -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnLeft;
+                @Left.performed -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnLeft;
+                @Left.canceled -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnLeft;
+                @Right.started -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnRight;
+                @Right.performed -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnRight;
+                @Right.canceled -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnRight;
+                @Up.started -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnUp;
+                @Up.performed -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnUp;
+                @Up.canceled -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnUp;
+                @S.started -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnS;
+                @S.performed -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnS;
+                @S.canceled -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnS;
+                @A.started -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnA;
+                @A.performed -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnA;
+                @A.canceled -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnA;
+                @D.started -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnD;
+                @D.performed -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnD;
+                @D.canceled -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnD;
+                @W.started -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnW;
+                @W.performed -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnW;
+                @W.canceled -= m_Wrapper.m_ArrowsActionsCallbackInterface.OnW;
             }
-            m_Wrapper.m_InstrumentsActionsCallbackInterface = instance;
+            m_Wrapper.m_ArrowsActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Down.started += instance.OnDown;
@@ -320,8 +410,65 @@ public class @Controls : IInputActionCollection, IDisposable
             }
         }
     }
-    public InstrumentsActions @Instruments => new InstrumentsActions(this);
-    public interface IInstrumentsActions
+    public ArrowsActions @Arrows => new ArrowsActions(this);
+
+    // Gamepad
+    private readonly InputActionMap m_Gamepad;
+    private IGamepadActions m_GamepadActionsCallbackInterface;
+    private readonly InputAction m_Gamepad_A;
+    private readonly InputAction m_Gamepad_X;
+    private readonly InputAction m_Gamepad_B;
+    private readonly InputAction m_Gamepad_Y;
+    public struct GamepadActions
+    {
+        private @Controls m_Wrapper;
+        public GamepadActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @A => m_Wrapper.m_Gamepad_A;
+        public InputAction @X => m_Wrapper.m_Gamepad_X;
+        public InputAction @B => m_Wrapper.m_Gamepad_B;
+        public InputAction @Y => m_Wrapper.m_Gamepad_Y;
+        public InputActionMap Get() { return m_Wrapper.m_Gamepad; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GamepadActions set) { return set.Get(); }
+        public void SetCallbacks(IGamepadActions instance)
+        {
+            if (m_Wrapper.m_GamepadActionsCallbackInterface != null)
+            {
+                @A.started -= m_Wrapper.m_GamepadActionsCallbackInterface.OnA;
+                @A.performed -= m_Wrapper.m_GamepadActionsCallbackInterface.OnA;
+                @A.canceled -= m_Wrapper.m_GamepadActionsCallbackInterface.OnA;
+                @X.started -= m_Wrapper.m_GamepadActionsCallbackInterface.OnX;
+                @X.performed -= m_Wrapper.m_GamepadActionsCallbackInterface.OnX;
+                @X.canceled -= m_Wrapper.m_GamepadActionsCallbackInterface.OnX;
+                @B.started -= m_Wrapper.m_GamepadActionsCallbackInterface.OnB;
+                @B.performed -= m_Wrapper.m_GamepadActionsCallbackInterface.OnB;
+                @B.canceled -= m_Wrapper.m_GamepadActionsCallbackInterface.OnB;
+                @Y.started -= m_Wrapper.m_GamepadActionsCallbackInterface.OnY;
+                @Y.performed -= m_Wrapper.m_GamepadActionsCallbackInterface.OnY;
+                @Y.canceled -= m_Wrapper.m_GamepadActionsCallbackInterface.OnY;
+            }
+            m_Wrapper.m_GamepadActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @A.started += instance.OnA;
+                @A.performed += instance.OnA;
+                @A.canceled += instance.OnA;
+                @X.started += instance.OnX;
+                @X.performed += instance.OnX;
+                @X.canceled += instance.OnX;
+                @B.started += instance.OnB;
+                @B.performed += instance.OnB;
+                @B.canceled += instance.OnB;
+                @Y.started += instance.OnY;
+                @Y.performed += instance.OnY;
+                @Y.canceled += instance.OnY;
+            }
+        }
+    }
+    public GamepadActions @Gamepad => new GamepadActions(this);
+    public interface IArrowsActions
     {
         void OnDown(InputAction.CallbackContext context);
         void OnLeft(InputAction.CallbackContext context);
@@ -331,5 +478,12 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnA(InputAction.CallbackContext context);
         void OnD(InputAction.CallbackContext context);
         void OnW(InputAction.CallbackContext context);
+    }
+    public interface IGamepadActions
+    {
+        void OnA(InputAction.CallbackContext context);
+        void OnX(InputAction.CallbackContext context);
+        void OnB(InputAction.CallbackContext context);
+        void OnY(InputAction.CallbackContext context);
     }
 }

@@ -2,7 +2,7 @@
     "name": "Controls",
     "maps": [
         {
-            "name": "Instruments",
+            "name": "Arrows",
             "id": "17d02d40-6473-4e71-af1a-360d948d0789",
             "actions": [
                 {
@@ -156,6 +156,90 @@
                     "processors": "",
                     "groups": "",
                     "action": "W",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Gamepad",
+            "id": "8e39d542-97b6-4431-be21-7f7badd682c1",
+            "actions": [
+                {
+                    "name": "A",
+                    "type": "Button",
+                    "id": "6e5d1b27-f04d-422b-b172-edd80a489d17",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "X",
+                    "type": "Button",
+                    "id": "f1bedbac-7e62-4ee0-91ae-24f8b3026f64",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "B",
+                    "type": "Button",
+                    "id": "05b749ba-d56f-4f1d-906f-641aa08dc5e9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Y",
+                    "type": "Button",
+                    "id": "2c0a5a18-003c-485b-a970-4a533924639a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "50f79c9b-6cca-4472-8c88-6256754bf63f",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "A",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a537d923-ae2c-4576-b279-14df9565f410",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "X",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27f7d5d4-84ce-4279-b169-8884da9f56e0",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "B",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8af5fef6-c309-47e7-b17f-ccd09399f96a",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Y",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
