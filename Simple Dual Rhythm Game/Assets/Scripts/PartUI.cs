@@ -9,6 +9,10 @@ public class PartUI : MonoBehaviour
     public GameObject trackerAnchor;
     public GameObject trackerAnchorEnd;
 
+    public GameObject barPrefab;
+
+    public float barLength = 14f;
+
     [HideInInspector]
     public GameObject currentTracker;
 
@@ -23,8 +27,6 @@ public class PartUI : MonoBehaviour
     public List<GameObject> controllerIcons;
     public List<GameObject> keyboardFIcons;
     List<GameObject> currentIcons;
-
-    //TODO: A function to place entry and exit black bars based on amount of musical bars
 
     List<GameObject> iconsInPlay;
 
@@ -45,23 +47,17 @@ public class PartUI : MonoBehaviour
     }
 
     private void Awake() {
-        trackers = new Queue<Tracker>();
-
-        for (int i = trackersList.Count -1; i > -1; i--) {
-            GameObject newTracker = trackersList[i];
-            trackers.Enqueue(new Tracker(newTracker, 0, 0, newTracker.transform.position));
-        }
+        //bars = GameObject.Find("Metronome").GetComponent<Metronome>().bars;
 
         iconsInPlay = new List<GameObject>();
 
-        //Function to place entry and exit bars here
-
-        PlacerTrackerAnchors();
+        GenerateBars();
+        SetupAnchorsAndCamera();
         PlaceTrackers();
     }
 
     public void SetUp(float bpm, float beatPerBar) {
-        trackerSpeed = 60 / bpm * beatPerBar * 3;
+        trackerSpeed = 60 / bpm * beatPerBar * 3 * Parameters.instance.bars;
 
         //Assign icons according to controller / keyboard style
         currentIcons = arrowIcons;
@@ -74,10 +70,24 @@ public class PartUI : MonoBehaviour
             iconPos.y += 0.7f * i;
             currentIcons[i].transform.position = iconPos;
         }
+
+
+        trackers = new Queue<Tracker>();
+        for (int i = trackersList.Count - 1; i > -1; i--) {
+            GameObject newTracker = trackersList[i];
+            if (i == 1) {
+                //(bpm / 60) * beatPerBar * bars / 2
+                trackers.Enqueue(new Tracker(newTracker, 0, 
+                    0, newTracker.transform.position));
+            }
+            else {
+                trackers.Enqueue(new Tracker(newTracker, 0, 0, newTracker.transform.position));
+            }
+        }
     }
 
     public void ChangeTempo(float bpm, float beatPerBar) {
-        trackerSpeed = 60 / bpm * beatPerBar * 3;
+        trackerSpeed = 60 / bpm * beatPerBar * 3 * Parameters.instance.bars;
         foreach (Tracker b in trackers) {
             b.timer /= 1.2f;
         }
@@ -132,19 +142,31 @@ public class PartUI : MonoBehaviour
         }
     }
 
-    private void PlaceTrackers() {
-        //trackersList[0].transform.position = trackerAnchor.transform.position;
-        //TODO: Place-les sti
-        //trackersList[1].transform.position;
-        trackersList[2].transform.position = trackerAnchorEnd.transform.position;
-        //trackersList[3].transform.position = trackerAnchorEnd.transform.position;
+    void GenerateBars() {
+        for (int i = 1; i < Parameters.instance.bars; i++) {
+            Vector3 newBarPos = Vector3.zero;
+            newBarPos.x += barLength * (i);
+            Instantiate(barPrefab, newBarPos, Quaternion.identity);
+        }
     }
 
-    private void PlacerTrackerAnchors() {
-        Vector3 entryBarPos = GameObject.Find("EntryBar").transform.position;
-        Vector3 exitBarPos = GameObject.Find("ExitBar").transform.position;
+    private void PlaceTrackers() {
+        //trackersList[0].transform.position = trackerAnchor.transform.position;
 
-        float partLength = Mathf.Abs(exitBarPos.x - entryBarPos.x);
+        //Ce n'est qu'un au revoir
+        Vector3 middleTrackerPos = trackerAnchor.transform.position;
+        middleTrackerPos.x = barLength * Parameters.instance.bars - 7;
+        trackersList[1].transform.position = middleTrackerPos;
+
+        trackersList[2].transform.position = trackerAnchorEnd.transform.position;
+    }
+
+    private void SetupAnchorsAndCamera() {
+        Vector3 entryBarPos = GameObject.Find("EntryBar").transform.position;
+        Vector3 exitBarPos = entryBarPos;
+        exitBarPos.x = exitBarPos.x + barLength * Parameters.instance.bars;
+
+        float partLength = barLength * Parameters.instance.bars;
 
         Vector3 trackerAnchorPos = entryBarPos;
         trackerAnchorPos.x -= partLength;
@@ -155,5 +177,10 @@ public class PartUI : MonoBehaviour
         trackerAnchorEnd.transform.position = trackerAnchorEndPos;
 
         Difference = trackerAnchorEnd.transform.position - trackerAnchor.transform.position;
+
+        Vector3 cameraPos = Camera.main.transform.position;
+        cameraPos.x = (entryBarPos.x + exitBarPos.x) / 2;
+        Camera.main.transform.position = cameraPos;
+        Camera.main.orthographicSize = 5 * Parameters.instance.bars;
     }
 }

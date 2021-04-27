@@ -5,12 +5,16 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 public class Metronome : MonoBehaviour {
+    //[HideInInspector]
     public int bpm;
 
     [HideInInspector]
     public float frequency;
 
+    //[HideInInspector]
     public int beatPerBar;
+    //[HideInInspector]
+    public int bars = 1;
     private int metronomeCounter = 0;
 
     private float initialTime;
@@ -76,22 +80,25 @@ public class Metronome : MonoBehaviour {
             instrumentSounds[i] = sounds[i + 1];
         }
 
+        //On va injecter ces trucs-là?
         playersScript = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
         UIScript = GameObject.Find("Part").GetComponent<PartUI>();
 
-        SetUp();
+        //SetUp();
 
         currentStateIndex = statesSeries.Length - 1;
         riff = new List<Note>();
 
         badNoteSound = sounds[5];
-
         beat = sounds[sounds.Length - 1];
-
-        //beat.Play();
     }
 
     private void Start() {
+        bpm = Parameters.instance.bpm;
+        beatPerBar = Parameters.instance.beatPerBar;
+        bars = Parameters.instance.bars;
+
+        SetUp();
         SetBeatSpeed();
     }
 
@@ -126,7 +133,14 @@ public class Metronome : MonoBehaviour {
 
         //Check if we're at the beginning of a new bar
         if (metronomeCounter % beatPerBar == 0) {
+            //Debug.Log("New bar");
             tickSound.volume = strongTick;
+        }
+
+        //Check if we're at the beginning of a new cycle
+        if (metronomeCounter % (beatPerBar * bars) == 0) {
+            //Debug.Log("New cycle");
+
             ChangeState();
             //Reset the riff if we're recording again, change player if it's a silence...
             //TODO: How to take the error margin into account?
