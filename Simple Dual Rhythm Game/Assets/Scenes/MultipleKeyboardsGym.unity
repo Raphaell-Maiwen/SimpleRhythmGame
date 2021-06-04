@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -213,6 +214,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1541776249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e77c3a0284f2664c9771ac6ea2b1a8b, type: 3}
+  m_Script: {fileID: 11500000, guid: d009d6ee8c118a941a43478c1795eeac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -1739,7 +1739,7 @@ PrefabInstance:
     - target: {fileID: 8534170527184611841, guid: e7e6d22c2046d96418949ea4d6100262,
         type: 3}
       propertyPath: beatPerBar
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8534170527184611841, guid: e7e6d22c2046d96418949ea4d6100262,
         type: 3}
