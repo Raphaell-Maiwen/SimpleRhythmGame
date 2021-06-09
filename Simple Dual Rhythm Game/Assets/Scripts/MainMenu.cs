@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public void PlayGame() {
+        WindowsDeviceApiService.ListWindowsRawDeviceApiDevicesToConsole();
+
         SceneManager.LoadScene("Dual");
     }
 
