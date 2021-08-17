@@ -196,6 +196,8 @@ public class Metronome : MonoBehaviour {
         if (timeSpent >= frequency * metronomeCounter + 1) {
             tick();
         }
+
+        WindowsDeviceApiService.Yo();
     }
 
     bool IsRightNote(int noteIndex) {
