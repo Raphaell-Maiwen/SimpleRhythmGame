@@ -16,7 +16,7 @@ public class CurrentTest : MonoBehaviour
         }
 
         if (keyboard != null) {
-            Debug.Log(keyboards.Count);
+            //Debug.Log(keyboards.Count);
         }
         
     }
