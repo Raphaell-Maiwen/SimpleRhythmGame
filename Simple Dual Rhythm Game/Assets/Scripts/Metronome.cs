@@ -222,7 +222,8 @@ public class Metronome : MonoBehaviour {
         if (currentState == GameState.Silence) {
             return;
         }
-        else if (currentState == GameState.Recording) {
+        
+        if (currentState == GameState.Recording) {
             Note newNote = new Note(noteIndex, Time.time - newBarTime);
             riff.Add(newNote);
             UIScript.DrawNewNote(noteIndex);
@@ -255,8 +256,6 @@ public class Metronome : MonoBehaviour {
         }
 
         Debug.Log("Note " + noteIndex);
-
-        //instrumentSounds[noteIndex].Play();
     }
 
     void ChangeVisuals() {

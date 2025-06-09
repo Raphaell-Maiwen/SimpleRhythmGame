@@ -20,6 +20,8 @@ public class InstrumentsInput : MonoBehaviour
     //bool[] FKeysPressed;
 
     private void Awake() {
+        Debug.Log("InstrumentsInput belongs to " +gameObject.name);
+        
         playerInput = GetComponent<PlayerInput>();
 
         //FKeysPressed = new bool[5];
