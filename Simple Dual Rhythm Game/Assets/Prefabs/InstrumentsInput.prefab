@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3959784500827435024}
   - component: {fileID: 3959784500827435247}
   - component: {fileID: 3959784500827435246}
+  - component: {fileID: 59734111375004437}
   m_Layer: 0
   m_Name: InstrumentsInput
   m_TagString: Untagged
@@ -25,12 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3959784500827435245}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.231058, y: -11.235238, z: 35.258606}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3959784500827435247
 MonoBehaviour:
@@ -73,6 +75,18 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 17d02d40-6473-4e71-af1a-360d948d0789
+  m_DefaultActionMap: Arrows
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &59734111375004437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959784500827435245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487197cb21f7bec488e27f16139e38e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

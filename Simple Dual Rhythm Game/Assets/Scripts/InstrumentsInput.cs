@@ -10,17 +10,28 @@ public class InstrumentsInput : MonoBehaviour
     public InputMode inputMode;
 
     PlayersManager playersManager;
+    
+    
+    //<Player ID, <Note ID, PressedOrNot>>
+    Dictionary<int, KeyValuePair<int, bool>> keytarChord;
 
     public enum InputMode {
         gamepad,
-        keyboard
-        //eventually: keytar
+        keyboard,
+        keytar
     }
 
     //bool[] FKeysPressed;
 
-    private void Awake() {
-        Debug.Log("InstrumentsInput belongs to " +gameObject.name);
+    private void Awake()
+    {
+        keytarChord = new Dictionary<int, bool>()
+        {
+            {0, false},
+            {1, false},
+            {2, false},
+            {3, false}
+        };
         
         playerInput = GetComponent<PlayerInput>();
 
@@ -56,7 +67,7 @@ public class InstrumentsInput : MonoBehaviour
     }
 
     //Player 1 Keyboard Inputs
-    private void OnS() {
+    /*private void OnS() {
         playersManager.ProcessInput(0, 0);
     }
 
@@ -87,5 +98,38 @@ public class InstrumentsInput : MonoBehaviour
 
     private void OnUp() {
         playersManager.ProcessInput(1, 3);
+    }*/
+
+    public void ProcessKeytarInput(int device, int key, bool pressed)
+    {
+        //If we press enter
+        if (pressed && key == 13)
+        {
+            foreach (var note in keytarChord)
+            {
+                if (note.Value)
+                {
+                    playersManager.ProcessInput(0, note.Key);
+                }
+            }
+        }
+        //TODO: Expand to 116
+        else if (key > 111 && key < 116)
+        {
+            keytarChord[key % 112] = pressed;
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

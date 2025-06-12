@@ -18,8 +18,7 @@ public class InputRedirector : MonoBehaviour
     const int RIM_TYPEKEYBOARD = 1;
     const ushort kSpaceScanCode = 0x39;
 
-    public RhythmEngine RE;
-    public RawInputTest RIT;
+    private static InstrumentsInput _instrumentsInput;
 
     struct WNDCLASSEXW
     {
@@ -170,6 +169,8 @@ public class InputRedirector : MonoBehaviour
             throw new Win32Exception(Marshal.GetLastWin32Error(), "Failed to create raw input redirection window.");
 
         RegisterRawInputDevices();
+        
+        _instrumentsInput = GetComponent<InstrumentsInput>();
     }
 
     void Update()
@@ -332,7 +333,8 @@ public class InputRedirector : MonoBehaviour
 
                     //TODO Send notification here
                     //Device key pressed
-                    RhythmEngine.ProcessInput((int)header.hDevice, keyboard.VKey , keyPressed);
+                    //RhythmEngine.ProcessInput((int)header.hDevice, keyboard.VKey , keyPressed);
+                    _instrumentsInput.ProcessKeytarInput((int)header.hDevice, keyboard.VKey , keyPressed);
 
                     if (!keyPressed && keyboard.MakeCode == kSpaceScanCode)
                         s_RedirectingInputToUnity = !s_RedirectingInputToUnity;

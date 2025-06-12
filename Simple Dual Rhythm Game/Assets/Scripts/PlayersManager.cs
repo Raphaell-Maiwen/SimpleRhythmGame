@@ -70,6 +70,14 @@ public class PlayersManager : MonoBehaviour
         }
     }
 
+    public void StaticProcessInput(int playerIndex, int note)
+    {
+        if (playerIndex == currentPlayer.index)
+        {
+            metronomeScript.PlayNote(note);
+        }
+    }
+
     public void changeCurrentPlayer() {
         if (currentPlayer.Equals(player1)) {
             currentPlayer = player2;
