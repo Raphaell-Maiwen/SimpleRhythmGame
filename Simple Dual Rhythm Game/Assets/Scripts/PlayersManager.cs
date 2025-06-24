@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayersManager : MonoBehaviour
 {
-    Metronome metronomeScript;
+    [SerializeField] private Metronome metronomeScript;
 
     Player currentPlayer;
     Player player1;
@@ -15,19 +15,8 @@ public class PlayersManager : MonoBehaviour
     public Text score1;
     public Text score2;
 
-    GameManager gameManager;
-
+    [SerializeField] private GameManager gameManager;
     Controls controls;
-
-    public InputMode inputMode;
-
-    public enum InputMode {
-        gamepad,
-        keyboard
-        //eventually: keytar
-    }
-
-    //TODO: A delegate to call a different function based on the control scheme?
 
     public class Player {
         public int points;
@@ -43,37 +32,28 @@ public class PlayersManager : MonoBehaviour
 
     private void Awake() {
         controls = new Controls();
+        gameManager.startGame.AddListener(StartGame);
     }
 
-    void Start(){
-        gameManager = GameObject.FindObjectOfType<GameManager>();
-        metronomeScript = GameObject.Find("Metronome").GetComponent<Metronome>();
-
+    void StartGame()
+    {
         player1 = new Player(score1, 0);
         player2 = new Player(score2, 1);
         currentPlayer = player1;
 
-        switch (inputMode) {
+        switch (Parameters.instance.inputMode) {
             case InputMode.gamepad:
-                this.GetComponent<PlayerInputManager>().playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Controller";
+                GetComponent<PlayerInputManager>().playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Controller";
                 break;
 
             case InputMode.keyboard:
-                this.GetComponent<PlayerInputManager>().playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Arrows";
+                GetComponent<PlayerInputManager>().playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Arrows";
                 break;
         }
     }
 
     public void ProcessInput(int playerIndex, int note) {
         if (playerIndex == currentPlayer.index) {
-            metronomeScript.PlayNote(note);
-        }
-    }
-
-    public void StaticProcessInput(int playerIndex, int note)
-    {
-        if (playerIndex == currentPlayer.index)
-        {
             metronomeScript.PlayNote(note);
         }
     }

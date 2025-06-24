@@ -38,8 +38,8 @@ public class Metronome : MonoBehaviour {
 
     private int lastCounter = 1;
 
-    PlayersManager playersScript;
-    PartUI UIScript;
+    [SerializeField] private PlayersManager playersScript;
+    [SerializeField] private PartUI UIScript;
 
     List<Note> riff;
     private int riffCounter = 0;
@@ -70,7 +70,8 @@ public class Metronome : MonoBehaviour {
     public GameState[] statesSeries;
     int currentStateIndex;
 
-    void Awake() {
+    private void Awake() 
+    {
         sounds = GetComponents<AudioSource>();
         tickSound = sounds[0];
 
@@ -80,26 +81,24 @@ public class Metronome : MonoBehaviour {
             instrumentSounds[i] = sounds[i + 1];
         }
 
-        //On va injecter ces trucs-là?
-        playersScript = GameObject.Find("PlayersManager").GetComponent<PlayersManager>();
-        UIScript = GameObject.Find("Part").GetComponent<PartUI>();
-
-        //SetUp();
-
         currentStateIndex = statesSeries.Length - 1;
         riff = new List<Note>();
 
         badNoteSound = sounds[5];
         beat = sounds[sounds.Length - 1];
+
+        enabled = false;
     }
 
-    private void Start() {
+    public void StartGame()
+    {
         bpm = Parameters.instance.bpm;
         beatPerBar = Parameters.instance.beatPerBar;
         bars = Parameters.instance.bars;
 
         SetUp();
         SetBeatSpeed();
+        enabled = true;
     }
 
     void SetBeatSpeed() {
@@ -256,8 +255,6 @@ public class Metronome : MonoBehaviour {
                 badNoteSound.Play();
             }
         }
-
-        Debug.Log("Note " + noteIndex);
     }
 
     void ChangeVisuals() {

@@ -1,11 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour{
     public int soloIndex;
     public int solosToDo;
-    Metronome metronomeScript;
+    [SerializeField] private Metronome metronomeScript;
+    public UnityEvent startGame;
 
     public void AddSolo() {
         soloIndex++;
@@ -16,12 +19,22 @@ public class GameManager : MonoBehaviour{
     }
 
     private void Awake() {
-        metronomeScript = GameObject.Find("Metronome").GetComponent<Metronome>();
-
         //So that each player plays the required amount of solos
         solosToDo *= 2;
-
         
+        startGame.AddListener(metronomeScript.StartGame);
+    }
+
+    private void Start()
+    {
+        if (Parameters.instance.inputMode == InputMode.keytar)
+        {
+            Debug.Log("Register keyboard 1 and 2");
+        }
+        else
+        {
+            startGame?.Invoke();
+        }
     }
 
     void LastSolo() {

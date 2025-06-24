@@ -7,24 +7,28 @@ using UnityEngine.PlayerLoop;
 public class InstrumentsInput : MonoBehaviour
 {
     PlayerInput playerInput;
+    PlayersManager playersManager;
 
     public InputMode inputMode;
-
-    PlayersManager playersManager;
     
     //<DeviceID, PlayerID>
-    private Dictionary<int, int> deviceMapping;
+    private Dictionary<int, int> deviceMapping = new Dictionary<int, int>();
 
     //<Player ID, <Note ID, PressedOrNot>>
     Dictionary<int, Dictionary<int, bool>> keytarChord;
-    //bool[] FKeysPressed;
+
+    bool registeringKeyboards;
 
     private void Awake()
     {
         inputMode = Parameters.instance.inputMode;
         
         //TODO: Branch depending on the inputMode
-        
+        if (inputMode == InputMode.keytar)
+        {
+            registeringKeyboards = true;
+        }
+
         keytarChord = new Dictionary<int, Dictionary<int, bool>>()
         {
             {
@@ -48,17 +52,14 @@ public class InstrumentsInput : MonoBehaviour
         };
         
         playerInput = GetComponent<PlayerInput>();
-
-        //FKeysPressed = new bool[5];
-
         playersManager = GameObject.FindObjectOfType<PlayersManager>();
 
         //Making sure a device doesn't join if it's not supposed to (and doesn't prevent right devices to join)
         if (typeof(Keyboard) == playerInput.devices[0].GetType()) {
-            if (playersManager.inputMode == PlayersManager.InputMode.gamepad) GameObject.Destroy(this.gameObject);
+            if (Parameters.instance.inputMode == InputMode.gamepad) GameObject.Destroy(this.gameObject);
         }
         else if (typeof(Gamepad) == playerInput.devices[0].GetType()) {
-            if (playersManager.inputMode == PlayersManager.InputMode.keyboard) GameObject.Destroy(this.gameObject);
+            if (Parameters.instance.inputMode == InputMode.keyboard) GameObject.Destroy(this.gameObject);
         }
         
         Debug.Log("Player Input Devices 0" + playerInput.devices[0]);
@@ -118,6 +119,14 @@ public class InstrumentsInput : MonoBehaviour
 
     public void ProcessKeytarInput(int device, int key, bool pressed)
     {
+        //How to only process what we wanna process
+
+        if (registeringKeyboards)
+        {
+            RegisterKeyboard(device);
+            return;
+        }
+
         //If we press enter
         if (pressed && key == 13)
         {
@@ -137,6 +146,20 @@ public class InstrumentsInput : MonoBehaviour
         else if (key > 111 && key < 116)
         {
             keytarChord[0][key % 112] = pressed;
+        }
+    }
+
+    private void RegisterKeyboard(int device)
+    {
+        if (!deviceMapping.ContainsKey(device))
+        {
+            deviceMapping.Add(device, deviceMapping.Count);
+        }
+
+        if (deviceMapping.Count == 2)
+        {
+            registeringKeyboards = false;
+            GameObject.FindObjectOfType<GameManager>().startGame?.Invoke();
         }
     }
 }
