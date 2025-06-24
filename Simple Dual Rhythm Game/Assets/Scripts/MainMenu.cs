@@ -8,7 +8,15 @@ public class MainMenu : MonoBehaviour
     public void PlayGame() {
         WindowsDeviceApiService.ListWindowsRawDeviceApiDevicesToConsole();
 
-        SceneManager.LoadScene("Dual");
+        switch (Parameters.instance.inputMode)
+        {
+            case InputMode.keytar:
+                SceneManager.LoadScene("RegisterKeyboards");
+                break;
+            default:
+                SceneManager.LoadScene("Dual");
+                break;
+        }
     }
 
     public void QuitGame() {

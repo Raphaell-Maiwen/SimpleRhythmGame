@@ -10,6 +10,8 @@ public class Parameters: MonoBehaviour
     public int beatPerBar;
     public int bars;
 
+    public InputMode inputMode;
+    
     //Control schemes, sounds...
 
     private void Awake() {
@@ -22,4 +24,11 @@ public class Parameters: MonoBehaviour
             Destroy(gameObject);
         }
     }
+}
+
+public enum InputMode 
+{
+    gamepad,
+    keyboard,
+    keytar
 }

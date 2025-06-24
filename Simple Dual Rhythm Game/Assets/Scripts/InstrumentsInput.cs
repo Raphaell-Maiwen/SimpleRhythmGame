@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 
 public class InstrumentsInput : MonoBehaviour
 {
@@ -11,26 +12,39 @@ public class InstrumentsInput : MonoBehaviour
 
     PlayersManager playersManager;
     
-    
+    //<DeviceID, PlayerID>
+    private Dictionary<int, int> deviceMapping;
+
     //<Player ID, <Note ID, PressedOrNot>>
-    Dictionary<int, KeyValuePair<int, bool>> keytarChord;
-
-    public enum InputMode {
-        gamepad,
-        keyboard,
-        keytar
-    }
-
+    Dictionary<int, Dictionary<int, bool>> keytarChord;
     //bool[] FKeysPressed;
 
     private void Awake()
     {
-        keytarChord = new Dictionary<int, bool>()
+        inputMode = Parameters.instance.inputMode;
+        
+        //TODO: Branch depending on the inputMode
+        
+        keytarChord = new Dictionary<int, Dictionary<int, bool>>()
         {
-            {0, false},
-            {1, false},
-            {2, false},
-            {3, false}
+            {
+                0, new Dictionary<int, bool>()
+                {
+                    {0, false},
+                    {1, false},
+                    {2, false},
+                    {3, false}
+                }
+            },
+            {
+                1, new Dictionary<int, bool>()
+                {
+                    {0, false},
+                    {1, false},
+                    {2, false},
+                    {3, false}
+                }
+            }
         };
         
         playerInput = GetComponent<PlayerInput>();
@@ -46,6 +60,8 @@ public class InstrumentsInput : MonoBehaviour
         else if (typeof(Gamepad) == playerInput.devices[0].GetType()) {
             if (playersManager.inputMode == PlayersManager.InputMode.keyboard) GameObject.Destroy(this.gameObject);
         }
+        
+        Debug.Log("Player Input Devices 0" + playerInput.devices[0]);
     }
 
     //Gamepad Inputs
@@ -105,18 +121,22 @@ public class InstrumentsInput : MonoBehaviour
         //If we press enter
         if (pressed && key == 13)
         {
-            foreach (var note in keytarChord)
+            foreach (var player in keytarChord.Keys)
             {
-                if (note.Value)
+                foreach (var note in keytarChord[player].Keys)
                 {
-                    playersManager.ProcessInput(0, note.Key);
+                    if (keytarChord[player][note])
+                    {
+                        playersManager.ProcessInput(player, note);
+                    }
                 }
             }
         }
+        
         //TODO: Expand to 116
         else if (key > 111 && key < 116)
         {
-            keytarChord[key % 112] = pressed;
+            keytarChord[0][key % 112] = pressed;
         }
     }
 }

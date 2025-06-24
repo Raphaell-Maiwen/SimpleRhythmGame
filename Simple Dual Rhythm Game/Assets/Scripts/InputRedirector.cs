@@ -333,7 +333,6 @@ public class InputRedirector : MonoBehaviour
 
                     //TODO Send notification here
                     //Device key pressed
-                    //RhythmEngine.ProcessInput((int)header.hDevice, keyboard.VKey , keyPressed);
                     _instrumentsInput.ProcessKeytarInput((int)header.hDevice, keyboard.VKey , keyPressed);
 
                     if (!keyPressed && keyboard.MakeCode == kSpaceScanCode)

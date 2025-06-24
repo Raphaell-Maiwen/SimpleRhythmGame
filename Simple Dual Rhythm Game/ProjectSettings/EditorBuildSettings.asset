@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: d2e15c28a0502c84e8c024286f265a6a
+  - enabled: 1
+    path: Assets/Scenes/RegisterKeyboards.unity
+    guid: 0cce2dbdd8708284f95e96913207e756
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 87c0ac8f6792b08469678f243575c866,
       type: 2}
