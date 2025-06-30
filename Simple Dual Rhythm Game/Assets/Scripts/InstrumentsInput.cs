@@ -127,25 +127,24 @@ public class InstrumentsInput : MonoBehaviour
             return;
         }
 
+        int player = deviceMapping[device];
+
         //If we press enter
         if (pressed && key == 13)
         {
-            foreach (var player in keytarChord.Keys)
+            foreach (var note in keytarChord[player].Keys)
             {
-                foreach (var note in keytarChord[player].Keys)
+                if (keytarChord[player][note])
                 {
-                    if (keytarChord[player][note])
-                    {
-                        playersManager.ProcessInput(player, note);
-                    }
+                    playersManager.ProcessInput(player, note);
                 }
             }
         }
-        
+
         //TODO: Expand to 116
         else if (key > 111 && key < 116)
         {
-            keytarChord[0][key % 112] = pressed;
+            keytarChord[player][key % 112] = pressed;
         }
     }
 

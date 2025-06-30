@@ -776,6 +776,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8534170527184611841, guid: e7e6d22c2046d96418949ea4d6100262,
         type: 3}
+      propertyPath: inputMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8534170527184611841, guid: e7e6d22c2046d96418949ea4d6100262,
+        type: 3}
       propertyPath: beatPerBar
       value: 4
       objectReference: {fileID: 0}
@@ -1285,7 +1290,6 @@ MonoBehaviour:
   score1: {fileID: 1634438302}
   score2: {fileID: 385836525}
   gameManager: {fileID: 1498790760}
-  inputMode: 1
 --- !u!4 &1840136375
 Transform:
   m_ObjectHideFlags: 0
