@@ -326,7 +326,7 @@ public class InputRedirector : MonoBehaviour
                 fixed (byte* rawInputBufferPtr = s_RawInputBuffer)
                 {
                     var keyboard = *(RAWKEYBOARD*)(rawInputBufferPtr + dataOffset);
-                    Debug.Log(keyboard.VKey + " " + header.hDevice);
+                    //Debug.Log(keyboard.VKey + " " + header.hDevice);
 
                     // Releasing space key will toggle whether we forward events to Unity
                     bool keyPressed = (keyboard.Flags & RawKeyboardFlags.RI_KEY_BREAK) == 0;

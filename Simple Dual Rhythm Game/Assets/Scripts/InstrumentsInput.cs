@@ -9,7 +9,7 @@ public class InstrumentsInput : MonoBehaviour
     PlayerInput playerInput;
     PlayersManager playersManager;
 
-    public InputMode inputMode;
+    private InputMode inputMode;
     
     //<DeviceID, PlayerID>
     private Dictionary<int, int> deviceMapping = new Dictionary<int, int>();
@@ -22,13 +22,36 @@ public class InstrumentsInput : MonoBehaviour
     private void Awake()
     {
         inputMode = Parameters.instance.inputMode;
+        playerInput = GetComponent<PlayerInput>();
         
-        //TODO: Branch depending on the inputMode
+        //Making sure a device doesn't join if it's not supposed to (and doesn't prevent right devices to join)
         if (inputMode == InputMode.keytar)
         {
-            registeringKeyboards = true;
+            SetUpKeytars();
+        }
+        else
+        {
+            Debug.Log(playerInput.devices[0].GetType().ToString());
+            
+            if (inputMode == InputMode.gamepad && typeof(Keyboard) == playerInput.devices[0].GetType())
+            {
+                Destroy(gameObject);
+            }
+            else if (inputMode == InputMode.keyboard && typeof(Gamepad) == playerInput.devices[0].GetType())
+            {
+                Destroy(gameObject);
+            }
+            
+            SetUpPlayerInput();
         }
 
+        playersManager = FindObjectOfType<PlayersManager>();
+    }
+    
+    private void SetUpKeytars()
+    {
+        registeringKeyboards = true;
+            
         keytarChord = new Dictionary<int, Dictionary<int, bool>>()
         {
             {
@@ -50,19 +73,14 @@ public class InstrumentsInput : MonoBehaviour
                 }
             }
         };
-        
-        playerInput = GetComponent<PlayerInput>();
-        playersManager = GameObject.FindObjectOfType<PlayersManager>();
 
-        //Making sure a device doesn't join if it's not supposed to (and doesn't prevent right devices to join)
-        if (typeof(Keyboard) == playerInput.devices[0].GetType()) {
-            if (Parameters.instance.inputMode == InputMode.gamepad) GameObject.Destroy(this.gameObject);
-        }
-        else if (typeof(Gamepad) == playerInput.devices[0].GetType()) {
-            if (Parameters.instance.inputMode == InputMode.keyboard) GameObject.Destroy(this.gameObject);
-        }
-        
-        Debug.Log("Player Input Devices 0" + playerInput.devices[0]);
+        gameObject.AddComponent<InputRedirector>();
+    }
+
+    private void SetUpPlayerInput()
+    {
+        if (inputMode == InputMode.keyboard) playerInput.SwitchCurrentActionMap("Arrows");
+        else playerInput.SwitchCurrentActionMap("Controller");
     }
 
     //Gamepad Inputs
@@ -84,7 +102,7 @@ public class InstrumentsInput : MonoBehaviour
     }
 
     //Player 1 Keyboard Inputs
-    /*private void OnS() {
+    private void OnS() {
         playersManager.ProcessInput(0, 0);
     }
 
@@ -115,7 +133,7 @@ public class InstrumentsInput : MonoBehaviour
 
     private void OnUp() {
         playersManager.ProcessInput(1, 3);
-    }*/
+    }
 
     public void ProcessKeytarInput(int device, int key, bool pressed)
     {
