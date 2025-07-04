@@ -56,8 +56,7 @@ public class Metronome : MonoBehaviour {
             time = timeInSec;
         }
     }
-
-    //TODO: Maybe make a "ChangePlayer" state?? Would skip a state immediately
+    
     public enum GameState {
         Recording,
         Playing,
@@ -66,9 +65,11 @@ public class Metronome : MonoBehaviour {
     };
 
     GameState currentState = GameState.Playing;
+    GameState nextState = GameState.Playing;
 
     public GameState[] statesSeries;
     int currentStateIndex;
+    private int nextStateIndex;
 
     private void Awake() 
     {
@@ -82,6 +83,8 @@ public class Metronome : MonoBehaviour {
         }
 
         currentStateIndex = statesSeries.Length - 1;
+        nextStateIndex = 0;
+        
         riff = new List<Note>();
 
         badNoteSound = sounds[5];
@@ -132,15 +135,13 @@ public class Metronome : MonoBehaviour {
 
         //Check if we're at the beginning of a new bar
         if (metronomeCounter % beatPerBar == 0) {
-            //Debug.Log("New bar");
             tickSound.volume = strongTick;
         }
 
         //Check if we're at the beginning of a new cycle
         if (metronomeCounter % (beatPerBar * bars) == 0) {
-            //Debug.Log("New cycle");
-
             ChangeState();
+            ChangeNextState();
             //Reset the riff if we're recording again, change player if it's a silence...
             //TODO: How to take the error margin into account?
             if (currentState == GameState.ChangePlayer) {
@@ -174,14 +175,39 @@ public class Metronome : MonoBehaviour {
 
     void ChangeState() {
         currentStateIndex++;
-        if (currentStateIndex == statesSeries.Length) {
+
+        if (currentStateIndex == statesSeries.Length)
+        {
             currentStateIndex = 0;
             UIScript.EraseAllNotes();
+            
+            //TODO: replace this
             GameObject.FindObjectOfType<GameManager>().AddSolo();
         }
+
         currentState = statesSeries[currentStateIndex];
 
         ChangeVisuals();
+    }
+
+    void ChangeNextState()
+    {
+        nextStateIndex++;
+        
+        if (nextStateIndex == statesSeries.Length)
+        {
+            nextStateIndex = 0;
+        }
+        
+        nextState = statesSeries[nextStateIndex];
+        
+         if (nextState == GameState.ChangePlayer)
+        {
+            nextStateIndex++;
+            nextState = statesSeries[nextStateIndex];
+        }
+
+        ChangeNextIcons();
     }
 
     void Update() {
@@ -268,4 +294,31 @@ public class Metronome : MonoBehaviour {
             thisCamera.backgroundColor = Color.blue;
         }
     }
+
+    void ChangeNextIcons()
+    {
+        switch (nextState)
+        {
+            case GameState.Playing:
+                Debug.Log("Next: Play");
+                break;
+            case GameState.Recording:
+                Debug.Log("Next: Recording");
+                break;
+            case GameState.Silence:
+                Debug.Log("Next: Silence");
+                break;
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
