@@ -8,7 +8,9 @@ public class PlayersManager : MonoBehaviour
 {
     [SerializeField] private Metronome metronomeScript;
 
-    Player currentPlayer;
+    private Player _currentPlayer;
+    public Player CurrentPlayer => _currentPlayer;
+    
     Player player1;
     Player player2;
 
@@ -39,7 +41,7 @@ public class PlayersManager : MonoBehaviour
     {
         player1 = new Player(score1, 0);
         player2 = new Player(score2, 1);
-        currentPlayer = player1;
+        _currentPlayer = player1;
 
         switch (Parameters.instance.inputMode) {
             case InputMode.gamepad:
@@ -53,24 +55,24 @@ public class PlayersManager : MonoBehaviour
     }
 
     public void ProcessInput(int playerIndex, int note) {
-        if (playerIndex == currentPlayer.index) {
+        if (playerIndex == _currentPlayer.index) {
             metronomeScript.PlayNote(note);
         }
     }
 
     public void changeCurrentPlayer() {
-        if (currentPlayer.Equals(player1)) {
-            currentPlayer = player2;
+        if (_currentPlayer.Equals(player1)) {
+            _currentPlayer = player2;
         }
         else {
-            currentPlayer = player1;
+            _currentPlayer = player1;
         }
     }
 
     public void MakePoints(int points) {
-        currentPlayer.points += points;
-        if (currentPlayer.points < 0) currentPlayer.points = 0;
-        currentPlayer.scoreUI.text = "Score: " + currentPlayer.points;
-        Debug.Log("Points: " + currentPlayer.points);
+        _currentPlayer.points += points;
+        if (_currentPlayer.points < 0) _currentPlayer.points = 0;
+        _currentPlayer.scoreUI.text = "Score: " + _currentPlayer.points;
+        Debug.Log("Points: " + _currentPlayer.points);
     }
 }

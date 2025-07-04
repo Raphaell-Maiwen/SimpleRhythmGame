@@ -160,7 +160,6 @@ public class Metronome : MonoBehaviour {
 
             newBarTime = Time.time;
             UIScript.NewBar(nextState);
-            //ICI??
 
             //Change this code slightly when supporting multiple bars
             notesSucceeded = 0;
@@ -206,6 +205,7 @@ public class Metronome : MonoBehaviour {
         {
             nextStateIndex++;
             nextState = statesSeries[nextStateIndex];
+            UIScript.TogglePlayer1();
         }
 
         ChangeNextIcons();

@@ -292,7 +292,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.97165054, y: 0.96400005}
   m_AnchorMax: {x: 0.97165054, y: 0.96400005}
-  m_AnchoredPosition: {x: -247, y: -17.099998}
+  m_AnchoredPosition: {x: -247, y: -17.099976}
   m_SizeDelta: {x: 181.90002, y: 46.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &385836525
@@ -777,7 +777,7 @@ PrefabInstance:
     - target: {fileID: 8534170527184611841, guid: e7e6d22c2046d96418949ea4d6100262,
         type: 3}
       propertyPath: inputMode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8534170527184611841, guid: e7e6d22c2046d96418949ea4d6100262,
         type: 3}
@@ -1109,7 +1109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff28f11e338852a4f87661873c12ff49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tracker: {fileID: 5423179180072095177, guid: 636ccc851cefa73478cc778c32687c6c, type: 3}
+  _playersManager: {fileID: 1840136374}
   trackerAnchor: {fileID: 2113096679}
   trackerAnchorEnd: {fileID: 85012656}
   barPrefab: {fileID: 6660352718896082572, guid: e39862b89a805484c835d9c16ab8d1bc,
@@ -1211,7 +1211,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.96400005}
   m_AnchorMax: {x: 0, y: 0.96400005}
-  m_AnchoredPosition: {x: 212.9, y: -17.099998}
+  m_AnchoredPosition: {x: 212.90002, y: -17.099976}
   m_SizeDelta: {x: 181.9, y: 46.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1634438302

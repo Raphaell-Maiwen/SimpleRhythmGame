@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PartUI : MonoBehaviour
 {
-    //Maybe this variable is not relevant anymore?
-    public GameObject tracker;
+    [SerializeField] private PlayersManager _playersManager;
     public GameObject trackerAnchor;
     public GameObject trackerAnchorEnd;
 
@@ -31,6 +30,8 @@ public class PartUI : MonoBehaviour
     List<GameObject> iconsInPlay;
 
     bool firstTick;
+    
+    private bool player1 = true;
 
     public class TrackerData {
         public GameObject trackerGO;
@@ -102,9 +103,14 @@ public class PartUI : MonoBehaviour
         newTrackerData.timer = 0;
         newTrackerData.percent = 0;
         
-        newTrackerData.trackerGO.GetComponent<Tracker>().AssignIcon(gameState);
+        newTrackerData.trackerGO.GetComponent<Tracker>().AssignIcon(gameState, player1);
 
         trackers.Enqueue(newTrackerData);
+    }
+
+    public void TogglePlayer1()
+    {
+        player1 = !player1;
     }
 
     private void Update() {

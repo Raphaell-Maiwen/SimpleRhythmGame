@@ -3753,3 +3753,11 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1352.138032 seconds.
+  path: Assets/UI/2-filled-64.png
+  artifactKey: Guid(50e09aa864567d347839a4eae9fa0744) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/2-filled-64.png using Guid(50e09aa864567d347839a4eae9fa0744) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6deedb388a3c0ac52415c28d0e547469') in 0.062566 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
