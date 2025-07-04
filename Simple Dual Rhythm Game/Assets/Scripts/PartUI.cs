@@ -18,7 +18,7 @@ public class PartUI : MonoBehaviour
 
     //Maybe?
     public List<GameObject> trackersList;
-    Queue<Tracker> trackers;
+    Queue<TrackerData> trackers;
 
     Vector3 Difference;
     float trackerSpeed;
@@ -32,13 +32,13 @@ public class PartUI : MonoBehaviour
 
     bool firstTick;
 
-    public class Tracker {
+    public class TrackerData {
         public GameObject trackerGO;
         public float timer;
         public float percent;
         public Vector3 startingPos;
 
-        public Tracker(GameObject tgo, float thisTimer, float thisPercent, Vector3 thisStartingPos) {
+        public TrackerData(GameObject tgo, float thisTimer, float thisPercent, Vector3 thisStartingPos) {
             trackerGO = tgo;
             timer = thisTimer;
             percent = thisPercent;
@@ -72,42 +72,44 @@ public class PartUI : MonoBehaviour
         }
 
 
-        trackers = new Queue<Tracker>();
+        trackers = new Queue<TrackerData>();
         for (int i = trackersList.Count - 1; i > -1; i--) {
             GameObject newTracker = trackersList[i];
             if (i == 1) {
                 //(bpm / 60) * beatPerBar * bars / 2
-                trackers.Enqueue(new Tracker(newTracker, 0, 
+                trackers.Enqueue(new TrackerData(newTracker, 0, 
                     0, newTracker.transform.position));
             }
             else {
-                trackers.Enqueue(new Tracker(newTracker, 0, 0, newTracker.transform.position));
+                trackers.Enqueue(new TrackerData(newTracker, 0, 0, newTracker.transform.position));
             }
         }
     }
 
     public void ChangeTempo(float bpm, float beatPerBar) {
         trackerSpeed = 60 / bpm * beatPerBar * 3 * Parameters.instance.bars;
-        foreach (Tracker b in trackers) {
+        foreach (TrackerData b in trackers) {
             b.timer /= 1.2f;
         }
     }
 
-    public void NewBar() {
+    public void NewBar(Metronome.GameState gameState) {
         firstTick = true;
 
-        Tracker newTracker = trackers.Dequeue();
-        newTracker.startingPos = trackerAnchor.transform.position;
-        newTracker.trackerGO.transform.position = newTracker.startingPos;
-        newTracker.timer = 0;
-        newTracker.percent = 0;
+        TrackerData newTrackerData = trackers.Dequeue();
+        newTrackerData.startingPos = trackerAnchor.transform.position;
+        newTrackerData.trackerGO.transform.position = newTrackerData.startingPos;
+        newTrackerData.timer = 0;
+        newTrackerData.percent = 0;
+        
+        newTrackerData.trackerGO.GetComponent<Tracker>().AssignIcon(gameState);
 
-        trackers.Enqueue(newTracker);
+        trackers.Enqueue(newTrackerData);
     }
 
     private void Update() {
         if (firstTick) {
-            foreach (Tracker b in trackers) {
+            foreach (TrackerData b in trackers) {
                 b.timer += Time.deltaTime;
                 b.percent = b.timer / trackerSpeed;
 

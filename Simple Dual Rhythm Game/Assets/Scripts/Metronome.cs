@@ -159,7 +159,8 @@ public class Metronome : MonoBehaviour {
             }
 
             newBarTime = Time.time;
-            UIScript.NewBar();
+            UIScript.NewBar(nextState);
+            //ICI??
 
             //Change this code slightly when supporting multiple bars
             notesSucceeded = 0;
