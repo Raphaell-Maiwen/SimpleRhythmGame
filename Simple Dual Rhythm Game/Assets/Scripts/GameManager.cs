@@ -51,7 +51,5 @@ public class GameManager : MonoBehaviour{
         foreach (AudioSource sound in sounds) {
             sound.Stop();
         }
-
-        print("end");
     }
 }
