@@ -5,6 +5,7 @@ using UnityEngine;
 public class PartUI : MonoBehaviour
 {
     [SerializeField] private PlayersManager _playersManager;
+    [SerializeField] private Parameters _parameters;
     public GameObject trackerAnchor;
     public GameObject trackerAnchorEnd;
 
@@ -61,7 +62,15 @@ public class PartUI : MonoBehaviour
         trackerSpeed = 60 / bpm * beatPerBar * 3 * Parameters.instance.bars;
 
         //Assign icons according to controller / keyboard style
-        currentIcons = arrowIcons;
+        if (_parameters.inputMode == InputMode.keyboard)
+        {
+            currentIcons = arrowIcons;
+        }
+        else if (_parameters.inputMode == InputMode.keytar)
+        {
+            currentIcons = keyboardFIcons;
+        }
+
 
         /*Vector3 lowestIconsPosition = trackerAnchor.transform.position;
         lowestIconsPosition.y -= 1.5f;
@@ -132,7 +141,14 @@ public class PartUI : MonoBehaviour
     }
 
     public void PlayedNote(int index) {
-        iconsInPlay[index].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = new Color32(128,128,128, 255);
+        if (_parameters.inputMode == InputMode.keyboard)
+        {
+            iconsInPlay[index].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = new Color32(128,128,128, 255);
+        }
+        else if (_parameters.inputMode == InputMode.keytar)
+        {
+            iconsInPlay[index].GetComponent<SpriteRenderer>().color = new Color32(128, 128, 128, 200);
+        }
     }
 
     public void EraseAllNotes() {

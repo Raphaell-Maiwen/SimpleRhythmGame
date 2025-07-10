@@ -431,6 +431,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &582543341 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8534170527184611841, guid: e7e6d22c2046d96418949ea4d6100262,
+    type: 3}
+  m_PrefabInstance: {fileID: 763675687}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed3416cdb520314abca9070b0603ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &648240141
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,6 +1274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playersManager: {fileID: 1840136374}
+  _parameters: {fileID: 582543341}
   trackerAnchor: {fileID: 2113096679}
   trackerAnchorEnd: {fileID: 85012656}
   barPrefab: {fileID: 6660352718896082572, guid: e39862b89a805484c835d9c16ab8d1bc,
@@ -1278,7 +1291,11 @@ MonoBehaviour:
   - {fileID: 3253638588402762266, guid: d6efa16a95212be4eb8b20a29231b8f7, type: 3}
   - {fileID: 7238977702187599154, guid: 2cd5f9474f5039c4cb93c178d9ff3e0b, type: 3}
   controllerIcons: []
-  keyboardFIcons: []
+  keyboardFIcons:
+  - {fileID: 2323437391432068298, guid: 17d49b2c3b54ca34983dc6cbbf6beeda, type: 3}
+  - {fileID: 3346086017455096662, guid: c8e66e7e4da102049be3021e2e8fc295, type: 3}
+  - {fileID: 3843608464671347709, guid: 5fef35110bbcec24db9cced2c55c2aa8, type: 3}
+  - {fileID: 9024555328988612306, guid: 94466f2f74517cc4691685c24e6548f8, type: 3}
 --- !u!1 &1498790759
 GameObject:
   m_ObjectHideFlags: 0
