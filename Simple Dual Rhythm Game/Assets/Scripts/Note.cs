@@ -10,6 +10,11 @@ public class NoteIcon : MonoBehaviour
     
     //Add Particles and/or tweens too here?
 
+    public void ResetIcon()
+    {
+        _spriteRenderer.color = Color.black;
+    }
+
     public void SetPlayedIcon()
     {
         _spriteRenderer.color = _playedColor;

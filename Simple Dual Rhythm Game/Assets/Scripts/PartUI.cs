@@ -164,7 +164,7 @@ public class PartUI : MonoBehaviour
 
     public void UnPlayedAllNotes() {
         for (int i = 0; i < iconsInPlay.Count; i++) {
-            iconsInPlay[i].transform.GetChild(0).GetComponent<SpriteRenderer>().material.color = new Color32(255, 255, 255, 255);
+            iconsInPlay[i].ResetIcon();
         }
     }
 
