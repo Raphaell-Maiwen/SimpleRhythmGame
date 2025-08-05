@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 7238977702187599154, guid: 1caad188731c82a4e8c8d634c77da235,
         type: 3}
       propertyPath: m_Name
-      value: ArrowRoot
+      value: UpArrow
       objectReference: {fileID: 0}
     - target: {fileID: 7238977702187599165, guid: 1caad188731c82a4e8c8d634c77da235,
         type: 3}
@@ -21,7 +21,7 @@ PrefabInstance:
     - target: {fileID: 7238977702187599165, guid: 1caad188731c82a4e8c8d634c77da235,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 7238977702187599165, guid: 1caad188731c82a4e8c8d634c77da235,
         type: 3}
