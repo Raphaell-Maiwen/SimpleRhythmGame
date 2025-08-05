@@ -28,7 +28,7 @@ public class PartUI : MonoBehaviour
     public List<GameObject> keyboardFIcons;
     List<GameObject> currentIcons;
 
-    List<GameObject> iconsInPlay;
+    List<NoteIcon> iconsInPlay;
 
     bool firstTick;
     
@@ -51,7 +51,7 @@ public class PartUI : MonoBehaviour
     private void Awake() {
         //bars = GameObject.Find("Metronome").GetComponent<Metronome>().bars;
 
-        iconsInPlay = new List<GameObject>();
+        iconsInPlay = new List<NoteIcon>();
 
         GenerateBars();
         SetupAnchorsAndCamera();
@@ -137,23 +137,25 @@ public class PartUI : MonoBehaviour
         Vector3 notePos = currentIcons[i].transform.position;
         notePos.x = currentTracker.transform.position.x;
         notePos.z -= 0.5f;
-        iconsInPlay.Add(Instantiate(currentIcons[i], notePos, Quaternion.identity));
+        iconsInPlay.Add(Instantiate(currentIcons[i], notePos, Quaternion.identity).GetComponent<NoteIcon>());
     }
 
     public void PlayedNote(int index) {
-        if (_parameters.inputMode == InputMode.keyboard)
+        iconsInPlay[index].SetMissedIcon();
+        /*if (_parameters.inputMode == InputMode.keyboard)
         {
-            iconsInPlay[index].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = new Color32(128,128,128, 255);
+            //TODO: get it in a cleaner way than get than get child + get component
+            
         }
         else if (_parameters.inputMode == InputMode.keytar)
         {
             iconsInPlay[index].GetComponent<SpriteRenderer>().color = new Color32(128, 128, 128, 200);
-        }
+        }*/
     }
 
     public void EraseAllNotes() {
-        foreach (GameObject icon in iconsInPlay) {
-            Destroy(icon);
+        foreach (NoteIcon icon in iconsInPlay) {
+            Destroy(icon.gameObject);
         }
 
         iconsInPlay.Clear();
@@ -162,7 +164,7 @@ public class PartUI : MonoBehaviour
 
     public void UnPlayedAllNotes() {
         for (int i = 0; i < iconsInPlay.Count; i++) {
-            iconsInPlay[i].transform.GetChild(0).GetComponent<MeshRenderer>().material.color = new Color32(255, 255, 255, 255);
+            iconsInPlay[i].transform.GetChild(0).GetComponent<SpriteRenderer>().material.color = new Color32(255, 255, 255, 255);
         }
     }
 

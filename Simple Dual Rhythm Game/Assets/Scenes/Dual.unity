@@ -634,6 +634,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 511295042799321251, guid: 636ccc851cefa73478cc778c32687c6c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0082
+      objectReference: {fileID: 0}
     - target: {fileID: 5423179180072095177, guid: 636ccc851cefa73478cc778c32687c6c,
         type: 3}
       propertyPath: m_Name
@@ -781,7 +786,7 @@ PrefabInstance:
     - target: {fileID: 8534170527184611841, guid: e7e6d22c2046d96418949ea4d6100262,
         type: 3}
       propertyPath: bpm
-      value: 100
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 8534170527184611841, guid: e7e6d22c2046d96418949ea4d6100262,
         type: 3}
@@ -1286,10 +1291,10 @@ MonoBehaviour:
   - {fileID: 1937064788}
   - {fileID: 681197779}
   arrowIcons:
-  - {fileID: 8745379949416011252, guid: 7b10da8756f77ca43a2fc9171cb488ee, type: 3}
-  - {fileID: 5006008471610966133, guid: 8187066591dd36b4e882eda09a3663cd, type: 3}
-  - {fileID: 3253638588402762266, guid: d6efa16a95212be4eb8b20a29231b8f7, type: 3}
-  - {fileID: 7238977702187599154, guid: 2cd5f9474f5039c4cb93c178d9ff3e0b, type: 3}
+  - {fileID: 9203275383156220977, guid: 87b165184a31e0a41a42a4940e4e7693, type: 3}
+  - {fileID: 9203275383156220977, guid: 9b96913f1d0495449ac0fb9e7d5d6f01, type: 3}
+  - {fileID: 9203275383156220977, guid: d6c47496cddfcd34597dab0c5839ad0f, type: 3}
+  - {fileID: 9203275383156220977, guid: 28aeb3961ca483f4386ac58b3740884f, type: 3}
   controllerIcons: []
   keyboardFIcons:
   - {fileID: 2323437391432068298, guid: 17d49b2c3b54ca34983dc6cbbf6beeda, type: 3}
