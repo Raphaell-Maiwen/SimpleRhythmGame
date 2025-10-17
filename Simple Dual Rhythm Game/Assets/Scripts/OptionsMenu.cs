@@ -20,6 +20,12 @@ public class OptionsMenu : MonoBehaviour
 
     [SerializeField] private TMP_Dropdown _controlsSchemeDropdown;
 
+    [Header("Default settings")] 
+    [SerializeField] private int bpm;
+    [SerializeField] private int beatPerBar;
+    [SerializeField] private int bars;
+    [SerializeField] private InputMode inputMode;
+
     private void OnEnable()
     {
         _bpmText.text = _parameters.bpm.ToString();
@@ -35,6 +41,19 @@ public class OptionsMenu : MonoBehaviour
         _barsPerSoloSlider.onValueChanged.AddListener(delegate {BarsPerSoloValueChanged ();});
         
         _controlsSchemeDropdown.onValueChanged.AddListener(delegate {DropdownValueChanged ();});
+
+        switch (_parameters.inputMode)
+        {
+            case InputMode.keyboard:
+                _controlsSchemeDropdown.value = 0;
+                break;
+            case InputMode.gamepad:
+                _controlsSchemeDropdown.value = 1;
+                break;
+            case InputMode.keytar:
+                _controlsSchemeDropdown.value = 2;
+                break;
+        }
     }
 
     private void OnDisable()
@@ -73,6 +92,35 @@ public class OptionsMenu : MonoBehaviour
                 break;
             case 2:
                 _parameters.inputMode = InputMode.keytar;
+                break;
+        }
+    }
+
+    public void ResetToDefault()
+    {
+        _parameters.bpm = bpm;
+        _parameters.beatPerBar = beatPerBar;
+        _parameters.bars = bars;
+        _parameters.inputMode = inputMode;
+
+        _bpmSlider.value = _parameters.bpm;
+        _beatPerBarSlider.value = _parameters.beatPerBar;
+        _barsPerSoloSlider.value = _parameters.bars;
+        
+        _bpmText.text = _parameters.bpm.ToString();
+        _beatPerBarText.text = _parameters.beatPerBar.ToString();
+        _barsPerSoloText.text = _parameters.bars.ToString();
+        
+        switch (_parameters.inputMode)
+        {
+            case InputMode.keyboard:
+                _controlsSchemeDropdown.value = 0;
+                break;
+            case InputMode.gamepad:
+                _controlsSchemeDropdown.value = 1;
+                break;
+            case InputMode.keytar:
+                _controlsSchemeDropdown.value = 2;
                 break;
         }
     }
