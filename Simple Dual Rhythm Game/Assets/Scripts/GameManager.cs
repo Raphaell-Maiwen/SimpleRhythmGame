@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour{
     public int solosToDo;
     [SerializeField] private Metronome metronomeScript;
     [SerializeField] private Parameters _parameters;
+    [SerializeField] private EndOfGameScreen _endOfGameScreen;
+    [SerializeField] private PlayersManager _playersManager;
     public UnityEvent startGame;
 
     public void AddSolo() {
@@ -51,6 +53,9 @@ public class GameManager : MonoBehaviour{
 
         foreach (AudioSource sound in sounds) {
             sound.Stop();
-        }
+        }   
+        
+        _endOfGameScreen.Init(_playersManager.DeclareWinner());
+        _endOfGameScreen.gameObject.SetActive(true);
     }
 }
