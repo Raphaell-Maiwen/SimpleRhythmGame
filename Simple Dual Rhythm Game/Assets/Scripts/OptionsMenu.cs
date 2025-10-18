@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
-    //TODO: Change to Scriptable Object?
     [SerializeField] private Parameters _parameters;
     [SerializeField] private Slider _bpmSlider;
     [SerializeField] private TextMeshProUGUI _bpmText;
@@ -42,18 +41,7 @@ public class OptionsMenu : MonoBehaviour
         
         _controlsSchemeDropdown.onValueChanged.AddListener(delegate {DropdownValueChanged ();});
 
-        switch (_parameters.inputMode)
-        {
-            case InputMode.keyboard:
-                _controlsSchemeDropdown.value = 0;
-                break;
-            case InputMode.gamepad:
-                _controlsSchemeDropdown.value = 1;
-                break;
-            case InputMode.keytar:
-                _controlsSchemeDropdown.value = 2;
-                break;
-        }
+        SetInputMode();
     }
 
     private void OnDisable()
@@ -96,6 +84,22 @@ public class OptionsMenu : MonoBehaviour
         }
     }
 
+    private void SetInputMode()
+    {
+        switch (_parameters.inputMode)
+        {
+            case InputMode.keyboard:
+                _controlsSchemeDropdown.value = 0;
+                break;
+            case InputMode.gamepad:
+                _controlsSchemeDropdown.value = 1;
+                break;
+            case InputMode.keytar:
+                _controlsSchemeDropdown.value = 2;
+                break;
+        }
+    }
+
     public void ResetToDefault()
     {
         _parameters.bpm = bpm;
@@ -111,17 +115,6 @@ public class OptionsMenu : MonoBehaviour
         _beatPerBarText.text = _parameters.beatPerBar.ToString();
         _barsPerSoloText.text = _parameters.bars.ToString();
         
-        switch (_parameters.inputMode)
-        {
-            case InputMode.keyboard:
-                _controlsSchemeDropdown.value = 0;
-                break;
-            case InputMode.gamepad:
-                _controlsSchemeDropdown.value = 1;
-                break;
-            case InputMode.keytar:
-                _controlsSchemeDropdown.value = 2;
-                break;
-        }
+        SetInputMode();
     }
 }

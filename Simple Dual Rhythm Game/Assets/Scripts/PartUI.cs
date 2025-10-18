@@ -141,16 +141,7 @@ public class PartUI : MonoBehaviour
     }
 
     public void PlayedNote(int index) {
-        
-        if (_parameters.inputMode == InputMode.keyboard)
-        {
-            //TODO: get it in a cleaner way than get than get child + get component
-            iconsInPlay[index].SetMissedIcon();
-        }
-        else if (_parameters.inputMode == InputMode.keytar)
-        {
-            iconsInPlay[index].SetMissedIcon();
-        }
+        iconsInPlay[index].SetMissedIcon();
     }
 
     public void EraseAllNotes() {
