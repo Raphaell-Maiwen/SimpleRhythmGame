@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour{
     public int soloIndex;
     public int solosToDo;
     [SerializeField] private Metronome metronomeScript;
+    [SerializeField] private Parameters _parameters;
     public UnityEvent startGame;
 
     public void AddSolo() {
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour{
 
     private void Start()
     {
-        if (Parameters.instance.inputMode == InputMode.keytar)
+        if (_parameters.inputMode == InputMode.keytar)
         {
             Debug.Log("Register keyboard 1 and 2");
         }

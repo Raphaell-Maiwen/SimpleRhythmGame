@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class Metronome : MonoBehaviour {
+public class Metronome : MonoBehaviour
+{
+    [SerializeField] private Parameters _parameters;
+    
     //[HideInInspector]
     public int bpm;
 
@@ -95,9 +98,9 @@ public class Metronome : MonoBehaviour {
 
     public void StartGame()
     {
-        bpm = Parameters.instance.bpm;
-        beatPerBar = Parameters.instance.beatPerBar;
-        bars = Parameters.instance.bars;
+        bpm = _parameters.bpm;
+        beatPerBar = _parameters.beatPerBar;
+        bars = _parameters.bars;
 
         SetUp();
         SetBeatSpeed();

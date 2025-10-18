@@ -6,6 +6,7 @@ using UnityEngine.PlayerLoop;
 
 public class InstrumentsInput : MonoBehaviour
 {
+    [SerializeField] private Parameters _parameters;
     PlayerInput playerInput;
     PlayersManager playersManager;
 
@@ -21,7 +22,7 @@ public class InstrumentsInput : MonoBehaviour
 
     private void Awake()
     {
-        inputMode = Parameters.instance.inputMode;
+        inputMode = _parameters.inputMode;
         playerInput = GetComponent<PlayerInput>();
         
         //Making sure a device doesn't join if it's not supposed to (and doesn't prevent right devices to join)

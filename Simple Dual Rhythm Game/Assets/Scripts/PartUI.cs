@@ -59,7 +59,7 @@ public class PartUI : MonoBehaviour
     }
 
     public void SetUp(float bpm, float beatPerBar) {
-        trackerSpeed = 60 / bpm * beatPerBar * 3 * Parameters.instance.bars;
+        trackerSpeed = 60 / bpm * beatPerBar * 3 * _parameters.bars;
 
         //Assign icons according to controller / keyboard style
         if (_parameters.inputMode == InputMode.keyboard)
@@ -97,7 +97,7 @@ public class PartUI : MonoBehaviour
     }
 
     public void ChangeTempo(float bpm, float beatPerBar) {
-        trackerSpeed = 60 / bpm * beatPerBar * 3 * Parameters.instance.bars;
+        trackerSpeed = 60 / bpm * beatPerBar * 3 * _parameters.bars;
         foreach (TrackerData b in trackers) {
             b.timer /= 1.2f;
         }
@@ -169,7 +169,7 @@ public class PartUI : MonoBehaviour
     }
 
     void GenerateBars() {
-        for (int i = 1; i < Parameters.instance.bars; i++) {
+        for (int i = 1; i < _parameters.bars; i++) {
             Vector3 newBarPos = Vector3.zero;
             newBarPos.x += barLength * (i);
             Instantiate(barPrefab, newBarPos, Quaternion.identity);
@@ -181,7 +181,7 @@ public class PartUI : MonoBehaviour
 
         //Ce n'est qu'un au revoir
         Vector3 middleTrackerPos = trackerAnchor.transform.position;
-        middleTrackerPos.x = barLength * Parameters.instance.bars - 7;
+        middleTrackerPos.x = barLength * _parameters.bars - 7;
         trackersList[1].transform.position = middleTrackerPos;
 
         trackersList[2].transform.position = trackerAnchorEnd.transform.position;
@@ -190,9 +190,9 @@ public class PartUI : MonoBehaviour
     private void SetupAnchorsAndCamera() {
         Vector3 entryBarPos = GameObject.Find("EntryBar").transform.position;
         Vector3 exitBarPos = entryBarPos;
-        exitBarPos.x = exitBarPos.x + barLength * Parameters.instance.bars;
+        exitBarPos.x = exitBarPos.x + barLength * _parameters.bars;
 
-        float partLength = barLength * Parameters.instance.bars;
+        float partLength = barLength * _parameters.bars;
 
         Vector3 trackerAnchorPos = entryBarPos;
         trackerAnchorPos.x -= partLength;
@@ -207,6 +207,6 @@ public class PartUI : MonoBehaviour
         Vector3 cameraPos = Camera.main.transform.position;
         cameraPos.x = (entryBarPos.x + exitBarPos.x) / 2;
         Camera.main.transform.position = cameraPos;
-        Camera.main.orthographicSize = 5 * Parameters.instance.bars;
+        Camera.main.orthographicSize = 5 * _parameters.bars;
     }
 }

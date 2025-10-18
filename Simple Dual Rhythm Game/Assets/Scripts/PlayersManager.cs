@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayersManager : MonoBehaviour
 {
+    [SerializeField] private Parameters _parameters;
     [SerializeField] private Metronome metronomeScript;
 
     private Player _currentPlayer;
@@ -43,7 +44,7 @@ public class PlayersManager : MonoBehaviour
         player2 = new Player(score2, 1);
         _currentPlayer = player1;
 
-        switch (Parameters.instance.inputMode) {
+        switch (_parameters.inputMode) {
             case InputMode.gamepad:
                 GetComponent<PlayerInputManager>().playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Controller";
                 break;
