@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: 7238977702187599165, guid: 1caad188731c82a4e8c8d634c77da235,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.4
       objectReference: {fileID: 0}
     - target: {fileID: 7238977702187599165, guid: 1caad188731c82a4e8c8d634c77da235,
         type: 3}
@@ -97,22 +97,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 74744a538f861f241b989cfa81bbbe78,
+      objectReference: {fileID: 21300000, guid: cb10a89eb109db6408177245372ca3e5,
         type: 3}
     - target: {fileID: 8117979510252411873, guid: 1caad188731c82a4e8c8d634c77da235,
         type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8117979510252411873, guid: 1caad188731c82a4e8c8d634c77da235,
         type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8117979510252411873, guid: 1caad188731c82a4e8c8d634c77da235,
         type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
