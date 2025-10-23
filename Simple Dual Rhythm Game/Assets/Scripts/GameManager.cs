@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour{
     [SerializeField] private Parameters _parameters;
     [SerializeField] private EndOfGameScreen _endOfGameScreen;
     [SerializeField] private PlayersManager _playersManager;
+    [SerializeField] private InstrumentsInput _instrumentsInputPrefab;
     public UnityEvent startGame;
 
     public void AddSolo() {
@@ -26,6 +27,11 @@ public class GameManager : MonoBehaviour{
         solosToDo *= 2;
         
         startGame.AddListener(metronomeScript.StartGame);
+
+        if (_parameters.inputMode == InputMode.keytar)
+        {
+            Instantiate(_instrumentsInputPrefab);
+        }
     }
 
     private void Start()

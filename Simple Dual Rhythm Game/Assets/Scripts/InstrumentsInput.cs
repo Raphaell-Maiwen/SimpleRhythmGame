@@ -24,6 +24,7 @@ public class InstrumentsInput : MonoBehaviour
     {
         inputMode = _parameters.inputMode;
         playerInput = GetComponent<PlayerInput>();
+        playersManager = FindObjectOfType<PlayersManager>();
         
         //Making sure a device doesn't join if it's not supposed to (and doesn't prevent right devices to join)
         if (inputMode == InputMode.keytar)
@@ -45,10 +46,8 @@ public class InstrumentsInput : MonoBehaviour
             
             SetUpPlayerInput();
         }
-
-        playersManager = FindObjectOfType<PlayersManager>();
     }
-    
+
     private void SetUpKeytars()
     {
         registeringKeyboards = true;
@@ -74,7 +73,7 @@ public class InstrumentsInput : MonoBehaviour
                 }
             }
         };
-
+        
         gameObject.AddComponent<InputRedirector>();
     }
 
@@ -178,6 +177,11 @@ public class InstrumentsInput : MonoBehaviour
         {
             registeringKeyboards = false;
             GameObject.FindObjectOfType<GameManager>().startGame?.Invoke();
+            playersManager.ShowPressInputToJoin(0);
+        }
+        else
+        {
+            playersManager.ShowPressInputToJoin(2);
         }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class PlayersManager : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI _playerJoinText;
     [SerializeField] private Parameters _parameters;
     [SerializeField] private Metronome metronomeScript;
 
@@ -36,6 +38,11 @@ public class PlayersManager : MonoBehaviour
     private void Awake() {
         controls = new Controls();
         gameManager.startGame.AddListener(StartGame);
+        
+        if (_parameters.inputMode == InputMode.keytar)
+        {
+            ShowPressInputToJoin(1);
+        }
     }
 
     void StartGame()
@@ -80,5 +87,11 @@ public class PlayersManager : MonoBehaviour
     public int DeclareWinner()
     {
         return player1.points > player2.points ? 1 : 2;
+    }
+
+    public void ShowPressInputToJoin(int player)
+    {
+        if (player == 0) _playerJoinText.text = "";
+        else _playerJoinText.text = "Player " + player + ": Press on a key to register keyboard";
     }
 }

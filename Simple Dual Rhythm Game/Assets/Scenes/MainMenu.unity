@@ -2146,7 +2146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e8ca6b1ab30154ea7f0042811346af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _parameters: {fileID: 0}
+  _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   _bpmSlider: {fileID: 1575791628}
   _bpmText: {fileID: 1919708038}
   _beatPerBarSlider: {fileID: 732396467}

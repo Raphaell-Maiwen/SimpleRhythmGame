@@ -15,4 +15,4 @@ MonoBehaviour:
   bpm: 200
   beatPerBar: 4
   bars: 1
-  inputMode: 1
+  inputMode: 2
