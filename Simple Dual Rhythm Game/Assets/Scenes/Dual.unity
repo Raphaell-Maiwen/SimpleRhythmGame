@@ -2030,7 +2030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soloIndex: 0
-  solosToDo: 3
+  solosToDo: 2
   metronomeScript: {fileID: 6642081753353289859}
   _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   _endOfGameScreen: {fileID: 1632709225}
@@ -2803,27 +2803,27 @@ PrefabInstance:
     - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
         type: 3}
       propertyPath: statesSeries.Array.size
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
         type: 3}
       propertyPath: statesSeries.Array.data[2]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
-        type: 3}
-      propertyPath: statesSeries.Array.data[3]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
         type: 3}
-      propertyPath: statesSeries.Array.data[4]
+      propertyPath: statesSeries.Array.data[3]
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
         type: 3}
-      propertyPath: statesSeries.Array.data[5]
+      propertyPath: statesSeries.Array.data[4]
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
+        type: 3}
+      propertyPath: statesSeries.Array.data[5]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
         type: 3}

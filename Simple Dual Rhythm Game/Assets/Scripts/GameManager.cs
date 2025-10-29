@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour{
     void LastSolo() {
         metronomeScript.bpm += (metronomeScript.bpm / 5);
         metronomeScript.ChangeTempo();
-        //Change visuals?
+        //TODO: Change visuals?
     }
 
     void EndOfGame() {

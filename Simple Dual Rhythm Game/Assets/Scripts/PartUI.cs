@@ -103,7 +103,9 @@ public class PartUI : MonoBehaviour
         }
     }
 
-    public void NewBar(Metronome.GameState gameState) {
+    public void NewBar(Metronome.GameState gameState)
+    {
+        Debug.Log("New bar");
         firstTick = true;
 
         TrackerData newTrackerData = trackers.Dequeue();

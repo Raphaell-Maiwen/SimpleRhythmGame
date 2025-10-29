@@ -19,6 +19,7 @@ public class Metronome : MonoBehaviour
     //[HideInInspector]
     public int bars = 1;
     private int metronomeCounter = 0;
+    private int mod = 1;
 
     private float initialTime;
     private float newBarTime;
@@ -124,10 +125,14 @@ public class Metronome : MonoBehaviour
 
     public void ChangeTempo() {
         frequency = 60f / bpm;
-        metronomeCounter = (int)(metronomeCounter * 1.2f);
-        SetBeatSpeed();
+        
+        //Ça
+        metronomeCounter = 0;
+        mod = 0;
+        initialTime = Time.time;
 
         UIScript.ChangeTempo(bpm, beatPerBar);
+        SetBeatSpeed();
     }
 
     void tick() {
@@ -210,8 +215,6 @@ public class Metronome : MonoBehaviour
             nextState = statesSeries[nextStateIndex];
             UIScript.TogglePlayer1();
         }
-
-        ChangeNextIcons();
     }
 
     void Update() {
@@ -222,7 +225,7 @@ public class Metronome : MonoBehaviour
             riffCounter++;
         }
 
-        if (timeSpent >= frequency * metronomeCounter + 1) {
+        if (timeSpent >= frequency * metronomeCounter + mod) {
             tick();
         }
 
@@ -296,22 +299,6 @@ public class Metronome : MonoBehaviour
         }
         else if (currentState == GameState.Silence) {
             thisCamera.backgroundColor = Color.blue;
-        }
-    }
-
-    void ChangeNextIcons()
-    {
-        switch (nextState)
-        {
-            case GameState.Playing:
-                Debug.Log("Next: Play");
-                break;
-            case GameState.Recording:
-                Debug.Log("Next: Recording");
-                break;
-            case GameState.Silence:
-                Debug.Log("Next: Silence");
-                break;
         }
     }
 }

@@ -2147,8 +2147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
-  _bpmSlider: {fileID: 1575791628}
-  _bpmText: {fileID: 1919708038}
+  _bpmSlider: {fileID: 663936296}
+  _bpmText: {fileID: 276556714}
   _beatPerBarSlider: {fileID: 732396467}
   _beatPerBarText: {fileID: 598927967}
   _barsPerSoloSlider: {fileID: 1766000568}
