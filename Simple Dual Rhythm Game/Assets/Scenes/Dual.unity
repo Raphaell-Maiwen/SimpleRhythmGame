@@ -1171,9 +1171,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.9150943, g: 0, b: 0, a: 1}
-    m_HighlightedColor: {r: 0.013475418, g: 0, b: 1, a: 1}
-    m_PressedColor: {r: 1, g: 0.96372116, b: 0, a: 1}
+    m_NormalColor: {r: 0.9607844, g: 0.9607844, b: 0.9607844, a: 1}
+    m_HighlightedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
+    m_PressedColor: {r: 0.34901962, g: 0.34901962, b: 0.34901962, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1190,7 +1190,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1448188382}
+  m_TargetGraphic: {fileID: 1015584464}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1793,9 +1793,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.9150943, g: 0, b: 0, a: 1}
-    m_HighlightedColor: {r: 0.013475418, g: 0, b: 1, a: 1}
-    m_PressedColor: {r: 1, g: 0.96372116, b: 0, a: 1}
+    m_NormalColor: {r: 0.9607844, g: 0.9607844, b: 0.9607844, a: 1}
+    m_HighlightedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
+    m_PressedColor: {r: 0.3490566, g: 0.3490566, b: 0.3490566, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -2030,7 +2030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soloIndex: 0
-  solosToDo: 2
+  solosToDo: 3
   metronomeScript: {fileID: 6642081753353289859}
   _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   _endOfGameScreen: {fileID: 1632709225}
@@ -2803,27 +2803,27 @@ PrefabInstance:
     - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
         type: 3}
       propertyPath: statesSeries.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
         type: 3}
       propertyPath: statesSeries.Array.data[2]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
-        type: 3}
-      propertyPath: statesSeries.Array.data[3]
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
         type: 3}
+      propertyPath: statesSeries.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
+        type: 3}
       propertyPath: statesSeries.Array.data[4]
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
         type: 3}
       propertyPath: statesSeries.Array.data[5]
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
         type: 3}
