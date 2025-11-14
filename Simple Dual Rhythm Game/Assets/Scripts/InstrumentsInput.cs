@@ -85,7 +85,6 @@ public class InstrumentsInput : MonoBehaviour
 
     //Gamepad Inputs
     private void OnSouth() {
-        print("Ok");
         playersManager.ProcessInput(playerInput.playerIndex, 0);
     }
 

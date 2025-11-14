@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -44,6 +45,9 @@ public class Metronome : MonoBehaviour
 
     [SerializeField] private PlayersManager playersScript;
     [SerializeField] private PartUI UIScript;
+
+    [SerializeField] private GameObject _nextStateMessagePanel;
+    [SerializeField] private TextMeshProUGUI _nextStateMessageText;
 
     List<Note> riff;
     private int riffCounter = 0;
@@ -168,6 +172,8 @@ public class Metronome : MonoBehaviour
 
             newBarTime = Time.time;
             UIScript.NewBar(nextState);
+
+            ChangeNextStateMessage();
 
             //Change this code slightly when supporting multiple bars
             notesSucceeded = 0;
@@ -299,6 +305,29 @@ public class Metronome : MonoBehaviour
         }
         else if (currentState == GameState.Silence) {
             thisCamera.backgroundColor = Color.blue;
+        }
+    }
+
+    private void ChangeNextStateMessage()
+    {
+        /*int playerIndex = playersScript.CurrentPlayer.index + 1;
+        if (nextState == GameState.ChangePlayer) {
+            playerIndex++;
+        }*/
+
+        if (nextState == GameState.Recording)
+        {
+            _nextStateMessagePanel.SetActive(true);
+            _nextStateMessageText.text = "Player " + (playersScript.CurrentPlayer.index + 1) + ": Prepare to record";
+        }
+        else if (nextState == GameState.Playing)
+        {
+            _nextStateMessagePanel.SetActive(true);
+            _nextStateMessageText.text = "Player " + (playersScript.CurrentPlayer.index + 1) + ": Prepare to play";
+        }
+        else if (nextState == GameState.Silence)
+        {
+            _nextStateMessagePanel.SetActive(false);
         }
     }
 }
