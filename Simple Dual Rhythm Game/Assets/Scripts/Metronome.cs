@@ -9,15 +9,11 @@ public class Metronome : MonoBehaviour
 {
     [SerializeField] private Parameters _parameters;
     
-    //[HideInInspector]
     public int bpm;
 
     [HideInInspector]
     public float frequency;
-
-    //[HideInInspector]
     public int beatPerBar;
-    //[HideInInspector]
     public int bars = 1;
     private int metronomeCounter = 0;
     private int mod = 1;
@@ -310,11 +306,6 @@ public class Metronome : MonoBehaviour
 
     private void ChangeNextStateMessage()
     {
-        /*int playerIndex = playersScript.CurrentPlayer.index + 1;
-        if (nextState == GameState.ChangePlayer) {
-            playerIndex++;
-        }*/
-
         if (nextState == GameState.Recording)
         {
             _nextStateMessagePanel.SetActive(true);

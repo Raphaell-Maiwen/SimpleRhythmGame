@@ -8,6 +8,7 @@ public class PartUI : MonoBehaviour
     [SerializeField] private Parameters _parameters;
     public GameObject trackerAnchor;
     public GameObject trackerAnchorEnd;
+    [SerializeField] private Transform _notesIconAnchor;
 
     public GameObject barPrefab;
 
@@ -16,17 +17,14 @@ public class PartUI : MonoBehaviour
     [HideInInspector]
     public GameObject currentTracker;
 
-    //Maybe?
     public List<GameObject> trackersList;
     Queue<TrackerData> trackers;
 
     Vector3 Difference;
     float trackerSpeed;
 
-    public List<GameObject> arrowIcons;
-    public List<GameObject> controllerIcons;
-    public List<GameObject> keyboardFIcons;
-    List<GameObject> currentIcons;
+    [SerializeField] private List<NestedNotesList> _arrowNotesPool;
+    private List<NestedNotesList> _currentPool = new List<NestedNotesList>();
 
     List<NoteIcon> iconsInPlay;
 
@@ -49,8 +47,6 @@ public class PartUI : MonoBehaviour
     }
 
     private void Awake() {
-        //bars = GameObject.Find("Metronome").GetComponent<Metronome>().bars;
-
         iconsInPlay = new List<NoteIcon>();
 
         GenerateBars();
@@ -64,23 +60,12 @@ public class PartUI : MonoBehaviour
         //Assign icons according to controller / keyboard style
         if (_parameters.inputMode == InputMode.keyboard)
         {
-            currentIcons = arrowIcons;
+            _currentPool = _arrowNotesPool;
         }
         else if (_parameters.inputMode == InputMode.keytar)
         {
-            currentIcons = keyboardFIcons;
+            //TODO: Add keyboardFKeysPool;
         }
-
-
-        /*Vector3 lowestIconsPosition = trackerAnchor.transform.position;
-        lowestIconsPosition.y -= 1.5f;
-
-        for (int i = 0; i < currentIcons.Count; i++) {
-            Vector3 iconPos = lowestIconsPosition;
-            iconPos.y += 0.7f * i;
-            currentIcons[i].transform.position = iconPos;
-        }*/
-
 
         trackers = new Queue<TrackerData>();
         for (int i = trackersList.Count - 1; i > -1; i--) {
@@ -105,7 +90,6 @@ public class PartUI : MonoBehaviour
 
     public void NewBar(Metronome.GameState gameState)
     {
-        Debug.Log("New bar");
         firstTick = true;
 
         TrackerData newTrackerData = trackers.Dequeue();
@@ -136,10 +120,18 @@ public class PartUI : MonoBehaviour
     }
 
     public void DrawNewNote(int i) {
-        Vector3 notePos = currentIcons[i].transform.position;
+        var noteIconsList = _currentPool[i].noteIcons;
+
+        Vector3 notePos = noteIconsList[0].transform.position;
         notePos.x = currentTracker.transform.position.x;
         notePos.z -= 0.5f;
-        iconsInPlay.Add(Instantiate(currentIcons[i], notePos, Quaternion.identity).GetComponent<NoteIcon>());
+
+        var note = noteIconsList[noteIconsList.Count - 1];
+        iconsInPlay.Add(note);
+        noteIconsList.RemoveAt(noteIconsList.Count - 1);
+
+        note.transform.position = notePos;
+        note.SetIndex(i);
     }
 
     public void PlayedNote(int index) {
@@ -148,7 +140,9 @@ public class PartUI : MonoBehaviour
 
     public void EraseAllNotes() {
         foreach (NoteIcon icon in iconsInPlay) {
-            Destroy(icon.gameObject);
+            _currentPool[icon.GetIndex()].noteIcons.Add(icon);
+            icon.transform.position = _notesIconAnchor.transform.position;
+            icon.ResetIcon();
         }
 
         iconsInPlay.Clear();
@@ -170,9 +164,6 @@ public class PartUI : MonoBehaviour
     }
 
     private void PlaceTrackers() {
-        //trackersList[0].transform.position = trackerAnchor.transform.position;
-
-        //Ce n'est qu'un au revoir
         Vector3 middleTrackerPos = trackerAnchor.transform.position;
         middleTrackerPos.x = barLength * _parameters.bars - 7;
         trackersList[1].transform.position = middleTrackerPos;
@@ -201,5 +192,10 @@ public class PartUI : MonoBehaviour
         cameraPos.x = (entryBarPos.x + exitBarPos.x) / 2;
         Camera.main.transform.position = cameraPos;
         Camera.main.orthographicSize = 5 * _parameters.bars;
+    }
+
+    [System.Serializable]
+    public class NestedNotesList {
+        public List<NoteIcon> noteIcons;
     }
 }
