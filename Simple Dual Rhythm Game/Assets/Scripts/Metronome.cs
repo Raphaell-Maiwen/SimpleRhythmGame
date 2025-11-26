@@ -241,12 +241,10 @@ public class Metronome : MonoBehaviour
             if (Mathf.Abs(riff[i].time - noteTime) <= errorMargin) {
                 if (riff[i].noteCode == noteIndex) {
                     riffCounter++;
-                    Debug.Log("Good note");
                     return true;
                 }
             }
             else {
-                Debug.Log("Bad note");
                 break;
             }
         }

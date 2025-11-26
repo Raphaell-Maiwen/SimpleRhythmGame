@@ -24,6 +24,7 @@ public class PartUI : MonoBehaviour
     float trackerSpeed;
 
     [SerializeField] private List<NestedNotesList> _arrowNotesPool;
+    [SerializeField] private List<NestedNotesList> _FKeysNotesPool;
     private List<NestedNotesList> _currentPool = new List<NestedNotesList>();
 
     List<NoteIcon> iconsInPlay;
@@ -64,7 +65,7 @@ public class PartUI : MonoBehaviour
         }
         else if (_parameters.inputMode == InputMode.keytar)
         {
-            //TODO: Add keyboardFKeysPool;
+            _currentPool = _FKeysNotesPool;
         }
 
         trackers = new Queue<TrackerData>();
