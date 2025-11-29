@@ -42,8 +42,12 @@ public class Metronome : MonoBehaviour
     [SerializeField] private PlayersManager playersScript;
     [SerializeField] private PartUI UIScript;
 
+    //Should be in a UI class
     [SerializeField] private GameObject _nextStateMessagePanel;
     [SerializeField] private TextMeshProUGUI _nextStateMessageText;
+    [SerializeField] private GameObject[] _nextPlayerIcon;
+    [SerializeField] private GameObject _recordIcon;
+    [SerializeField] private GameObject _playIcon;
 
     List<Note> riff;
     private int riffCounter = 0;
@@ -304,30 +308,29 @@ public class Metronome : MonoBehaviour
 
     private void ChangeNextStateMessage()
     {
+        foreach(var icon in _nextPlayerIcon) { 
+            icon.SetActive(false);
+        }
+
         if (nextState == GameState.Recording)
         {
             _nextStateMessagePanel.SetActive(true);
             _nextStateMessageText.text = "Player " + (playersScript.CurrentPlayer.index + 1) + ": Prepare to record";
+            _nextPlayerIcon[playersScript.CurrentPlayer.index].SetActive(true);
+            _recordIcon.SetActive(true);
         }
         else if (nextState == GameState.Playing)
         {
             _nextStateMessagePanel.SetActive(true);
             _nextStateMessageText.text = "Player " + (playersScript.CurrentPlayer.index + 1) + ": Prepare to play";
+            _nextPlayerIcon[playersScript.CurrentPlayer.index].SetActive(true);
+            _playIcon.SetActive(true);
         }
         else if (nextState == GameState.Silence)
         {
             _nextStateMessagePanel.SetActive(false);
+            _playIcon.SetActive(false);
+            _recordIcon.SetActive(false);
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
