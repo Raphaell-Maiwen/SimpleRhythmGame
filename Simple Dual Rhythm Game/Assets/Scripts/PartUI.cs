@@ -135,8 +135,14 @@ public class PartUI : MonoBehaviour
         note.SetIndex(i);
     }
 
-    public void PlayedNote(int index) {
-        iconsInPlay[index].SetMissedIcon();
+    public void ChangeNoteState(int index, bool isSuccessfullyPlayed) {
+        if (isSuccessfullyPlayed)
+        {
+            iconsInPlay[index].SetPlayedIcon();
+        }
+        else {
+            iconsInPlay[index].SetMissedIcon();
+        }
     }
 
     public void EraseAllNotes() {

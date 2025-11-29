@@ -228,6 +228,7 @@ public class Metronome : MonoBehaviour
 
         if (currentState == GameState.Playing && riff.Count > 0 && riffCounter < riff.Count &&
             ((Time.time - newBarTime) > riff[riffCounter].time + errorMargin)) {
+            UIScript.ChangeNoteState(riffCounter, false);
             riffCounter++;
         }
 
@@ -274,7 +275,7 @@ public class Metronome : MonoBehaviour
                 int points = notesSucceeded * 10;
                 playersScript.MakePoints(points);
 
-                UIScript.PlayedNote(riffCounter - 1);
+                UIScript.ChangeNoteState(riffCounter - 1, true);
 
                 //Bonus points for a perfect solo
                 if (notesSucceeded == riff.Count && !madeMistake) {
@@ -288,6 +289,10 @@ public class Metronome : MonoBehaviour
                 madeMistake = true;
                 int penalty = ((riff.Count * (riff.Count + 1)) / 2 * 10) / riff.Count;
                 playersScript.MakePoints(-penalty);
+                UIScript.ChangeNoteState(riffCounter, false);
+                //Call to UIScript ici aussi
+                //TODO: faire un event? link up le son et le ui ici, avec un paramètre
+                //Faire un seul call a l'exterieur
 
                 badNoteSound.Play();
             }

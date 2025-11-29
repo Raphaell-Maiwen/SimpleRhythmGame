@@ -236,5 +236,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 8117979510252411873}
-  _playedColor: {r: 0.011712074, g: 0, b: 1, a: 1}
-  _missedColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  _playedColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  _missedColor: {r: 1, g: 0.24056602, b: 0.24056602, a: 1}

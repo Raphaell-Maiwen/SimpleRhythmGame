@@ -25,6 +25,7 @@ public class Tracker : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
+        //TODO: Modify that, super ineffective
         if (other.gameObject.name == "TrackerTrigger") {
             if(partUIScript.currentTracker == null)
                 partUIScript.currentTracker = this.gameObject;
