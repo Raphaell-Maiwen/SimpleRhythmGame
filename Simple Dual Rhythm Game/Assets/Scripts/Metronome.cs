@@ -228,7 +228,9 @@ public class Metronome : MonoBehaviour
 
         if (currentState == GameState.Playing && riff.Count > 0 && riffCounter < riff.Count &&
             ((Time.time - newBarTime) > riff[riffCounter].time + errorMargin)) {
-            UIScript.ChangeNoteState(riffCounter, false);
+            //TODO: Reactivate at a later time.
+            //Change the error margin? Go with collisions instead? More or less costly?
+            //UIScript.ChangeNoteState(riffCounter, false);
             riffCounter++;
         }
 
@@ -300,15 +302,7 @@ public class Metronome : MonoBehaviour
     }
 
     void ChangeVisuals() {
-        if (currentState == GameState.Recording) {
-            thisCamera.backgroundColor = Color.red;
-        }
-        else if (currentState == GameState.Playing) {
-            thisCamera.backgroundColor = Color.green;
-        }
-        else if (currentState == GameState.Silence) {
-            thisCamera.backgroundColor = Color.blue;
-        }
+        //Maybe VFX or whatever
     }
 
     private void ChangeNextStateMessage()
