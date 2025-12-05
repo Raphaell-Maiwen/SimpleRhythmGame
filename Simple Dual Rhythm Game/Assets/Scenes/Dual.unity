@@ -24830,6 +24830,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6642081752224650845, guid: 2b6a243861a43b0489ce4453aa17da40,
+        type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642081752224650845, guid: 2b6a243861a43b0489ce4453aa17da40,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e39b381e63ce5f9468e6e064ad7dcf1d, type: 3}
     - target: {fileID: 6642081752224650846, guid: 2b6a243861a43b0489ce4453aa17da40,
         type: 3}
       propertyPath: m_Name
@@ -24936,6 +24946,36 @@ PrefabInstance:
       propertyPath: _nextPlayerIcon.Array.data[1]
       value: 
       objectReference: {fileID: 1050939533}
+    - target: {fileID: 6642081752224650848, guid: 2b6a243861a43b0489ce4453aa17da40,
+        type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642081752224650848, guid: 2b6a243861a43b0489ce4453aa17da40,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 99b581875862a8f4883fadac5d2e776b, type: 3}
+    - target: {fileID: 6642081752224650850, guid: 2b6a243861a43b0489ce4453aa17da40,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 49573d7cdabd52d41b581b2797893799, type: 3}
+    - target: {fileID: 6642081752224650851, guid: 2b6a243861a43b0489ce4453aa17da40,
+        type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6642081752224650851, guid: 2b6a243861a43b0489ce4453aa17da40,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2ebf2cc885cc9c440b05b307c3736def, type: 3}
+    - target: {fileID: 6642081752224650854, guid: 2b6a243861a43b0489ce4453aa17da40,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
