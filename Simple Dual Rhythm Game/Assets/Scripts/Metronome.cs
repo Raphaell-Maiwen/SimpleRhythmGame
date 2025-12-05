@@ -26,7 +26,9 @@ public class Metronome : MonoBehaviour
     private AudioSource[] instrumentSounds;
     private AudioSource[] sounds;
     private AudioSource badNoteSound;
-    private AudioSource beat;
+    [SerializeField] private AudioSource beat;
+
+    [SerializeField] private AudioSource[] _finaleSounds;
 
     private float errorMargin = 0.2f;
     private int notesSucceeded;
@@ -53,6 +55,8 @@ public class Metronome : MonoBehaviour
 
     bool firstTick = true;
     bool madeMistake = false;
+
+    private bool _isLastSolo;
 
     public class Note {
         public int noteCode;
@@ -95,7 +99,6 @@ public class Metronome : MonoBehaviour
         riff = new List<Note>();
 
         badNoteSound = sounds[5];
-        beat = sounds[sounds.Length - 1];
 
         enabled = false;
     }
@@ -136,6 +139,10 @@ public class Metronome : MonoBehaviour
 
         UIScript.ChangeTempo(bpm, beatPerBar);
         SetBeatSpeed();
+    }
+
+    public void SetLastSolo() {
+        _isLastSolo = true;
     }
 
     void tick() {
@@ -267,7 +274,7 @@ public class Metronome : MonoBehaviour
             riff.Add(newNote);
             UIScript.DrawNewNote(noteIndex);
 
-            instrumentSounds[noteIndex].Play();
+            PlayNoteSound(noteIndex);
         }
         else if (currentState == GameState.Playing && riffCounter < riff.Count) {
             if (IsRightNote(noteIndex)) {
@@ -283,7 +290,7 @@ public class Metronome : MonoBehaviour
                     playersScript.MakePoints(400);
                 }
 
-                instrumentSounds[noteIndex].Play();
+                PlayNoteSound(noteIndex);
             }
             else {
                 madeMistake = true;
@@ -296,6 +303,17 @@ public class Metronome : MonoBehaviour
 
                 badNoteSound.Play();
             }
+        }
+    }
+
+    private void PlayNoteSound(int noteIndex) {
+        if (!_isLastSolo)
+        {
+            instrumentSounds[noteIndex].Play();
+        }
+        else
+        {
+            _finaleSounds[noteIndex].Play();
         }
     }
 
