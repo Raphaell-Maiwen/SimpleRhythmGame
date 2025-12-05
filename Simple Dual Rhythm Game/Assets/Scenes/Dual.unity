@@ -24873,6 +24873,11 @@ PrefabInstance:
       objectReference: {fileID: 245794864}
     - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
         type: 3}
+      propertyPath: _gameManager
+      value: 
+      objectReference: {fileID: 1498790760}
+    - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
+        type: 3}
       propertyPath: playersScript
       value: 
       objectReference: {fileID: 1840136374}

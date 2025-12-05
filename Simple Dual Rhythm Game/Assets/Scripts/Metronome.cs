@@ -8,6 +8,7 @@ using UnityEngine.Audio;
 public class Metronome : MonoBehaviour
 {
     [SerializeField] private Parameters _parameters;
+    [SerializeField] private GameManager _gameManager;
     
     public int bpm;
 
@@ -193,8 +194,7 @@ public class Metronome : MonoBehaviour
             currentStateIndex = 0;
             UIScript.EraseAllNotes();
             
-            //TODO: replace this
-            GameObject.FindObjectOfType<GameManager>().AddSolo();
+            _gameManager.AddSolo();
         }
 
         currentState = statesSeries[currentStateIndex];
