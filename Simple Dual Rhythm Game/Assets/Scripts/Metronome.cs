@@ -35,8 +35,6 @@ public class Metronome : MonoBehaviour
     [Range(0, 1)]
     public float weakTick;
 
-    public Camera thisCamera;
-
     private int lastCounter = 1;
 
     [SerializeField] private PlayersManager playersScript;

@@ -36,12 +36,7 @@ public class GameManager : MonoBehaviour{
 
     private void Start()
     {
-        if (_parameters.inputMode == InputMode.keytar)
-        {
-            Debug.Log("Register keyboard 1 and 2");
-        }
-        else
-        {
+        if (_parameters.inputMode != InputMode.keytar) {
             startGame?.Invoke();
         }
     }
