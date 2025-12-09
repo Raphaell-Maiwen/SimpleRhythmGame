@@ -49,6 +49,7 @@ public class Metronome : MonoBehaviour
     [SerializeField] private GameObject[] _nextPlayerIcon;
     [SerializeField] private GameObject _recordIcon;
     [SerializeField] private GameObject _playIcon;
+    [SerializeField] private GameObject _forgotRecordUI;
 
     [SerializeField] private PauseMenu _pauseMenu;
 
@@ -59,6 +60,8 @@ public class Metronome : MonoBehaviour
     bool madeMistake = false;
 
     private bool _isLastSolo;
+
+    private bool _isPausingForEmptySolo;
 
     public class Note {
         public int noteCode;
@@ -165,8 +168,8 @@ public class Metronome : MonoBehaviour
         if (metronomeCounter % (beatPerBar * bars) == 0) {
             if (currentState == GameState.Recording && riff.Count == 0) 
             {
-                Debug.Log("Riff empty!");
-                _pauseMenu.TogglePauseMenu();
+                EmptyRiffAlert();
+                return;
             }
 
             ChangeState();
@@ -367,6 +370,28 @@ public class Metronome : MonoBehaviour
         }
         else { 
             beat.UnPause();
+        }
+    }
+
+    private void EmptyRiffAlert() {
+        _isPausingForEmptySolo = true;
+        OnGamePaused(true);
+        _forgotRecordUI.SetActive(true);
+        //Move back 2 steps
+        currentStateIndex = 0;
+        currentState = statesSeries[currentStateIndex];
+
+        Time.timeScale = 0;
+    }
+
+    //Double-check that this doesn't interact with regular pause
+    public void OnRPressed() {
+        if(_isPausingForEmptySolo)
+        {
+            Time.timeScale = 1;
+            OnGamePaused(false);
+            _isPausingForEmptySolo = false;
+            _forgotRecordUI.SetActive(false);
         }
     }
 }

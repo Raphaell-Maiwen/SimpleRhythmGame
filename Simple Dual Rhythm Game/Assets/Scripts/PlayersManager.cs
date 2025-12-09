@@ -66,6 +66,10 @@ public class PlayersManager : MonoBehaviour
         if (playerIndex == _currentPlayer.index) {
             metronomeScript.PlayNote(note);
         }
+
+        if (playerIndex == -1 && note == -1) { 
+            metronomeScript.OnRPressed();
+        }
     }
 
     public void changeCurrentPlayer() {

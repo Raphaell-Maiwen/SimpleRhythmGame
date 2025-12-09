@@ -95,7 +95,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""Down"",
                     ""type"": ""Button"",
                     ""id"": ""6880ce5a-52a9-42ef-9a09-c05bb917c01a"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -131,7 +131,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""S"",
                     ""type"": ""Button"",
                     ""id"": ""60c1417a-28a9-4106-a2bd-0211c174869a"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -140,7 +140,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""A"",
                     ""type"": ""Button"",
                     ""id"": ""696d533a-0a6e-4849-b6b2-5c6891438989"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -158,7 +158,16 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""W"",
                     ""type"": ""Button"",
                     ""id"": ""8946f60c-f05f-485b-9e26-30d9c5c2e978"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""R"",
+                    ""type"": ""Button"",
+                    ""id"": ""9870c024-2965-4ac5-9fa2-48e0fc0dd5fa"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -252,6 +261,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""W"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f899d3d1-d71a-4e1a-ab69-8e7cbebce440"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""R"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -263,7 +283,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""Bouton"",
                     ""type"": ""Button"",
                     ""id"": ""830cd4d0-0deb-4483-a41a-09fcdf26502b"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -384,6 +404,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Arrows_A = m_Arrows.FindAction("A", throwIfNotFound: true);
         m_Arrows_D = m_Arrows.FindAction("D", throwIfNotFound: true);
         m_Arrows_W = m_Arrows.FindAction("W", throwIfNotFound: true);
+        m_Arrows_R = m_Arrows.FindAction("R", throwIfNotFound: true);
         // Yo
         m_Yo = asset.FindActionMap("Yo", throwIfNotFound: true);
         m_Yo_Bouton = m_Yo.FindAction("Bouton", throwIfNotFound: true);
@@ -483,6 +504,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Arrows_A;
     private readonly InputAction m_Arrows_D;
     private readonly InputAction m_Arrows_W;
+    private readonly InputAction m_Arrows_R;
     /// <summary>
     /// Provides access to input actions defined in input action map "Arrows".
     /// </summary>
@@ -526,6 +548,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Arrows/W".
         /// </summary>
         public InputAction @W => m_Wrapper.m_Arrows_W;
+        /// <summary>
+        /// Provides access to the underlying input action "Arrows/R".
+        /// </summary>
+        public InputAction @R => m_Wrapper.m_Arrows_R;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -576,6 +602,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @W.started += instance.OnW;
             @W.performed += instance.OnW;
             @W.canceled += instance.OnW;
+            @R.started += instance.OnR;
+            @R.performed += instance.OnR;
+            @R.canceled += instance.OnR;
         }
 
         /// <summary>
@@ -611,6 +640,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @W.started -= instance.OnW;
             @W.performed -= instance.OnW;
             @W.canceled -= instance.OnW;
+            @R.started -= instance.OnR;
+            @R.performed -= instance.OnR;
+            @R.canceled -= instance.OnR;
         }
 
         /// <summary>
@@ -932,6 +964,13 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnW(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "R" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnR(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Yo" which allows adding and removing callbacks.

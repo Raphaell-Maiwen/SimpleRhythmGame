@@ -134,6 +134,10 @@ public class InstrumentsInput : MonoBehaviour
         playersManager.ProcessInput(1, 3);
     }
 
+    private void OnR() {
+        playersManager.ProcessInput(-1,-1);
+    }
+
     public void ProcessKeytarInput(int device, int key, bool pressed)
     {
         //How to only process what we wanna process

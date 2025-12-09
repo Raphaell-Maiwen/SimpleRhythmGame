@@ -9,9 +9,10 @@
                     "name": "Down",
                     "type": "Button",
                     "id": "6880ce5a-52a9-42ef-9a09-c05bb917c01a",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Left",
@@ -19,7 +20,8 @@
                     "id": "d1c2cce5-ff0b-4207-9ed0-1732302c7846",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Right",
@@ -27,7 +29,8 @@
                     "id": "77578df3-9698-4ad9-8822-a6ae5c46714b",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Up",
@@ -35,23 +38,26 @@
                     "id": "d0b8e4f2-14f2-4458-ab07-a8f4378ac7f5",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "S",
                     "type": "Button",
                     "id": "60c1417a-28a9-4106-a2bd-0211c174869a",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "A",
                     "type": "Button",
                     "id": "696d533a-0a6e-4849-b6b2-5c6891438989",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "D",
@@ -59,15 +65,26 @@
                     "id": "f2c3f9dc-2acc-4cfe-afbe-159bc829e73e",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "W",
                     "type": "Button",
                     "id": "8946f60c-f05f-485b-9e26-30d9c5c2e978",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "R",
+                    "type": "Button",
+                    "id": "9870c024-2965-4ac5-9fa2-48e0fc0dd5fa",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -158,6 +175,17 @@
                     "action": "W",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f899d3d1-d71a-4e1a-ab69-8e7cbebce440",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "R",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -169,9 +197,10 @@
                     "name": "Bouton",
                     "type": "Button",
                     "id": "830cd4d0-0deb-4483-a41a-09fcdf26502b",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -198,7 +227,8 @@
                     "id": "9e6f83f2-30f2-4dfb-a6c4-ded0b3c5ef9a",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "West",
@@ -206,7 +236,8 @@
                     "id": "830d6f0e-c88d-4995-9958-f7422e922eb9",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "East",
@@ -214,7 +245,8 @@
                     "id": "a1612863-b9c8-4823-910f-035f655045ab",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "North",
@@ -222,7 +254,8 @@
                     "id": "bed95bf6-bb41-4991-b9c0-693a19fedb88",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
