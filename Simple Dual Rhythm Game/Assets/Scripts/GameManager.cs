@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour{
     [SerializeField] private EndOfGameScreen _endOfGameScreen;
     [SerializeField] private PlayersManager _playersManager;
     [SerializeField] private InstrumentsInput _instrumentsInputPrefab;
+    [SerializeField] private GameObject _flames;
     public UnityEvent startGame;
 
     public void AddSolo() {
@@ -38,6 +39,10 @@ public class GameManager : MonoBehaviour{
     {
         if (_parameters.inputMode != InputMode.keytar) {
             startGame?.Invoke();
+        }
+
+        if (_parameters.bars > 1) { 
+            _flames.SetActive(false);
         }
     }
 

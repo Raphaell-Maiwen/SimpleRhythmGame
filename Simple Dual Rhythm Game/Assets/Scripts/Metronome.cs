@@ -50,6 +50,8 @@ public class Metronome : MonoBehaviour
     [SerializeField] private GameObject _recordIcon;
     [SerializeField] private GameObject _playIcon;
 
+    [SerializeField] private PauseMenu _pauseMenu;
+
     List<Note> riff;
     private int riffCounter = 0;
 
@@ -112,6 +114,9 @@ public class Metronome : MonoBehaviour
         SetUp();
         SetBeatSpeed();
         enabled = true;
+
+        //Cleaner: register itself through a SO?
+        _pauseMenu._onGamePausedOrUnpaused.AddListener(OnGamePaused);
     }
 
     void SetBeatSpeed() {
@@ -346,6 +351,16 @@ public class Metronome : MonoBehaviour
             _nextStateMessagePanel.SetActive(false);
             _playIcon.SetActive(false);
             _recordIcon.SetActive(false);
+        }
+    }
+
+    private void OnGamePaused(bool paused) {
+        if (paused)
+        {
+            beat.Pause();
+        }
+        else { 
+            beat.UnPause();
         }
     }
 }

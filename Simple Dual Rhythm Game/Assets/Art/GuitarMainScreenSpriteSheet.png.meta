@@ -1,0 +1,730 @@
+fileFormatVersion: 2
+guid: 3c5d55fe6129e3d4587f909f9b47432b
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1500
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b6e2f324d17e2d4ebbf16a0ed2a717e
+      internalID: -589033358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 1500
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c49133d68adb1b419c1b0220f71e5ac
+      internalID: 373624764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 1500
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca084b59cf94e6d4980eeeed27b72fdc
+      internalID: 1404904135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 1500
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd93ca43c7f6da945a8ff8f9f9e5036f
+      internalID: 140131915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 2520
+        y: 1500
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5374c732ed294ac4a9f5ecaeacdc6a5c
+      internalID: -1561720913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 3150
+        y: 1500
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4a9e0e4b896f654dbff7ddae6d74760
+      internalID: -34525562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 3780
+        y: 1500
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcf90da72be7a61458e4864394f8e720
+      internalID: 700922011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1000
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a59a2c51abc16d24aa09bc94d94f6415
+      internalID: 1206417831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 1000
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 059d4d1bc9b931f4c8d84f614298b480
+      internalID: -1011137420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 1000
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5edb665db3f43364e856ba3c21569bde
+      internalID: 511738430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 1000
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef4220b360540bc48845b0e4e99b67d3
+      internalID: -917324970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 2520
+        y: 1000
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 807f04de07c68f446b03da75b1d97d94
+      internalID: 821706029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 3150
+        y: 1000
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 512155f50bd62734c921275db4660137
+      internalID: 1859631158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 3780
+        y: 1000
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec5742b8752fa3f4d9b53e8c477f4ae7
+      internalID: 1750669700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 500
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f04b3de3796be1544bddd03f1c13f1ea
+      internalID: -219293583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 500
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01ac81203c288de45af2fc0301cf0249
+      internalID: 648727482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 500
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 866419b6148419442a569fa9b9247c5c
+      internalID: 1247841648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 500
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7acbe59116397384b87d84c0feab3ec0
+      internalID: -1547484950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 2520
+        y: 500
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29f9cfc419581a244b026fa086aa92eb
+      internalID: -200981785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 3150
+        y: 500
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91557eb72a1357e4a87773082a3c9389
+      internalID: 448437855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 3780
+        y: 500
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbd115df65f940c40aaa0d2f6b827f6b
+      internalID: -2047942341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ead00ee2ec367445a015b18cd08bbee
+      internalID: 112427368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 0
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f66d14b4daffc6b44a8bdccd0fa0f32a
+      internalID: 241293722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_23
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 0
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e340422bb674b94d91f8695407a8844
+      internalID: 782900632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 0
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de3efa1bab335564b9b6cdbb459ef51d
+      internalID: 633319752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 2520
+        y: 0
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9a5b51487189ec408f5c72605b88ece
+      internalID: 204703978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 3150
+        y: 0
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 472212e5a08c8c947af8170e1256b6eb
+      internalID: -1049973156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GuitarMainScreenSpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 3780
+        y: 0
+        width: 630
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06fbdfcef7eca0146989b97cfa2439d4
+      internalID: -342680466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      GuitarMainScreenSpriteSheet_0: -589033358
+      GuitarMainScreenSpriteSheet_1: 373624764
+      GuitarMainScreenSpriteSheet_10: -917324970
+      GuitarMainScreenSpriteSheet_11: 821706029
+      GuitarMainScreenSpriteSheet_12: 1859631158
+      GuitarMainScreenSpriteSheet_13: 1750669700
+      GuitarMainScreenSpriteSheet_14: -219293583
+      GuitarMainScreenSpriteSheet_15: 648727482
+      GuitarMainScreenSpriteSheet_16: 1247841648
+      GuitarMainScreenSpriteSheet_17: -1547484950
+      GuitarMainScreenSpriteSheet_18: -200981785
+      GuitarMainScreenSpriteSheet_19: 448437855
+      GuitarMainScreenSpriteSheet_2: 1404904135
+      GuitarMainScreenSpriteSheet_20: -2047942341
+      GuitarMainScreenSpriteSheet_21: 112427368
+      GuitarMainScreenSpriteSheet_22: 241293722
+      GuitarMainScreenSpriteSheet_23: 782900632
+      GuitarMainScreenSpriteSheet_24: 633319752
+      GuitarMainScreenSpriteSheet_25: 204703978
+      GuitarMainScreenSpriteSheet_26: -1049973156
+      GuitarMainScreenSpriteSheet_27: -342680466
+      GuitarMainScreenSpriteSheet_3: 140131915
+      GuitarMainScreenSpriteSheet_4: -1561720913
+      GuitarMainScreenSpriteSheet_5: -34525562
+      GuitarMainScreenSpriteSheet_6: 700922011
+      GuitarMainScreenSpriteSheet_7: 1206417831
+      GuitarMainScreenSpriteSheet_8: -1011137420
+      GuitarMainScreenSpriteSheet_9: 511738430
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
