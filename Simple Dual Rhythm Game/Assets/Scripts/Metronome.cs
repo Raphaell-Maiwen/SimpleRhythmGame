@@ -163,6 +163,12 @@ public class Metronome : MonoBehaviour
 
         //Check if we're at the beginning of a new cycle
         if (metronomeCounter % (beatPerBar * bars) == 0) {
+            if (currentState == GameState.Recording && riff.Count == 0) 
+            {
+                Debug.Log("Riff empty!");
+                _pauseMenu.TogglePauseMenu();
+            }
+
             ChangeState();
             ChangeNextState();
             //Reset the riff if we're recording again, change player if it's a silence...

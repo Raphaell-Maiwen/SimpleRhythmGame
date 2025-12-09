@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    private void TogglePauseMenu() { 
+    public void TogglePauseMenu() { 
         _isActive = !_isActive;
 
         _container.SetActive(_isActive);
