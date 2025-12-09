@@ -20,6 +20,10 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public void ResumeGame() {
+        TogglePauseMenu();
+    }
+
     public void TogglePauseMenu() { 
         _isActive = !_isActive;
 

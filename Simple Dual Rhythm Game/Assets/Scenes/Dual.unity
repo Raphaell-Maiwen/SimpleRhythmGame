@@ -24833,20 +24833,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4052843867689377094, guid: 5d88708d4bd9ca8418e55a8a39063c08,
+    - target: {fileID: 3660981818547338231, guid: 5d88708d4bd9ca8418e55a8a39063c08,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1318553705777774472}
-    - target: {fileID: 4052843867689377094, guid: 5d88708d4bd9ca8418e55a8a39063c08,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MainMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 4052843867689377094, guid: 5d88708d4bd9ca8418e55a8a39063c08,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PauseMenu, Assembly-CSharp
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5738110112599578795, guid: 5d88708d4bd9ca8418e55a8a39063c08,
         type: 3}
