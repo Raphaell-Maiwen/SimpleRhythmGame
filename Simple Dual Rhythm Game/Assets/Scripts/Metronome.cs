@@ -390,6 +390,8 @@ public class Metronome : MonoBehaviour
             //Move back 2 steps
             currentStateIndex = statesSeries.Length - 1;
             currentState = statesSeries[currentStateIndex];
+            nextStateIndex = 0;
+            nextState = statesSeries[nextStateIndex];
 
             OnGamePaused(false);
             _isPausingForEmptySolo = false;
