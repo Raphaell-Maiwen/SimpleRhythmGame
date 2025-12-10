@@ -377,9 +377,6 @@ public class Metronome : MonoBehaviour
         _isPausingForEmptySolo = true;
         OnGamePaused(true);
         _forgotRecordUI.SetActive(true);
-        //Move back 2 steps
-        currentStateIndex = 0;
-        currentState = statesSeries[currentStateIndex];
 
         Time.timeScale = 0;
     }
@@ -389,6 +386,11 @@ public class Metronome : MonoBehaviour
         if(_isPausingForEmptySolo)
         {
             Time.timeScale = 1;
+
+            //Move back 2 steps
+            currentStateIndex = statesSeries.Length - 1;
+            currentState = statesSeries[currentStateIndex];
+
             OnGamePaused(false);
             _isPausingForEmptySolo = false;
             _forgotRecordUI.SetActive(false);

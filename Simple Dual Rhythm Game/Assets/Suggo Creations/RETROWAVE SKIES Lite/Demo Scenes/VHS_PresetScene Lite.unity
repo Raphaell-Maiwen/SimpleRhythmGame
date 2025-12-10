@@ -208,6 +208,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skybox
       objectReference: {fileID: 0}
+    - target: {fileID: 2049893771317674200, guid: 7c1edca172641f54bb1ef9af40256d48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4359701746607809679, guid: 7c1edca172641f54bb1ef9af40256d48,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -256,6 +261,11 @@ PrefabInstance:
     - target: {fileID: 4359701746607809679, guid: 7c1edca172641f54bb1ef9af40256d48,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4620246805057893795, guid: 7c1edca172641f54bb1ef9af40256d48,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
