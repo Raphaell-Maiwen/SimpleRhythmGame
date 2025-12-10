@@ -62,6 +62,7 @@ public class Metronome : MonoBehaviour
     private bool _isLastSolo;
 
     private bool _isPausingForEmptySolo;
+    private bool _skipAnAdd;
 
     public class Note {
         public int noteCode;
@@ -214,8 +215,15 @@ public class Metronome : MonoBehaviour
         {
             currentStateIndex = 0;
             UIScript.EraseAllNotes();
-            
-            _gameManager.AddSolo();
+
+            if (!_skipAnAdd)
+            {
+                _gameManager.AddSolo();
+            }
+            else 
+            {
+                _skipAnAdd = false;
+            }
         }
 
         currentState = statesSeries[currentStateIndex];
@@ -395,6 +403,7 @@ public class Metronome : MonoBehaviour
 
             OnGamePaused(false);
             _isPausingForEmptySolo = false;
+            _skipAnAdd = true;
             _forgotRecordUI.SetActive(false);
         }
     }
