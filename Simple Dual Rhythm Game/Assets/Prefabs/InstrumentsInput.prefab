@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
+  _playerInput: {fileID: 3959784500827435246}
 --- !u!114 &3959784500827435246
 MonoBehaviour:
   m_ObjectHideFlags: 0

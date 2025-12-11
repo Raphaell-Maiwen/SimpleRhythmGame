@@ -7,10 +7,10 @@ using UnityEngine.PlayerLoop;
 public class InstrumentsInput : MonoBehaviour
 {
     [SerializeField] private Parameters _parameters;
-    PlayerInput playerInput;
+    [SerializeField] private PlayerInput _playerInput;
     PlayersManager playersManager;
 
-    private InputMode inputMode;
+    private InputMode _inputMode;
     
     //<DeviceID, PlayerID>
     private Dictionary<int, int> deviceMapping = new Dictionary<int, int>();
@@ -22,24 +22,23 @@ public class InstrumentsInput : MonoBehaviour
 
     private void Awake()
     {
-        inputMode = _parameters.inputMode;
-        playerInput = GetComponent<PlayerInput>();
+        _inputMode = _parameters.inputMode;
         playersManager = FindObjectOfType<PlayersManager>();
         
         //Making sure a device doesn't join if it's not supposed to (and doesn't prevent right devices to join)
-        if (inputMode == InputMode.keytar)
+        if (_inputMode == InputMode.keytar)
         {
             SetUpKeytars();
         }
         else
         {
-            Debug.Log(playerInput.devices[0].GetType().ToString());
+            Debug.Log(_playerInput.devices[0].GetType().ToString());
             
-            if (inputMode == InputMode.gamepad && typeof(Keyboard) == playerInput.devices[0].GetType())
+            if (_inputMode == InputMode.gamepad && typeof(Keyboard) == _playerInput.devices[0].GetType())
             {
                 Destroy(gameObject);
             }
-            else if (inputMode == InputMode.keyboard && typeof(Gamepad) == playerInput.devices[0].GetType())
+            else if (_inputMode == InputMode.keyboard && typeof(Gamepad) == _playerInput.devices[0].GetType())
             {
                 Destroy(gameObject);
             }
@@ -80,25 +79,25 @@ public class InstrumentsInput : MonoBehaviour
 
     private void SetUpPlayerInput()
     {
-        if (inputMode == InputMode.keyboard) playerInput.SwitchCurrentActionMap("Arrows");
-        else playerInput.SwitchCurrentActionMap("Controller");
+        if (_inputMode == InputMode.keyboard) _playerInput.SwitchCurrentActionMap("Arrows");
+        else _playerInput.SwitchCurrentActionMap("Controller");
     }
 
     //Gamepad Inputs
     private void OnSouth() {
-        playersManager.ProcessInput(playerInput.playerIndex, 0);
+        playersManager.ProcessInput(_playerInput.playerIndex, 0);
     }
 
     private void OnWest() {
-        playersManager.ProcessInput(playerInput.playerIndex, 1);
+        playersManager.ProcessInput(_playerInput.playerIndex, 1);
     }
 
     private void OnEast() {
-        playersManager.ProcessInput(playerInput.playerIndex, 2);
+        playersManager.ProcessInput(_playerInput.playerIndex, 2);
     }
 
     private void OnNorth() {
-        playersManager.ProcessInput(playerInput.playerIndex, 3);
+        playersManager.ProcessInput(_playerInput.playerIndex, 3);
     }
 
     //Player 1 Keyboard Inputs
