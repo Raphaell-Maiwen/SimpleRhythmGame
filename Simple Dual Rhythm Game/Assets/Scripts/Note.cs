@@ -9,6 +9,7 @@ public class NoteIcon : MonoBehaviour
     [SerializeField] private Color _missedColor;
 
     private int _index;
+    //Have a collider + state. Cannot be played if changed state.
     
     //Add Particles and/or tweens too here?
 

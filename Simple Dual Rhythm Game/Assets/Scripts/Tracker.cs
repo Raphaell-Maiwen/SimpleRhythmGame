@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tracker : MonoBehaviour
 {
-    PartUI partUIScript;
+    [SerializeField] private PartUI _partUIScript;
     [SerializeField] private GameObject recordingIcon;
     [SerializeField] private GameObject playingIcon;
     [SerializeField] private GameObject silenceIcon;
@@ -13,9 +13,6 @@ public class Tracker : MonoBehaviour
     [SerializeField] private GameObject player2Icon;
 
     private void Start() {
-        //TODO change that
-        partUIScript = GameObject.Find("Part").GetComponent<PartUI>();
-        
         recordingIcon.SetActive(false);
         playingIcon.SetActive(false);
         silenceIcon.SetActive(false);
@@ -27,8 +24,8 @@ public class Tracker : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         //TODO: Modify that, super ineffective
         if (other.gameObject.name == "TrackerTrigger") {
-            if(partUIScript.currentTracker == null)
-                partUIScript.currentTracker = this.gameObject;
+            if(_partUIScript.currentTracker == null)
+                _partUIScript.currentTracker = this.gameObject;
         }
     }
 
