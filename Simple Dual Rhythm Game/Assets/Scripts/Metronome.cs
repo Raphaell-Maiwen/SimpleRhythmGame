@@ -62,7 +62,6 @@ public class Metronome : MonoBehaviour
     private bool _isLastSolo;
 
     private bool _isPausingForEmptySolo;
-    private bool _skipAnAdd;
 
     public class Note {
         public int noteCode;
@@ -169,9 +168,9 @@ public class Metronome : MonoBehaviour
         if (metronomeCounter % (beatPerBar * bars) == 0) {
             if (currentState == GameState.Recording && riff.Count == 0) 
             {
-                /*EmptyRiffAlert();
+                EmptyRiffAlert();
                 metronomeCounter++;
-                return;*/
+                return;
             }
 
             ChangeState(currentStateIndex + 1);
@@ -192,10 +191,7 @@ public class Metronome : MonoBehaviour
                 UIScript.UnPlayedAllNotes();
             }
 
-            newBarTime = Time.time;
-            UIScript.NewBar(nextState);
-
-            ChangeNextStateMessage();
+            SetNextBar();
 
             //Change this code slightly when supporting multiple bars
             notesSucceeded = 0;
@@ -216,15 +212,7 @@ public class Metronome : MonoBehaviour
         {
             currentStateIndex = 0;
             UIScript.EraseAllNotes();
-
-            if (!_skipAnAdd)
-            {
-                _gameManager.AddSolo();
-            }
-            else 
-            {
-                _skipAnAdd = false;
-            }
+            _gameManager.AddSolo();
         }
 
         currentState = statesSeries[currentStateIndex];
@@ -248,6 +236,13 @@ public class Metronome : MonoBehaviour
             nextState = statesSeries[nextStateIndex];
             UIScript.TogglePlayer1();
         }
+    }
+
+    private void SetNextBar()
+    {
+        newBarTime = Time.time;
+        UIScript.NewBar(nextState);
+        ChangeNextStateMessage();
     }
 
     void Update() {
@@ -395,16 +390,16 @@ public class Metronome : MonoBehaviour
         {
             Time.timeScale = 1;
 
-            //Move back 2 steps
-            currentStateIndex = statesSeries.Length - 1;
-            currentState = statesSeries[currentStateIndex];
-            nextStateIndex = 0;
-            nextState = statesSeries[nextStateIndex];
+            ChangeState(0);
+            ChangeNextState(1);
+            SetNextBar();
 
             OnGamePaused(false);
             _isPausingForEmptySolo = false;
-            _skipAnAdd = true;
             _forgotRecordUI.SetActive(false);
+
+            //??
+            UIScript.currentTracker = null;
         }
     }
 }
