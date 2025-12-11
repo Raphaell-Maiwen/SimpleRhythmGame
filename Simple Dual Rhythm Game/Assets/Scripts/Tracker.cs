@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tracker : MonoBehaviour
 {
     [SerializeField] private PartUI _partUIScript;
+    [SerializeField] private LayerMask _layerMask;
     [SerializeField] private GameObject recordingIcon;
     [SerializeField] private GameObject playingIcon;
     [SerializeField] private GameObject silenceIcon;
@@ -22,9 +23,8 @@ public class Tracker : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        //TODO: Modify that, super ineffective
-        if (other.gameObject.name == "TrackerTrigger") {
-            //Double check the usefulness of that check
+        if(1 << other.gameObject.layer == _layerMask.value)
+        {    //Double check the usefulness of that check
             if(_partUIScript.currentTracker == null)
                 _partUIScript.currentTracker = this.gameObject;
         }

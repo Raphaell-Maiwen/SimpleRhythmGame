@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7976999929480294793}
   - component: {fileID: 5091469220414148912}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: noun-record-2729490
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2329589045556809359}
   - component: {fileID: 1141304398903392065}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 1-filled-64
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 5423179180072095179}
   - component: {fileID: -8448733882900033053}
   - component: {fileID: 5367008050421367500}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,6 +319,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d56c68a950e7fa40a0014a5a7aeb831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _partUIScript: {fileID: 0}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 64
   recordingIcon: {fileID: 2327512023566273192}
   playingIcon: {fileID: 7744256557032410477}
   silenceIcon: {fileID: 7840909415879842325}
@@ -334,7 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7553144213992278720}
   - component: {fileID: 7232223713740227231}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: 2-filled-64
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +422,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4874190000617288478}
   - component: {fileID: 23886138693167699}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: noun-play-3961830
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,7 +506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 511295042799321251}
   - component: {fileID: 93467350563650049}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: noun-quarter-rest-1011399
   m_TagString: Untagged
   m_Icon: {fileID: 0}
