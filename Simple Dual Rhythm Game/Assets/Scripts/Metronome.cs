@@ -169,17 +169,18 @@ public class Metronome : MonoBehaviour
         if (metronomeCounter % (beatPerBar * bars) == 0) {
             if (currentState == GameState.Recording && riff.Count == 0) 
             {
-                EmptyRiffAlert();
-                return;
+                /*EmptyRiffAlert();
+                metronomeCounter++;
+                return;*/
             }
 
-            ChangeState();
-            ChangeNextState();
+            ChangeState(currentStateIndex + 1);
+            ChangeNextState(nextStateIndex + 1);
             //Reset the riff if we're recording again, change player if it's a silence...
             //TODO: How to take the error margin into account?
             if (currentState == GameState.ChangePlayer) {
                 playersScript.changeCurrentPlayer();
-                ChangeState();
+                ChangeState(currentStateIndex + 1);
             }
             if (currentState == GameState.Recording) {
                 riff.Clear();
@@ -208,8 +209,8 @@ public class Metronome : MonoBehaviour
         //tickSound.Play();
     }
 
-    void ChangeState() {
-        currentStateIndex++;
+    void ChangeState(int newStateIndex) {
+        currentStateIndex = newStateIndex;
 
         if (currentStateIndex == statesSeries.Length)
         {
@@ -227,13 +228,12 @@ public class Metronome : MonoBehaviour
         }
 
         currentState = statesSeries[currentStateIndex];
-
         ChangeVisuals();
     }
 
-    void ChangeNextState()
+    void ChangeNextState(int newStateIndex)
     {
-        nextStateIndex++;
+        nextStateIndex = newStateIndex;
         
         if (nextStateIndex == statesSeries.Length)
         {
