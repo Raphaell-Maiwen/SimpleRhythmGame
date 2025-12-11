@@ -251,7 +251,6 @@ public class Metronome : MonoBehaviour
         if (currentState == GameState.Playing && riff.Count > 0 && riffCounter < riff.Count &&
             ((Time.time - newBarTime) > riff[riffCounter].time + errorMargin)) {
             //TODO: Reactivate at a later time.
-            //Change the error margin? Go with collisions instead? More or less costly?
             //UIScript.ChangeNoteState(riffCounter, false);
             riffCounter++;
         }

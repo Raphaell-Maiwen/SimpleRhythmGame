@@ -161,6 +161,11 @@ public class InputRedirector : MonoBehaviour
             throw new Win32Exception(Marshal.GetLastWin32Error(), "Failed to register mouse and keyboard for Raw Input.");
     }
 
+    public void Init(InstrumentsInput instrumentsInput)
+    {
+        _instrumentsInput = instrumentsInput; ;
+    }
+
     void Awake()
     {
         m_WindowClass = RegisterWindowClass();
@@ -169,8 +174,6 @@ public class InputRedirector : MonoBehaviour
             throw new Win32Exception(Marshal.GetLastWin32Error(), "Failed to create raw input redirection window.");
 
         RegisterRawInputDevices();
-        
-        _instrumentsInput = GetComponent<InstrumentsInput>();
     }
 
     void Update()
@@ -218,8 +221,6 @@ public class InputRedirector : MonoBehaviour
             m_TextStyle = new GUIStyle(GUI.skin.label);
             m_TextStyle.fontSize = 24;
         }
-
-        GUI.Label(new Rect(100, 10, 500, 30), $"Redirecting input to Unity: {s_RedirectingInputToUnity}", m_TextStyle);
     }
 
     [MonoPInvokeCallback(typeof(WndProcDelegate))]

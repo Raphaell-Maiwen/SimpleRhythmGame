@@ -74,7 +74,8 @@ public class InstrumentsInput : MonoBehaviour
             }
         };
         
-        gameObject.AddComponent<InputRedirector>();
+        var inputRedirector = gameObject.AddComponent<InputRedirector>();
+        inputRedirector.Init(this);
     }
 
     private void SetUpPlayerInput()
