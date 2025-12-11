@@ -7012,45 +7012,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 511295042799321251, guid: 636ccc851cefa73478cc778c32687c6c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.0082
-      objectReference: {fileID: 0}
     - target: {fileID: 5367008050421367500, guid: 636ccc851cefa73478cc778c32687c6c,
         type: 3}
       propertyPath: _partUIScript
       value: 
       objectReference: {fileID: 1179943225}
-    - target: {fileID: 5367008050421367500, guid: 636ccc851cefa73478cc778c32687c6c,
-        type: 3}
-      propertyPath: _layerMask.m_Bits
-      value: 84
-      objectReference: {fileID: 0}
     - target: {fileID: 5423179180072095177, guid: 636ccc851cefa73478cc778c32687c6c,
         type: 3}
       propertyPath: m_Name
       value: Tracker
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423179180072095177, guid: 636ccc851cefa73478cc778c32687c6c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423179180072095178, guid: 636ccc851cefa73478cc778c32687c6c,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423179180072095178, guid: 636ccc851cefa73478cc778c32687c6c,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423179180072095178, guid: 636ccc851cefa73478cc778c32687c6c,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5423179180072095178, guid: 636ccc851cefa73478cc778c32687c6c,
         type: 3}
