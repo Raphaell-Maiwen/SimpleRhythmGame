@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class Metronome : MonoBehaviour
+public class Metronome : MonoBehaviour, GameLoop
 {
     [SerializeField] private Parameters _parameters;
     [SerializeField] private GameManager _gameManager;

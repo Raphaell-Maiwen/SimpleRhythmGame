@@ -140,8 +140,6 @@ public class InstrumentsInput : MonoBehaviour
 
     public void ProcessKeytarInput(int device, int key, bool pressed)
     {
-        //How to only process what we wanna process
-
         if (registeringKeyboards)
         {
             RegisterKeyboard(device);
@@ -161,12 +159,14 @@ public class InstrumentsInput : MonoBehaviour
                 }
             }
         }
-
-        //TODO: Expand to 116
-        else if (key > 111 && key < 116)
+        else if (key > 48 && key < 52) {
+            keytarChord[player][key % 49] = pressed;
+        }
+        //TODO: Expand to 116, reallow FKeys too
+        /*else if (key > 111 && key < 116)
         {
             keytarChord[player][key % 112] = pressed;
-        }
+        }*/
     }
 
     private void RegisterKeyboard(int device)

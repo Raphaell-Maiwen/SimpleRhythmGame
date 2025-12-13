@@ -9,6 +9,7 @@ public class PartUI : MonoBehaviour
     public GameObject trackerAnchor;
     public GameObject trackerAnchorEnd;
     [SerializeField] private Transform _notesIconAnchor;
+    [SerializeField] private Transform _entryBar;
 
     public GameObject barPrefab;
 
@@ -179,7 +180,7 @@ public class PartUI : MonoBehaviour
     }
 
     private void SetupAnchorsAndCamera() {
-        Vector3 entryBarPos = GameObject.Find("EntryBar").transform.position;
+        Vector3 entryBarPos = _entryBar.position;
         Vector3 exitBarPos = entryBarPos;
         exitBarPos.x = exitBarPos.x + barLength * _parameters.bars;
 

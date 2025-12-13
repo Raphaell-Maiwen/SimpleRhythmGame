@@ -9,7 +9,8 @@ public class PlayersManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _playerJoinText;
     [SerializeField] private Parameters _parameters;
-    [SerializeField] private Metronome metronomeScript;
+    [SerializeField] private Metronome _gameLoopScript;
+    [SerializeField] private PlayerInputManager _playerInputManager;
 
     private Player _currentPlayer;
     public Player CurrentPlayer => _currentPlayer;
@@ -53,22 +54,23 @@ public class PlayersManager : MonoBehaviour
 
         switch (_parameters.inputMode) {
             case InputMode.gamepad:
-                GetComponent<PlayerInputManager>().playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Controller";
+                _playerInputManager.playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Controller";
                 break;
 
             case InputMode.keyboard:
-                GetComponent<PlayerInputManager>().playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Arrows";
+                _playerInputManager.playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Arrows";
                 break;
         }
     }
 
     public void ProcessInput(int playerIndex, int note) {
+        //Pass this check as a boolean parameter
         if (playerIndex == _currentPlayer.index) {
-            metronomeScript.PlayNote(note);
+            _gameLoopScript.PlayNote(note);
         }
 
         if (playerIndex == -1 && note == -1) { 
-            metronomeScript.OnRPressed();
+            ((Metronome)_gameLoopScript).OnRPressed();
         }
     }
 
