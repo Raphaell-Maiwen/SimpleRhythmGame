@@ -19,6 +19,7 @@ public class OptionsMenu : MonoBehaviour
 
     [SerializeField] private TMP_Dropdown _controlsSchemeDropdown;
     [SerializeField] private Toggle _FKeysOnToggle;
+    [SerializeField] private GameObject _fKeysWarning;
 
     [Header("Default settings")] 
     [SerializeField] private int bpm;
@@ -46,6 +47,7 @@ public class OptionsMenu : MonoBehaviour
         SetInputMode();
 
         _FKeysOnToggle.isOn = _parameters.fKeysOn;
+        _fKeysWarning.SetActive(_FKeysOnToggle.isOn);
         _FKeysOnToggle.onValueChanged.AddListener(delegate { FKeysOnToggled ();});
     }
 
@@ -95,6 +97,7 @@ public class OptionsMenu : MonoBehaviour
     void FKeysOnToggled() 
     {
         _parameters.fKeysOn = _FKeysOnToggle.isOn;
+        _fKeysWarning.SetActive(_FKeysOnToggle.isOn);
     }
 
     private void SetInputMode()
