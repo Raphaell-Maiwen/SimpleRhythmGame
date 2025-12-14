@@ -18,12 +18,14 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _barsPerSoloText;
 
     [SerializeField] private TMP_Dropdown _controlsSchemeDropdown;
+    [SerializeField] private Toggle _FKeysOnToggle;
 
     [Header("Default settings")] 
     [SerializeField] private int bpm;
     [SerializeField] private int beatPerBar;
     [SerializeField] private int bars;
     [SerializeField] private InputMode inputMode;
+    [SerializeField] private bool FKeysOn;
 
     private void OnEnable()
     {
@@ -42,12 +44,18 @@ public class OptionsMenu : MonoBehaviour
         _controlsSchemeDropdown.onValueChanged.AddListener(delegate {DropdownValueChanged ();});
 
         SetInputMode();
+
+        _FKeysOnToggle.isOn = _parameters.fKeysOn;
+        _FKeysOnToggle.onValueChanged.AddListener(delegate { FKeysOnToggled ();});
     }
 
     private void OnDisable()
     {
         _bpmSlider.onValueChanged.RemoveListener(delegate {BPMValueChanged ();});
         _beatPerBarSlider.onValueChanged.RemoveListener(delegate {BeatPerBarValueChanged ();});
+        _barsPerSoloSlider.onValueChanged.RemoveListener(delegate { BarsPerSoloValueChanged(); });
+        _controlsSchemeDropdown.onValueChanged.RemoveListener(delegate { DropdownValueChanged(); });
+        _FKeysOnToggle.onValueChanged.RemoveListener(delegate { FKeysOnToggled(); });
     }
 
     void BPMValueChanged()
@@ -82,6 +90,11 @@ public class OptionsMenu : MonoBehaviour
                 _parameters.inputMode = InputMode.keytar;
                 break;
         }
+    }
+
+    void FKeysOnToggled() 
+    {
+        _parameters.fKeysOn = _FKeysOnToggle.isOn;
     }
 
     private void SetInputMode()

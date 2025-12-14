@@ -11,6 +11,7 @@ public class InstrumentsInput : MonoBehaviour
     PlayersManager playersManager;
 
     private InputMode _inputMode;
+    private bool fKeysOn;
     
     //<DeviceID, PlayerID>
     private Dictionary<int, int> deviceMapping = new Dictionary<int, int>();
@@ -50,6 +51,7 @@ public class InstrumentsInput : MonoBehaviour
     private void SetUpKeytars()
     {
         registeringKeyboards = true;
+        fKeysOn = _parameters.fKeysOn;
             
         keytarChord = new Dictionary<int, Dictionary<int, bool>>()
         {
@@ -159,14 +161,22 @@ public class InstrumentsInput : MonoBehaviour
                 }
             }
         }
-        else if (key > 48 && key < 52) {
-            keytarChord[player][key % 49] = pressed;
-        }
-        //TODO: Expand to 116, reallow FKeys too
-        /*else if (key > 111 && key < 116)
+        else if (!fKeysOn)
         {
-            keytarChord[player][key % 112] = pressed;
-        }*/
+            //TODO: Expand to 53
+            if (key > 48 && key < 53)
+            {
+                keytarChord[player][key % 49] = pressed;
+            }
+        }
+        else 
+        {
+            //TODO: Expand to 116
+            if (key > 111 && key < 116)
+            {
+                keytarChord[player][key % 112] = pressed;
+            }
+        }
     }
 
     private void RegisterKeyboard(int device)

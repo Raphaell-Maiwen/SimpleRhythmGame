@@ -9,6 +9,7 @@ public class Parameters: ScriptableObject
     public int bars;
 
     public InputMode inputMode;
+    public bool fKeysOn;
 }
 
 public enum InputMode 
