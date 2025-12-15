@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class Metronome : MonoBehaviour, GameLoop
+public class Metronome : GameLoop
 {
     [SerializeField] private Parameters _parameters;
     [SerializeField] private GameManager _gameManager;
@@ -293,7 +293,7 @@ public class Metronome : MonoBehaviour, GameLoop
         return false;
     }
 
-    public void PlayNote(int noteIndex) {
+    public override void PlayNote(int noteIndex) {
         if (currentState == GameState.Silence) {
             return;
         }

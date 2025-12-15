@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaceMode : MonoBehaviour//, GameLoop
+public class RaceMode : GameLoop
 {
-    public void PlayNote(int noteIndex)
+    public override void PlayNote(int noteIndex)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Playing in the race!");
     }
 }

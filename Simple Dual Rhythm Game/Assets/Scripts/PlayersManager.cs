@@ -9,7 +9,7 @@ public class PlayersManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _playerJoinText;
     [SerializeField] private Parameters _parameters;
-    [SerializeField] private Metronome _gameLoopScript;
+    [SerializeField] private GameLoop _gameLoopScript;
     [SerializeField] private PlayerInputManager _playerInputManager;
 
     private Player _currentPlayer;
