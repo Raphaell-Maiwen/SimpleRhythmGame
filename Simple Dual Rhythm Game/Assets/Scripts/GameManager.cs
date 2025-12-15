@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour{
     [SerializeField] private InstrumentsInput _instrumentsInputPrefab;
     [SerializeField] private GameObject _flames;
     public UnityEvent startGame;
+    public UnityEvent stopGame;
 
     public void AddSolo() {
         soloIndex++;
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour{
     }
 
     void EndOfGame() {
+        stopGame?.Invoke();
         Time.timeScale = 0f;
 
         AudioSource[] sounds = GameObject.FindObjectsOfType<AudioSource>();

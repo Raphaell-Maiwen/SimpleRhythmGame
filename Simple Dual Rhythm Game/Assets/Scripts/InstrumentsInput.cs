@@ -205,16 +205,3 @@ public class InstrumentsInput : MonoBehaviour
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

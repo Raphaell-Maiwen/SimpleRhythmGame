@@ -62,6 +62,7 @@ public class Metronome : MonoBehaviour, GameLoop
     private bool _isLastSolo;
 
     private bool _isPausingForEmptySolo;
+    private bool _isGameEnded;
 
     public class Note {
         public int noteCode;
@@ -120,6 +121,7 @@ public class Metronome : MonoBehaviour, GameLoop
 
         //Cleaner: register itself through a SO?
         _pauseMenu._onGamePausedOrUnpaused.AddListener(OnGamePaused);
+        _gameManager.stopGame.AddListener(EndGame);
     }
 
     void SetBeatSpeed() {
@@ -151,6 +153,12 @@ public class Metronome : MonoBehaviour, GameLoop
 
     public void SetLastSolo() {
         _isLastSolo = true;
+    }
+
+    public void EndGame() 
+    {
+        _isGameEnded = true;
+        enabled = false;
     }
 
     void tick() {
@@ -189,6 +197,11 @@ public class Metronome : MonoBehaviour, GameLoop
             }
             else {
                 UIScript.UnPlayedAllNotes();
+            }
+
+            if (_isGameEnded) 
+            {
+                return;
             }
 
             SetNextBar();
