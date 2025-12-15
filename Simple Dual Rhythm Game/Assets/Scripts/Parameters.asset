@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bpm: 70
   beatPerBar: 4
-  bars: 1
+  bars: 2
   inputMode: 2
   fKeysOn: 0

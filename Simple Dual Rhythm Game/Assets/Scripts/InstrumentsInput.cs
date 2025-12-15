@@ -8,6 +8,7 @@ public class InstrumentsInput : MonoBehaviour
 {
     [SerializeField] private Parameters _parameters;
     [SerializeField] private PlayerInput _playerInput;
+    [SerializeField] private PauseMenu _pauseMenu;
     PlayersManager playersManager;
 
     private InputMode _inputMode;
@@ -25,6 +26,7 @@ public class InstrumentsInput : MonoBehaviour
     {
         _inputMode = _parameters.inputMode;
         playersManager = FindObjectOfType<PlayersManager>();
+        _pauseMenu = FindObjectOfType<PauseMenu>();
         
         //Making sure a device doesn't join if it's not supposed to (and doesn't prevent right devices to join)
         if (_inputMode == InputMode.keytar)
@@ -142,6 +144,7 @@ public class InstrumentsInput : MonoBehaviour
 
     public void ProcessKeytarInput(int device, int key, bool pressed)
     {
+        Debug.Log(key);
         if (registeringKeyboards)
         {
             RegisterKeyboard(device);
@@ -161,6 +164,10 @@ public class InstrumentsInput : MonoBehaviour
                 }
             }
         }
+        else if (pressed && key == 27) 
+        {
+            _pauseMenu.TogglePauseMenu();
+        }
         else if (!fKeysOn)
         {
             //TODO: Expand to 53
@@ -169,7 +176,7 @@ public class InstrumentsInput : MonoBehaviour
                 keytarChord[player][key % 49] = pressed;
             }
         }
-        else 
+        else
         {
             //TODO: Expand to 116
             if (key > 111 && key < 116)

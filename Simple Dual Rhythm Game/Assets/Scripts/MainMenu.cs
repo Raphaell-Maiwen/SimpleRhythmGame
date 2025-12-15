@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame() {
         WindowsDeviceApiService.ListWindowsRawDeviceApiDevicesToConsole();
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Dual");
     }
 
     public void QuitGame() {
