@@ -126,7 +126,6 @@ public class PartUI : MonoBehaviour
 
         Vector3 notePos = noteIconsList[0].transform.position;
         notePos.x = currentTracker.transform.position.x;
-        notePos.z -= 0.5f;
 
         var note = noteIconsList[noteIconsList.Count - 1];
         iconsInPlay.Add(note);

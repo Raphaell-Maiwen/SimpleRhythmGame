@@ -9,7 +9,7 @@ public class NoteIcon : MonoBehaviour
     [SerializeField] private Color _missedColor;
 
     private int _index;
-    //Have a collider + state. Cannot be played if changed state.
+    private NoteState _noteState = NoteState.Unplayed;
     
     //Add Particles and/or tweens too here?
 
@@ -28,11 +28,31 @@ public class NoteIcon : MonoBehaviour
         _spriteRenderer.color = _missedColor;
     }
 
-    public void SetIndex(int index) {
+    public void SetIndex(int index) 
+    {
         _index = index;
     }
 
-    public int GetIndex() { 
+    public int GetIndex() 
+    { 
         return _index;
     }
+
+    public void ChangeState(NoteState newState) 
+    {
+        _noteState = newState;
+    }
+
+    public NoteState GetState() 
+    {
+        return _noteState;
+    }
+}
+
+public enum NoteState
+{
+    Unplayed,
+    Played,
+    Missed,
+    Wrong
 }

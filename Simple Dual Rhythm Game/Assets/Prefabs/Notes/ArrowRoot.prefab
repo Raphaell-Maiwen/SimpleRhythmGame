@@ -199,6 +199,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7238977702187599165}
   - component: {fileID: 2751619959951815320}
+  - component: {fileID: 8747859913657082320}
+  - component: {fileID: 3796147149455706232}
   m_Layer: 0
   m_Name: ArrowRoot
   m_TagString: Untagged
@@ -238,3 +240,51 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 8117979510252411873}
   _playedColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   _missedColor: {r: 1, g: 0.24056602, b: 0.24056602, a: 1}
+--- !u!65 &8747859913657082320
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7238977702187599154}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.11, y: 1.12, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &3796147149455706232
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7238977702187599154}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

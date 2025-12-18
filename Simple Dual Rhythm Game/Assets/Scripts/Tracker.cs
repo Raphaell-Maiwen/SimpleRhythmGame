@@ -13,6 +13,8 @@ public class Tracker : MonoBehaviour
     [SerializeField] private GameObject player1Icon;
     [SerializeField] private GameObject player2Icon;
 
+    private List<NoteIcon> currentTrackedNotes = new List<NoteIcon>();
+
     private void Start() {
         recordingIcon.SetActive(false);
         playingIcon.SetActive(false);
@@ -23,10 +25,31 @@ public class Tracker : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(1 << other.gameObject.layer == _layerMask.value)
+        if (1 << other.gameObject.layer == _layerMask.value)
         {    //Double check the usefulness of that check
-            if(_partUIScript.currentTracker == null)
+            if (_partUIScript.currentTracker == null)
                 _partUIScript.currentTracker = this.gameObject;
+        }
+        else if (other.TryGetComponent<NoteIcon>(out NoteIcon noteIcon)) 
+        {
+            //Add in the metronome script maybe???
+            Debug.Log("New tracked icon " + noteIcon.GetIndex());
+            currentTrackedNotes.Add (noteIcon);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<NoteIcon>(out NoteIcon noteIcon)) 
+        {
+            Debug.Log("Bye tracked icon " + noteIcon.GetIndex());
+
+            if (noteIcon.GetState() == NoteState.Unplayed) 
+            {
+                noteIcon.ChangeState(NoteState.Missed);
+            }
+            
+            currentTrackedNotes.Remove (noteIcon);
         }
     }
 
