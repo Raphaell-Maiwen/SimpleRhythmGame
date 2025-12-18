@@ -16,6 +16,7 @@ public class NoteIcon : MonoBehaviour
     public void ResetIcon()
     {
         _spriteRenderer.color = Color.black;
+        _noteState = NoteState.Unplayed;
     }
 
     public void SetPlayedIcon()
@@ -41,6 +42,8 @@ public class NoteIcon : MonoBehaviour
     public void ChangeState(NoteState newState) 
     {
         _noteState = newState;
+
+        //Switch case here with the set icon etc?
     }
 
     public NoteState GetState() 

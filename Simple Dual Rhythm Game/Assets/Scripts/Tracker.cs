@@ -42,11 +42,6 @@ public class Tracker : MonoBehaviour
     {
         if (other.TryGetComponent<NoteIcon>(out NoteIcon noteIcon)) 
         {
-            if (noteIcon.GetState() == NoteState.Unplayed) 
-            {
-                noteIcon.ChangeState(NoteState.Missed);
-            }
-
             OnNoteTriggerExit?.Invoke(noteIcon);
         }
     }

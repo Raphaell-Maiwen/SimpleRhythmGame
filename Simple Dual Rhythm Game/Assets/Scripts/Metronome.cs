@@ -259,6 +259,7 @@ public class Metronome : GameLoop
     {
         if (currentState == GameState.Playing) 
         {
+            Debug.Log("Added");
             _currentTrackedNotes.Add(noteIcon);
         }
     }
@@ -267,17 +268,39 @@ public class Metronome : GameLoop
     {
         if (currentState == GameState.Playing)
         {
+            Debug.Log("Removed");
+            if (noteIcon.GetState() == NoteState.Unplayed) 
+            {
+                noteIcon.ChangeState(NoteState.Missed);
+                noteIcon.SetMissedIcon();
+            }
+
             _currentTrackedNotes.Remove(noteIcon);
         }
     }
 
-    bool IsRightNote(int noteIndex) {
-        float noteTime = Time.time - newBarTime;
+    bool IsRightNote(int noteIndex) 
+    {
+        //Step 1: find it at all
+        //Step 2: find the nearest
+
+        foreach(NoteIcon note in _currentTrackedNotes)
+        {
+            Debug.Log("Played");
+            if (note.GetIndex() == noteIndex && note.GetState() == NoteState.Unplayed) 
+            {
+                note.ChangeState(NoteState.Played);
+                note.SetPlayedIcon();
+                _currentTrackedNotes.Remove(note);
+                return true;
+            }
+        }
 
         return false;
     }
 
-    public override void PlayNote(int noteIndex) {
+    public override void PlayNote(int noteIndex) 
+    {
         if (currentState == GameState.Silence) {
             return;
         }
@@ -294,9 +317,6 @@ public class Metronome : GameLoop
                 int points = notesSucceeded * 10;
                 playersScript.MakePoints(points);
 
-                //TODO: Change UI here
-                //UIScript.ChangeNoteState(riffCounter - 1, true);
-
                 //Bonus points for a perfect solo
                 if (notesSucceeded == riffLength && !madeMistake) {
                     //Should be 200 for composer and 400 for the other, will change at some point
@@ -309,9 +329,6 @@ public class Metronome : GameLoop
                 madeMistake = true;
                 int penalty = ((riffLength * (riffLength + 1)) / 2 * 10) / riffLength;
                 playersScript.MakePoints(-penalty);
-
-                //TODO: Look here
-                //UIScript.ChangeNoteState(riffCounter, false);
 
                 //TODO: faire un event? link up le son et le ui ici, avec un paramètre
                 //Faire un seul call a l'exterieur

@@ -128,7 +128,7 @@ public class PartUI : MonoBehaviour
         }
     }
 
-    public void DrawNewNote(int i) {
+    public NoteIcon DrawNewNote(int i) {
         var noteIconsList = _currentPool[i].noteIcons;
 
         Vector3 notePos = noteIconsList[0].transform.position;
@@ -140,17 +140,8 @@ public class PartUI : MonoBehaviour
 
         note.transform.position = notePos;
         note.SetIndex(i);
-    }
-    
-    //TODO: Make more flexible? Remove entirely?
-    public void ChangeNoteState(int index, bool isSuccessfullyPlayed) {
-        if (isSuccessfullyPlayed)
-        {
-            iconsInPlay[index].SetPlayedIcon();
-        }
-        else {
-            iconsInPlay[index].SetMissedIcon();
-        }
+
+        return note;
     }
 
     public void EraseAllNotes() {
