@@ -148,7 +148,7 @@ public class PartUI : MonoBehaviour
         foreach (NoteIcon icon in iconsInPlay) {
             _currentPool[icon.GetIndex()].noteIcons.Add(icon);
             icon.transform.position = _notesIconAnchor.transform.position;
-            icon.ResetIcon();
+            icon.ChangeState(NoteState.Unplayed);
         }
 
         iconsInPlay.Clear();
@@ -157,7 +157,7 @@ public class PartUI : MonoBehaviour
 
     public void UnPlayedAllNotes() {
         for (int i = 0; i < iconsInPlay.Count; i++) {
-            iconsInPlay[i].ResetIcon();
+            iconsInPlay[i].ChangeState(NoteState.Unplayed);
         }
     }
 

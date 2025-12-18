@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NoteIcon : MonoBehaviour
@@ -16,7 +17,6 @@ public class NoteIcon : MonoBehaviour
     public void ResetIcon()
     {
         _spriteRenderer.color = Color.black;
-        _noteState = NoteState.Unplayed;
     }
 
     public void SetPlayedIcon()
@@ -27,6 +27,12 @@ public class NoteIcon : MonoBehaviour
     public void SetMissedIcon()
     {
         _spriteRenderer.color = _missedColor;
+    }
+
+    public void SetWrongIcon() 
+    {
+        _spriteRenderer.color = _missedColor;
+        //The DOTWeen is gonna be different from missed.
     }
 
     public void SetIndex(int index) 
@@ -43,7 +49,21 @@ public class NoteIcon : MonoBehaviour
     {
         _noteState = newState;
 
-        //Switch case here with the set icon etc?
+        switch (newState) 
+        { 
+            case NoteState.Unplayed:
+                ResetIcon();
+                break;
+            case NoteState.Played:
+                SetPlayedIcon();
+                break;
+            case NoteState.Missed: 
+                SetMissedIcon();
+                break;
+            case NoteState.Wrong:
+                SetWrongIcon();
+                break;
+        } 
     }
 
     public NoteState GetState() 

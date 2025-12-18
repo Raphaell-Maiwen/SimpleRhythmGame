@@ -259,7 +259,6 @@ public class Metronome : GameLoop
     {
         if (currentState == GameState.Playing) 
         {
-            Debug.Log("Added");
             _currentTrackedNotes.Add(noteIcon);
         }
     }
@@ -268,7 +267,6 @@ public class Metronome : GameLoop
     {
         if (currentState == GameState.Playing)
         {
-            Debug.Log("Removed");
             if (noteIcon.GetState() == NoteState.Unplayed) 
             {
                 noteIcon.ChangeState(NoteState.Missed);
@@ -281,12 +279,8 @@ public class Metronome : GameLoop
 
     bool IsRightNote(int noteIndex) 
     {
-        //Step 1: find it at all
-        //Step 2: find the nearest
-
         foreach(NoteIcon note in _currentTrackedNotes)
         {
-            Debug.Log("Played");
             if (note.GetIndex() == noteIndex && note.GetState() == NoteState.Unplayed) 
             {
                 note.ChangeState(NoteState.Played);
