@@ -38,8 +38,6 @@ public class Metronome : GameLoop
     [Range(0, 1)]
     public float weakTick;
 
-    private int lastCounter = 1;
-
     [SerializeField] private PlayersManager playersScript;
     [SerializeField] private PartUI UIScript;
 
@@ -51,10 +49,11 @@ public class Metronome : GameLoop
     [SerializeField] private GameObject _playIcon;
     [SerializeField] private GameObject _forgotRecordUI;
 
+    private List<NoteIcon> _currentTrackedNotes = new List<NoteIcon>();
+
     [SerializeField] private PauseMenu _pauseMenu;
 
     private int riffLength;
-    //private int riffCounter = 0;
 
     bool firstTick = true;
     bool madeMistake = false;
@@ -122,7 +121,7 @@ public class Metronome : GameLoop
 
     public void SetUp() {
         frequency = 60f / bpm;
-        UIScript.SetUp(this.bpm, this.beatPerBar);
+        UIScript.SetUp(this.bpm, this.beatPerBar, AddTrackedNote, RemoveTrackedIcon);
         initialTime = Time.time;
         metronomeCounter = 0;
     }
@@ -254,6 +253,22 @@ public class Metronome : GameLoop
         }
 
         WindowsDeviceApiService.Yo();
+    }
+
+    public void AddTrackedNote(NoteIcon noteIcon) 
+    {
+        if (currentState == GameState.Playing) 
+        {
+            _currentTrackedNotes.Add(noteIcon);
+        }
+    }
+
+    public void RemoveTrackedIcon(NoteIcon noteIcon) 
+    {
+        if (currentState == GameState.Playing)
+        {
+            _currentTrackedNotes.Remove(noteIcon);
+        }
     }
 
     bool IsRightNote(int noteIndex) {

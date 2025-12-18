@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PartUI : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class PartUI : MonoBehaviour
     [SerializeField] private List<NestedNotesList> _arrowNotesPool;
     [SerializeField] private List<NestedNotesList> _FKeysNotesPool;
     private List<NestedNotesList> _currentPool = new List<NestedNotesList>();
+
+    public UnityEvent<NoteIcon> OnNoteTriggerEnter;
+    public UnityEvent<NoteIcon> OnNoteTriggerExit;
 
     List<NoteIcon> iconsInPlay;
 
@@ -56,7 +60,7 @@ public class PartUI : MonoBehaviour
         PlaceTrackers();
     }
 
-    public void SetUp(float bpm, float beatPerBar) {
+    public void SetUp(float bpm, float beatPerBar, UnityAction<NoteIcon> AddTrackedNote, UnityAction<NoteIcon> RemoveTrackedNote) {
         trackerSpeed = 60 / bpm * beatPerBar * 3 * _parameters.bars;
 
         //Assign icons according to controller / keyboard style
@@ -80,6 +84,9 @@ public class PartUI : MonoBehaviour
             else {
                 trackers.Enqueue(new TrackerData(newTracker, 0, 0, newTracker.transform.position));
             }
+
+            newTracker.GetComponent<Tracker>().OnNoteTriggerEnter.AddListener(AddTrackedNote);
+            newTracker.GetComponent<Tracker>().OnNoteTriggerExit.AddListener(RemoveTrackedNote);
         }
     }
 

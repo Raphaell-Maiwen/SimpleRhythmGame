@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Tracker : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class Tracker : MonoBehaviour
     [SerializeField] private GameObject player1Icon;
     [SerializeField] private GameObject player2Icon;
 
-    private List<NoteIcon> currentTrackedNotes = new List<NoteIcon>();
+    public UnityEvent<NoteIcon> OnNoteTriggerEnter;
+    public UnityEvent<NoteIcon> OnNoteTriggerExit;
 
     private void Start() {
         recordingIcon.SetActive(false);
@@ -32,9 +34,7 @@ public class Tracker : MonoBehaviour
         }
         else if (other.TryGetComponent<NoteIcon>(out NoteIcon noteIcon)) 
         {
-            //Add in the metronome script maybe???
-            Debug.Log("New tracked icon " + noteIcon.GetIndex());
-            currentTrackedNotes.Add (noteIcon);
+            OnNoteTriggerEnter?.Invoke(noteIcon);
         }
     }
 
@@ -42,14 +42,12 @@ public class Tracker : MonoBehaviour
     {
         if (other.TryGetComponent<NoteIcon>(out NoteIcon noteIcon)) 
         {
-            Debug.Log("Bye tracked icon " + noteIcon.GetIndex());
-
             if (noteIcon.GetState() == NoteState.Unplayed) 
             {
                 noteIcon.ChangeState(NoteState.Missed);
             }
-            
-            currentTrackedNotes.Remove (noteIcon);
+
+            OnNoteTriggerExit?.Invoke(noteIcon);
         }
     }
 
