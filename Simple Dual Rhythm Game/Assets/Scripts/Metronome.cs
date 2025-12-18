@@ -53,8 +53,8 @@ public class Metronome : GameLoop
 
     [SerializeField] private PauseMenu _pauseMenu;
 
-    List<Note> riff;
-    private int riffCounter = 0;
+    private int riffLength;
+    //private int riffCounter = 0;
 
     bool firstTick = true;
     bool madeMistake = false;
@@ -63,16 +63,6 @@ public class Metronome : GameLoop
 
     private bool _isPausingForEmptySolo;
     private bool _isGameEnded;
-
-    public class Note {
-        public int noteCode;
-        public float time;
-
-        public Note(int note, float timeInSec) {
-            noteCode = note;
-            time = timeInSec;
-        }
-    }
     
     public enum GameState {
         Recording,
@@ -101,8 +91,6 @@ public class Metronome : GameLoop
 
         currentStateIndex = statesSeries.Length - 1;
         nextStateIndex = 0;
-        
-        riff = new List<Note>();
 
         badNoteSound = sounds[5];
 
@@ -174,7 +162,7 @@ public class Metronome : GameLoop
 
         //Check if we're at the beginning of a new cycle
         if (metronomeCounter % (beatPerBar * bars) == 0) {
-            if (currentState == GameState.Recording && riff.Count == 0) 
+            if (currentState == GameState.Recording && riffLength == 0)
             {
                 EmptyRiffAlert();
                 metronomeCounter++;
@@ -190,10 +178,10 @@ public class Metronome : GameLoop
                 ChangeState(currentStateIndex + 1);
             }
             if (currentState == GameState.Recording) {
-                riff.Clear();
+                riffLength = 0;
             }
             else if (currentState == GameState.Playing) {
-                riffCounter = 0;
+                //riffCounter = 0;
             }
             else {
                 UIScript.UnPlayedAllNotes();
@@ -261,13 +249,6 @@ public class Metronome : GameLoop
     void Update() {
         float timeSpent = Time.time - initialTime;
 
-        if (currentState == GameState.Playing && riff.Count > 0 && riffCounter < riff.Count &&
-            ((Time.time - newBarTime) > riff[riffCounter].time + errorMargin)) {
-            //TODO: Reactivate at a later time.
-            //UIScript.ChangeNoteState(riffCounter, false);
-            riffCounter++;
-        }
-
         if (timeSpent >= frequency * metronomeCounter + mod) {
             tick();
         }
@@ -278,18 +259,6 @@ public class Metronome : GameLoop
     bool IsRightNote(int noteIndex) {
         float noteTime = Time.time - newBarTime;
 
-        for (int i = riffCounter; i < riff.Count; i++) {
-            if (Mathf.Abs(riff[i].time - noteTime) <= errorMargin) {
-                if (riff[i].noteCode == noteIndex) {
-                    riffCounter++;
-                    return true;
-                }
-            }
-            else {
-                break;
-            }
-        }
-
         return false;
     }
 
@@ -299,22 +268,22 @@ public class Metronome : GameLoop
         }
         
         if (currentState == GameState.Recording) {
-            Note newNote = new Note(noteIndex, Time.time - newBarTime);
-            riff.Add(newNote);
+            riffLength++;
             UIScript.DrawNewNote(noteIndex);
 
             PlayNoteSound(noteIndex);
         }
-        else if (currentState == GameState.Playing && riffCounter < riff.Count) {
+        else if (currentState == GameState.Playing) {
             if (IsRightNote(noteIndex)) {
                 notesSucceeded++;
                 int points = notesSucceeded * 10;
                 playersScript.MakePoints(points);
 
-                UIScript.ChangeNoteState(riffCounter - 1, true);
+                //TODO: Change UI here
+                //UIScript.ChangeNoteState(riffCounter - 1, true);
 
                 //Bonus points for a perfect solo
-                if (notesSucceeded == riff.Count && !madeMistake) {
+                if (notesSucceeded == riffLength && !madeMistake) {
                     //Should be 200 for composer and 400 for the other, will change at some point
                     playersScript.MakePoints(400);
                 }
@@ -323,10 +292,12 @@ public class Metronome : GameLoop
             }
             else {
                 madeMistake = true;
-                int penalty = ((riff.Count * (riff.Count + 1)) / 2 * 10) / riff.Count;
+                int penalty = ((riffLength * (riffLength + 1)) / 2 * 10) / riffLength;
                 playersScript.MakePoints(-penalty);
-                UIScript.ChangeNoteState(riffCounter, false);
-                //Call to UIScript ici aussi
+
+                //TODO: Look here
+                //UIScript.ChangeNoteState(riffCounter, false);
+
                 //TODO: faire un event? link up le son et le ui ici, avec un paramètre
                 //Faire un seul call a l'exterieur
 

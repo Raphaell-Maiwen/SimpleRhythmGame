@@ -134,7 +134,8 @@ public class PartUI : MonoBehaviour
         note.transform.position = notePos;
         note.SetIndex(i);
     }
-
+    
+    //TODO: Make more flexible? Remove entirely?
     public void ChangeNoteState(int index, bool isSuccessfullyPlayed) {
         if (isSuccessfullyPlayed)
         {
