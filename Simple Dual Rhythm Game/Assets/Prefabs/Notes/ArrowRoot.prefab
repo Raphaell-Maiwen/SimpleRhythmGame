@@ -246,6 +246,8 @@ MonoBehaviour:
   _punchStrenght: 0.5
   _punchDuration: 0.5
   _punchVibrato: 10
+  _fadeColorDuration: 0.5
+  _drownLength: 0.17
 --- !u!65 &8747859913657082320
 BoxCollider:
   m_ObjectHideFlags: 0

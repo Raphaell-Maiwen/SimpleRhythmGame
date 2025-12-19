@@ -18,11 +18,14 @@ public class NoteIcon : MonoBehaviour
     [SerializeField] private float _punchDuration;
     [SerializeField] private int _punchVibrato;
 
+    [SerializeField] private float _fadeColorDuration;
+    [SerializeField] private float _drownLength;
+
     private int _index;
     private Vector3 _originalPos;
     NoteState _noteState = NoteState.Unplayed;
 
-    private Tweener _tweener;
+    private List<Tweener> _tweeners = new List<Tweener>();
 
     //Add particles?
 
@@ -48,33 +51,38 @@ public class NoteIcon : MonoBehaviour
     {
         ResetIcon();
         transform.position = _originalPos;
+        //TODO: Reset scale too
     }
 
     private void ResetIcon()
     {
         _spriteRenderer.color = Color.black;
-        if (_tweener != null)
+        if (_tweeners.Count > 0)
         {
-            _tweener.Kill();
-            _tweener = null;
+            foreach (var tweener in _tweeners) 
+            {
+                tweener.Kill();
+            }
+            _tweeners.Clear();
         }
     }
 
     public void SetPlayedIcon()
     {
         _spriteRenderer.color = _playedColor;
-        _tweener = transform.DOPunchScale(new Vector3(_punchStrenght, _punchStrenght, 0), _punchDuration, _punchVibrato, 0);
+        _tweeners.Add(transform.DOPunchScale(new Vector3(_punchStrenght, _punchStrenght, 0), _punchDuration, _punchVibrato, 0));
     }
 
     public void SetMissedIcon()
     {
-        _spriteRenderer.color = _missedColor;
+        _tweeners.Add(_spriteRenderer.DOColor(_missedColor, _fadeColorDuration));
+        _tweeners.Add(transform.DOMoveY(transform.position.y - _drownLength, _fadeColorDuration));
     }
 
     public void SetWrongIcon() 
     {
         _spriteRenderer.color = _missedColor;
-        _tweener = transform.DOShakePosition(_shakeDuration, _shakeStrength, _shakeVibrato);
+        _tweeners.Add(transform.DOShakePosition(_shakeDuration, _shakeStrength, _shakeVibrato));
     }
 
     public int GetIndex() 
