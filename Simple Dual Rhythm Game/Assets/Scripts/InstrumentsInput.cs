@@ -144,7 +144,6 @@ public class InstrumentsInput : MonoBehaviour
 
     public void ProcessKeytarInput(int device, int key, bool pressed)
     {
-        Debug.Log(key);
         if (registeringKeyboards)
         {
             RegisterKeyboard(device);

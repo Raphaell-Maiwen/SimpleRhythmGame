@@ -13436,6 +13436,12 @@ MonoBehaviour:
     - {fileID: 782636030}
     - {fileID: 150291893}
     - {fileID: 568338160}
+  OnNoteTriggerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNoteTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1183079920
 PrefabInstance:
   m_ObjectHideFlags: 0
