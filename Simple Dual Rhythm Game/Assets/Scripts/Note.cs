@@ -23,6 +23,7 @@ public class NoteIcon : MonoBehaviour
 
     private int _index;
     private Vector3 _originalPos;
+    private Vector3 _originalScale;
     NoteState _noteState = NoteState.Unplayed;
 
     private List<Tweener> _tweeners = new List<Tweener>();
@@ -38,8 +39,9 @@ public class NoteIcon : MonoBehaviour
     { 
         _index = index;
         _originalPos = originalPos;
+        _originalScale = transform.localScale;
 
-        //Tween just recorded
+        _tweeners.Add(transform.DOPunchScale(new Vector3(_punchStrenght, _punchStrenght, 0), _punchDuration, _punchVibrato, 0));
     }
 
     public void SetPooled()
@@ -51,12 +53,12 @@ public class NoteIcon : MonoBehaviour
     {
         ResetIcon();
         transform.position = _originalPos;
-        //TODO: Reset scale too
     }
 
     private void ResetIcon()
     {
         _spriteRenderer.color = Color.black;
+        transform.localScale = _originalScale;
         if (_tweeners.Count > 0)
         {
             foreach (var tweener in _tweeners) 
