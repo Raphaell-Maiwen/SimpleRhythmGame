@@ -147,8 +147,9 @@ public class PartUI : MonoBehaviour
     public void EraseAllNotes() {
         foreach (NoteIcon icon in iconsInPlay) {
             _currentPool[icon.GetIndex()].noteIcons.Add(icon);
+            //Fix ici
             icon.transform.position = _notesIconAnchor.transform.position;
-            icon.ChangeState(NoteState.Unplayed);
+            icon.ChangeState(NoteState.Pooled);
         }
 
         iconsInPlay.Clear();

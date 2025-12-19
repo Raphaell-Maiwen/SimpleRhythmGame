@@ -31,14 +31,26 @@ public class NoteIcon : MonoBehaviour
     { 
         _index = index;
         _originalPos = originalPos;
+
+        //Tween just recorded
     }
 
-    public void ResetIcon()
+    public void SetPooled()
     {
-        //Set back to original pos here?
+        ResetIcon();
+    }
+
+    public void SetUnplayed()
+    {
+        ResetIcon();
+        transform.position = _originalPos;
+    }
+
+    private void ResetIcon()
+    {
         _spriteRenderer.color = Color.black;
         if (_tweener != null)
-        { 
+        {
             _tweener.Kill();
             _tweener = null;
         }
@@ -70,10 +82,12 @@ public class NoteIcon : MonoBehaviour
         _noteState = newState;
 
         switch (newState) 
-        { 
+        {
+            case NoteState.Pooled:
+                SetPooled();
+                break;
             case NoteState.Unplayed:
-                //hmmmmmm
-                ResetIcon();
+                SetUnplayed();
                 break;
             case NoteState.Played:
                 SetPlayedIcon();
@@ -95,6 +109,7 @@ public class NoteIcon : MonoBehaviour
 
 public enum NoteState
 {
+    Pooled,
     Unplayed,
     Played,
     Missed,
