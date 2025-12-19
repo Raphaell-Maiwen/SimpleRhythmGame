@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.WebSockets;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -270,7 +272,6 @@ public class Metronome : GameLoop
             if (noteIcon.GetState() == NoteState.Unplayed) 
             {
                 noteIcon.ChangeState(NoteState.Missed);
-                noteIcon.SetMissedIcon();
             }
 
             _currentTrackedNotes.Remove(noteIcon);
@@ -279,15 +280,30 @@ public class Metronome : GameLoop
 
     bool IsRightNote(int noteIndex) 
     {
+        float smallestSqrDistance = 1000f;
+        NoteIcon closestIcon = null;
+
         foreach(NoteIcon note in _currentTrackedNotes)
         {
-            if (note.GetIndex() == noteIndex && note.GetState() == NoteState.Unplayed) 
+            if (note.GetState() == NoteState.Unplayed) 
             {
-                note.ChangeState(NoteState.Played);
-                note.SetPlayedIcon();
-                _currentTrackedNotes.Remove(note);
-                return true;
+                if (note.GetIndex() == noteIndex)
+                {
+                    note.ChangeState(NoteState.Played);
+                    _currentTrackedNotes.Remove(note);
+                    return true;
+                }
+                else if (Vector3.SqrMagnitude(note.transform.position - UIScript.currentTracker.transform.position) < smallestSqrDistance)
+                { 
+                    closestIcon = note;
+                }
             }
+        }
+
+        if (closestIcon != null)
+        {
+            closestIcon.ChangeState(NoteState.Wrong);
+            _currentTrackedNotes.Remove(closestIcon);
         }
 
         return false;

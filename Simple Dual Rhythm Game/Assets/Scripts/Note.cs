@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,10 +10,19 @@ public class NoteIcon : MonoBehaviour
     [SerializeField] private Color _playedColor;
     [SerializeField] private Color _missedColor;
 
+    [SerializeField] private float _shakeDuration;
+    [SerializeField] private float _shakeStrength;
+    [SerializeField] private int _shakeVibrato;
+
     private int _index;
     private NoteState _noteState = NoteState.Unplayed;
-    
+
     //Add Particles and/or tweens too here?
+
+    private void Start()
+    {
+        DOTween.Init(this);
+    }
 
     public void ResetIcon()
     {
@@ -32,7 +42,7 @@ public class NoteIcon : MonoBehaviour
     public void SetWrongIcon() 
     {
         _spriteRenderer.color = _missedColor;
-        //The DOTWeen is gonna be different from missed.
+        transform.DOShakePosition(_shakeDuration, _shakeStrength, _shakeVibrato);
     }
 
     public void SetIndex(int index) 
