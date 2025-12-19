@@ -139,7 +139,7 @@ public class PartUI : MonoBehaviour
         noteIconsList.RemoveAt(noteIconsList.Count - 1);
 
         note.transform.position = notePos;
-        note.SetIndex(i);
+        note.Init(i, notePos);
 
         return note;
     }

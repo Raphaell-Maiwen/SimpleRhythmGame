@@ -15,18 +15,33 @@ public class NoteIcon : MonoBehaviour
     [SerializeField] private int _shakeVibrato;
 
     private int _index;
-    private NoteState _noteState = NoteState.Unplayed;
+    private Vector3 _originalPos;
+    NoteState _noteState = NoteState.Unplayed;
 
-    //Add Particles and/or tweens too here?
+    private Tweener _tweener;
+
+    //Add particles?
 
     private void Start()
     {
         DOTween.Init(this);
     }
 
+    public void Init(int index, Vector3 originalPos) 
+    { 
+        _index = index;
+        _originalPos = originalPos;
+    }
+
     public void ResetIcon()
     {
+        //Set back to original pos here?
         _spriteRenderer.color = Color.black;
+        if (_tweener != null)
+        { 
+            _tweener.Kill();
+            _tweener = null;
+        }
     }
 
     public void SetPlayedIcon()
@@ -42,12 +57,7 @@ public class NoteIcon : MonoBehaviour
     public void SetWrongIcon() 
     {
         _spriteRenderer.color = _missedColor;
-        transform.DOShakePosition(_shakeDuration, _shakeStrength, _shakeVibrato);
-    }
-
-    public void SetIndex(int index) 
-    {
-        _index = index;
+        _tweener = transform.DOShakePosition(_shakeDuration, _shakeStrength, _shakeVibrato);
     }
 
     public int GetIndex() 
@@ -62,12 +72,13 @@ public class NoteIcon : MonoBehaviour
         switch (newState) 
         { 
             case NoteState.Unplayed:
+                //hmmmmmm
                 ResetIcon();
                 break;
             case NoteState.Played:
                 SetPlayedIcon();
                 break;
-            case NoteState.Missed: 
+            case NoteState.Missed:
                 SetMissedIcon();
                 break;
             case NoteState.Wrong:
