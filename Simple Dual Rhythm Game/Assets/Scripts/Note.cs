@@ -14,6 +14,10 @@ public class NoteIcon : MonoBehaviour
     [SerializeField] private float _shakeStrength;
     [SerializeField] private int _shakeVibrato;
 
+    [SerializeField] private float _punchStrenght;
+    [SerializeField] private float _punchDuration;
+    [SerializeField] private int _punchVibrato;
+
     private int _index;
     private Vector3 _originalPos;
     NoteState _noteState = NoteState.Unplayed;
@@ -59,6 +63,7 @@ public class NoteIcon : MonoBehaviour
     public void SetPlayedIcon()
     {
         _spriteRenderer.color = _playedColor;
+        _tweener = transform.DOPunchScale(new Vector3(_punchStrenght, _punchStrenght, 0), _punchDuration, _punchVibrato, 0);
     }
 
     public void SetMissedIcon()

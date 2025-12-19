@@ -243,6 +243,9 @@ MonoBehaviour:
   _shakeDuration: 0.5
   _shakeStrength: 0.5
   _shakeVibrato: 300
+  _punchStrenght: 0.5
+  _punchDuration: 0.5
+  _punchVibrato: 10
 --- !u!65 &8747859913657082320
 BoxCollider:
   m_ObjectHideFlags: 0
