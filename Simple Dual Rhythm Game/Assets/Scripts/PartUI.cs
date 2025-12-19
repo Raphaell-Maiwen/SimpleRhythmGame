@@ -119,11 +119,11 @@ public class PartUI : MonoBehaviour
 
     private void Update() {
         if (firstTick) {
-            foreach (TrackerData b in trackers) {
-                b.timer += Time.deltaTime;
-                b.percent = b.timer / trackerSpeed;
+            foreach (TrackerData tracker in trackers) {
+                tracker.timer += Time.deltaTime;
+                tracker.percent = tracker.timer / trackerSpeed;
 
-                b.trackerGO.transform.position = b.startingPos + Difference * b.percent;
+                tracker.trackerGO.transform.position = tracker.startingPos + Difference * tracker.percent;
             }
         }
     }
@@ -190,10 +190,12 @@ public class PartUI : MonoBehaviour
 
         Vector3 trackerAnchorPos = entryBarPos;
         trackerAnchorPos.x -= partLength;
+        trackerAnchorPos.z = trackerAnchor.transform.position.z;
         trackerAnchor.transform.position = trackerAnchorPos;
 
         Vector3 trackerAnchorEndPos = exitBarPos;
         trackerAnchorEndPos.x += partLength;
+        trackerAnchorEndPos.z = trackerAnchor.transform.position.z;
         trackerAnchorEnd.transform.position = trackerAnchorEndPos;
 
         Difference = trackerAnchorEnd.transform.position - trackerAnchor.transform.position;
