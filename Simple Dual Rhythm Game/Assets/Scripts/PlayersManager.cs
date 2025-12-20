@@ -21,7 +21,7 @@ public class PlayersManager : MonoBehaviour
     public Text score1;
     public Text score2;
 
-    [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameManager _gameManager;
     Controls controls;
 
     public class Player {
@@ -37,8 +37,9 @@ public class PlayersManager : MonoBehaviour
     }
 
     private void Awake() {
+        //Debug here
         controls = new Controls();
-        gameManager.startGame.AddListener(StartGame);
+        _gameManager.startGame.AddListener(StartGame);
         
         if (_parameters.inputMode == InputMode.keytar)
         {
@@ -48,6 +49,7 @@ public class PlayersManager : MonoBehaviour
 
     void StartGame()
     {
+        //Debug here
         player1 = new Player(score1, 0);
         player2 = new Player(score2, 1);
         _currentPlayer = player1;
@@ -64,10 +66,7 @@ public class PlayersManager : MonoBehaviour
     }
 
     public void ProcessInput(int playerIndex, int note) {
-        //Pass this check as a boolean parameter
-        if (playerIndex == _currentPlayer.index) {
-            _gameLoopScript.PlayNote(note);
-        }
+        _gameLoopScript.PlayNote(note, playerIndex == _currentPlayer.index);
 
         if (playerIndex == -1 && note == -1) { 
             ((Metronome)_gameLoopScript).OnRPressed();

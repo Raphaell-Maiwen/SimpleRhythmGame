@@ -2439,12 +2439,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 248800869}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &255044187 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 576325367979858433, guid: 5015d8296bc41314da2693a480e60185,
-    type: 3}
-  m_PrefabInstance: {fileID: 695014536}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &255074284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14476,8 +14470,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1498790761}
-  - component: {fileID: 1498790760}
   - component: {fileID: 1498790762}
+  - component: {fileID: 1498790763}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -14485,33 +14479,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1498790760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1498790759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de20bc9aa8968d5498d74e86ab12cf3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soloIndex: 0
-  solosToDo: 3
-  metronomeScript: {fileID: 0}
-  _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
-  _endOfGameScreen: {fileID: 1632709225}
-  _playersManager: {fileID: 1840136374}
-  _instrumentsInputPrefab: {fileID: 3959784500827435247, guid: 97a21c45e0cf67c4b973e488e0ac8a96,
-    type: 3}
-  _flames: {fileID: 255044187}
-  startGame:
-    m_PersistentCalls:
-      m_Calls: []
-  stopGame:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!4 &1498790761
 Transform:
   m_ObjectHideFlags: 0
@@ -14539,6 +14506,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7a8e0014928ce4a8988a94c98445f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1498790763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498790759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4883a8cd3aec7e544a12ba64e3ea152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
+  _endOfGameScreen: {fileID: 1632709225}
+  _playersManager: {fileID: 1840136374}
+  _instrumentsInputPrefab: {fileID: 3959784500827435247, guid: 97a21c45e0cf67c4b973e488e0ac8a96,
+    type: 3}
+  startGame:
+    m_PersistentCalls:
+      m_Calls: []
+  stopGame:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1513310820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17474,7 +17464,7 @@ MonoBehaviour:
   _playerInputManager: {fileID: 1840136376}
   score1: {fileID: 1634438302}
   score2: {fileID: 385836525}
-  gameManager: {fileID: 1498790760}
+  _gameManager: {fileID: 1498790763}
 --- !u!4 &1840136375
 Transform:
   m_ObjectHideFlags: 0

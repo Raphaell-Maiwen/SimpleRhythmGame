@@ -10,6 +10,9 @@ public class Parameters: ScriptableObject
 
     public InputMode inputMode;
     public bool fKeysOn;
+
+    //For Race Mode
+    public int numberOfNotes;
 }
 
 public enum InputMode 

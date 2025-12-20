@@ -10,7 +10,7 @@ using UnityEngine.Audio;
 public class Metronome : GameLoop
 {
     [SerializeField] private Parameters _parameters;
-    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private DuelManager _gameManager;
     
     public int bpm;
 
@@ -309,9 +309,9 @@ public class Metronome : GameLoop
         return false;
     }
 
-    public override void PlayNote(int noteIndex) 
+    public override void PlayNote(int noteIndex, bool isCurrentPlayer) 
     {
-        if (currentState == GameState.Silence) {
+        if (!isCurrentPlayer || currentState == GameState.Silence) {
             return;
         }
         
