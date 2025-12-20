@@ -64,7 +64,7 @@ public class PlayersManager : MonoBehaviour
     }
 
     public void ProcessInput(int playerIndex, int note) {
-        _gameLoopScript.PlayNote(note, playerIndex == _currentPlayer.index);
+        _gameLoopScript.PlayNote(note, playerIndex, _currentPlayer.index);
 
         if (playerIndex == -1 && note == -1) { 
             ((Metronome)_gameLoopScript).OnRPressed();

@@ -17,3 +17,4 @@ MonoBehaviour:
   bars: 1
   inputMode: 1
   fKeysOn: 0
+  numberOfNotes: 20

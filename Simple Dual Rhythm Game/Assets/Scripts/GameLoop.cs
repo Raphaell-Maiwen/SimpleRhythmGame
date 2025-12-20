@@ -5,5 +5,5 @@ using UnityEngine;
 public abstract class GameLoop: MonoBehaviour
 {
     //public void ProcessInput(int playerIndex, int note);
-    public abstract void PlayNote(int noteIndex, bool isCurrentPlayer);
+    public abstract void PlayNote(int noteIndex, int playerIndex, int currentPlayerIndex);
 }

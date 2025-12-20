@@ -31,11 +31,6 @@ public class DuelManager : GameManager{
     private void Start()
     {
         base.Start();
-        //Something with the pause menu here
-        if (_parameters.inputMode != InputMode.keytar) 
-        {
-            startGame?.Invoke();
-        }
 
         if (_parameters.bars > 1) 
         { 

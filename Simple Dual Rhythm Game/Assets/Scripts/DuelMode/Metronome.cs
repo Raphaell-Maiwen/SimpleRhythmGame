@@ -309,9 +309,9 @@ public class Metronome : GameLoop
         return false;
     }
 
-    public override void PlayNote(int noteIndex, bool isCurrentPlayer) 
+    public override void PlayNote(int noteIndex, int playerIndex, int currentPlayerIndex) 
     {
-        if (!isCurrentPlayer || currentState == GameState.Silence) {
+        if (playerIndex != currentPlayerIndex || currentState == GameState.Silence) {
             return;
         }
         
