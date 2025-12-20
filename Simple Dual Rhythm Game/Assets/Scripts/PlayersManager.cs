@@ -37,7 +37,6 @@ public class PlayersManager : MonoBehaviour
     }
 
     private void Awake() {
-        //Debug here
         controls = new Controls();
         _gameManager.startGame.AddListener(StartGame);
         
@@ -49,7 +48,6 @@ public class PlayersManager : MonoBehaviour
 
     void StartGame()
     {
-        //Debug here
         player1 = new Player(score1, 0);
         player2 = new Player(score2, 1);
         _currentPlayer = player1;

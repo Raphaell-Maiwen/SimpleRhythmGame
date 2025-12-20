@@ -21,7 +21,6 @@ public class DuelManager : GameManager{
 
     private void Awake() 
     {
-        //Debug here
         base.Awake();
 
         //So that each player plays the required amount of solos
@@ -31,7 +30,7 @@ public class DuelManager : GameManager{
 
     private void Start()
     {
-        //Debug here
+        base.Start();
         //Something with the pause menu here
         if (_parameters.inputMode != InputMode.keytar) 
         {

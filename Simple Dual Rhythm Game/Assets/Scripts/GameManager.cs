@@ -20,6 +20,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    protected void Start()
+    {
+        //Something with the pause menu here
+        if (_parameters.inputMode != InputMode.keytar)
+        {
+            startGame?.Invoke();
+        }
+    }
+
     protected void EndOfGame()
     {
         stopGame?.Invoke();
