@@ -18,3 +18,4 @@ MonoBehaviour:
   inputMode: 1
   fKeysOn: 0
   numberOfNotes: 20
+  numberOfPlayers: 2

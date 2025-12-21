@@ -1,26 +1,28 @@
+using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayersManager;
 
 public class RaceMode : GameLoop
 {
     [SerializeField] private Parameters _parameters;
     [SerializeField] private int _notesPenalty;
-    [SerializeField] private int _blockSize;
+    [SerializeField] private int _notesPerBlock;
     [SerializeField] private float _noteSize;
 
     [SerializeField] private List<NestedRaceNotesList> _arrowsPool;
     [SerializeField] private List<NestedRaceNotesList> _FKeysPool;
     private List<NestedRaceNotesList> _currentPool = new List<NestedRaceNotesList>();
 
-    [SerializeField] private Transform _notesSpawnAnchor;
-    [SerializeField] private Transform _outOfScreenAnchor;
-    private Queue<RaceNote> _spawnedRaceNotes = new Queue<RaceNote>();
+    [SerializeField] private Transform _notesSpawnAnchorOnePlayer;
+    [SerializeField] private Transform _notesSpawnAnchorTwoPlayers1;
+    [SerializeField] private Transform _notesSpawnAnchorTwoPlayers2;
+    [SerializeField] public Transform _outOfScreenAnchor;
 
-    //Maybe Queue?
-    public List<int> _notes = new List<int>();
-    public List<int> _player1StackNotes = new List<int>();
-    public List<int> _player2StackNotes = new List<int>();
+    private List<RacePlayer> _players = new List<RacePlayer>();
+
+    public Queue<int> _notes = new Queue<int>();
 
     public void Start()
     {
@@ -33,65 +35,79 @@ public class RaceMode : GameLoop
             _currentPool = _FKeysPool;
         }
 
+        if (_parameters.numberOfPlayers == 1)
+        {
+            CreatePlayer(_notesSpawnAnchorOnePlayer);
+        }
+        else 
+        {
+            CreatePlayer(_notesSpawnAnchorTwoPlayers1);
+            CreatePlayer(_notesSpawnAnchorTwoPlayers2);
+        }
+
         for (int i = 0; i < _parameters.numberOfNotes; i++)
         {
-            //Stack differently depending on input mode
+            //Stack a different range depending on input mode
             int newNote = Random.Range(0, 4);
-            _notes.Add(newNote);
-            _player1StackNotes.Add(newNote);
-            _player2StackNotes.Add(newNote);
+            _notes.Enqueue(newNote);
+
+            foreach(RacePlayer player in _players)
+            {
+                player.AddToStackNotes(newNote);
+            }
         }
-        SpawnBlock();
+
+        foreach (RacePlayer player in _players)
+        {
+            player.SpawnBlock();
+        }
+    }
+
+    private void CreatePlayer(Transform anchor) 
+    {
+        RacePlayer player = gameObject.AddComponent<RacePlayer>();
+        player.Init(anchor, _currentPool, this);
+        _players.Add(player);
     }
 
     public override void PlayNote(int noteIndex, int playerIndex, int currentPlayerIndex)
     {
-        List<int> playerStack = playerIndex == 0 ? _player1StackNotes : _player2StackNotes;
-
-        if (noteIndex == playerStack[playerStack.Count - 1])
+        if (playerIndex < _players.Count)
         {
-            GoodNote(playerStack);
+            _players[playerIndex].PlayNote(noteIndex, currentPlayerIndex);
+        }
+    }
+
+        public void EndOfRace() 
+    {
+        if (_parameters.numberOfPlayers == 1)
+        {
+            CheckHighestScores();
         }
         else 
-        {
-            WrongNote(playerStack);
+        { 
+            
         }
     }
 
-    //Function to spawn block of notes
-    private void SpawnBlock() 
-    {
-        //*2, one per player
-        //Check how many notes left
-        for (int i = 0; i < _blockSize; i++) 
-        {
-            var notesList = _currentPool[_player1StackNotes[_player1StackNotes.Count - 1 - i]].raceNotes;
-            var note = notesList[0];
-
-            Vector3 notesPos = _notesSpawnAnchor.transform.position;
-            notesPos.y += i * _noteSize;
-
-            note.transform.position = notesPos;
-            _spawnedRaceNotes.Enqueue(note);
-            notesList.RemoveAt(0);
-        }
+    private void CheckHighestScores() 
+    { 
+        //Compare depending on modes
     }
 
-    private void GoodNote(List<int> playerStack) 
+    public int GetBlockSize() 
     {
-        playerStack.RemoveAt(playerStack.Count - 1);
-        var note = _spawnedRaceNotes.Dequeue();
-
-        note.transform.position = _outOfScreenAnchor.transform.position;
+        return _notesPerBlock;
     }
 
-    private void WrongNote(List<int> playerStack) 
+    public float GetNoteSize() 
     {
-        //Play sound wrong note + UI thingy
-        for (int i = 0; i < _notesPenalty; i++) 
-        {
-            playerStack.Insert(0, Random.Range(0, 4));
-        }
+        return _noteSize;
+    }
+
+    public int GetNotePenalty()
+    {
+        return _notesPenalty;
     }
 
     [System.Serializable]

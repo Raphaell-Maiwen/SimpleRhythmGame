@@ -12,7 +12,9 @@ public class Parameters: ScriptableObject
     public bool fKeysOn;
 
     //For Race Mode
+    //Enum short medium long?
     public int numberOfNotes;
+    public int numberOfPlayers;
 }
 
 public enum InputMode 

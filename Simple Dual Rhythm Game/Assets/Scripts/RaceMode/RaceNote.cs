@@ -5,4 +5,5 @@ using UnityEngine;
 public class RaceNote : MonoBehaviour
 {
     private bool _onScreen;
+    public int value;
 }

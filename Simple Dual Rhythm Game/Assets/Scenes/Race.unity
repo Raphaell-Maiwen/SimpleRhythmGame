@@ -12707,6 +12707,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b8e4aef9ae781418b44803ce5bd148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1476946584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1476946585}
+  m_Layer: 0
+  m_Name: OnePlayerAnchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1476946585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476946584}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1485417025
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13012,7 +13043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   _notesPenalty: 2
-  _blockSize: 8
+  _notesPerBlock: 8
   _noteSize: 1
   _arrowsPool:
   - raceNotes:
@@ -13084,11 +13115,10 @@ MonoBehaviour:
     - {fileID: 983098096}
     - {fileID: 82639651}
   _FKeysPool: []
-  _notesSpawnAnchor: {fileID: 982094409}
+  _notesSpawnAnchorOnePlayer: {fileID: 1476946585}
+  _notesSpawnAnchorTwoPlayers1: {fileID: 982094409}
+  _notesSpawnAnchorTwoPlayers2: {fileID: 350237701}
   _outOfScreenAnchor: {fileID: 1641512909}
-  _notes: 
-  _player1StackNotes: 
-  _player2StackNotes: 
 --- !u!114 &1498790763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17769,6 +17799,7 @@ SceneRoots:
   - {fileID: 1878627208}
   - {fileID: 1781768564}
   - {fileID: 695014536}
+  - {fileID: 1476946585}
   - {fileID: 982094409}
   - {fileID: 350237701}
   - {fileID: 1641512909}
