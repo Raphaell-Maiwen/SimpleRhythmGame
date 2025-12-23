@@ -277,6 +277,12 @@ MonoBehaviour:
   silenceIcon: {fileID: 7840909415879842325}
   player1Icon: {fileID: 5378727252051362388}
   player2Icon: {fileID: 5731922883424089206}
+  OnNoteTriggerEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNoteTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5731922883424089206
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +377,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6351507861766715428}
   - component: {fileID: 2843300974311028848}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: musicBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

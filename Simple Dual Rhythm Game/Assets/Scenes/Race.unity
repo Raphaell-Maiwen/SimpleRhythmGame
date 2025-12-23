@@ -13119,7 +13119,7 @@ MonoBehaviour:
   _notesSpawnAnchorTwoPlayers1: {fileID: 982094409}
   _notesSpawnAnchorTwoPlayers2: {fileID: 350237701}
   _outOfScreenAnchor: {fileID: 1641512909}
-  _endOfGameScreen: {fileID: 0}
+  _endOfGameScreen: {fileID: 1632709225}
   _winnerText: {fileID: 1448465961}
 --- !u!114 &1498790763
 MonoBehaviour:
