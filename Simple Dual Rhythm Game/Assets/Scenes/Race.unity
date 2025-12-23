@@ -6383,7 +6383,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: END OF BATTLE
+  m_text: END OF RACE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13119,6 +13119,8 @@ MonoBehaviour:
   _notesSpawnAnchorTwoPlayers1: {fileID: 982094409}
   _notesSpawnAnchorTwoPlayers2: {fileID: 350237701}
   _outOfScreenAnchor: {fileID: 1641512909}
+  _endOfGameScreen: {fileID: 0}
+  _winnerText: {fileID: 1448465961}
 --- !u!114 &1498790763
 MonoBehaviour:
   m_ObjectHideFlags: 0

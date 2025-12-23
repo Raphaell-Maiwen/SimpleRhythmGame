@@ -16,7 +16,7 @@ public class EndOfGameScreen : MonoBehaviour
 
     public void Replay()
     {
-        SceneManager.LoadScene("Dual");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1f;
     }
 

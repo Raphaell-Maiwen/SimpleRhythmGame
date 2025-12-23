@@ -11,17 +11,20 @@ public class RacePlayer : MonoBehaviour
     private List<NestedRaceNotesList> _currentPool = new List<NestedRaceNotesList>();
     private RaceMode _raceMode;
 
-    public void Init (Transform notesSpawnAnchor, List<NestedRaceNotesList> currentPool, RaceMode raceMode) 
+    private int _playerIndex;
+
+    public void Init (Transform notesSpawnAnchor, List<NestedRaceNotesList> currentPool, RaceMode raceMode, int playerIndex) 
     {
         _notesSpawnAnchor = notesSpawnAnchor;
         _currentPool = currentPool;
         _raceMode = raceMode;
+        _playerIndex = playerIndex;
     }
 
     public void SpawnBlock() 
     {
         //Check how many notes left
-        for (int i = 0; i < _raceMode.GetBlockSize(); i++)
+        for (int i = 0; i < _raceMode.GetBlockSize() && _playerNotesQueue.Count != 0; i++)
         {
             var index = _playerNotesQueue.Dequeue();
             var notesList = _currentPool[index].raceNotes;
@@ -63,7 +66,14 @@ public class RacePlayer : MonoBehaviour
 
         if(_spawnedRaceNotes.Count == 0) 
         {
-            SpawnBlock();
+            if (_playerNotesQueue.Count == 0)
+            {
+                _raceMode.EndOfRace(_playerIndex);
+            }
+            else 
+            {
+                SpawnBlock();
+            }
         }
     }
 
@@ -71,9 +81,9 @@ public class RacePlayer : MonoBehaviour
     {
         //Play sound wrong note + UI thingy
         
-        /*for (int i = 0; i < _raceMode.GetNotePenalty(); i++)
+        for (int i = 0; i < _raceMode.GetNotePenalty(); i++)
         {
-            playerStack.Insert(0, Random.Range(0, 4));
-        }*/
+            _playerNotesQueue.Enqueue(Random.Range(0,4));
+        }
     }
 }

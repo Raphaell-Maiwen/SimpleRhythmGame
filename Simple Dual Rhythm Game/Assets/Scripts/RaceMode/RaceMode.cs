@@ -1,6 +1,8 @@
 using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using static PlayersManager;
 
@@ -20,6 +22,9 @@ public class RaceMode : GameLoop
     [SerializeField] private Transform _notesSpawnAnchorTwoPlayers2;
     [SerializeField] public Transform _outOfScreenAnchor;
 
+    [SerializeField] private EndOfGameScreen _endOfGameScreen;
+    [SerializeField] private TextMeshProUGUI _winnerText;
+
     private List<RacePlayer> _players = new List<RacePlayer>();
 
     public Queue<int> _notes = new Queue<int>();
@@ -37,12 +42,12 @@ public class RaceMode : GameLoop
 
         if (_parameters.numberOfPlayers == 1)
         {
-            CreatePlayer(_notesSpawnAnchorOnePlayer);
+            CreatePlayer(_notesSpawnAnchorOnePlayer, 0);
         }
         else 
         {
-            CreatePlayer(_notesSpawnAnchorTwoPlayers1);
-            CreatePlayer(_notesSpawnAnchorTwoPlayers2);
+            CreatePlayer(_notesSpawnAnchorTwoPlayers1, 0);
+            CreatePlayer(_notesSpawnAnchorTwoPlayers2, 1);
         }
 
         for (int i = 0; i < _parameters.numberOfNotes; i++)
@@ -63,31 +68,35 @@ public class RaceMode : GameLoop
         }
     }
 
-    private void CreatePlayer(Transform anchor) 
+    private void CreatePlayer(Transform anchor, int playerIndex) 
     {
         RacePlayer player = gameObject.AddComponent<RacePlayer>();
-        player.Init(anchor, _currentPool, this);
+        player.Init(anchor, _currentPool, this, playerIndex);
         _players.Add(player);
     }
 
     public override void PlayNote(int noteIndex, int playerIndex, int currentPlayerIndex)
     {
-        if (playerIndex < _players.Count)
+        if (playerIndex < _players.Count && enabled)
         {
             _players[playerIndex].PlayNote(noteIndex, currentPlayerIndex);
         }
     }
 
-        public void EndOfRace() 
+    public void EndOfRace(int playerIndex) 
     {
         if (_parameters.numberOfPlayers == 1)
         {
             CheckHighestScores();
+            Debug.Log("End of solo game");
         }
-        else 
-        { 
-            
+        else
+        {
+            _endOfGameScreen.gameObject.SetActive(true);
+            _endOfGameScreen.Init(playerIndex + 1);
         }
+        Time.timeScale = 0f;
+        this.enabled = false;
     }
 
     private void CheckHighestScores() 
