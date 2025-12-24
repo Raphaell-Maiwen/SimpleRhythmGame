@@ -24,6 +24,11 @@ public class RacePlayer : MonoBehaviour
         _notesLeftText = notesLeft;
     }
 
+    private void Start()
+    {
+        UpdateNotesLeftUI();
+    }
+
     public void SpawnBlock() 
     {
         //Check how many notes left
@@ -68,6 +73,7 @@ public class RacePlayer : MonoBehaviour
         var note = _spawnedRaceNotes.Dequeue();
 
         note.transform.position = _raceMode._outOfScreenAnchor.transform.position;
+        _currentPool[note.value].raceNotes.Add(note);
 
         if(_spawnedRaceNotes.Count == 0) 
         {
