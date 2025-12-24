@@ -1,9 +1,8 @@
-using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using static PlayersManager;
 
 public class RaceMode : GameLoop
@@ -24,6 +23,9 @@ public class RaceMode : GameLoop
 
     [SerializeField] private EndOfGameScreen _endOfGameScreen;
     [SerializeField] private TextMeshProUGUI _winnerText;
+    [SerializeField] private Text _onePlayerNotesLeft;
+    [SerializeField] private Text _player1NotesLeft;
+    [SerializeField] private Text _player2NotesLeft;
 
     private List<RacePlayer> _players = new List<RacePlayer>();
 
@@ -42,12 +44,12 @@ public class RaceMode : GameLoop
 
         if (_parameters.numberOfPlayers == 1)
         {
-            CreatePlayer(_notesSpawnAnchorOnePlayer, 0);
+            CreatePlayer(_notesSpawnAnchorOnePlayer, 0, _onePlayerNotesLeft);
         }
         else 
         {
-            CreatePlayer(_notesSpawnAnchorTwoPlayers1, 0);
-            CreatePlayer(_notesSpawnAnchorTwoPlayers2, 1);
+            CreatePlayer(_notesSpawnAnchorTwoPlayers1, 0, _player1NotesLeft);
+            CreatePlayer(_notesSpawnAnchorTwoPlayers2, 1, _player2NotesLeft);
         }
 
         for (int i = 0; i < _parameters.numberOfNotes; i++)
@@ -68,10 +70,10 @@ public class RaceMode : GameLoop
         }
     }
 
-    private void CreatePlayer(Transform anchor, int playerIndex) 
+    private void CreatePlayer(Transform anchor, int playerIndex, Text playerNotesLeftText) 
     {
         RacePlayer player = gameObject.AddComponent<RacePlayer>();
-        player.Init(anchor, _currentPool, this, playerIndex);
+        player.Init(anchor, _currentPool, this, playerIndex, playerNotesLeftText);
         _players.Add(player);
     }
 

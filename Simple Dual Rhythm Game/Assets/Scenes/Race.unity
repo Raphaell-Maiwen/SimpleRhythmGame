@@ -3685,7 +3685,7 @@ GameObject:
   - component: {fileID: 385836526}
   - component: {fileID: 385836525}
   m_Layer: 5
-  m_Name: Player2Score
+  m_Name: Player2NoteLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3743,7 +3743,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ': 0'
+  m_Text: 'Notes Left:'
 --- !u!222 &385836526
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13121,6 +13121,9 @@ MonoBehaviour:
   _outOfScreenAnchor: {fileID: 1641512909}
   _endOfGameScreen: {fileID: 1632709225}
   _winnerText: {fileID: 1448465961}
+  _onePlayerNotesLeft: {fileID: 1634438302}
+  _player1NotesLeft: {fileID: 1634438302}
+  _player2NotesLeft: {fileID: 385836525}
 --- !u!114 &1498790763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14201,7 +14204,7 @@ GameObject:
   - component: {fileID: 1634438303}
   - component: {fileID: 1634438302}
   m_Layer: 5
-  m_Name: Player1Score
+  m_Name: Player1NotesLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14259,7 +14262,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ': 0'
+  m_Text: 'Notes Left: '
 --- !u!222 &1634438303
 CanvasRenderer:
   m_ObjectHideFlags: 0

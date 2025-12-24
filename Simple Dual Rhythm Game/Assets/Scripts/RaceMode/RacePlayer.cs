@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static RaceMode;
 
 public class RacePlayer : MonoBehaviour
@@ -10,15 +11,17 @@ public class RacePlayer : MonoBehaviour
     private Transform _notesSpawnAnchor;
     private List<NestedRaceNotesList> _currentPool = new List<NestedRaceNotesList>();
     private RaceMode _raceMode;
+    private Text _notesLeftText;
 
     private int _playerIndex;
 
-    public void Init (Transform notesSpawnAnchor, List<NestedRaceNotesList> currentPool, RaceMode raceMode, int playerIndex) 
+    public void Init (Transform notesSpawnAnchor, List<NestedRaceNotesList> currentPool, RaceMode raceMode, int playerIndex, Text notesLeft) 
     {
         _notesSpawnAnchor = notesSpawnAnchor;
         _currentPool = currentPool;
         _raceMode = raceMode;
         _playerIndex = playerIndex;
+        _notesLeftText = notesLeft;
     }
 
     public void SpawnBlock() 
@@ -56,6 +59,8 @@ public class RacePlayer : MonoBehaviour
         {
             WrongNote();
         }
+
+        UpdateNotesLeftUI();
     }
 
     private void GoodNote()
@@ -75,6 +80,11 @@ public class RacePlayer : MonoBehaviour
                 SpawnBlock();
             }
         }
+    }
+
+    private void UpdateNotesLeftUI()
+    {
+        _notesLeftText.text = "Notes lefts: " + (_playerNotesQueue.Count + _spawnedRaceNotes.Count);
     }
 
     private void WrongNote()

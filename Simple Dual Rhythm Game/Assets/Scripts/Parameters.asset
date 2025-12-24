@@ -17,5 +17,5 @@ MonoBehaviour:
   bars: 1
   inputMode: 1
   fKeysOn: 0
-  numberOfNotes: 10
+  numberOfNotes: 100
   numberOfPlayers: 2
