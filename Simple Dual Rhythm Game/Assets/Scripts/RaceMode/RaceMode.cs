@@ -27,6 +27,9 @@ public class RaceMode : GameLoop
     [SerializeField] private Text _player1NotesLeft;
     [SerializeField] private Text _player2NotesLeft;
 
+    [SerializeField] private AudioSource[] _instrumentsSounds;
+    [SerializeField] private AudioSource _wrongNote;
+
     private List<RacePlayer> _players = new List<RacePlayer>();
 
     public Queue<int> _notes = new Queue<int>();
@@ -82,6 +85,18 @@ public class RaceMode : GameLoop
         if (playerIndex < _players.Count && enabled)
         {
             _players[playerIndex].PlayNote(noteIndex, currentPlayerIndex);
+        }
+    }
+
+    public void PlaySound(int soundIndex) 
+    {
+        if (soundIndex > -1)
+        {
+            _instrumentsSounds[soundIndex].Play();
+        }
+        else 
+        {
+            _wrongNote.Play();
         }
     }
 

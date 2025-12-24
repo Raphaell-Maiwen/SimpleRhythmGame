@@ -74,6 +74,7 @@ public class RacePlayer : MonoBehaviour
 
         note.transform.position = _raceMode._outOfScreenAnchor.transform.position;
         _currentPool[note.value].raceNotes.Add(note);
+        _raceMode.PlaySound(note.value);
 
         if(_spawnedRaceNotes.Count == 0) 
         {
@@ -95,7 +96,8 @@ public class RacePlayer : MonoBehaviour
 
     private void WrongNote()
     {
-        //Play sound wrong note + UI thingy
+        //Do something in the UI
+        _raceMode.PlaySound(-1);
         
         for (int i = 0; i < _raceMode.GetNotePenalty(); i++)
         {
