@@ -144,6 +144,7 @@ public class InstrumentsInput : MonoBehaviour
 
     public void ProcessKeytarInput(int device, int key, bool pressed)
     {
+        Debug.Log("Key: " + key);
         if (registeringKeyboards)
         {
             RegisterKeyboard(device);
@@ -163,9 +164,13 @@ public class InstrumentsInput : MonoBehaviour
                 }
             }
         }
-        else if (pressed && key == 27) 
+        else if (pressed && key == 27)
         {
             _pauseMenu.TogglePauseMenu();
+        }
+        else if (pressed && key == 82)
+        {
+            playersManager.ProcessInput(-1, -1);
         }
         else if (!fKeysOn)
         {
