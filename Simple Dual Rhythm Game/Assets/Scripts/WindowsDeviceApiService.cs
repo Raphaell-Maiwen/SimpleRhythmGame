@@ -18,13 +18,7 @@ public static class WindowsDeviceApiService
         if (returnValue == unchecked((uint) -1))
             throw new Exception("error calling GetRawInputDeviceList()");
 
-        Debug.Log($"deviceCount: {numberOfDevices}");
-
-        foreach (var device in devices)
-            Debug.Log($"device: type: {device.Type}, device handle: {device.Device}, button:");
-
         var yoyo = RawInputDeviceHandle.GetRawValue(devices[0].Device);
-        Debug.Log("Yo: " + yoyo);
     }
 
     public static void Yo() {
