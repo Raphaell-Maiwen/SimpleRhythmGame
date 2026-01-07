@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class PlayersManager : MonoBehaviour
 {
@@ -12,12 +13,13 @@ public class PlayersManager : MonoBehaviour
     [SerializeField] private GameLoop _gameLoopScript;
     [SerializeField] private PlayerInputManager _playerInputManager;
 
-    [SerializeField] private List<Renderer> _barsMaterials;
     [SerializeField] private Color _player1Color;
     [SerializeField] private Color _player2Color;
 
     private Player _currentPlayer;
     public Player CurrentPlayer => _currentPlayer;
+
+    public UnityEvent OnCurrentPlayerChanged;
     
     Player player1;
     Player player2;
@@ -55,7 +57,7 @@ public class PlayersManager : MonoBehaviour
         player1 = new Player(score1, 0);
         player2 = new Player(score2, 1);
         _currentPlayer = player1;
-        ChangeBarsColor();
+        OnCurrentPlayerChanged?.Invoke();
 
         switch (_parameters.inputMode) {
             case InputMode.gamepad:
@@ -83,17 +85,9 @@ public class PlayersManager : MonoBehaviour
         else {
             _currentPlayer = player1;
         }
-        ChangeBarsColor();
+        OnCurrentPlayerChanged?.Invoke();
     }
-
-    //Migrate it to a script on Part, and call an event
-    void ChangeBarsColor() 
-    {
-        foreach (var bar in _barsMaterials)
-        {
-            bar.material.color = _currentPlayer == player1 ? _player1Color : _player2Color;
-        }
-    }
+    
 
     public void MakePoints(int points) {
         _currentPlayer.points += points;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed3416cdb520314abca9070b0603ec5, type: 3}
   m_Name: Parameters
   m_EditorClassIdentifier: 
-  bpm: 70
+  bpm: 120
   beatPerBar: 4
   bars: 1
   inputMode: 1

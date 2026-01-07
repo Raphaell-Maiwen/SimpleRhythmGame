@@ -12,6 +12,15 @@ public class PartUI : MonoBehaviour
     [SerializeField] private Transform _notesIconAnchor;
     [SerializeField] private Transform _entryBar;
 
+    [SerializeField] private Color _player1BarsColor;
+    [SerializeField] private Color _player2BarsColor;
+    [SerializeField] private Color _player1UIColor;
+    public Color Player1UIColor => _player1UIColor;
+    [SerializeField] private Color _player2UIColor;
+    public Color Player2UIColor => _player2UIColor;
+
+    [SerializeField] private List<Renderer> _barsMaterials;
+
     public GameObject barPrefab;
 
     public float barLength = 14f;
@@ -35,8 +44,6 @@ public class PartUI : MonoBehaviour
     List<NoteIcon> iconsInPlay;
 
     bool firstTick;
-    
-    private bool player1 = true;
 
     public class TrackerData {
         public GameObject trackerGO;
@@ -58,6 +65,8 @@ public class PartUI : MonoBehaviour
         GenerateBars();
         SetupAnchorsAndCamera();
         PlaceTrackers();
+
+        _playersManager.OnCurrentPlayerChanged.AddListener(ChangeBarsColor);
     }
 
     public void SetUp(float bpm, float beatPerBar, UnityAction<NoteIcon> AddTrackedNote, UnityAction<NoteIcon> RemoveTrackedNote) {
@@ -90,6 +99,14 @@ public class PartUI : MonoBehaviour
         }
     }
 
+    void ChangeBarsColor()
+    {
+        foreach (var bar in _barsMaterials)
+        {
+            bar.material.color = _playersManager.CurrentPlayer.index == 0 ? _player1BarsColor : _player2BarsColor;
+        }
+    }
+
     public void ChangeTempo(float bpm, float beatPerBar) {
         trackerSpeed = 60 / bpm * beatPerBar * 3 * _parameters.bars;
         foreach (TrackerData b in trackers) {
@@ -107,14 +124,9 @@ public class PartUI : MonoBehaviour
         newTrackerData.timer = 0;
         newTrackerData.percent = 0;
         
-        newTrackerData.trackerGO.GetComponent<Tracker>().AssignIcon(gameState, player1);
+        newTrackerData.trackerGO.GetComponent<Tracker>().AssignIcon(gameState, _playersManager.CurrentPlayer.index == 0 );
 
         trackers.Enqueue(newTrackerData);
-    }
-
-    public void TogglePlayer1()
-    {
-        player1 = !player1;
     }
 
     private void Update() {

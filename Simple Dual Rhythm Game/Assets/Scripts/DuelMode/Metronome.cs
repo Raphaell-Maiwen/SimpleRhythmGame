@@ -30,7 +30,6 @@ public class Metronome : GameLoop
 
     [SerializeField] private AudioSource[] _finaleSounds;
 
-    private float errorMargin = 0.2f;
     private int notesSucceeded;
 
     [Range(0, 1)]
@@ -43,7 +42,8 @@ public class Metronome : GameLoop
 
     //Should be in a UI class
     [SerializeField] private GameObject _nextStateMessagePanel;
-    [SerializeField] private TextMeshProUGUI _nextStateMessageText;
+    [SerializeField] private TextMeshProUGUI _nextPlayerText;
+    [SerializeField] private TextMeshProUGUI _nextPhaseText;
     [SerializeField] private GameObject[] _nextPlayerIcon;
     [SerializeField] private GameObject _recordIcon;
     [SerializeField] private GameObject _playIcon;
@@ -234,7 +234,6 @@ public class Metronome : GameLoop
         {
             nextStateIndex++;
             nextState = statesSeries[nextStateIndex];
-            UIScript.TogglePlayer1();
         }
     }
 
@@ -363,21 +362,26 @@ public class Metronome : GameLoop
 
     private void ChangeNextStateMessage()
     {
-        foreach(var icon in _nextPlayerIcon) { 
+        foreach(var icon in _nextPlayerIcon)
+        {
             icon.SetActive(false);
         }
 
         if (nextState == GameState.Recording)
         {
             _nextStateMessagePanel.SetActive(true);
-            _nextStateMessageText.text = "Player " + (playersScript.CurrentPlayer.index + 1) + ": Prepare to record";
+            _nextPlayerText.text = "Player " + (playersScript.CurrentPlayer.index + 1);
+            _nextPlayerText.color = playersScript.CurrentPlayer.index == 0 ? UIScript.Player1UIColor : UIScript.Player2UIColor;
+            _nextPhaseText.text = ": Prepare to record";
             _nextPlayerIcon[playersScript.CurrentPlayer.index].SetActive(true);
             _recordIcon.SetActive(true);
         }
         else if (nextState == GameState.Playing)
         {
             _nextStateMessagePanel.SetActive(true);
-            _nextStateMessageText.text = "Player " + (playersScript.CurrentPlayer.index + 1) + ": Prepare to play";
+            _nextPlayerText.text = "Player " + (playersScript.CurrentPlayer.index + 1);
+            _nextPlayerText.color = playersScript.CurrentPlayer.index == 0 ? UIScript.Player1UIColor : UIScript.Player2UIColor;
+            _nextPhaseText.text = ": Prepare to play";
             _nextPlayerIcon[playersScript.CurrentPlayer.index].SetActive(true);
             _playIcon.SetActive(true);
         }
@@ -389,7 +393,8 @@ public class Metronome : GameLoop
         }
     }
 
-    private void OnGamePaused(bool paused) {
+    private void OnGamePaused(bool paused) 
+    {
         if (paused)
         {
             beat.Pause();
@@ -399,7 +404,8 @@ public class Metronome : GameLoop
         }
     }
 
-    private void EmptyRiffAlert() {
+    private void EmptyRiffAlert() 
+    {
         _isPausingForEmptySolo = true;
         OnGamePaused(true);
         _forgotRecordUI.SetActive(true);
@@ -408,7 +414,8 @@ public class Metronome : GameLoop
     }
 
     //Double-check that this doesn't interact with regular pause
-    public void OnRPressed() {
+    public void OnRPressed() 
+    {
         if(_isPausingForEmptySolo)
         {
             Time.timeScale = 1;
