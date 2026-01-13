@@ -51,7 +51,7 @@ public class Metronome : GameLoop
 
     private List<NoteIcon> _currentTrackedNotes = new List<NoteIcon>();
 
-    [SerializeField] private PauseMenu _pauseMenu;
+    //[SerializeField] private PauseMenu _pauseMenu;
 
     private int riffLength;
 

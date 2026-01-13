@@ -8,8 +8,8 @@ public class InstrumentsInput : MonoBehaviour
 {
     [SerializeField] private Parameters _parameters;
     [SerializeField] private PlayerInput _playerInput;
-    [SerializeField] private PauseMenu _pauseMenu;
-    PlayersManager playersManager;
+    private PauseMenu _pauseMenu;
+    PlayersManager _playersManager;
 
     private InputMode _inputMode;
     private bool fKeysOn;
@@ -22,11 +22,15 @@ public class InstrumentsInput : MonoBehaviour
 
     bool registeringKeyboards;
 
+    public void Init(PlayersManager playersManager, PauseMenu pauseMenu)
+    {
+        _playersManager = playersManager;
+        _pauseMenu = pauseMenu;
+    }
+
     private void Awake()
     {
         _inputMode = _parameters.inputMode;
-        playersManager = FindObjectOfType<PlayersManager>();
-        _pauseMenu = FindObjectOfType<PauseMenu>();
         
         //Making sure a device doesn't join if it's not supposed to (and doesn't prevent right devices to join)
         if (_inputMode == InputMode.keytar)
@@ -34,9 +38,7 @@ public class InstrumentsInput : MonoBehaviour
             SetUpKeytars();
         }
         else
-        {
-            Debug.Log(_playerInput.devices[0].GetType().ToString());
-            
+        {            
             if (_inputMode == InputMode.gamepad && typeof(Keyboard) == _playerInput.devices[0].GetType())
             {
                 Destroy(gameObject);
@@ -89,57 +91,57 @@ public class InstrumentsInput : MonoBehaviour
 
     //Gamepad Inputs
     private void OnSouth() {
-        playersManager.ProcessInput(_playerInput.playerIndex, 0);
+        _playersManager.ProcessInput(_playerInput.playerIndex, 0);
     }
 
     private void OnWest() {
-        playersManager.ProcessInput(_playerInput.playerIndex, 1);
+        _playersManager.ProcessInput(_playerInput.playerIndex, 1);
     }
 
     private void OnEast() {
-        playersManager.ProcessInput(_playerInput.playerIndex, 2);
+        _playersManager.ProcessInput(_playerInput.playerIndex, 2);
     }
 
     private void OnNorth() {
-        playersManager.ProcessInput(_playerInput.playerIndex, 3);
+        _playersManager.ProcessInput(_playerInput.playerIndex, 3);
     }
 
     //Player 1 Keyboard Inputs
     private void OnS() {
-        playersManager.ProcessInput(0, 0);
+        _playersManager.ProcessInput(0, 0);
     }
 
     private void OnA() {
-        playersManager.ProcessInput(0, 1);
+        _playersManager.ProcessInput(0, 1);
     }
 
     private void OnD() {
-        playersManager.ProcessInput(0, 2);
+        _playersManager.ProcessInput(0, 2);
     }
 
     private void OnW() {
-        playersManager.ProcessInput(0, 3);
+        _playersManager.ProcessInput(0, 3);
     }
 
     //Player 2 Keyboard Inputs
     private void OnDown() {
-        playersManager.ProcessInput(1, 0);
+        _playersManager.ProcessInput(1, 0);
     }
 
     private void OnLeft() {
-        playersManager.ProcessInput(1, 1);
+        _playersManager.ProcessInput(1, 1);
     }
 
     private void OnRight() {
-        playersManager.ProcessInput(1, 2);
+        _playersManager.ProcessInput(1, 2);
     }
 
     private void OnUp() {
-        playersManager.ProcessInput(1, 3);
+        _playersManager.ProcessInput(1, 3);
     }
 
     private void OnR() {
-        playersManager.ProcessInput(-1,-1);
+        _playersManager.ProcessInput(-1,-1);
     }
 
     public void ProcessKeytarInput(int device, int key, bool pressed)
@@ -160,7 +162,7 @@ public class InstrumentsInput : MonoBehaviour
             {
                 if (keytarChord[player][note])
                 {
-                    playersManager.ProcessInput(player, note);
+                    _playersManager.ProcessInput(player, note);
                 }
             }
         }
@@ -170,7 +172,7 @@ public class InstrumentsInput : MonoBehaviour
         }
         else if (pressed && key == 82)
         {
-            playersManager.ProcessInput(-1, -1);
+            _playersManager.ProcessInput(-1, -1);
         }
         else if (!fKeysOn)
         {
@@ -190,6 +192,19 @@ public class InstrumentsInput : MonoBehaviour
         }
     }
 
+    public void TogglePause(bool paused)
+    {
+        if (paused)
+        {
+            _playerInput.SwitchCurrentActionMap("UI");
+        }
+        else
+        {
+            //TODO: support other control schemes
+            _playerInput.SwitchCurrentActionMap("Arrows");
+        }
+    }
+
     private void RegisterKeyboard(int device)
     {
         if (!deviceMapping.ContainsKey(device))
@@ -201,11 +216,11 @@ public class InstrumentsInput : MonoBehaviour
         {
             registeringKeyboards = false;
             GameObject.FindObjectOfType<GameManager>().startGame?.Invoke();
-            playersManager.ShowPressInputToJoin(0);
+            _playersManager.ShowPressInputToJoin(0);
         }
         else
         {
-            playersManager.ShowPressInputToJoin(2);
+            _playersManager.ShowPressInputToJoin(2);
         }
     }
 }

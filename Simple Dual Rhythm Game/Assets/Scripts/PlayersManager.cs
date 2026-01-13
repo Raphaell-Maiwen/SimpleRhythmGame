@@ -5,13 +5,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using System;
 
 public class PlayersManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _playerJoinText;
     [SerializeField] private Parameters _parameters;
     [SerializeField] private GameLoop _gameLoopScript;
-    [SerializeField] private PlayerInputManager _playerInputManager;
+    private List<InstrumentsInput> _instrumentsInputs;
 
     [SerializeField] private Color _player1Color;
     [SerializeField] private Color _player2Color;
@@ -61,13 +62,20 @@ public class PlayersManager : MonoBehaviour
 
         switch (_parameters.inputMode) {
             case InputMode.gamepad:
-                _playerInputManager.playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Controller";
+                PlayerInputManager.instance.playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Controller";
                 break;
 
             case InputMode.keyboard:
-                _playerInputManager.playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Arrows";
+                PlayerInputManager.instance.playerPrefab.GetComponent<PlayerInput>().defaultActionMap = "Arrows";
                 break;
         }
+    }
+
+    public void InitInstrumentsInput(PlayerInput input)
+    {
+        var instrumentsInput = input.GetComponent<InstrumentsInput>();
+        instrumentsInput.Init(this, _gameLoopScript.PauseMenu);
+        _gameLoopScript.PauseMenu._onGamePausedOrUnpaused.AddListener(instrumentsInput.TogglePause);
     }
 
     public void ProcessInput(int playerIndex, int note) {
