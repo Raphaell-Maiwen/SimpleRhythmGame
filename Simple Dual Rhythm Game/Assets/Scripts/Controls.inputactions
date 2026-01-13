@@ -319,6 +319,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "R",
+                    "type": "Button",
+                    "id": "1dc03635-fc5c-4134-adaf-d76863110fb0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Submit",
                     "type": "Button",
                     "id": "9c10f6b6-4118-45eb-8d3b-b5b1b05bcc03",
@@ -664,6 +673,17 @@
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "fc6cd5b3-e26e-473b-8d1c-212682dca00c",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "R",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",

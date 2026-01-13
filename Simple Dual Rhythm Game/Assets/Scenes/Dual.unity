@@ -21011,7 +21011,6 @@ MonoBehaviour:
   _playerJoinText: {fileID: 262139903}
   _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   _gameLoopScript: {fileID: 6642081753353289859}
-  _playerInputManager: {fileID: 1840136376}
   _player1Color: {r: 0.7647059, g: 0, b: 0, a: 1}
   _player2Color: {r: 1, g: 1, b: 1, a: 1}
   OnCurrentPlayerChanged:
@@ -21053,7 +21052,19 @@ MonoBehaviour:
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1840136374}
+        m_TargetAssemblyTypeName: PlayersManager, Assembly-CSharp
+        m_MethodName: InitInstrumentsInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls: []

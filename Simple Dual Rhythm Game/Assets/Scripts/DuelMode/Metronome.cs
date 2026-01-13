@@ -407,7 +407,7 @@ public class Metronome : GameLoop
     private void EmptyRiffAlert() 
     {
         _isPausingForEmptySolo = true;
-        OnGamePaused(true);
+        _pauseMenu.TogglePauseMenuBehaviour();
         _forgotRecordUI.SetActive(true);
 
         Time.timeScale = 0;
@@ -424,7 +424,7 @@ public class Metronome : GameLoop
             ChangeNextState(1);
             SetNextBar();
 
-            OnGamePaused(false);
+            _pauseMenu.TogglePauseMenuBehaviour();
             _isPausingForEmptySolo = false;
             _forgotRecordUI.SetActive(false);
 

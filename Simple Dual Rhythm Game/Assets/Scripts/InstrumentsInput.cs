@@ -168,7 +168,7 @@ public class InstrumentsInput : MonoBehaviour
         }
         else if (pressed && key == 27)
         {
-            _pauseMenu.TogglePauseMenu();
+            _pauseMenu.TogglePauseMenuUI();
         }
         else if (pressed && key == 82)
         {

@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _container;
     bool _isActive = false;
+    bool _isPaused = false;
 
     public UnityEvent<bool> _onGamePausedOrUnpaused;
 
@@ -16,25 +17,37 @@ public class PauseMenu : MonoBehaviour
     {
         if(Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            TogglePauseMenu();
+            TogglePauseMenuUI();
         }
     }
 
-    public void ResumeGame() {
-        TogglePauseMenu();
+    public void ResumeGame()
+    {
+        TogglePauseMenuUI();
     }
 
-    public void TogglePauseMenu() { 
+    public void TogglePauseMenuUI()
+    {
+        if (!_isActive && _isPaused) return;
         _isActive = !_isActive;
 
         _container.SetActive(_isActive);
-        Time.timeScale = _isActive ? 0 : 1;
 
-        //TODO: Have a centralized audio system
-        _onGamePausedOrUnpaused?.Invoke(_isActive);
+        TogglePauseMenuBehaviour();
     }
 
-    public void PlayAgain() {
+    public void TogglePauseMenuBehaviour()
+    {
+        _isPaused = !_isPaused;
+
+        Time.timeScale = _isPaused ? 0 : 1;
+
+        //TODO: Have a centralized audio system
+        _onGamePausedOrUnpaused?.Invoke(_isPaused);
+    }
+
+    public void PlayAgain()
+    {
         WindowsDeviceApiService.ListWindowsRawDeviceApiDevicesToConsole();
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -47,7 +60,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void QuitGame() {
+    public void QuitGame()
+    {
         Application.Quit();
     }
 }
