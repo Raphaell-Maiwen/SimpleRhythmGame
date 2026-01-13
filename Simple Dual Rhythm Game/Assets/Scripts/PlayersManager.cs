@@ -29,7 +29,6 @@ public class PlayersManager : MonoBehaviour
     public Text score2;
 
     [SerializeField] private GameManager _gameManager;
-    Controls controls;
 
     public class Player {
         public int points;
@@ -44,7 +43,6 @@ public class PlayersManager : MonoBehaviour
     }
 
     private void Awake() {
-        controls = new Controls();
         _gameManager.startGame.AddListener(StartGame);
         
         if (_parameters.inputMode == InputMode.keytar)
