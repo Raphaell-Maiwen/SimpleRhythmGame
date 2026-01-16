@@ -5,13 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void PlayGame() {
+    public void PlayGame()
+    {
         WindowsDeviceApiService.ListWindowsRawDeviceApiDevicesToConsole();
 
         SceneManager.LoadScene("Dual");
     }
 
-    public void QuitGame() {
+    public void PlayRace()
+    {
+        SceneManager.LoadScene("Race");
+    }
+
+    public void QuitGame()
+    {
         Application.Quit();
     }
 }

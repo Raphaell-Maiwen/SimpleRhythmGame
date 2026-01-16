@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class TutorialStepsManager : GameLoop
 {
     [SerializeField] private TutorialStep[] _tutorialSteps;
     private TutorialStep _currentStep;
     private int _currentStepIndex;
+
+    [SerializeField] private TextMeshProUGUI _instructions;
+    [SerializeField] private GameObject _panel;
 
     private void Start()
     {
@@ -32,6 +33,18 @@ public class TutorialStepsManager : GameLoop
         _currentStep = _tutorialSteps[_currentStepIndex];
         _currentStep.gameObject.SetActive(true);
         _currentStep.Init(this); //One will spawn bars, other notes, etc.
+
+        if (_currentStep.Instructions != "")
+        {
+            _panel.SetActive(true);
+            _panel.transform.position = _currentStep.PanelPos;
+            _instructions.text = _currentStep.Instructions;
+        }
+        else
+        {
+            _panel.SetActive(false);
+        }
+
         _currentStepIndex++;
     }
 
