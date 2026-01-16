@@ -13218,6 +13218,15 @@ MonoBehaviour:
   trackerAnchorEnd: {fileID: 85012656}
   _notesIconAnchor: {fileID: 2144027943}
   _entryBar: {fileID: 786532775}
+  _nextStateMessagePanel: {fileID: 780926254}
+  _nextPlayerText: {fileID: 22481109}
+  _nextPhaseText: {fileID: 1024616548}
+  _nextPlayerIcon:
+  - {fileID: 853197987}
+  - {fileID: 1050939533}
+  _recordIcon: {fileID: 245794864}
+  _playIcon: {fileID: 2083451985}
+  _forgotRecordUI: {fileID: 911326584}
   _player1BarsColor: {r: 0.7647059, g: 0, b: 0, a: 1}
   _player2BarsColor: {r: 1, g: 1, b: 1, a: 0}
   _player1UIColor: {r: 0.39607847, g: 0.027450982, b: 0.03529412, a: 1}

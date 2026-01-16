@@ -40,18 +40,7 @@ public class Metronome : GameLoop
     [SerializeField] private PlayersManager playersScript;
     [SerializeField] private PartUI UIScript;
 
-    //Should be in a UI class
-    [SerializeField] private GameObject _nextStateMessagePanel;
-    [SerializeField] private TextMeshProUGUI _nextPlayerText;
-    [SerializeField] private TextMeshProUGUI _nextPhaseText;
-    [SerializeField] private GameObject[] _nextPlayerIcon;
-    [SerializeField] private GameObject _recordIcon;
-    [SerializeField] private GameObject _playIcon;
-    [SerializeField] private GameObject _forgotRecordUI;
-
     private List<NoteIcon> _currentTrackedNotes = new List<NoteIcon>();
-
-    //[SerializeField] private PauseMenu _pauseMenu;
 
     private int riffLength;
 
@@ -241,7 +230,7 @@ public class Metronome : GameLoop
     {
         newBarTime = Time.time;
         UIScript.NewBar(nextState);
-        ChangeNextStateMessage();
+        UIScript.ChangeNextStateMessage(nextState);
     }
 
     void Update() {
@@ -360,39 +349,6 @@ public class Metronome : GameLoop
         //Maybe VFX or whatever
     }
 
-    private void ChangeNextStateMessage()
-    {
-        foreach(var icon in _nextPlayerIcon)
-        {
-            icon.SetActive(false);
-        }
-
-        if (nextState == GameState.Recording)
-        {
-            _nextStateMessagePanel.SetActive(true);
-            _nextPlayerText.text = "Player " + (playersScript.CurrentPlayer.index + 1);
-            _nextPlayerText.color = playersScript.CurrentPlayer.index == 0 ? UIScript.Player1UIColor : UIScript.Player2UIColor;
-            _nextPhaseText.text = ": Prepare to record";
-            _nextPlayerIcon[playersScript.CurrentPlayer.index].SetActive(true);
-            _recordIcon.SetActive(true);
-        }
-        else if (nextState == GameState.Playing)
-        {
-            _nextStateMessagePanel.SetActive(true);
-            _nextPlayerText.text = "Player " + (playersScript.CurrentPlayer.index + 1);
-            _nextPlayerText.color = playersScript.CurrentPlayer.index == 0 ? UIScript.Player1UIColor : UIScript.Player2UIColor;
-            _nextPhaseText.text = ": Prepare to play";
-            _nextPlayerIcon[playersScript.CurrentPlayer.index].SetActive(true);
-            _playIcon.SetActive(true);
-        }
-        else if (nextState == GameState.Silence)
-        {
-            _nextStateMessagePanel.SetActive(false);
-            _playIcon.SetActive(false);
-            _recordIcon.SetActive(false);
-        }
-    }
-
     private void OnGamePaused(bool paused) 
     {
         if (paused)
@@ -408,7 +364,7 @@ public class Metronome : GameLoop
     {
         _isPausingForEmptySolo = true;
         _pauseMenu.TogglePauseMenuBehaviour();
-        _forgotRecordUI.SetActive(true);
+        UIScript.SetForgotRecordUI(true);
 
         Time.timeScale = 0;
     }
@@ -426,7 +382,7 @@ public class Metronome : GameLoop
 
             _pauseMenu.TogglePauseMenuBehaviour();
             _isPausingForEmptySolo = false;
-            _forgotRecordUI.SetActive(false);
+            UIScript.SetForgotRecordUI(false);
 
             //??
             UIScript.currentTracker = null;

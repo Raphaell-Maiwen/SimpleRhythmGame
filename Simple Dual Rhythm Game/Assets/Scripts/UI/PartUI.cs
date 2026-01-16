@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using static Metronome;
 
 public class PartUI : MonoBehaviour
 {
@@ -11,6 +14,14 @@ public class PartUI : MonoBehaviour
     public GameObject trackerAnchorEnd;
     [SerializeField] private Transform _notesIconAnchor;
     [SerializeField] private Transform _entryBar;
+
+    [SerializeField] private GameObject _nextStateMessagePanel;
+    [SerializeField] private TextMeshProUGUI _nextPlayerText;
+    [SerializeField] private TextMeshProUGUI _nextPhaseText;
+    [SerializeField] private GameObject[] _nextPlayerIcon;
+    [SerializeField] private GameObject _recordIcon;
+    [SerializeField] private GameObject _playIcon;
+    [SerializeField] private GameObject _forgotRecordUI;
 
     [SerializeField] private Color _player1BarsColor;
     [SerializeField] private Color _player2BarsColor;
@@ -97,6 +108,44 @@ public class PartUI : MonoBehaviour
             newTracker.GetComponent<Tracker>().OnNoteTriggerEnter.AddListener(AddTrackedNote);
             newTracker.GetComponent<Tracker>().OnNoteTriggerExit.AddListener(RemoveTrackedNote);
         }
+    }
+
+    public void ChangeNextStateMessage(GameState nextState)
+    {
+        foreach (var icon in _nextPlayerIcon)
+        {
+            icon.SetActive(false);
+        }
+
+        if (nextState == GameState.Recording)
+        {
+            _nextStateMessagePanel.SetActive(true);
+            _nextPlayerText.text = "Player " + (_playersManager.CurrentPlayer.index + 1);
+            _nextPlayerText.color = _playersManager.CurrentPlayer.index == 0 ? _player1UIColor : _player2UIColor;
+            _nextPhaseText.text = ": Prepare to record";
+            _nextPlayerIcon[_playersManager.CurrentPlayer.index].SetActive(true);
+            _recordIcon.SetActive(true);
+        }
+        else if (nextState == GameState.Playing)
+        {
+            _nextStateMessagePanel.SetActive(true);
+            _nextPlayerText.text = "Player " + (_playersManager.CurrentPlayer.index + 1);
+            _nextPlayerText.color = _playersManager.CurrentPlayer.index == 0 ? _player1UIColor : _player2UIColor;
+            _nextPhaseText.text = ": Prepare to play";
+            _nextPlayerIcon[_playersManager.CurrentPlayer.index].SetActive(true);
+            _playIcon.SetActive(true);
+        }
+        else if (nextState == GameState.Silence)
+        {
+            _nextStateMessagePanel.SetActive(false);
+            _playIcon.SetActive(false);
+            _recordIcon.SetActive(false);
+        }
+    }
+
+    public void SetForgotRecordUI(bool isActive)
+    {
+        _forgotRecordUI.SetActive(isActive);
     }
 
     void ChangeBarsColor()
