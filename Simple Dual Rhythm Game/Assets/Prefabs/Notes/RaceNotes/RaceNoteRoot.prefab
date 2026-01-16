@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3210278752044822247}
   - component: {fileID: 8117979510252411873}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: whiteArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7238977701858214848}
   - component: {fileID: 7238977701858214849}
   - component: {fileID: 7238977701858214854}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7238977702187599165}
   - component: {fileID: 2161038953436453143}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: RaceNoteRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -235,3 +235,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b8e4aef9ae781418b44803ce5bd148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value: 0
