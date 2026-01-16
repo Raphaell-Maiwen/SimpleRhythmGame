@@ -15,7 +15,7 @@ MonoBehaviour:
   bpm: 120
   beatPerBar: 4
   bars: 1
-  inputMode: 2
+  inputMode: 1
   fKeysOn: 0
   numberOfNotes: 25
   numberOfPlayers: 2

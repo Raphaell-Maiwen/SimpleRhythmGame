@@ -10435,6 +10435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7a8e0014928ce4a8988a94c98445f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pauseMenu: {fileID: 0}
   _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   _notesPenalty: 2
   _notesPerBlock: 8
@@ -13617,7 +13618,11 @@ MonoBehaviour:
   _playerJoinText: {fileID: 262139903}
   _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   _gameLoopScript: {fileID: 1498790762}
-  _playerInputManager: {fileID: 1840136376}
+  _player1Color: {r: 0, g: 0, b: 0, a: 0}
+  _player2Color: {r: 0, g: 0, b: 0, a: 0}
+  OnCurrentPlayerChanged:
+    m_PersistentCalls:
+      m_Calls: []
   score1: {fileID: 1634438302}
   score2: {fileID: 385836525}
   _gameManager: {fileID: 1498790763}
@@ -13648,13 +13653,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_MaxPlayerCount: 2
   m_AllowJoining: 1
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1840136374}
+        m_TargetAssemblyTypeName: PlayersManager, Assembly-CSharp
+        m_MethodName: InitInstrumentsInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -14003,27 +14020,27 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 795f6f6069b43334da3b2580bb04f24c,
     type: 3}
-  m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_PointAction: {fileID: 1054132383583890850, guid: 795f6f6069b43334da3b2580bb04f24c,
     type: 3}
-  m_MoveAction: {fileID: 3710738434707379630, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_MoveAction: {fileID: -311966342040024247, guid: 795f6f6069b43334da3b2580bb04f24c,
     type: 3}
-  m_SubmitAction: {fileID: 2064916234097673511, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_SubmitAction: {fileID: -5025218417063698095, guid: 795f6f6069b43334da3b2580bb04f24c,
     type: 3}
-  m_CancelAction: {fileID: -1967631576421560919, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_CancelAction: {fileID: -8650710800329656680, guid: 795f6f6069b43334da3b2580bb04f24c,
     type: 3}
-  m_LeftClickAction: {fileID: 8056856818456041789, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_LeftClickAction: {fileID: -2518358332894008162, guid: 795f6f6069b43334da3b2580bb04f24c,
     type: 3}
-  m_MiddleClickAction: {fileID: 3279352641294131588, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_MiddleClickAction: {fileID: -4769099859792872685, guid: 795f6f6069b43334da3b2580bb04f24c,
     type: 3}
-  m_RightClickAction: {fileID: 3837173908680883260, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_RightClickAction: {fileID: 3837173908680883260, guid: 795f6f6069b43334da3b2580bb04f24c,
     type: 3}
-  m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_ScrollWheelAction: {fileID: -8858681108211632090, guid: 795f6f6069b43334da3b2580bb04f24c,
     type: 3}
-  m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_TrackedDevicePositionAction: {fileID: -8782911055741147401, guid: 795f6f6069b43334da3b2580bb04f24c,
     type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018,
+  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: 795f6f6069b43334da3b2580bb04f24c,
     type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
