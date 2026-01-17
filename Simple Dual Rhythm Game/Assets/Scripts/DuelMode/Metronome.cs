@@ -20,7 +20,6 @@ public class Metronome : GameLoop
     private int mod = 1;
 
     private float initialTime;
-    private float newBarTime;
 
     private AudioSource tickSound;
     private AudioSource[] instrumentSounds;
@@ -52,7 +51,8 @@ public class Metronome : GameLoop
     private bool _isPausingForEmptySolo;
     private bool _isGameEnded;
     
-    public enum GameState {
+    public enum GameState
+    {
         Recording,
         Playing,
         Silence,
@@ -100,7 +100,8 @@ public class Metronome : GameLoop
         _gameManager.stopGame.AddListener(EndGame);
     }
 
-    void SetBeatSpeed() {
+    void SetBeatSpeed()
+    {
         AudioMixerGroup pitchBendGroup = Resources.Load<AudioMixerGroup>("MyAudioMixer");
         beat.outputAudioMixerGroup = pitchBendGroup;
         float speed = bpm / 60f;
@@ -108,14 +109,16 @@ public class Metronome : GameLoop
         pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / speed);
     }
 
-    public void SetUp() {
+    public void SetUp()
+    {
         frequency = 60f / bpm;
         UIScript.SetUp(this.bpm, this.beatPerBar, AddTrackedNote, RemoveTrackedIcon);
         initialTime = Time.time;
         metronomeCounter = 0;
     }
 
-    public void ChangeTempo() {
+    public void ChangeTempo()
+    {
         frequency = 60f / bpm;
         
         //Ça
@@ -127,7 +130,8 @@ public class Metronome : GameLoop
         SetBeatSpeed();
     }
 
-    public void SetLastSolo() {
+    public void SetLastSolo()
+    {
         _isLastSolo = true;
     }
 
@@ -137,7 +141,8 @@ public class Metronome : GameLoop
         enabled = false;
     }
 
-    void tick() {
+    void tick()
+    {
         if (firstTick) {
             firstTick = false;
             beat.Play();
@@ -194,7 +199,8 @@ public class Metronome : GameLoop
         //tickSound.Play();
     }
 
-    void ChangeState(int newStateIndex) {
+    void ChangeState(int newStateIndex)
+    {
         currentStateIndex = newStateIndex;
 
         if (currentStateIndex == statesSeries.Length)
@@ -228,19 +234,17 @@ public class Metronome : GameLoop
 
     private void SetNextBar()
     {
-        newBarTime = Time.time;
         UIScript.NewBar(nextState);
         UIScript.ChangeNextStateMessage(nextState);
     }
 
-    void Update() {
+    void Update()
+    {
         float timeSpent = Time.time - initialTime;
 
         if (timeSpent >= frequency * metronomeCounter + mod) {
             tick();
         }
-
-        WindowsDeviceApiService.Yo();
     }
 
     public void AddTrackedNote(NoteIcon noteIcon) 

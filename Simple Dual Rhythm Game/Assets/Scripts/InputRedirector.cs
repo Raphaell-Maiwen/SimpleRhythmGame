@@ -145,8 +145,6 @@ public class InputRedirector : MonoBehaviour
 
     private void RegisterRawInputDevices()
     {
-        Debug.Log("Registering raw input devices");
-
         ref RAWINPUTDEVICE mouse = ref m_Devices[0];
         mouse.usUsagePage = HID_USAGE_PAGE_GENERIC;
         mouse.usUsage = HID_USAGE_GENERIC_MOUSE;

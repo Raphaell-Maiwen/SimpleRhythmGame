@@ -21,11 +21,6 @@ public static class WindowsDeviceApiService
         var yoyo = RawInputDeviceHandle.GetRawValue(devices[0].Device);
     }
 
-    public static void Yo() {
-        /*var yoyo = RawInputDeviceHandle.GetRawValue(devices[0].Device);
-        Debug.Log("Yo: " + yoyo);*/
-    }
-
     private static uint GetRawDeviceCount(uint rawInputDeviceListItemStructSize)
     {
         uint deviceCount = 0;
