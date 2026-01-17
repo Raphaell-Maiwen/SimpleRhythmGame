@@ -276,34 +276,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""Yo"",
-            ""id"": ""c291d981-c6aa-4fa9-8059-3a0d64325eee"",
-            ""actions"": [
-                {
-                    ""name"": ""Bouton"",
-                    ""type"": ""Button"",
-                    ""id"": ""830cd4d0-0deb-4483-a41a-09fcdf26502b"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""10a85121-4ace-44d3-ade3-91d0d3078429"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Bouton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
             ""name"": ""Controller"",
             ""id"": ""56ff9b38-4170-413f-ba3c-d97a702664e0"",
             ""actions"": [
@@ -941,9 +913,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Arrows_D = m_Arrows.FindAction("D", throwIfNotFound: true);
         m_Arrows_W = m_Arrows.FindAction("W", throwIfNotFound: true);
         m_Arrows_R = m_Arrows.FindAction("R", throwIfNotFound: true);
-        // Yo
-        m_Yo = asset.FindActionMap("Yo", throwIfNotFound: true);
-        m_Yo_Bouton = m_Yo.FindAction("Bouton", throwIfNotFound: true);
         // Controller
         m_Controller = asset.FindActionMap("Controller", throwIfNotFound: true);
         m_Controller_South = m_Controller.FindAction("South", throwIfNotFound: true);
@@ -968,7 +937,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     ~@Controls()
     {
         UnityEngine.Debug.Assert(!m_Arrows.enabled, "This will cause a leak and performance issues, Controls.Arrows.Disable() has not been called.");
-        UnityEngine.Debug.Assert(!m_Yo.enabled, "This will cause a leak and performance issues, Controls.Yo.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Controller.enabled, "This will cause a leak and performance issues, Controls.Controller.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, Controls.UI.Disable() has not been called.");
     }
@@ -1226,102 +1194,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="ArrowsActions" /> instance referencing this action map.
     /// </summary>
     public ArrowsActions @Arrows => new ArrowsActions(this);
-
-    // Yo
-    private readonly InputActionMap m_Yo;
-    private List<IYoActions> m_YoActionsCallbackInterfaces = new List<IYoActions>();
-    private readonly InputAction m_Yo_Bouton;
-    /// <summary>
-    /// Provides access to input actions defined in input action map "Yo".
-    /// </summary>
-    public struct YoActions
-    {
-        private @Controls m_Wrapper;
-
-        /// <summary>
-        /// Construct a new instance of the input action map wrapper class.
-        /// </summary>
-        public YoActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        /// <summary>
-        /// Provides access to the underlying input action "Yo/Bouton".
-        /// </summary>
-        public InputAction @Bouton => m_Wrapper.m_Yo_Bouton;
-        /// <summary>
-        /// Provides access to the underlying input action map instance.
-        /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_Yo; }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
-        public void Enable() { Get().Enable(); }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
-        public void Disable() { Get().Disable(); }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
-        public bool enabled => Get().enabled;
-        /// <summary>
-        /// Implicitly converts an <see ref="YoActions" /> to an <see ref="InputActionMap" /> instance.
-        /// </summary>
-        public static implicit operator InputActionMap(YoActions set) { return set.Get(); }
-        /// <summary>
-        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-        /// </summary>
-        /// <param name="instance">Callback instance.</param>
-        /// <remarks>
-        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
-        /// </remarks>
-        /// <seealso cref="YoActions" />
-        public void AddCallbacks(IYoActions instance)
-        {
-            if (instance == null || m_Wrapper.m_YoActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_YoActionsCallbackInterfaces.Add(instance);
-            @Bouton.started += instance.OnBouton;
-            @Bouton.performed += instance.OnBouton;
-            @Bouton.canceled += instance.OnBouton;
-        }
-
-        /// <summary>
-        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-        /// </summary>
-        /// <remarks>
-        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
-        /// </remarks>
-        /// <seealso cref="YoActions" />
-        private void UnregisterCallbacks(IYoActions instance)
-        {
-            @Bouton.started -= instance.OnBouton;
-            @Bouton.performed -= instance.OnBouton;
-            @Bouton.canceled -= instance.OnBouton;
-        }
-
-        /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="YoActions.UnregisterCallbacks(IYoActions)" />.
-        /// </summary>
-        /// <seealso cref="YoActions.UnregisterCallbacks(IYoActions)" />
-        public void RemoveCallbacks(IYoActions instance)
-        {
-            if (m_Wrapper.m_YoActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        /// <summary>
-        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
-        /// </summary>
-        /// <remarks>
-        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
-        /// </remarks>
-        /// <seealso cref="YoActions.AddCallbacks(IYoActions)" />
-        /// <seealso cref="YoActions.RemoveCallbacks(IYoActions)" />
-        /// <seealso cref="YoActions.UnregisterCallbacks(IYoActions)" />
-        public void SetCallbacks(IYoActions instance)
-        {
-            foreach (var item in m_Wrapper.m_YoActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_YoActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    /// <summary>
-    /// Provides a new <see cref="YoActions" /> instance referencing this action map.
-    /// </summary>
-    public YoActions @Yo => new YoActions(this);
 
     // Controller
     private readonly InputActionMap m_Controller;
@@ -1727,21 +1599,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnR(InputAction.CallbackContext context);
-    }
-    /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Yo" which allows adding and removing callbacks.
-    /// </summary>
-    /// <seealso cref="YoActions.AddCallbacks(IYoActions)" />
-    /// <seealso cref="YoActions.RemoveCallbacks(IYoActions)" />
-    public interface IYoActions
-    {
-        /// <summary>
-        /// Method invoked when associated input action "Bouton" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnBouton(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Controller" which allows adding and removing callbacks.

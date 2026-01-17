@@ -190,34 +190,6 @@
             ]
         },
         {
-            "name": "Yo",
-            "id": "c291d981-c6aa-4fa9-8059-3a0d64325eee",
-            "actions": [
-                {
-                    "name": "Bouton",
-                    "type": "Button",
-                    "id": "830cd4d0-0deb-4483-a41a-09fcdf26502b",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "10a85121-4ace-44d3-ade3-91d0d3078429",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Bouton",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
             "name": "Controller",
             "id": "56ff9b38-4170-413f-ba3c-d97a702664e0",
             "actions": [
