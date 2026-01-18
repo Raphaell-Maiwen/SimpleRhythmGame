@@ -17,6 +17,8 @@ public class Tracker : MonoBehaviour
     public UnityEvent<NoteIcon> OnNoteTriggerEnter;
     public UnityEvent<NoteIcon> OnNoteTriggerExit;
 
+    private Metronome.GameState _trackerState; 
+
     private void Start() {
         recordingIcon.SetActive(false);
         playingIcon.SetActive(false);
@@ -32,7 +34,7 @@ public class Tracker : MonoBehaviour
             if (_partUIScript.currentTracker == null)
                 _partUIScript.currentTracker = this.gameObject;
         }
-        else if (other.TryGetComponent<NoteIcon>(out NoteIcon noteIcon)) 
+        else if (other.TryGetComponent<NoteIcon>(out NoteIcon noteIcon) && _trackerState != Metronome.GameState.Silence) 
         {
             OnNoteTriggerEnter?.Invoke(noteIcon);
         }
@@ -40,13 +42,13 @@ public class Tracker : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<NoteIcon>(out NoteIcon noteIcon)) 
+        if (other.TryGetComponent<NoteIcon>(out NoteIcon noteIcon) && _trackerState != Metronome.GameState.Silence) 
         {
             OnNoteTriggerExit?.Invoke(noteIcon);
         }
     }
 
-    public void AssignIcon(Metronome.GameState gameState, bool player1)
+    public void AssignState(Metronome.GameState gameState, bool player1)
     {
         recordingIcon.SetActive(gameState == Metronome.GameState.Recording);
         playingIcon.SetActive(gameState == Metronome.GameState.Playing);
@@ -62,5 +64,7 @@ public class Tracker : MonoBehaviour
             player1Icon.SetActive(false);
             player2Icon.SetActive(false);
         }
+
+        _trackerState = gameState;
     }
 }

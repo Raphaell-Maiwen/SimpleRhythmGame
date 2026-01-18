@@ -173,7 +173,7 @@ public class PartUI : MonoBehaviour
         newTrackerData.timer = 0;
         newTrackerData.percent = 0;
         
-        newTrackerData.trackerGO.GetComponent<Tracker>().AssignIcon(gameState, _playersManager.CurrentPlayer.index == 0 );
+        newTrackerData.trackerGO.GetComponent<Tracker>().AssignState(gameState, _playersManager.CurrentPlayer.index == 0 );
 
         trackers.Enqueue(newTrackerData);
     }
