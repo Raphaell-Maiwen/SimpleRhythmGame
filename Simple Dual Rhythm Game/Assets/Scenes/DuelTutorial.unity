@@ -13074,12 +13074,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff28f11e338852a4f87661873c12ff49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playersManager: {fileID: 1840136374}
+  _playersManager: {fileID: 0}
   _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   trackerAnchor: {fileID: 2113096679}
   trackerAnchorEnd: {fileID: 85012656}
   _notesIconAnchor: {fileID: 2144027943}
   _entryBar: {fileID: 786532775}
+  _nextStateMessagePanel: {fileID: 0}
+  _nextPlayerText: {fileID: 0}
+  _nextPhaseText: {fileID: 0}
+  _nextPlayerIcon: []
+  _recordIcon: {fileID: 0}
+  _playIcon: {fileID: 0}
+  _forgotRecordUI: {fileID: 0}
   _player1BarsColor: {r: 0.7647059, g: 0, b: 0, a: 1}
   _player2BarsColor: {r: 1, g: 1, b: 1, a: 0}
   _player1UIColor: {r: 0.39607847, g: 0.027450982, b: 0.03529412, a: 1}
@@ -17086,7 +17093,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   _endOfGameScreen: {fileID: 1632709225}
-  _playersManager: {fileID: 1840136374}
+  _playersManager: {fileID: 0}
   _instrumentsInputPrefab: {fileID: 3959784500827435247, guid: 97a21c45e0cf67c4b973e488e0ac8a96,
     type: 3}
   startGame:
@@ -17267,6 +17274,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fefdf31f987c79e499b2813c9ba5a071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1532682733
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1538531165152987841, guid: 09830e195313fef42aea4c65a5641ca8,
+        type: 3}
+      propertyPath: _gameManager
+      value: 
+      objectReference: {fileID: 1498790763}
+    - target: {fileID: 1538531165152987841, guid: 09830e195313fef42aea4c65a5641ca8,
+        type: 3}
+      propertyPath: _gameLoopScript
+      value: 
+      objectReference: {fileID: 1498790762}
+    - target: {fileID: 1538531165152987841, guid: 09830e195313fef42aea4c65a5641ca8,
+        type: 3}
+      propertyPath: _playerJoinText
+      value: 
+      objectReference: {fileID: 262139903}
+    - target: {fileID: 1700703924793852099, guid: 09830e195313fef42aea4c65a5641ca8,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayersManager (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563443422436604204, guid: 09830e195313fef42aea4c65a5641ca8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0048306305
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563443422436604204, guid: 09830e195313fef42aea4c65a5641ca8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.31366408
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563443422436604204, guid: 09830e195313fef42aea4c65a5641ca8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.20463417
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563443422436604204, guid: 09830e195313fef42aea4c65a5641ca8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563443422436604204, guid: 09830e195313fef42aea4c65a5641ca8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563443422436604204, guid: 09830e195313fef42aea4c65a5641ca8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563443422436604204, guid: 09830e195313fef42aea4c65a5641ca8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563443422436604204, guid: 09830e195313fef42aea4c65a5641ca8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563443422436604204, guid: 09830e195313fef42aea4c65a5641ca8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563443422436604204, guid: 09830e195313fef42aea4c65a5641ca8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 09830e195313fef42aea4c65a5641ca8, type: 3}
 --- !u!114 &1536768951 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4458895858511860635, guid: 9b96913f1d0495449ac0fb9e7d5d6f01,
@@ -20901,119 +20991,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fefdf31f987c79e499b2813c9ba5a071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1840136373
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1840136375}
-  - component: {fileID: 1840136374}
-  - component: {fileID: 1840136376}
-  m_Layer: 0
-  m_Name: PlayersManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1840136374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1840136373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7c8a2f739f866a45b95f1ada9d7a4e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerJoinText: {fileID: 262139903}
-  _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
-  _gameLoopScript: {fileID: 1498790762}
-  _player1Color: {r: 0.7647059, g: 0, b: 0, a: 1}
-  _player2Color: {r: 1, g: 1, b: 1, a: 1}
-  OnCurrentPlayerChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  score1: {fileID: 0}
-  score2: {fileID: 0}
-  _gameManager: {fileID: 1498790763}
---- !u!4 &1840136375
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1840136373}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0048306305, y: -0.31366408, z: -0.20463417}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1840136376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1840136373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_NotificationBehavior: 2
-  m_MaxPlayerCount: 2
-  m_AllowJoining: 1
-  m_JoinBehavior: 0
-  m_PlayerJoinedEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1840136374}
-        m_TargetAssemblyTypeName: PlayersManager, Assembly-CSharp
-        m_MethodName: InitInstrumentsInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_PlayerLeftEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_JoinAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 3959784500827435245, guid: 97a21c45e0cf67c4b973e488e0ac8a96,
-    type: 3}
-  m_SplitScreen: 0
-  m_MaintainAspectRatioInSplitScreen: 0
-  m_FixedNumberOfSplitScreens: -1
-  m_SplitScreenRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
 --- !u!1001 &1842387856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25574,7 +25551,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1840136375}
+  - {fileID: 1532682733}
   - {fileID: 1498790761}
   - {fileID: 165684317}
   - {fileID: 2144027943}

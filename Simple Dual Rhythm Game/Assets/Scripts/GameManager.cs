@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     protected void Awake()
     {
-        if (_parameters.inputMode == InputMode.keytar)
+        if (_parameters.inputMode == InputMode.keytar || _parameters.inputMode == InputMode.keyboard)
         {
             Instantiate(_instrumentsInputPrefab);
         }
