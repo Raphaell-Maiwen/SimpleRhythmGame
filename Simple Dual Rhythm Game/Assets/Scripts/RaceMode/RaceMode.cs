@@ -11,6 +11,7 @@ public class RaceMode : GameLoop
     [SerializeField] private int _notesPenalty;
     [SerializeField] private int _notesPerBlock;
     [SerializeField] private float _noteSize;
+    [SerializeField] private float _moveDownSpeed;
 
     [SerializeField] private List<NestedRaceNotesList> _arrowsPool;
     [SerializeField] private List<NestedRaceNotesList> _FKeysPool;
@@ -76,7 +77,7 @@ public class RaceMode : GameLoop
     private void CreatePlayer(Transform anchor, int playerIndex, Text playerNotesLeftText) 
     {
         RacePlayer player = gameObject.AddComponent<RacePlayer>();
-        player.Init(anchor, _currentPool, this, playerIndex, playerNotesLeftText);
+        player.Init(anchor, _currentPool, this, playerIndex, playerNotesLeftText, _moveDownSpeed);
         _players.Add(player);
     }
 

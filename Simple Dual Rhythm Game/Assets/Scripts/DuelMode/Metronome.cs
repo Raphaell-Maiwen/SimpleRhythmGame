@@ -121,7 +121,6 @@ public class Metronome : GameLoop
     {
         frequency = 60f / bpm;
         
-        //Ça
         metronomeCounter = 0;
         mod = 0;
         initialTime = Time.time;

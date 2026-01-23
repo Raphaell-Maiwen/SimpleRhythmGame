@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Properties;
 using UnityEngine;
 using UnityEngine.UI;
 using static RaceMode;
@@ -7,21 +8,27 @@ using static RaceMode;
 public class RacePlayer : MonoBehaviour
 {
     private Queue<int> _playerNotesQueue = new Queue<int>();
+
     private Queue<RaceNote> _spawnedRaceNotes = new Queue<RaceNote>();
-    private Transform _notesSpawnAnchor;
+    //TODO: Modify this
+    private Transform _notesTarget;
     private List<NestedRaceNotesList> _currentPool = new List<NestedRaceNotesList>();
     private RaceMode _raceMode;
     private Text _notesLeftText;
 
     private int _playerIndex;
 
-    public void Init (Transform notesSpawnAnchor, List<NestedRaceNotesList> currentPool, RaceMode raceMode, int playerIndex, Text notesLeft) 
+    private Coroutine _moveNotesDownCoroutine;
+    private float _moveDownSpeed;
+
+    public void Init(Transform notesSpawnAnchor, List<NestedRaceNotesList> currentPool, RaceMode raceMode, int playerIndex, Text notesLeft, float moveDownSpeed) 
     {
-        _notesSpawnAnchor = notesSpawnAnchor;
+        _notesTarget = notesSpawnAnchor;
         _currentPool = currentPool;
         _raceMode = raceMode;
         _playerIndex = playerIndex;
         _notesLeftText = notesLeft;
+        _moveDownSpeed = moveDownSpeed;
     }
 
     private void Start()
@@ -40,7 +47,7 @@ public class RacePlayer : MonoBehaviour
 
             note.value = index;
 
-            Vector3 notesPos = _notesSpawnAnchor.transform.position;
+            Vector3 notesPos = _notesTarget.transform.position;
             notesPos.y += i * _raceMode.GetNoteSize();
 
             note.transform.position = notesPos;
@@ -59,6 +66,15 @@ public class RacePlayer : MonoBehaviour
         if (noteIndex == _spawnedRaceNotes.Peek().value)
         {
             GoodNote();
+
+            if (_spawnedRaceNotes.Count == 0)
+            {
+                CheckEndOfRaceOrBlock();
+            }
+            else if (_moveNotesDownCoroutine == null)
+            {
+                _moveNotesDownCoroutine = StartCoroutine("MoveNotesDown");
+            }
         }
         else 
         {
@@ -75,17 +91,17 @@ public class RacePlayer : MonoBehaviour
         note.transform.position = _raceMode._outOfScreenAnchor.transform.position;
         _currentPool[note.value].raceNotes.Add(note);
         _raceMode.PlaySound(note.value);
+    }
 
-        if(_spawnedRaceNotes.Count == 0) 
+    private void CheckEndOfRaceOrBlock()
+    {
+        if (_playerNotesQueue.Count == 0)
         {
-            if (_playerNotesQueue.Count == 0)
-            {
-                _raceMode.EndOfRace(_playerIndex);
-            }
-            else 
-            {
-                SpawnBlock();
-            }
+            _raceMode.EndOfRace(_playerIndex);
+        }
+        else
+        {
+            SpawnBlock();
         }
     }
 
@@ -102,6 +118,41 @@ public class RacePlayer : MonoBehaviour
         for (int i = 0; i < _raceMode.GetNotePenalty(); i++)
         {
             _playerNotesQueue.Enqueue(Random.Range(0,4));
+        }
+    }
+
+    private IEnumerator MoveNotesDown()
+    {
+        while (_spawnedRaceNotes.Peek().transform.position.y - _notesTarget.position.y > 0.1f)
+        {
+            MoveNotes();
+            yield return null;
+        }
+
+        MoveNotes();
+        _moveNotesDownCoroutine = null;
+        yield return null;
+    }
+
+    private void MoveNotes()
+    {
+        var currentNoteY = _notesTarget.position.y;
+        int counter = 0;
+
+        //Vector3 direction = _notesTarget.position - note.transform.position;
+        //note.transform.position += (direction.normalized * _moveDownSpeed * Time.deltaTime);
+
+        foreach (var note in _spawnedRaceNotes)
+        {
+            float targetHeight = currentNoteY + counter * _raceMode.GetNoteSize();
+            Vector3 target = new Vector3(_notesTarget.position.x, targetHeight, _notesTarget.position.z);
+
+            //normalized?
+            Vector3 direction = (target - note.transform.position);
+
+            note.transform.position += (direction.normalized * _moveDownSpeed * Time.deltaTime);
+
+            counter++;
         }
     }
 }
