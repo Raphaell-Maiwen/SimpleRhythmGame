@@ -25,7 +25,6 @@ public class Metronome : GameLoop
     private AudioSource[] instrumentSounds;
     private AudioSource[] sounds;
     private AudioSource badNoteSound;
-    [SerializeField] private AudioSource beat;
 
     [SerializeField] private AudioSource[] _finaleSounds;
 
@@ -92,7 +91,8 @@ public class Metronome : GameLoop
         bars = _parameters.bars;
 
         SetUp();
-        SetBeatSpeed();
+        _audioManager.SetBeat("4/4Beat1");
+        _audioManager.SetBeatSpeed(bpm);
         enabled = true;
 
         //Cleaner: register itself through a SO?
@@ -100,14 +100,7 @@ public class Metronome : GameLoop
         _gameManager.stopGame.AddListener(EndGame);
     }
 
-    void SetBeatSpeed()
-    {
-        AudioMixerGroup pitchBendGroup = Resources.Load<AudioMixerGroup>("MyAudioMixer");
-        beat.outputAudioMixerGroup = pitchBendGroup;
-        float speed = bpm / 60f;
-        beat.pitch = speed;
-        pitchBendGroup.audioMixer.SetFloat("pitchBend", 1f / speed);
-    }
+    
 
     public void SetUp()
     {
@@ -126,7 +119,7 @@ public class Metronome : GameLoop
         initialTime = Time.time;
 
         UIScript.ChangeTempo(bpm, beatPerBar);
-        SetBeatSpeed();
+        _audioManager.SetBeatSpeed(bpm);
     }
 
     public void SetLastSolo()
@@ -144,7 +137,7 @@ public class Metronome : GameLoop
     {
         if (firstTick) {
             firstTick = false;
-            beat.Play();
+            _audioManager.PlayBeat();
         }
 
         //Check if we're at the beginning of a new bar
@@ -356,10 +349,10 @@ public class Metronome : GameLoop
     {
         if (paused)
         {
-            beat.Pause();
+            _audioManager.PauseBeat();  
         }
-        else { 
-            beat.UnPause();
+        else {
+            _audioManager.UnPauseBeat();
         }
     }
 

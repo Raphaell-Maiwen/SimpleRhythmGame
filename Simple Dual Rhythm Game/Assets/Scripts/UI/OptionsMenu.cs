@@ -21,12 +21,16 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private Toggle _FKeysOnToggle;
     [SerializeField] private GameObject _fKeysWarning;
 
+    [SerializeField] private TMP_Dropdown _player1SoundsSet;
+    [SerializeField] private TMP_Dropdown _player2SoundsSet;
+
     [Header("Default settings")] 
     [SerializeField] private int bpm;
     [SerializeField] private int beatPerBar;
     [SerializeField] private int bars;
     [SerializeField] private InputMode inputMode;
     [SerializeField] private bool FKeysOn;
+    [SerializeField] private string soundSet;
 
     private void OnEnable()
     {
@@ -42,7 +46,10 @@ public class OptionsMenu : MonoBehaviour
         _barsPerSoloSlider.value = _parameters.bars;
         _barsPerSoloSlider.onValueChanged.AddListener(delegate {BarsPerSoloValueChanged ();});
         
-        _controlsSchemeDropdown.onValueChanged.AddListener(delegate {DropdownValueChanged ();});
+        _controlsSchemeDropdown.onValueChanged.AddListener(delegate {InputModeDropdownValueChanged ();});
+
+        _player1SoundsSet.onValueChanged.AddListener(delegate { SoundSetPlayer1DropdownValueChanged() ;});
+        _player2SoundsSet.onValueChanged.AddListener(delegate { SoundSetPlayer2DropdownValueChanged() ;});
 
         SetInputMode();
 
@@ -56,7 +63,7 @@ public class OptionsMenu : MonoBehaviour
         _bpmSlider.onValueChanged.RemoveListener(delegate {BPMValueChanged ();});
         _beatPerBarSlider.onValueChanged.RemoveListener(delegate {BeatPerBarValueChanged ();});
         _barsPerSoloSlider.onValueChanged.RemoveListener(delegate { BarsPerSoloValueChanged(); });
-        _controlsSchemeDropdown.onValueChanged.RemoveListener(delegate { DropdownValueChanged(); });
+        _controlsSchemeDropdown.onValueChanged.RemoveListener(delegate { InputModeDropdownValueChanged(); });
         _FKeysOnToggle.onValueChanged.RemoveListener(delegate { FKeysOnToggled(); });
     }
 
@@ -78,7 +85,7 @@ public class OptionsMenu : MonoBehaviour
         _barsPerSoloText.text = _parameters.bars.ToString();
     }
 
-    void DropdownValueChanged()
+    void InputModeDropdownValueChanged()
     {
         switch (_controlsSchemeDropdown.value)
         {
@@ -92,6 +99,16 @@ public class OptionsMenu : MonoBehaviour
                 _parameters.inputMode = InputMode.keytar;
                 break;
         }
+    }
+
+    void SoundSetPlayer1DropdownValueChanged()
+    {
+        _parameters.SetPlayerSoundSet(0, _player1SoundsSet.value);
+    }
+
+    void SoundSetPlayer2DropdownValueChanged()
+    {
+        _parameters.SetPlayerSoundSet(1, _player2SoundsSet.value);
     }
 
     void FKeysOnToggled() 

@@ -17,5 +17,8 @@ MonoBehaviour:
   bars: 1
   inputMode: 1
   fKeysOn: 0
+  _soundSets: {fileID: 11400000, guid: 9fb7fde16aac76d43920fc4a00829cdb, type: 2}
+  _player1SoundsSet: []
+  _player2SoundsSet: []
   numberOfNotes: 25
   numberOfPlayers: 2
