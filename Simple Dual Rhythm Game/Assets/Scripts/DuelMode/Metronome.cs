@@ -21,7 +21,6 @@ public class Metronome : GameLoop
 
     private float initialTime;
 
-    private AudioSource tickSound;
     private AudioSource[] instrumentSounds;
     private AudioSource[] sounds;
     private AudioSource badNoteSound;
@@ -68,7 +67,6 @@ public class Metronome : GameLoop
     private void Awake() 
     {
         sounds = GetComponents<AudioSource>();
-        tickSound = sounds[0];
 
         instrumentSounds = new AudioSource[4];
 
@@ -142,7 +140,7 @@ public class Metronome : GameLoop
 
         //Check if we're at the beginning of a new bar
         if (metronomeCounter % beatPerBar == 0) {
-            tickSound.volume = strongTick;
+            //For future use?
         }
 
         //Check if we're at the beginning of a new cycle
@@ -183,12 +181,8 @@ public class Metronome : GameLoop
             notesSucceeded = 0;
             madeMistake = false;
         }
-        else {
-            tickSound.volume = weakTick;
-        }
         //TODO: Reset counter at 0 instead??
         metronomeCounter++;
-        //tickSound.Play();
     }
 
     void ChangeState(int newStateIndex)
