@@ -23,6 +23,13 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySound(string soundName)
     {
-        _gameSounds[soundName].Play();
+        if (_gameSounds.ContainsKey(soundName))
+        {
+            _gameSounds[soundName].Play();
+        }
+        else
+        {
+            Debug.LogError("Sound name doesn't exist");
+        }
     }
 }
