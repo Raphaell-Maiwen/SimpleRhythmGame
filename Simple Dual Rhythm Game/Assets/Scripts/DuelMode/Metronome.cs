@@ -21,12 +21,6 @@ public class Metronome : GameLoop
 
     private float initialTime;
 
-    private AudioSource[] instrumentSounds;
-    private AudioSource[] sounds;
-    private AudioSource badNoteSound;
-
-    [SerializeField] private AudioSource[] _finaleSounds;
-
     private int notesSucceeded;
 
     [Range(0, 1)]
@@ -66,18 +60,8 @@ public class Metronome : GameLoop
 
     private void Awake() 
     {
-        sounds = GetComponents<AudioSource>();
-
-        instrumentSounds = new AudioSource[4];
-
-        for (int i = 0; i < 4; i++) {
-            instrumentSounds[i] = sounds[i + 1];
-        }
-
         currentStateIndex = statesSeries.Length - 1;
         nextStateIndex = 0;
-
-        badNoteSound = sounds[5];
 
         enabled = false;
     }
@@ -315,11 +299,7 @@ public class Metronome : GameLoop
                 madeMistake = true;
                 int penalty = ((riffLength * (riffLength + 1)) / 2 * 10) / riffLength;
                 playersScript.MakePoints(-penalty);
-
-                //TODO: faire un event? link up le son et le ui ici, avec un paramètre
-                //Faire un seul call a l'exterieur
-
-                badNoteSound.Play();
+                _audioManager.PlaySound("WrongNote");
             }
         }
     }
@@ -332,7 +312,6 @@ public class Metronome : GameLoop
         else
         {
             _audioManager.PlayFinaleNote(playersScript.CurrentPlayer.index, noteIndex);
-            //_finaleSounds[noteIndex].Play();
         }
     }
 

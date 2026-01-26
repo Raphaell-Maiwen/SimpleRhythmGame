@@ -48,7 +48,7 @@ MonoBehaviour:
   _gameAudioClips:
     _serializedList:
     - Key: WrongNote
-      Value: {fileID: 8300000, guid: fdc8496394a927c49ae5c783c0dac641, type: 3}
+      Value: {fileID: 8300000, guid: c59273b6b78bd7d41ac2df79f871bd84, type: 3}
     - Key: 4/4Beat1
       Value: {fileID: 8300000, guid: 8713fb0cd8d5e3545b68b5faf585dc84, type: 3}
   _gameSounds:
