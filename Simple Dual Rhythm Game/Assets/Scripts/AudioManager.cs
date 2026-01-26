@@ -1,9 +1,11 @@
 using AYellowpaper.SerializedCollections;
+using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 using static SoundSets;
 
 public class AudioManager : MonoBehaviour
@@ -39,12 +41,7 @@ public class AudioManager : MonoBehaviour
         {
             var player1SoundSet = pool.First(s => s.soundSetName == playerSoundsSet);
 
-            var audioClips = player1SoundSet._audioClips;
-            for (int i = 0; i < audioClips.Count; i++)
-            {
-                AddSound("player_" + playerInt + "_" + i, audioClips[i]);
-            }
-
+            AddSoundsSet(player1SoundSet._audioClips, playerInt);
         }
         else
         {
@@ -53,12 +50,15 @@ public class AudioManager : MonoBehaviour
                 Debug.LogError("Sound set with that name doesn't exist.");
             }
 
-            var audioClips = _parameters.SoundSetsSO.DefaultSoundSet._audioClips;
+            AddSoundsSet(_parameters.SoundSetsSO.DefaultSoundSet._audioClips, playerInt);
+        }
+    }
 
-            for (int i = 0; i < audioClips.Count; i++)
-            {
-                AddSound("player_" + playerInt + "_" + i, audioClips[i]);
-            }
+    private void AddSoundsSet(List<AudioClip> audioClips, int playerInt)
+    {
+        for (int i = 0; i < audioClips.Count; i++)
+        {
+            AddSound("player_" + playerInt + "_" + i, audioClips[i]);
         }
     }
 
