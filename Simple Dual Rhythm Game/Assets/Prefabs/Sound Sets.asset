@@ -26,4 +26,17 @@ MonoBehaviour:
     - {fileID: 8300000, guid: f76116cfd1840c34a940928dff18b5ef, type: 3}
     - {fileID: 8300000, guid: 4c09c2e672e09d446a7364b0012799b9, type: 3}
     - {fileID: 8300000, guid: db7637e1758390142813e57925793453, type: 3}
-  _soundSetsPool: []
+  _soundSetsPool:
+  - soundSetName: Placeholder
+    _audioClips:
+    - {fileID: 8300000, guid: 2557a44c5ade57d46a54f237678277a0, type: 3}
+    - {fileID: 8300000, guid: ae225b0e21fc4c94cb7ff6accdab538a, type: 3}
+    - {fileID: 8300000, guid: 928252451ddea0c43a4bbffeb6f58294, type: 3}
+    - {fileID: 8300000, guid: ee2bdcaf3808ff84a95f4287ddbb4da1, type: 3}
+    - {fileID: 8300000, guid: fd0c13fd973ec024080395962c071e84, type: 3}
+    _finaleAudioClips:
+    - {fileID: 8300000, guid: 4d048f21cb74b764390e2b625dc27b30, type: 3}
+    - {fileID: 8300000, guid: 515d8d004e54b924ab5417aa80e7c191, type: 3}
+    - {fileID: 8300000, guid: ab54fcfbc3b86da4e82df80aca5756c7, type: 3}
+    - {fileID: 8300000, guid: e6c9068c74e425d49b5249b19be99f9d, type: 3}
+    - {fileID: 8300000, guid: c9220b70ce432644e8a7b59867487f7f, type: 3}
