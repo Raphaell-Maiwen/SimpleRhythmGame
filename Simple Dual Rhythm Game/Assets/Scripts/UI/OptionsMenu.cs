@@ -21,8 +21,8 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private Toggle _FKeysOnToggle;
     [SerializeField] private GameObject _fKeysWarning;
 
-    [SerializeField] private TMP_Dropdown _player1SoundsSet;
-    [SerializeField] private TMP_Dropdown _player2SoundsSet;
+    [SerializeField] private TMP_Dropdown _player1SoundsSetDropdown;
+    [SerializeField] private TMP_Dropdown _player2SoundsSetDropdown;
 
     [Header("Default settings")] 
     [SerializeField] private int bpm;
@@ -48,10 +48,12 @@ public class OptionsMenu : MonoBehaviour
         
         _controlsSchemeDropdown.onValueChanged.AddListener(delegate {InputModeDropdownValueChanged ();});
 
-        _player1SoundsSet.onValueChanged.AddListener(delegate { SoundSetPlayer1DropdownValueChanged() ;});
-        _player2SoundsSet.onValueChanged.AddListener(delegate { SoundSetPlayer2DropdownValueChanged() ;});
+        _player1SoundsSetDropdown.onValueChanged.AddListener(delegate { SoundSetPlayer1DropdownValueChanged() ;});
+        _player2SoundsSetDropdown.onValueChanged.AddListener(delegate { SoundSetPlayer2DropdownValueChanged() ;});
 
         SetInputMode();
+        SetPlayer1SoundSet();
+        SetPlayer2SoundSet();
 
         _FKeysOnToggle.isOn = _parameters.fKeysOn;
         _fKeysWarning.SetActive(_FKeysOnToggle.isOn);
@@ -64,6 +66,8 @@ public class OptionsMenu : MonoBehaviour
         _beatPerBarSlider.onValueChanged.RemoveListener(delegate {BeatPerBarValueChanged ();});
         _barsPerSoloSlider.onValueChanged.RemoveListener(delegate { BarsPerSoloValueChanged(); });
         _controlsSchemeDropdown.onValueChanged.RemoveListener(delegate { InputModeDropdownValueChanged(); });
+        _player1SoundsSetDropdown.onValueChanged.RemoveListener(delegate { SoundSetPlayer1DropdownValueChanged(); });
+        _player2SoundsSetDropdown.onValueChanged.RemoveListener(delegate { SoundSetPlayer2DropdownValueChanged(); });
         _FKeysOnToggle.onValueChanged.RemoveListener(delegate { FKeysOnToggled(); });
     }
 
@@ -103,12 +107,12 @@ public class OptionsMenu : MonoBehaviour
 
     void SoundSetPlayer1DropdownValueChanged()
     {
-        _parameters.SetPlayerSoundSet(0, _player1SoundsSet.value);
+        _parameters.SetPlayerSoundSet(0, _player1SoundsSetDropdown.value);
     }
 
     void SoundSetPlayer2DropdownValueChanged()
     {
-        _parameters.SetPlayerSoundSet(1, _player2SoundsSet.value);
+        _parameters.SetPlayerSoundSet(1, _player2SoundsSetDropdown.value);
     }
 
     void FKeysOnToggled() 
@@ -133,12 +137,41 @@ public class OptionsMenu : MonoBehaviour
         }
     }
 
+    private void SetPlayer1SoundSet()
+    {
+        if (_parameters._player1SoundSetValue > 0)
+        {
+            _player1SoundsSetDropdown.value = _parameters._player1SoundSetValue;
+        }
+        else
+        {
+            _player1SoundsSetDropdown.value = 0;
+        }
+    }
+
+    private void SetPlayer2SoundSet()
+    {
+        if (_parameters._player2SoundSetValue > 0)
+        {
+            _player2SoundsSetDropdown.value = _parameters._player2SoundSetValue;
+        }
+        else
+        {
+            _player2SoundsSetDropdown.value = 0;
+        }
+    }
+
     public void ResetToDefault()
     {
         _parameters.bpm = bpm;
         _parameters.beatPerBar = beatPerBar;
         _parameters.bars = bars;
         _parameters.inputMode = inputMode;
+        _parameters.fKeysOn = FKeysOn;
+        _parameters.player1SoundsSet = soundSet;
+        _parameters.player2SoundsSet = soundSet;
+        _parameters._player1SoundSetValue = 0;
+        _parameters._player2SoundSetValue = 0;
 
         _bpmSlider.value = _parameters.bpm;
         _beatPerBarSlider.value = _parameters.beatPerBar;
@@ -149,5 +182,7 @@ public class OptionsMenu : MonoBehaviour
         _barsPerSoloText.text = _parameters.bars.ToString();
         
         SetInputMode();
+        SetPlayer1SoundSet();
+        SetPlayer2SoundSet();
     }
 }
