@@ -41,7 +41,8 @@ public class AudioManager : MonoBehaviour
         {
             var player1SoundSet = pool.First(s => s.soundSetName == playerSoundsSet);
 
-            AddSoundsSet(player1SoundSet._audioClips, playerInt);
+            AddSoundsSet(player1SoundSet._audioClips, playerInt, "player_");
+            AddSoundsSet(player1SoundSet._finaleAudioClips, playerInt, "finale_");
         }
         else
         {
@@ -50,15 +51,16 @@ public class AudioManager : MonoBehaviour
                 Debug.LogError("Sound set with that name doesn't exist.");
             }
 
-            AddSoundsSet(_parameters.SoundSetsSO.DefaultSoundSet._audioClips, playerInt);
+            AddSoundsSet(_parameters.SoundSetsSO.DefaultSoundSet._audioClips, playerInt, "player_");
+            AddSoundsSet(_parameters.SoundSetsSO.DefaultSoundSet._finaleAudioClips, playerInt, "finale_");
         }
     }
 
-    private void AddSoundsSet(List<AudioClip> audioClips, int playerInt)
+    private void AddSoundsSet(List<AudioClip> audioClips, int playerInt, string prefix)
     {
         for (int i = 0; i < audioClips.Count; i++)
         {
-            AddSound("player_" + playerInt + "_" + i, audioClips[i]);
+            AddSound(prefix + playerInt + "_" + i, audioClips[i]);
         }
     }
 
@@ -78,6 +80,11 @@ public class AudioManager : MonoBehaviour
     public void PlayNote(int player, int noteCode)
     {
         PlaySound("player_" + player + "_" + noteCode);
+    }
+
+    public void PlayFinaleNote(int player, int noteCode)
+    {
+        PlaySound("finale_" + player + "_" + noteCode);
     }
 
     public void PlaySound(string soundName)

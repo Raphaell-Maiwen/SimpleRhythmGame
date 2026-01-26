@@ -17233,7 +17233,7 @@ MonoBehaviour:
   stopGame:
     m_PersistentCalls:
       m_Calls: []
-  solosToDo: 3
+  solosToDo: 2
   metronomeScript: {fileID: 6642081753353289859}
   _flames: {fileID: 255044187}
 --- !u!1001 &1513310820
