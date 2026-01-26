@@ -12,6 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc639681e8c76e541b13ce1ead2b5e79, type: 3}
   m_Name: Sound Sets
   m_EditorClassIdentifier: 
-  defaultSoundSet:
-    _audioClips: []
-  _soundSets: []
+  _defaultSoundSet:
+    soundSetName: Default
+    _audioClips:
+    - {fileID: 8300000, guid: 99b581875862a8f4883fadac5d2e776b, type: 3}
+    - {fileID: 8300000, guid: 2ebf2cc885cc9c440b05b307c3736def, type: 3}
+    - {fileID: 8300000, guid: 49573d7cdabd52d41b581b2797893799, type: 3}
+    - {fileID: 8300000, guid: e39b381e63ce5f9468e6e064ad7dcf1d, type: 3}
+    - {fileID: 8300000, guid: 3ba9a635a89a15c4da2bb970ac43f39c, type: 3}
+    _finaleAudioClips:
+    - {fileID: 8300000, guid: 5a2c5a9b1b349f94cb739eba3bc0a988, type: 3}
+    - {fileID: 8300000, guid: 2ebf2cc885cc9c440b05b307c3736def, type: 3}
+    - {fileID: 8300000, guid: f76116cfd1840c34a940928dff18b5ef, type: 3}
+    - {fileID: 8300000, guid: 4c09c2e672e09d446a7364b0012799b9, type: 3}
+    - {fileID: 8300000, guid: db7637e1758390142813e57925793453, type: 3}
+  _soundSetsPool: []

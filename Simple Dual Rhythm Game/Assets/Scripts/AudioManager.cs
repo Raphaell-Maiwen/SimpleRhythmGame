@@ -16,7 +16,7 @@ public class AudioManager : MonoBehaviour
     //Expand the beats when I'll be there
     //Default beat variable
 
-    private SerializedDictionary<string, AudioSource> _gameSounds = new SerializedDictionary<string, AudioSource>();
+    public SerializedDictionary<string, AudioSource> _gameSounds = new SerializedDictionary<string, AudioSource>();
 
     private AudioSource _beat;
 
@@ -26,22 +26,39 @@ public class AudioManager : MonoBehaviour
         {
             AddSound(sound.Key, sound.Value);
         }
+
+        SetUpNotes(_parameters.player1SoundsSet, 0);
+        SetUpNotes(_parameters.player2SoundsSet, 1);
     }
 
-    private void SetUpNotes()
+    private void SetUpNotes(string playerSoundsSet, int playerInt)
     {
         var pool = _parameters.SoundSetsSO.SoundSetsPool;
 
-        if (pool.Any(s => s.soundSetName == _parameters.player1SoundsSet))
+        if (pool.Any(s => s.soundSetName == playerSoundsSet))
         {
-            var player1SoundSet = pool.First(s => s.soundSetName == _parameters.player1SoundsSet);
+            var player1SoundSet = pool.First(s => s.soundSetName == playerSoundsSet);
 
-            //Add player_0_note genre
+            var audioClips = player1SoundSet._audioClips;
+            for (int i = 0; i < audioClips.Count; i++)
+            {
+                AddSound("player_" + playerInt + "_" + i, audioClips[i]);
+            }
 
         }
         else
         {
-            //Default
+            if (!pool.Any(s => s.soundSetName.Contains("Default")))
+            {
+                Debug.LogError("Sound set with that name doesn't exist.");
+            }
+
+            var audioClips = _parameters.SoundSetsSO.DefaultSoundSet._audioClips;
+
+            for (int i = 0; i < audioClips.Count; i++)
+            {
+                AddSound("player_" + playerInt + "_" + i, audioClips[i]);
+            }
         }
     }
 
@@ -60,7 +77,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayNote(int player, int noteCode)
     {
-        
+        PlaySound("player_" + player + "_" + noteCode);
     }
 
     public void PlaySound(string soundName)

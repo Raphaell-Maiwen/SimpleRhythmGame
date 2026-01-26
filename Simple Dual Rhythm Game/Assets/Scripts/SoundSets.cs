@@ -16,5 +16,6 @@ public class SoundSets : ScriptableObject
     {
         public string soundSetName;
         [SerializeField] public List<AudioClip> _audioClips;
+        [SerializeField] public List<AudioClip> _finaleAudioClips;
     }
 }

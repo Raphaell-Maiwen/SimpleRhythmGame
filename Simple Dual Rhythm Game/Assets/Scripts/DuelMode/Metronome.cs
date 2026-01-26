@@ -327,7 +327,8 @@ public class Metronome : GameLoop
     private void PlayNoteSound(int noteIndex) {
         if (!_isLastSolo)
         {
-            instrumentSounds[noteIndex].Play();
+            //instrumentSounds[noteIndex].Play();
+            _audioManager.PlayNote(playersScript.CurrentPlayer.index, noteIndex);
         }
         else
         {

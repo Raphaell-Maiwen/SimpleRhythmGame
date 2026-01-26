@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd11c500ac7103418782ce4dce0d53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   _gameAudioClips:
     _serializedList:
     - Key: WrongNote
