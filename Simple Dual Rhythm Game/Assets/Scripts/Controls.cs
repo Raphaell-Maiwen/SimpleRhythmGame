@@ -171,6 +171,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Any"",
+                    ""type"": ""Button"",
+                    ""id"": ""abf52760-f3bc-463f-9eed-8a0d446effd0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -272,6 +281,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""R"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3968d655-ca54-4e24-8903-5a2cd09a1504"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Any"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -283,7 +303,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""South"",
                     ""type"": ""Button"",
                     ""id"": ""9e6f83f2-30f2-4dfb-a6c4-ded0b3c5ef9a"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -913,6 +933,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Arrows_D = m_Arrows.FindAction("D", throwIfNotFound: true);
         m_Arrows_W = m_Arrows.FindAction("W", throwIfNotFound: true);
         m_Arrows_R = m_Arrows.FindAction("R", throwIfNotFound: true);
+        m_Arrows_Any = m_Arrows.FindAction("Any", throwIfNotFound: true);
         // Controller
         m_Controller = asset.FindActionMap("Controller", throwIfNotFound: true);
         m_Controller_South = m_Controller.FindAction("South", throwIfNotFound: true);
@@ -1023,6 +1044,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Arrows_D;
     private readonly InputAction m_Arrows_W;
     private readonly InputAction m_Arrows_R;
+    private readonly InputAction m_Arrows_Any;
     /// <summary>
     /// Provides access to input actions defined in input action map "Arrows".
     /// </summary>
@@ -1070,6 +1092,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Arrows/R".
         /// </summary>
         public InputAction @R => m_Wrapper.m_Arrows_R;
+        /// <summary>
+        /// Provides access to the underlying input action "Arrows/Any".
+        /// </summary>
+        public InputAction @Any => m_Wrapper.m_Arrows_Any;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1123,6 +1149,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @R.started += instance.OnR;
             @R.performed += instance.OnR;
             @R.canceled += instance.OnR;
+            @Any.started += instance.OnAny;
+            @Any.performed += instance.OnAny;
+            @Any.canceled += instance.OnAny;
         }
 
         /// <summary>
@@ -1161,6 +1190,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @R.started -= instance.OnR;
             @R.performed -= instance.OnR;
             @R.canceled -= instance.OnR;
+            @Any.started -= instance.OnAny;
+            @Any.performed -= instance.OnAny;
+            @Any.canceled -= instance.OnAny;
         }
 
         /// <summary>
@@ -1599,6 +1631,13 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnR(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Any" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAny(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Controller" which allows adding and removing callbacks.

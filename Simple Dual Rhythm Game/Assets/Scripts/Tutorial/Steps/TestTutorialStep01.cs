@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialStep00 : TutorialStep
+public class TestTutorialStep01 : TutorialStep
 {
-    private int something = 0;
-    
+    private int aNumber;
 
     public override void ProcessEvent(EventType eventType, int code)
     {
-        Debug.Log("Reached me!");
-        something++;
+        Debug.Log("Getting there!");
+        aNumber++;
 
-        if(something == 3) 
+        if (aNumber == 5)
         {
             OnCompleted();
         }

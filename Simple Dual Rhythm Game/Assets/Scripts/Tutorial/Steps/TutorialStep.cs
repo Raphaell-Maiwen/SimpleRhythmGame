@@ -17,7 +17,7 @@ public abstract class TutorialStep : MonoBehaviour
         _stepsManager = tutorialStepsManager;
     }
 
-    public abstract void ProcessEvent(EventType eventType, int code);
+    public abstract void ProcessEvent(EventType eventType, int code = -1);
     public void OnCompleted()
     {
         _stepsManager.IncrementStep();

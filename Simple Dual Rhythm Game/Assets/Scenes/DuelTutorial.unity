@@ -737,52 +737,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fefdf31f987c79e499b2813c9ba5a071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &71032562
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 71032563}
-  - component: {fileID: 71032564}
-  m_Layer: 0
-  m_Name: TutorialStep_00
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &71032563
+--- !u!4 &71032563 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5306543776695045967, guid: 72aa9b2f03d65ba44afd951ffe8f63bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 8393983586100776959}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 71032562}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1498790761}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &71032564
+--- !u!114 &71032564 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3566032276429778474, guid: 72aa9b2f03d65ba44afd951ffe8f63bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 8393983586100776959}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 71032562}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79a40147084ed2a4ba495a59e2efd8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panelPos: {x: 0, y: 0}
-  _instructions: Welcome to the Guitar Ego tutorial! Press any key to continue.
 --- !u!1001 &83884501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13074,7 +13046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff28f11e338852a4f87661873c12ff49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playersManager: {fileID: 0}
+  _playersManager: {fileID: 1532682734}
   _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   trackerAnchor: {fileID: 2113096679}
   trackerAnchorEnd: {fileID: 85012656}
@@ -17058,7 +17030,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 71032563}
-  - {fileID: 1744603297}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1498790762
@@ -17073,10 +17044,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69820d8ffec9f84ebe56703358ae161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioManager: {fileID: 0}
   _pauseMenu: {fileID: 1318553705777774471}
   _tutorialSteps:
   - {fileID: 71032564}
-  - {fileID: 1744603298}
   _instructions: {fileID: 810265136}
   _panel: {fileID: 1703405785}
 --- !u!114 &1498790763
@@ -17093,8 +17064,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   _endOfGameScreen: {fileID: 1632709225}
-  _playersManager: {fileID: 0}
-  _instrumentsInputPrefab: {fileID: 3959784500827435247, guid: 97a21c45e0cf67c4b973e488e0ac8a96,
+  _playersManager: {fileID: 1532682734}
+  _instrumentsInputPrefab: {fileID: 7996664582601979656, guid: a2894d300b5a1ed4ea3d746db3be0fe3,
     type: 3}
   startGame:
     m_PersistentCalls:
@@ -17300,7 +17271,7 @@ PrefabInstance:
     - target: {fileID: 1700703924793852099, guid: 09830e195313fef42aea4c65a5641ca8,
         type: 3}
       propertyPath: m_Name
-      value: PlayersManager (1)
+      value: PlayersManager
       objectReference: {fileID: 0}
     - target: {fileID: 4563443422436604204, guid: 09830e195313fef42aea4c65a5641ca8,
         type: 3}
@@ -17357,6 +17328,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09830e195313fef42aea4c65a5641ca8, type: 3}
+--- !u!114 &1532682734 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1538531165152987841, guid: 09830e195313fef42aea4c65a5641ca8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1532682733}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c8a2f739f866a45b95f1ada9d7a4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1536768951 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4458895858511860635, guid: 9b96913f1d0495449ac0fb9e7d5d6f01,
@@ -19876,52 +19859,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fefdf31f987c79e499b2813c9ba5a071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1744603296
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1744603297}
-  - component: {fileID: 1744603298}
-  m_Layer: 0
-  m_Name: TutorialStep_01
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1744603297
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744603296}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1498790761}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1744603298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744603296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6ee086799ca22546a1f9f5445d401d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _panelPos: {x: -5.5, y: 1.9}
-  _instructions: "Bien jou\xE9"
 --- !u!114 &1751760390 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4458895858511860635, guid: 28aeb3961ca483f4386ac58b3740884f,
@@ -25546,6 +25483,74 @@ SpriteRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 6273621501476488111}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8393983586100776959
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1498790761}
+    m_Modifications:
+    - target: {fileID: 2824199098190150042, guid: 72aa9b2f03d65ba44afd951ffe8f63bb,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialStep_00
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306543776695045967, guid: 72aa9b2f03d65ba44afd951ffe8f63bb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306543776695045967, guid: 72aa9b2f03d65ba44afd951ffe8f63bb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306543776695045967, guid: 72aa9b2f03d65ba44afd951ffe8f63bb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306543776695045967, guid: 72aa9b2f03d65ba44afd951ffe8f63bb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306543776695045967, guid: 72aa9b2f03d65ba44afd951ffe8f63bb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306543776695045967, guid: 72aa9b2f03d65ba44afd951ffe8f63bb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306543776695045967, guid: 72aa9b2f03d65ba44afd951ffe8f63bb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306543776695045967, guid: 72aa9b2f03d65ba44afd951ffe8f63bb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306543776695045967, guid: 72aa9b2f03d65ba44afd951ffe8f63bb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5306543776695045967, guid: 72aa9b2f03d65ba44afd951ffe8f63bb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 72aa9b2f03d65ba44afd951ffe8f63bb, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

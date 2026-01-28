@@ -6,10 +6,10 @@ using UnityEngine.PlayerLoop;
 
 public class InstrumentsInput : MonoBehaviour
 {
-    [SerializeField] private Parameters _parameters;
-    [SerializeField] private PlayerInput _playerInput;
-    private PauseMenu _pauseMenu;
-    PlayersManager _playersManager;
+    [SerializeField] protected Parameters _parameters;
+    [SerializeField] protected PlayerInput _playerInput;
+    protected PauseMenu _pauseMenu;
+    protected PlayersManager _playersManager;
 
     private InputMode _inputMode;
     private bool fKeysOn;

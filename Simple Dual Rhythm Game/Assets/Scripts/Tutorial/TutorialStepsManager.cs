@@ -13,7 +13,6 @@ public class TutorialStepsManager : GameLoop
 
     private void Start()
     {
-        //Add all the listeners here
         IncrementStep();
     }
 
@@ -53,24 +52,37 @@ public class TutorialStepsManager : GameLoop
         _currentStep.ProcessEvent(eventType, code);
     }
 
+    private void NotifyStep(EventType eventType)
+    {
+        _currentStep.ProcessEvent(eventType);
+    }
+
     public override void PlayNote(int noteIndex, int playerIndex, int currentPlayerIndex)
     {
         if (currentPlayerIndex == playerIndex)
         {
-            NotifyStep(EventType.KeyPressed, noteIndex);
+            NotifyStep(EventType.NotePlayed, noteIndex);
         }
     }
+
+    public void AnyKeyPressed()
+    {
+        NotifyStep(EventType.AnyKeyPressed);
+    }
+
+    //A function for frets without strum
 
     private void EndOfTutorial()
     {
         Debug.Log("End of tutorial");
-
     }
 }
 
 public enum EventType 
 { 
-    KeyPressed,
+    AnyKeyPressed,
+    FretPressed,
+    NotePlayed,
     SuccessfulNote, //One will have a private int with amount of notes to play?
     BarFinished
 }
