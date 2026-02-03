@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialStep_Intro : MonoBehaviour
+public class TutorialStep_Intro : TutorialStep
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void ProcessEvent(EventType eventType, int code = -1)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (eventType == EventType.AnyKeyPressed)
+        {
+            Debug.Log("First step done.");
+            OnCompleted();
+        }
     }
 }

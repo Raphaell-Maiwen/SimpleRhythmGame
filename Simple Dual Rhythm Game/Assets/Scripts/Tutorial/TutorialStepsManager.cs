@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class TutorialStepsManager : GameLoop
@@ -10,10 +11,16 @@ public class TutorialStepsManager : GameLoop
 
     [SerializeField] private TextMeshProUGUI _instructions;
     [SerializeField] private GameObject _panel;
+    [SerializeField] private GameObject _pressAnyKeyPrompt;
 
     private void Start()
     {
         IncrementStep();
+    }
+
+    public void InjectManager(PlayerInput input)
+    {
+        input.GetComponent<TutorialInstrumentsInput>().SetManager(this);
     }
 
     public void IncrementStep() 
@@ -33,11 +40,22 @@ public class TutorialStepsManager : GameLoop
         _currentStep.gameObject.SetActive(true);
         _currentStep.Init(this); //One will spawn bars, other notes, etc.
 
-        if (_currentStep.Instructions != "")
+        var stepData = _currentStep.StepData;
+
+        if (stepData.Instructions != "")
         {
             _panel.SetActive(true);
-            _panel.transform.position = _currentStep.PanelPos;
-            _instructions.text = _currentStep.Instructions;
+            _panel.transform.position = stepData.PanelPos;
+            _instructions.text = stepData.Instructions;
+
+            if (stepData.PressAnyKeyToContinueWindow)
+            {
+                _pressAnyKeyPrompt.SetActive(true);
+            }
+            else
+            {
+                _pressAnyKeyPrompt.SetActive(false);
+            }
         }
         else
         {

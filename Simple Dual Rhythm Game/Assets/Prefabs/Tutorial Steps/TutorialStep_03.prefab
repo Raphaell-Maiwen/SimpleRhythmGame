@@ -44,5 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a40147084ed2a4ba495a59e2efd8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panelPos: {x: 0, y: 0}
-  _instructions: Let's start by playing any of the arrows (or wasd).
+  _stepData: {fileID: 11400000, guid: e8a43cb2a0057b64eaae8b5c2690f7a8, type: 2}

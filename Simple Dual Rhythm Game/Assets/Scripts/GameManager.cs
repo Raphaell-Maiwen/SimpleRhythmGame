@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] protected EndOfGameScreen _endOfGameScreen;
     [SerializeField] protected PlayersManager _playersManager;
     [SerializeField] protected InstrumentsInput _instrumentsInputPrefab;
+    [SerializeField] protected AudioManager _audioManager;
     public UnityEvent startGame;
     public UnityEvent stopGame;
 
@@ -34,12 +35,7 @@ public class GameManager : MonoBehaviour
         stopGame?.Invoke();
         Time.timeScale = 0f;
 
-        AudioSource[] sounds = GameObject.FindObjectsOfType<AudioSource>();
-
-        foreach (AudioSource sound in sounds)
-        {
-            sound.Stop();
-        }
+        _audioManager.StopAllSounds();
 
         _endOfGameScreen.Init(_playersManager.DeclareWinner());
         _endOfGameScreen.gameObject.SetActive(true);

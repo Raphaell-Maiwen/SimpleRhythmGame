@@ -4,13 +4,9 @@ using UnityEngine;
 
 public abstract class TutorialStep : MonoBehaviour
 {
-    //Add text variable n stuff
+    [SerializeField] private TutorialStepData _stepData;
+    public TutorialStepData StepData => _stepData;
     protected TutorialStepsManager _stepsManager;
-
-    [SerializeField] private Vector2 _panelPos;
-    public Vector2 PanelPos => _panelPos;
-    [SerializeField] private string _instructions;
-    public string Instructions => _instructions;
 
     public void Init(TutorialStepsManager tutorialStepsManager)
     { 

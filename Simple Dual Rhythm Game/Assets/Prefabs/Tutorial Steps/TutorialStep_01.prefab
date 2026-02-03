@@ -44,5 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a40147084ed2a4ba495a59e2efd8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panelPos: {x: 0, y: -50}
-  _instructions: Groovy! Now select a control scheme to get the appropriate instructions.
+  _stepData: {fileID: 11400000, guid: 8e8f9b08a35ccb2408f41b647253d871, type: 2}

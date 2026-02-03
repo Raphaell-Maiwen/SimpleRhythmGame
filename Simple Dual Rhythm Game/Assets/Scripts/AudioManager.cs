@@ -99,6 +99,14 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void StopAllSounds()
+    {
+        foreach (var sound in _gameSounds.Values)
+        {
+            sound.Stop();
+        }
+    }
+
     public void SetBeat(string beatName)
     {
         _beat = _gameSounds[beatName];
