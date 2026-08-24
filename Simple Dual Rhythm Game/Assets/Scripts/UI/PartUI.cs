@@ -168,13 +168,17 @@ public class PartUI : MonoBehaviour
         firstTick = true;
 
         TrackerData newTrackerData = trackers.Dequeue();
-        newTrackerData.startingPos = trackerAnchor.transform.position;
-        newTrackerData.trackerGO.transform.position = newTrackerData.startingPos;
-        newTrackerData.timer = 0;
-        newTrackerData.percent = 0;
-        
-        newTrackerData.trackerGO.GetComponent<Tracker>().AssignState(gameState, _playersManager.CurrentPlayer.index == 0 );
 
+        if (gameState != GameState.Silence)
+        {
+            newTrackerData.startingPos = trackerAnchor.transform.position;
+            newTrackerData.trackerGO.transform.position = newTrackerData.startingPos;
+            newTrackerData.timer = 0;
+            newTrackerData.percent = 0;
+        }
+
+        newTrackerData.trackerGO.GetComponent<Tracker>().AssignState(gameState, _playersManager.CurrentPlayer.index == 0 );
+        
         trackers.Enqueue(newTrackerData);
     }
 
