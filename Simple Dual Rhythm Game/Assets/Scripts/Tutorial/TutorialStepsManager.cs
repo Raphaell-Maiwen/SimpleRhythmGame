@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -5,7 +6,9 @@ using UnityEngine.UI;
 
 public class TutorialStepsManager : GameLoop
 {
-    [SerializeField] private TutorialStep[] _tutorialSteps;
+    [SerializeField] private TutorialConfig _testTutorialConfig;
+    [SerializeField] private TutorialConfigChannel _tutorialConfigChannel;
+    private List<TutorialStep> _tutorialSteps = new List<TutorialStep>();
     private TutorialStep _currentStep;
     private int _currentStepIndex;
 
@@ -15,6 +18,26 @@ public class TutorialStepsManager : GameLoop
 
     private void Start()
     {
+        _tutorialSteps.Clear();
+        
+        #if UNITY_EDITOR
+        if (!_tutorialConfigChannel.GetConfig())
+        {
+            foreach (var step in _testTutorialConfig.TutorialSteps)
+            {
+                _tutorialSteps.Add(step);
+            }
+            
+            IncrementStep();
+            return;
+        }
+        #endif
+
+        foreach (var step in _tutorialConfigChannel.GetConfig().TutorialSteps)
+        {
+            _tutorialSteps.Add(step);
+        }
+        
         IncrementStep();
     }
 
@@ -30,7 +53,7 @@ public class TutorialStepsManager : GameLoop
             _currentStep.gameObject.SetActive(false);
         }
 
-        if (_currentStepIndex >= _tutorialSteps.Length)
+        if (_currentStepIndex >= _tutorialSteps.Count)
         {
             EndOfTutorial();
             return;
@@ -77,10 +100,8 @@ public class TutorialStepsManager : GameLoop
 
     public override void PlayNote(int noteIndex, int playerIndex, int currentPlayerIndex)
     {
-        if (currentPlayerIndex == playerIndex)
-        {
-            NotifyStep(EventType.NotePlayed, noteIndex);
-        }
+        //Something to do with currentPlayerIndex and playerIndex
+        NotifyStep(EventType.NotePlayed, noteIndex);
     }
 
     public void AnyKeyPressed()

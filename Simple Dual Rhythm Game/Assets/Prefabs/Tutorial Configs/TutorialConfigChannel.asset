@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfe7c3b050f26244db5c4b6e32f2ba89, type: 3}
-  m_Name: TutorialStepData_06
+  m_Script: {fileID: 11500000, guid: 18cb0c90552011c489b30f931b3b25c7, type: 3}
+  m_Name: TutorialConfigChannel
   m_EditorClassIdentifier: 
-  _instructions: Good! This plays similarly to the Race Mode. Now, we'll try something
-    a bit harder.
-  _panelPos: {x: 0, y: 0}
