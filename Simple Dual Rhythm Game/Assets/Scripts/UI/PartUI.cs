@@ -23,6 +23,8 @@ public class PartUI : MonoBehaviour
     [SerializeField] private GameObject _playIcon;
     [SerializeField] private GameObject _forgotRecordUI;
 
+    [SerializeField] private GameObject[] _countdownNumbers;
+
     [SerializeField] private Color _player1BarsColor;
     [SerializeField] private Color _player2BarsColor;
     [SerializeField] private Color _player1UIColor;
@@ -180,6 +182,21 @@ public class PartUI : MonoBehaviour
         newTrackerData.trackerGO.GetComponent<Tracker>().AssignState(gameState, _playersManager.CurrentPlayer.index == 0 );
         
         trackers.Enqueue(newTrackerData);
+    }
+
+    public void UpdateCountdown(int metronomeCounter)
+    {
+        _countdownNumbers[metronomeCounter].SetActive(true);
+
+        if (metronomeCounter > 0)
+        {
+            _countdownNumbers[metronomeCounter - 1].SetActive(false);
+        }
+    }
+
+    public void ClearCountdown()
+    {
+        _countdownNumbers[_countdownNumbers.Length -1].SetActive(false);
     }
 
     private void Update() {

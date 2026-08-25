@@ -115,7 +115,7 @@ public class Metronome : GameLoop
         enabled = false;
     }
 
-    void tick()
+    void Tick()
     {
         if (firstTick) {
             firstTick = false;
@@ -153,6 +153,11 @@ public class Metronome : GameLoop
             else {
                 UIScript.UnPlayedAllNotes();
             }
+            
+            if (currentState != GameState.Silence)
+            {
+                UIScript.ClearCountdown();
+            }
 
             if (_isGameEnded) 
             {
@@ -165,6 +170,12 @@ public class Metronome : GameLoop
             notesSucceeded = 0;
             madeMistake = false;
         }
+
+        if (currentState == GameState.Silence)
+        {
+            UIScript.UpdateCountdown(metronomeCounter % beatPerBar);
+        }
+
         //TODO: Reset counter at 0 instead??
         metronomeCounter++;
     }
@@ -213,7 +224,7 @@ public class Metronome : GameLoop
         float timeSpent = Time.time - initialTime;
 
         if (timeSpent >= frequency * metronomeCounter + mod) {
-            tick();
+            Tick();
         }
     }
 
