@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bpm: 70
   beatPerBar: 4
-  bars: 2
+  bars: 1
   inputMode: 1
   fKeysOn: 0
   _soundSetsSO: {fileID: 11400000, guid: 9fb7fde16aac76d43920fc4a00829cdb, type: 2}

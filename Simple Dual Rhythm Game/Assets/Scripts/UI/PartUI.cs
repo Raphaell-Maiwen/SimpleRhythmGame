@@ -77,7 +77,6 @@ public class PartUI : MonoBehaviour
 
         GenerateBars();
         SetupAnchorsAndCamera();
-        PlaceTrackers();
 
         _playersManager.OnCurrentPlayerChanged.AddListener(ChangeBarsColor);
     }
@@ -253,14 +252,6 @@ public class PartUI : MonoBehaviour
             newBarPos.x += barLength * (i);
             Instantiate(barPrefab, newBarPos, Quaternion.identity);
         }
-    }
-
-    private void PlaceTrackers() {
-        Vector3 middleTrackerPos = trackerAnchor.transform.position;
-        middleTrackerPos.x = barLength * _parameters.bars - 7;
-        trackersList[1].transform.position = middleTrackerPos;
-
-        trackersList[2].transform.position = trackerAnchorEnd.transform.position;
     }
 
     private void SetupAnchorsAndCamera() {
