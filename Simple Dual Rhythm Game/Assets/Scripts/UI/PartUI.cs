@@ -82,7 +82,7 @@ public class PartUI : MonoBehaviour
     }
 
     public void SetUp(float bpm, float beatPerBar, UnityAction<NoteIcon> AddTrackedNote, UnityAction<NoteIcon> RemoveTrackedNote) {
-        trackerSpeed = 60 / bpm * beatPerBar * 3 * _parameters.bars;
+        trackerSpeed = 60 / bpm * beatPerBar * (2 + _parameters.bars);
 
         //Assign icons according to controller / keyboard style
         if (_parameters.inputMode == InputMode.keyboard)
@@ -257,17 +257,17 @@ public class PartUI : MonoBehaviour
     private void SetupAnchorsAndCamera() {
         Vector3 entryBarPos = _entryBar.position;
         Vector3 exitBarPos = entryBarPos;
-        exitBarPos.x = exitBarPos.x + barLength * _parameters.bars;
+        exitBarPos.x += barLength * _parameters.bars + barLength;
 
-        float partLength = barLength * _parameters.bars;
+        //float partLength = barLength;
 
         Vector3 trackerAnchorPos = entryBarPos;
-        trackerAnchorPos.x -= partLength;
+        trackerAnchorPos.x -= barLength;
         trackerAnchorPos.z = trackerAnchor.transform.position.z;
         trackerAnchor.transform.position = trackerAnchorPos;
 
         Vector3 trackerAnchorEndPos = exitBarPos;
-        trackerAnchorEndPos.x += partLength;
+        //trackerAnchorEndPos.x += partLength;
         trackerAnchorEndPos.z = trackerAnchor.transform.position.z;
         trackerAnchorEnd.transform.position = trackerAnchorEndPos;
 
