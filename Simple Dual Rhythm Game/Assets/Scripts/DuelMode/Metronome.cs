@@ -123,52 +123,20 @@ public class Metronome : GameLoop
         }
 
         //Check if we're at the beginning of a new bar
-        if (metronomeCounter % beatPerBar == 0) {
-            //For future use?
-        }
-
-        //Check if we're at the beginning of a new cycle
-        if (metronomeCounter % (beatPerBar * bars) == 0) {
-            if (currentState == GameState.Recording && riffLength == 0)
-            {
-                EmptyRiffAlert();
-                metronomeCounter++;
-                return;
-            }
-
+        if (metronomeCounter % beatPerBar == 0 && currentState == GameState.Silence)
+        {
+            Debug.Log("Cool beans");
             ChangeState(currentStateIndex + 1);
             ChangeNextState(nextStateIndex + 1);
-            //Reset the riff if we're recording again, change player if it's a silence...
-            //TODO: How to take the error margin into account?
-            if (currentState == GameState.ChangePlayer) {
-                playersScript.changeCurrentPlayer();
-                ChangeState(currentStateIndex + 1);
-            }
-            if (currentState == GameState.Recording) {
-                riffLength = 0;
-            }
-            else if (currentState == GameState.Playing) {
-                //riffCounter = 0;
-            }
-            else {
-                UIScript.UnPlayedAllNotes();
-            }
+            UIScript.UnPlayedAllNotes();
             
-            if (currentState != GameState.Silence)
-            {
-                UIScript.ClearCountdown();
-            }
-
-            if (_isGameEnded) 
-            {
-                return;
-            }
-
-            SetNextBar();
-
-            //Change this code slightly when supporting multiple bars
-            notesSucceeded = 0;
-            madeMistake = false;
+            UIScript.ClearCountdown();
+        }
+        //Check if we're at the beginning of a new cycle
+        else if (metronomeCounter % (beatPerBar * bars + beatPerBar) == 0)
+        {
+            Debug.Log("Hot potato");
+            NextPhase();
         }
 
         if (currentState == GameState.Silence)
@@ -178,6 +146,45 @@ public class Metronome : GameLoop
 
         //TODO: Reset counter at 0 instead??
         metronomeCounter++;
+    }
+
+    void NextPhase()
+    {
+        if (currentState == GameState.Recording && riffLength == 0)
+        {
+            EmptyRiffAlert();
+            metronomeCounter++;
+            return;
+        }
+
+        ChangeState(currentStateIndex + 1);
+        ChangeNextState(nextStateIndex + 1);
+        //Reset the riff if we're recording again, change player if it's a silence...
+        //TODO: How to take the error margin into account?
+        if (currentState == GameState.ChangePlayer) {
+            playersScript.changeCurrentPlayer();
+            ChangeState(currentStateIndex + 1);
+        }
+        if (currentState == GameState.Recording) {
+            riffLength = 0;
+        }
+        else if (currentState == GameState.Playing) {
+            //riffCounter = 0;
+        }
+        else {
+            UIScript.UnPlayedAllNotes();
+        }
+
+        if (_isGameEnded) 
+        {
+            return;
+        }
+
+        SetNextBar();
+
+        //Change this code slightly when supporting multiple bars
+        notesSucceeded = 0;
+        madeMistake = false;
     }
 
     void ChangeState(int newStateIndex)
