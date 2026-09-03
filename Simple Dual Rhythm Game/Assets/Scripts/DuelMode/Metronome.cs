@@ -125,17 +125,16 @@ public class Metronome : GameLoop
         //Check if we're at the beginning of a new bar
         if (metronomeCounter % beatPerBar == 0 && currentState == GameState.Silence)
         {
-            Debug.Log("Cool beans");
             ChangeState(currentStateIndex + 1);
             ChangeNextState(nextStateIndex + 1);
             UIScript.UnPlayedAllNotes();
             
             UIScript.ClearCountdown();
+            UIScript.ChangeNextStateMessage(nextState);
         }
         //Check if we're at the beginning of a new cycle
         else if (metronomeCounter % (beatPerBar * bars + beatPerBar) == 0)
         {
-            Debug.Log("Hot potato");
             NextPhase();
         }
 
