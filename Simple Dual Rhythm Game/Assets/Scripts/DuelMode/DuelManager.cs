@@ -8,7 +8,6 @@ public class DuelManager : GameManager{
     private int soloIndex;
     [SerializeField] private int solosToDo;
     [SerializeField] private Metronome metronomeScript;
-    [SerializeField] private GameObject _flames;
 
     public void AddSolo() 
     {
@@ -26,16 +25,6 @@ public class DuelManager : GameManager{
         //So that each player plays the required amount of solos
         solosToDo *= 2;
         startGame.AddListener(metronomeScript.StartGame);
-    }
-
-    private void Start()
-    {
-        base.Start();
-
-        if (_parameters.bars > 1) 
-        { 
-            _flames.SetActive(false);
-        }
     }
 
     void LastSolo() 

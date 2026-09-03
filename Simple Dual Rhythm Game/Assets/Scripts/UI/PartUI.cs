@@ -8,6 +8,9 @@ using static Metronome;
 
 public class PartUI : MonoBehaviour
 {
+    [SerializeField] private Camera _camera;
+    [SerializeField] private float[] _orthographicSizeArray;
+    
     [SerializeField] private PlayersManager _playersManager;
     [SerializeField] private Parameters _parameters;
     public GameObject trackerAnchor;
@@ -259,24 +262,25 @@ public class PartUI : MonoBehaviour
         Vector3 exitBarPos = entryBarPos;
         exitBarPos.x += barLength * _parameters.bars + barLength;
 
-        //float partLength = barLength;
-
         Vector3 trackerAnchorPos = entryBarPos;
         trackerAnchorPos.x -= barLength;
         trackerAnchorPos.z = trackerAnchor.transform.position.z;
         trackerAnchor.transform.position = trackerAnchorPos;
 
         Vector3 trackerAnchorEndPos = exitBarPos;
-        //trackerAnchorEndPos.x += partLength;
         trackerAnchorEndPos.z = trackerAnchor.transform.position.z;
         trackerAnchorEnd.transform.position = trackerAnchorEndPos;
 
         Difference = trackerAnchorEnd.transform.position - trackerAnchor.transform.position;
 
-        Vector3 cameraPos = Camera.main.transform.position;
-        cameraPos.x = (entryBarPos.x + exitBarPos.x) / 2;
-        Camera.main.transform.position = cameraPos;
-        Camera.main.orthographicSize = 5 * _parameters.bars;
+        Debug.Log(Camera.main.name);
+        
+        Vector3 cameraPos = _camera.transform.position;
+        
+        cameraPos.x = barLength / 2 * (_parameters.bars - 1);
+        _camera.transform.position = cameraPos;
+        
+        _camera.orthographicSize = _orthographicSizeArray[_parameters.bars - 1];
     }
 
     [System.Serializable]

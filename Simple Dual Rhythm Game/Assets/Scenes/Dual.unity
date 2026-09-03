@@ -2757,12 +2757,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 248800869}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &255044187 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 576325367979858433, guid: 5015d8296bc41314da2693a480e60185,
-    type: 3}
-  m_PrefabInstance: {fileID: 695014536}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &255074284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4884,7 +4878,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: CameraPart
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7226,79 +7220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fefdf31f987c79e499b2813c9ba5a071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &695014536
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 576325367979858433, guid: 5015d8296bc41314da2693a480e60185,
-        type: 3}
-      propertyPath: m_Name
-      value: Flammes
-      objectReference: {fileID: 0}
-    - target: {fileID: 576325367979858433, guid: 5015d8296bc41314da2693a480e60185,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795437926307554392, guid: 5015d8296bc41314da2693a480e60185,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.26722273
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795437926307554392, guid: 5015d8296bc41314da2693a480e60185,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.09218404
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795437926307554392, guid: 5015d8296bc41314da2693a480e60185,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 10.129385
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795437926307554392, guid: 5015d8296bc41314da2693a480e60185,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795437926307554392, guid: 5015d8296bc41314da2693a480e60185,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795437926307554392, guid: 5015d8296bc41314da2693a480e60185,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795437926307554392, guid: 5015d8296bc41314da2693a480e60185,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795437926307554392, guid: 5015d8296bc41314da2693a480e60185,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795437926307554392, guid: 5015d8296bc41314da2693a480e60185,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2795437926307554392, guid: 5015d8296bc41314da2693a480e60185,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5015d8296bc41314da2693a480e60185, type: 3}
 --- !u!1001 &695296659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13363,6 +13284,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff28f11e338852a4f87661873c12ff49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 519420031}
+  _orthographicSizeArray:
+  - 5
+  - 8.35
+  - 5
+  - 5
   _playersManager: {fileID: 1840136374}
   _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   trackerAnchor: {fileID: 2113096679}
@@ -17454,7 +17381,6 @@ MonoBehaviour:
       m_Calls: []
   solosToDo: 3
   metronomeScript: {fileID: 6642081753353289859}
-  _flames: {fileID: 255044187}
 --- !u!1001 &1513310820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18830,6 +18756,16 @@ PrefabInstance:
       value: Skybox
       objectReference: {fileID: 0}
     - target: {fileID: 2049893771317674200, guid: 7c1edca172641f54bb1ef9af40256d48,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600131023413126004, guid: 7c1edca172641f54bb1ef9af40256d48,
+        type: 3}
+      propertyPath: m_Name
+      value: CameraSkybox
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600131023413126004, guid: 7c1edca172641f54bb1ef9af40256d48,
         type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -26004,6 +25940,5 @@ SceneRoots:
   - {fileID: 1179943224}
   - {fileID: 6642081753353289858}
   - {fileID: 1878627208}
-  - {fileID: 695014536}
   - {fileID: 1628939478}
   - {fileID: 4322351482331772340}
