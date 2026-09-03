@@ -127,7 +127,6 @@ public class Metronome : GameLoop
         {
             ChangeState(currentStateIndex + 1);
             ChangeNextState(nextStateIndex + 1);
-            UIScript.UnPlayedAllNotes();
             
             UIScript.ClearCountdown();
             UIScript.ChangeNextStateMessage(nextState);
@@ -236,7 +235,7 @@ public class Metronome : GameLoop
 
     public void AddTrackedNote(NoteIcon noteIcon) 
     {
-        if (currentState == GameState.Playing) 
+        if (currentState == GameState.Playing || (currentState == GameState.Silence && nextState == GameState.Playing)) 
         {
             _currentTrackedNotes.Add(noteIcon);
         }
@@ -288,9 +287,10 @@ public class Metronome : GameLoop
 
     public override void PlayNote(int noteIndex, int playerIndex, int currentPlayerIndex) 
     {
-        if (playerIndex != currentPlayerIndex || currentState == GameState.Silence) {
-            return;
-        }
+        if (playerIndex != currentPlayerIndex) return;
+
+        //Maybe modify with timing, or collision or something
+        if (currentState == GameState.Silence && nextState == GameState.Recording) return;
         
         if (currentState == GameState.Recording) {
             riffLength++;
@@ -298,11 +298,16 @@ public class Metronome : GameLoop
 
             PlayNoteSound(noteIndex);
         }
-        else if (currentState == GameState.Playing) {
+        else if (currentState == GameState.Playing || nextState == GameState.Playing) {
             if (IsRightNote(noteIndex)) {
                 notesSucceeded++;
                 int points = notesSucceeded * 10;
                 playersScript.MakePoints(points);
+
+                if (currentState == GameState.Silence)
+                {
+                    Debug.Log("Made points in silence");
+                }
 
                 //Bonus points for a perfect solo
                 if (notesSucceeded == riffLength && !madeMistake) {

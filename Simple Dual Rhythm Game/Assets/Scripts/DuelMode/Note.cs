@@ -71,12 +71,14 @@ public class NoteIcon : MonoBehaviour
 
     public void SetPlayedIcon()
     {
+        Debug.Log("Played");
         _spriteRenderer.color = _playedColor;
         _tweeners.Add(transform.DOPunchScale(new Vector3(_punchStrenght, _punchStrenght, 0), _punchDuration, _punchVibrato, 0));
     }
 
     public void SetMissedIcon()
     {
+        Debug.Log("Missed");
         _tweeners.Add(_spriteRenderer.DOColor(_missedColor, _fadeColorDuration));
         _tweeners.Add(transform.DOMoveY(transform.position.y - _drownLength, _fadeColorDuration));
     }

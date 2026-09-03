@@ -28,7 +28,7 @@ public class Tracker : MonoBehaviour
             if (_partUIScript.currentTracker == null)
                 _partUIScript.currentTracker = this.gameObject;
         }
-        else if (other.TryGetComponent<NoteIcon>(out NoteIcon noteIcon) && _trackerState != Metronome.GameState.Silence) 
+        else if (other.TryGetComponent<NoteIcon>(out NoteIcon noteIcon))// && _trackerState != Metronome.GameState.Silence) 
         {
             OnNoteTriggerEnter?.Invoke(noteIcon);
         }

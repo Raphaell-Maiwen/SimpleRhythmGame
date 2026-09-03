@@ -277,8 +277,6 @@ public class PartUI : MonoBehaviour
         trackerAnchorEnd.transform.position = trackerAnchorEndPos;
 
         Difference = trackerAnchorEnd.transform.position - trackerAnchor.transform.position;
-
-        Debug.Log(Camera.main.name);
         
         Vector3 cameraPos = _camera.transform.position;
         
