@@ -253,7 +253,12 @@ public class PartUI : MonoBehaviour
         for (int i = 1; i < _parameters.bars; i++) {
             Vector3 newBarPos = Vector3.zero;
             newBarPos.x += barLength * (i);
-            Instantiate(barPrefab, newBarPos, Quaternion.identity);
+            var newBar = Instantiate(barPrefab, newBarPos, Quaternion.identity);
+
+            foreach (var line in newBar.GetComponentsInChildren<Renderer>())
+            {
+                _barsMaterials.Add(line);
+            }
         }
     }
 
