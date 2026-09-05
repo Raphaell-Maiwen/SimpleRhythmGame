@@ -7,12 +7,14 @@ using UnityEngine.PlayerLoop;
 public class InstrumentsInput : MonoBehaviour
 {
     [SerializeField] protected Parameters _parameters;
+    [SerializeField] protected RegisteredKeyboards _registeredKeyboards;
     [SerializeField] protected PlayerInput _playerInput;
     protected PauseMenu _pauseMenu;
     protected PlayersManager _playersManager;
 
     private InputMode _inputMode;
     private bool fKeysOn;
+    private bool _keyboardsAlreadyRegistered;
     
     //<DeviceID, PlayerID>
     private Dictionary<int, int> deviceMapping = new Dictionary<int, int>();
@@ -52,9 +54,31 @@ public class InstrumentsInput : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        if (_keyboardsAlreadyRegistered)
+        {
+            GameObject.FindObjectOfType<GameManager>().startGame?.Invoke();
+            _playersManager.ShowPressInputToJoin(0);
+        }
+    }
+
     private void SetUpKeytars()
     {
-        registeringKeyboards = true;
+        if (_registeredKeyboards.KeyboardsDeviceIDList.Count == 0)
+        {
+            registeringKeyboards = true;
+        }
+        else
+        {
+            foreach (var keyboard in _registeredKeyboards.KeyboardsDeviceIDList)
+            {
+                deviceMapping.Add(keyboard, deviceMapping.Count);
+            }
+
+            _keyboardsAlreadyRegistered = true;
+        }
+
         fKeysOn = _parameters.fKeysOn;
             
         keytarChord = new Dictionary<int, Dictionary<int, bool>>()
@@ -78,6 +102,7 @@ public class InstrumentsInput : MonoBehaviour
                 }
             }
         };
+        
         
         var inputRedirector = gameObject.AddComponent<InputRedirector>();
         inputRedirector.Init(this);
@@ -209,6 +234,7 @@ public class InstrumentsInput : MonoBehaviour
         if (!deviceMapping.ContainsKey(device))
         {
             deviceMapping.Add(device, deviceMapping.Count);
+            _registeredKeyboards.AddKeyboard(device);
         }
 
         if (deviceMapping.Count == 2)
