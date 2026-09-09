@@ -491,6 +491,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fefdf31f987c79e499b2813c9ba5a071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &55384111
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2733648944308008743, guid: 9dbd985607ebe42479f9e05b3dbf27ba,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 249.67488
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733648944308008743, guid: 9dbd985607ebe42479f9e05b3dbf27ba,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 331.4239
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733648944308008743, guid: 9dbd985607ebe42479f9e05b3dbf27ba,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.19182065
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733648944308008743, guid: 9dbd985607ebe42479f9e05b3dbf27ba,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733648944308008743, guid: 9dbd985607ebe42479f9e05b3dbf27ba,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733648944308008743, guid: 9dbd985607ebe42479f9e05b3dbf27ba,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733648944308008743, guid: 9dbd985607ebe42479f9e05b3dbf27ba,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733648944308008743, guid: 9dbd985607ebe42479f9e05b3dbf27ba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733648944308008743, guid: 9dbd985607ebe42479f9e05b3dbf27ba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733648944308008743, guid: 9dbd985607ebe42479f9e05b3dbf27ba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9049505481451018527, guid: 9dbd985607ebe42479f9e05b3dbf27ba,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9dbd985607ebe42479f9e05b3dbf27ba, type: 3}
+--- !u!114 &55384112 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8442640890819651827, guid: 9dbd985607ebe42479f9e05b3dbf27ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 55384111}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfd11c500ac7103418782ce4dce0d53b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &61647589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13162,6 +13242,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff28f11e338852a4f87661873c12ff49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera: {fileID: 519420031}
+  _orthographicSizeArray:
+  - 5
+  - 5
+  - 5
+  - 5
   _playersManager: {fileID: 1532682734}
   _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   trackerAnchor: {fileID: 2113096679}
@@ -13175,6 +13261,7 @@ MonoBehaviour:
   _recordIcon: {fileID: 0}
   _playIcon: {fileID: 0}
   _forgotRecordUI: {fileID: 0}
+  _countdownNumbers: []
   _player1BarsColor: {r: 0.7647059, g: 0, b: 0, a: 1}
   _player2BarsColor: {r: 1, g: 1, b: 1, a: 0}
   _player1UIColor: {r: 0.39607847, g: 0.027450982, b: 0.03529412, a: 1}
@@ -17235,7 +17322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69820d8ffec9f84ebe56703358ae161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioManager: {fileID: 0}
+  _audioManager: {fileID: 55384112}
   _pauseMenu: {fileID: 1318553705777774471}
   _testTutorialConfig: {fileID: 11400000, guid: b546e31deabcac344a4e56a09ec5395e,
     type: 2}
@@ -17261,7 +17348,7 @@ MonoBehaviour:
   _playersManager: {fileID: 1532682734}
   _instrumentsInputPrefab: {fileID: 7996664582601979656, guid: a2894d300b5a1ed4ea3d746db3be0fe3,
     type: 3}
-  _audioManager: {fileID: 0}
+  _audioManager: {fileID: 55384112}
   startGame:
     m_PersistentCalls:
       m_Calls: []
@@ -25732,3 +25819,4 @@ SceneRoots:
   - {fileID: 1781768564}
   - {fileID: 1628939478}
   - {fileID: 2046145683}
+  - {fileID: 55384111}
