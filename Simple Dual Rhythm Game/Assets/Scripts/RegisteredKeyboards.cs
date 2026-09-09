@@ -18,9 +18,5 @@ public class RegisteredKeyboards : ScriptableObject
         _keyboardsDeviceIDList.Clear();
     }
 
-    void OnApplicationQuit()
-    {
-        Debug.Log("Quit");
-        ClearKeyboards();
-    }
+    
 }

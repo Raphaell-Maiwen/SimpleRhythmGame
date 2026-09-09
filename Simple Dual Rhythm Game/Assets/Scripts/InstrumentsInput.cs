@@ -248,4 +248,10 @@ public class InstrumentsInput : MonoBehaviour
             _playersManager.ShowPressInputToJoin(2);
         }
     }
+    
+    void OnApplicationQuit()
+    {
+        Debug.Log("Quit");
+        _registeredKeyboards.ClearKeyboards();
+    }
 }

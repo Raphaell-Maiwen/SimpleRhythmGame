@@ -17279,7 +17279,7 @@ MonoBehaviour:
   _playersManager: {fileID: 1840136374}
   _instrumentsInputPrefab: {fileID: 3959784500827435247, guid: 97a21c45e0cf67c4b973e488e0ac8a96,
     type: 3}
-  _audioManager: {fileID: 0}
+  _audioManager: {fileID: 673865401}
   startGame:
     m_PersistentCalls:
       m_Calls: []
