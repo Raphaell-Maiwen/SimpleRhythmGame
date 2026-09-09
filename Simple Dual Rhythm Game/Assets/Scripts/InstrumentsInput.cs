@@ -66,7 +66,7 @@ public class InstrumentsInput : MonoBehaviour
             _playersManager.ShowPressInputToJoin(0);
         }
 
-        if (_inputMode == InputMode.keytar && GetComponent<InputRedirector>() != null)
+        if (_inputMode == InputMode.keytar && GetComponent<InputRedirector>() == null)
         {
             SetUpInputRedirector(ProcessKeytarInput);
         }
