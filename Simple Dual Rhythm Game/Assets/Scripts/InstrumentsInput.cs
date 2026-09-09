@@ -13,7 +13,7 @@ public class InstrumentsInput : MonoBehaviour
     protected PauseMenu _pauseMenu;
     protected PlayersManager _playersManager;
 
-    private InputMode _inputMode;
+    protected InputMode _inputMode;
     private bool fKeysOn;
     private bool _keyboardsAlreadyRegistered;
     
@@ -180,7 +180,6 @@ public class InstrumentsInput : MonoBehaviour
 
     public void ProcessKeytarInput(int device, int key, bool pressed)
     {
-        Debug.Log("Old one");
         if (registeringKeyboards)
         {
             RegisterKeyboard(device);

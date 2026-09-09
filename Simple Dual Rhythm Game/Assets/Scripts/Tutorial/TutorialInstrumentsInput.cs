@@ -10,7 +10,11 @@ public class TutorialInstrumentsInput : InstrumentsInput
     private void Awake()
     {
         base.Awake();
-        SetUpInputRedirector(ProcessKeytarInput);
+
+        if (_inputMode == InputMode.keytar)
+        {
+            SetUpInputRedirector(ProcessKeytarInput);
+        }
     }
 
     public void SetManager(TutorialStepsManager stepsManager)
@@ -25,7 +29,6 @@ public class TutorialInstrumentsInput : InstrumentsInput
 
     public new void ProcessKeytarInput(int device, int key, bool pressed)
     {
-        Debug.Log("New one");
         base.ProcessKeytarInput(device, key, pressed);
         OnAny();
     }
