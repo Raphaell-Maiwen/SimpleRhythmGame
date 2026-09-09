@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -30,7 +31,7 @@ public class InstrumentsInput : MonoBehaviour
         _pauseMenu = pauseMenu;
     }
 
-    private void Awake()
+    protected void Awake()
     {
         _inputMode = _parameters.inputMode;
         
@@ -60,6 +61,11 @@ public class InstrumentsInput : MonoBehaviour
         {
             GameObject.FindObjectOfType<GameManager>().startGame?.Invoke();
             _playersManager.ShowPressInputToJoin(0);
+        }
+
+        if (_inputMode == InputMode.keytar && GetComponent<InputRedirector>() != null)
+        {
+            SetUpInputRedirector(ProcessKeytarInput);
         }
     }
 
@@ -102,10 +108,13 @@ public class InstrumentsInput : MonoBehaviour
                 }
             }
         };
-        
-        
+    }
+
+    protected void SetUpInputRedirector(Action<int, int, bool> onKeyPressedActionn)
+    {
+        //Maybe we'll need to straight up pass the function
         var inputRedirector = gameObject.AddComponent<InputRedirector>();
-        inputRedirector.Init(this);
+        inputRedirector.Init(onKeyPressedActionn);
     }
 
     private void SetUpPlayerInput()
@@ -171,6 +180,7 @@ public class InstrumentsInput : MonoBehaviour
 
     public void ProcessKeytarInput(int device, int key, bool pressed)
     {
+        Debug.Log("Old one");
         if (registeringKeyboards)
         {
             RegisterKeyboard(device);

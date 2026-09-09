@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class TutorialInstrumentsInput : InstrumentsInput
 {
     [SerializeField] private TutorialStepsManager _stepsManager;
+
+    private void Awake()
+    {
+        base.Awake();
+        SetUpInputRedirector(ProcessKeytarInput);
+    }
 
     public void SetManager(TutorialStepsManager stepsManager)
     {
@@ -13,7 +20,13 @@ public class TutorialInstrumentsInput : InstrumentsInput
 
     private void OnAny()
     {
-        Debug.Log("Any!");
         _stepsManager.AnyKeyPressed();
+    }
+
+    public new void ProcessKeytarInput(int device, int key, bool pressed)
+    {
+        Debug.Log("New one");
+        base.ProcessKeytarInput(device, key, pressed);
+        OnAny();
     }
 }

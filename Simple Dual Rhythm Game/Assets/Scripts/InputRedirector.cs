@@ -17,8 +17,8 @@ public class InputRedirector : MonoBehaviour
     const int RIM_TYPEMOUSE = 0;
     const int RIM_TYPEKEYBOARD = 1;
     const ushort kSpaceScanCode = 0x39;
-
-    private static InstrumentsInput _instrumentsInput;
+    
+    private static Action<int, int, bool> _onAnyKeyPressed;
 
     struct WNDCLASSEXW
     {
@@ -159,9 +159,9 @@ public class InputRedirector : MonoBehaviour
             throw new Win32Exception(Marshal.GetLastWin32Error(), "Failed to register mouse and keyboard for Raw Input.");
     }
 
-    public void Init(InstrumentsInput instrumentsInput)
+    public void Init(Action<int, int, bool> OnKeyPressedAction)
     {
-        _instrumentsInput = instrumentsInput; ;
+        _onAnyKeyPressed += OnKeyPressedAction;
     }
 
     void Awake()
@@ -332,8 +332,8 @@ public class InputRedirector : MonoBehaviour
 
                     //TODO Send notification here
                     //Device key pressed
-                    _instrumentsInput.ProcessKeytarInput((int)header.hDevice, keyboard.VKey , keyPressed);
-
+                    _onAnyKeyPressed?.Invoke((int)header.hDevice, keyboard.VKey , keyPressed);
+                    
                     if (!keyPressed && keyboard.MakeCode == kSpaceScanCode)
                         s_RedirectingInputToUnity = !s_RedirectingInputToUnity;
                 }
