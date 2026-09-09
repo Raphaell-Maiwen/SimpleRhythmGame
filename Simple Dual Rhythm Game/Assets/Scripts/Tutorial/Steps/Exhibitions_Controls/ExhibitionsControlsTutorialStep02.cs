@@ -9,7 +9,7 @@ public class ExhibitionsControlsTutorialStep02 : TutorialStep
         Debug.Log(code);
 
         //Check FretPressed
-        if (eventType == EventType.FretPressed && code == 0)
+        if (eventType == EventType.NotePlayed && code == 0)
         {
             OnCompleted();
         }
