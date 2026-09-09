@@ -15,6 +15,7 @@ public class TutorialInstrumentsInput : InstrumentsInput
         {
             SetUpInputRedirector(ProcessKeytarInput);
             OnFretPressed += _stepsManager.OnFretPressed;
+            OnFretReleased += _stepsManager.OnFretReleased;
         }
     }
 
@@ -30,12 +31,10 @@ public class TutorialInstrumentsInput : InstrumentsInput
 
     public new void ProcessKeytarInput(int device, int key, bool pressed)
     {
-        Debug.Log("ProcessKeytarInput");
         base.ProcessKeytarInput(device, key, pressed);
 
         if (pressed)
         {
-            Debug.Log("Indeed pressed");
             OnAny();
         }
     }

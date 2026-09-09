@@ -101,14 +101,19 @@ public class TutorialStepsManager : GameLoop
     public override void PlayNote(int noteIndex, int playerIndex, int currentPlayerIndex)
     {
         //Something to do with currentPlayerIndex and playerIndex
+        Debug.Log("Event note played");
         NotifyStep(EventType.NotePlayed, noteIndex);
     }
 
     public void OnFretPressed(int noteIndex, int playerIndex)
     {
         //Something to do with currentPlayerIndex and playerIndex
-        Debug.Log("Fret Pressed");
         NotifyStep(EventType.FretPressed, noteIndex);
+    }
+    
+    public void OnFretReleased(int noteIndex, int playerIndex)
+    {
+        NotifyStep(EventType.FretReleased, noteIndex);
     }
 
     public void AnyKeyPressed()
@@ -128,6 +133,7 @@ public enum EventType
 { 
     AnyKeyPressed,
     FretPressed,
+    FretReleased,
     NotePlayed,
     SuccessfulNote, //One will have a private int with amount of notes to play?
     BarFinished
