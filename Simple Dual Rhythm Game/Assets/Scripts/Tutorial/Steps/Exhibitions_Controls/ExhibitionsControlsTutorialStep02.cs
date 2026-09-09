@@ -8,7 +8,8 @@ public class ExhibitionsControlsTutorialStep02 : TutorialStep
     {
         Debug.Log(code);
 
-        if (eventType == EventType.NotePlayed)
+        //Check FretPressed
+        if (eventType == EventType.FretPressed && code == 0)
         {
             OnCompleted();
         }

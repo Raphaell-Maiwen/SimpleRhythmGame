@@ -25,6 +25,8 @@ public class InstrumentsInput : MonoBehaviour
 
     bool registeringKeyboards;
 
+    public Action<int, int> OnFretPressed;
+
     public void Init(PlayersManager playersManager, PauseMenu pauseMenu)
     {
         _playersManager = playersManager;
@@ -213,6 +215,7 @@ public class InstrumentsInput : MonoBehaviour
             if (key > 48 && key < 53)
             {
                 keytarChord[player][key % 49] = pressed;
+                OnFretPressed?.Invoke(key % 49, player);
             }
         }
         else
@@ -221,6 +224,7 @@ public class InstrumentsInput : MonoBehaviour
             if (key > 111 && key < 116)
             {
                 keytarChord[player][key % 112] = pressed;
+                OnFretPressed?.Invoke(key % 112, player);
             }
         }
     }
@@ -260,7 +264,6 @@ public class InstrumentsInput : MonoBehaviour
     
     void OnApplicationQuit()
     {
-        Debug.Log("Quit");
         _registeredKeyboards.ClearKeyboards();
     }
 }

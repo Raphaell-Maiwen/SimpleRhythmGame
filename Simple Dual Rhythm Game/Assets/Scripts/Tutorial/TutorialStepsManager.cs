@@ -104,6 +104,13 @@ public class TutorialStepsManager : GameLoop
         NotifyStep(EventType.NotePlayed, noteIndex);
     }
 
+    public void OnFretPressed(int noteIndex, int playerIndex)
+    {
+        //Something to do with currentPlayerIndex and playerIndex
+        Debug.Log("Fret Pressed");
+        NotifyStep(EventType.FretPressed, noteIndex);
+    }
+
     public void AnyKeyPressed()
     {
         NotifyStep(EventType.AnyKeyPressed);
