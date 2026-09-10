@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -8,13 +9,15 @@ public class TutorialStepsManager : GameLoop
 {
     [SerializeField] private TutorialConfig _testTutorialConfig;
     [SerializeField] private TutorialConfigChannel _tutorialConfigChannel;
-    private List<TutorialStep> _tutorialSteps = new List<TutorialStep>();
+    private List<GameObject> _tutorialSteps = new List<GameObject>();
     private TutorialStep _currentStep;
     private int _currentStepIndex;
 
     [SerializeField] private TextMeshProUGUI _instructions;
     [SerializeField] private GameObject _panel;
     [SerializeField] private GameObject _pressAnyKeyPrompt;
+
+    [SerializeField] private UnityAction _onTutorialEnded;
 
     private void Start()
     {
@@ -25,7 +28,8 @@ public class TutorialStepsManager : GameLoop
         {
             foreach (var step in _testTutorialConfig.TutorialSteps)
             {
-                _tutorialSteps.Add(step);
+                var instantiatedStep = Instantiate(step.gameObject);
+                _tutorialSteps.Add(instantiatedStep);
             }
             
             IncrementStep();
@@ -35,7 +39,8 @@ public class TutorialStepsManager : GameLoop
 
         foreach (var step in _tutorialConfigChannel.GetConfig().TutorialSteps)
         {
-            _tutorialSteps.Add(step);
+            var instantiatedStep = Instantiate(step.gameObject);
+            _tutorialSteps.Add(instantiatedStep);
         }
         
         IncrementStep();
@@ -59,7 +64,7 @@ public class TutorialStepsManager : GameLoop
             return;
         }
 
-        _currentStep = _tutorialSteps[_currentStepIndex];
+        _currentStep = _tutorialSteps[_currentStepIndex].GetComponent<TutorialStep>();
         _currentStep.gameObject.SetActive(true);
         _currentStep.Init(this); //One will spawn bars, other notes, etc.
 
@@ -126,6 +131,7 @@ public class TutorialStepsManager : GameLoop
     private void EndOfTutorial()
     {
         Debug.Log("End of tutorial");
+        _onTutorialEnded?.Invoke();
     }
 }
 

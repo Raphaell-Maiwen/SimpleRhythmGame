@@ -5,6 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TutorialConfig", menuName = "ScriptableObjects/TutorialConfig", order = 1)]
 public class TutorialConfig : ScriptableObject
 {
-    [SerializeField] private TutorialStep[] tutorialSteps;
-    public  TutorialStep[] TutorialSteps => tutorialSteps;
+    [SerializeField] private GameObject[] tutorialSteps;
+    public GameObject[] TutorialSteps => tutorialSteps;
 }
