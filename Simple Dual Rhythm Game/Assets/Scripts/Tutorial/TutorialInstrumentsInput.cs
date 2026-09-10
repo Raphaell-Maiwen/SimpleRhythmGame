@@ -7,7 +7,7 @@ public class TutorialInstrumentsInput : InstrumentsInput
 {
     [SerializeField] private TutorialStepsManager _stepsManager;
 
-    private void Awake()
+    private new void Awake()
     {
         base.Awake();
 

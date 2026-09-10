@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TutorialStepData", menuName = "ScriptableObjects/TutorialStepData", order = 1)]
 public class TutorialStepData : ScriptableObject
 {
+    //Add dictionary of error messages
+    
     [SerializeField] private string _instructions;
     public string Instructions => _instructions;
 

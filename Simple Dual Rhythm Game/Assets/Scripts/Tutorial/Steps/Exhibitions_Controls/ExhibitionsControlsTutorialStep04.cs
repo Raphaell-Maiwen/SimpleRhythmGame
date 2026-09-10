@@ -6,13 +6,14 @@ public class ExhibitionsControlsTutorialStep04 : TutorialStep
 {
     private int notesPressedInARow = 0;
     //Add a "don't release it!" message
+    
+    //reset notesPressedInARow
 
     public override void ProcessEvent(EventType eventType, int code)
     {
         if (eventType == EventType.FretReleased)
         {
             notesPressedInARow = 0;
-            Debug.Log("Streak broken");
             //Showcase "don't release fret!" message
         }
         else if (eventType == EventType.NotePlayed && code == 0)
