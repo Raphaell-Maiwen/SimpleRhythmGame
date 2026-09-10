@@ -33,6 +33,7 @@ public class ExhibitionsControlsTutorialStep06 : TutorialStep
                 if (!_notesPlayed.Contains(code))
                 {
                     //Add visual feedback here
+                    Debug.Log("Added a note");
                     _notesPlayed.Add(code);
                 }
             }
@@ -42,6 +43,8 @@ public class ExhibitionsControlsTutorialStep06 : TutorialStep
                 //Show error message
             }
         }
+
+        Debug.Log("Frets Pressed: " + fretsPressed);
 
         if(_notesPlayed.Count == 4) 
         {

@@ -27,6 +27,7 @@ public class InstrumentsInput : MonoBehaviour
 
     public Action<int, int> OnFretPressed;
     public Action<int, int> OnFretReleased;
+    private bool _isEnterKeyDown;
 
     public void Init(PlayersManager playersManager, PauseMenu pauseMenu)
     {
@@ -192,14 +193,25 @@ public class InstrumentsInput : MonoBehaviour
         int player = deviceMapping[device];
 
         //If we press enter
-        if (pressed && key == 13)
+        if (key == 13)
         {
-            foreach (var note in keytarChord[player].Keys)
+            if (pressed)
             {
-                if (keytarChord[player][note])
+                if (!_isEnterKeyDown)
                 {
-                    _playersManager.ProcessInput(player, note);
+                    _isEnterKeyDown = true;
+                    foreach (var note in keytarChord[player].Keys)
+                    {
+                        if (keytarChord[player][note])
+                        {
+                            _playersManager.ProcessInput(player, note);
+                        }
+                    }
                 }
+            }
+            else
+            {
+                _isEnterKeyDown = false;
             }
         }
         else if (pressed && key == 27)

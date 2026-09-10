@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93426e3238db9754f8a04c5317ec4e10, type: 3}
   m_Name: TutorialConfig_Controls_Exhibitions
   m_EditorClassIdentifier: 
-  tutorialSteps:
+  _tutorialSteps:
   - {fileID: 2824199098190150042, guid: c3237f982ffdd24468c5b994f9ee8850, type: 3}
   - {fileID: 2824199098190150042, guid: 6a8751c38fc58f7459b3dead27604b23, type: 3}
   - {fileID: 2824199098190150042, guid: 7ea9cb7063573884183b19952eca985c, type: 3}
@@ -24,3 +24,4 @@ MonoBehaviour:
   - {fileID: 2824199098190150042, guid: 0abcbc7a2084fa940983b98d2ccd7012, type: 3}
   - {fileID: 2824199098190150042, guid: 877bc5ccc97846a4caaf4fcedd319ef5, type: 3}
   - {fileID: 2824199098190150042, guid: b8cb497b24e10b640a059f072be0aaa4, type: 3}
+  _sceneToLoad: MainMenu

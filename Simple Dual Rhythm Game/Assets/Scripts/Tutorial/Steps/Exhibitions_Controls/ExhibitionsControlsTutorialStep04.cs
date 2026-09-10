@@ -20,8 +20,6 @@ public class ExhibitionsControlsTutorialStep04 : TutorialStep
         {
             notesPressedInARow++;
         }
-        
-        Debug.Log(notesPressedInARow);
 
         if(notesPressedInARow == 3) 
         {

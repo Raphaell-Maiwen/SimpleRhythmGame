@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TutorialStepsManager : GameLoop
@@ -16,8 +17,6 @@ public class TutorialStepsManager : GameLoop
     [SerializeField] private TextMeshProUGUI _instructions;
     [SerializeField] private GameObject _panel;
     [SerializeField] private GameObject _pressAnyKeyPrompt;
-
-    [SerializeField] private UnityAction _onTutorialEnded;
 
     private void Start()
     {
@@ -106,7 +105,6 @@ public class TutorialStepsManager : GameLoop
     public override void PlayNote(int noteIndex, int playerIndex, int currentPlayerIndex)
     {
         //Something to do with currentPlayerIndex and playerIndex
-        Debug.Log("Event note played");
         NotifyStep(EventType.NotePlayed, noteIndex);
     }
 
@@ -126,12 +124,16 @@ public class TutorialStepsManager : GameLoop
         NotifyStep(EventType.AnyKeyPressed);
     }
 
-    //A function for frets without strum
-
     private void EndOfTutorial()
     {
-        Debug.Log("End of tutorial");
-        _onTutorialEnded?.Invoke();
+#if UNITY_EDITOR
+        if (!_tutorialConfigChannel.GetConfig())
+        {
+            SceneManager.LoadScene(_testTutorialConfig.SceneToLoad);
+            return;
+        }
+#endif
+        SceneManager.LoadScene(_tutorialConfigChannel.GetConfig().SceneToLoad);;
     }
 }
 
