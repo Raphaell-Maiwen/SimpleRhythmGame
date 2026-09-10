@@ -8,6 +8,7 @@ public class PressToContinueStep : TutorialStep
     {
         if (eventType == EventType.AnyKeyPressed)
         {
+            Debug.Log("PressToContinueStep");
             OnCompleted();
         }
     }

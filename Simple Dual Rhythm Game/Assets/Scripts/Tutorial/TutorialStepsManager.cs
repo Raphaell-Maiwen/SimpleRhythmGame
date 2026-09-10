@@ -17,6 +17,9 @@ public class TutorialStepsManager : GameLoop
     [SerializeField] private TextMeshProUGUI _instructions;
     [SerializeField] private GameObject _panel;
     [SerializeField] private GameObject _pressAnyKeyPrompt;
+    
+    //Later todo cleanup: remove list from individuals steps
+    private List<int> _keysPressed = new List<int>();
 
     private void Start()
     {
@@ -123,6 +126,7 @@ public class TutorialStepsManager : GameLoop
 
     public void AnyKeyPressed()
     {
+        Debug.Log("AnyKeyPressed");
         NotifyStep(EventType.AnyKeyPressed);
     }
 

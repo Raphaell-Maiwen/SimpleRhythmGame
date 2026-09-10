@@ -104,7 +104,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""Left"",
                     ""type"": ""Button"",
                     ""id"": ""d1c2cce5-ff0b-4207-9ed0-1732302c7846"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false

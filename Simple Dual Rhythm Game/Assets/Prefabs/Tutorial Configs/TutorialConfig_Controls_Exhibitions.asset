@@ -21,7 +21,6 @@ MonoBehaviour:
   - {fileID: 2824199098190150042, guid: 25e9d59181ed28f468c49d36d0b2db22, type: 3}
   - {fileID: 2824199098190150042, guid: df06df6101816ad4b9f038c8d1c0d041, type: 3}
   - {fileID: 2824199098190150042, guid: e4d11d9d25a7be7429021951419da21d, type: 3}
-  - {fileID: 2824199098190150042, guid: 0abcbc7a2084fa940983b98d2ccd7012, type: 3}
   - {fileID: 2824199098190150042, guid: 877bc5ccc97846a4caaf4fcedd319ef5, type: 3}
   - {fileID: 2824199098190150042, guid: b8cb497b24e10b640a059f072be0aaa4, type: 3}
   _sceneToLoad: MainMenu

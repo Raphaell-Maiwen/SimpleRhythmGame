@@ -116,11 +116,11 @@ public class InstrumentsInput : MonoBehaviour
         };
     }
 
-    protected void SetUpInputRedirector(Action<int, int, bool> onKeyPressedActionn)
+    protected void SetUpInputRedirector(Func<int, int, bool, bool> onKeyPressedAction)
     {
         //Maybe we'll need to straight up pass the function
         var inputRedirector = gameObject.AddComponent<InputRedirector>();
-        inputRedirector.Init(onKeyPressedActionn);
+        inputRedirector.Init(onKeyPressedAction);
     }
 
     private void SetUpPlayerInput()
@@ -184,12 +184,12 @@ public class InstrumentsInput : MonoBehaviour
         _playersManager.ProcessInput(-1,-1);
     }
 
-    public void ProcessKeytarInput(int device, int key, bool pressed)
+    public bool ProcessKeytarInput(int device, int key, bool pressed)
     {
         if (registeringKeyboards)
         {
             RegisterKeyboard(device);
-            return;
+            return true;
         }
 
         int player = deviceMapping[device];
@@ -201,14 +201,19 @@ public class InstrumentsInput : MonoBehaviour
             {
                 if (!_isEnterKeyDown)
                 {
+                    bool playedAtLeastOneNote = false;
+                    
                     _isEnterKeyDown = true;
                     foreach (var note in keytarChord[player].Keys)
                     {
                         if (keytarChord[player][note])
                         {
                             _playersManager.ProcessInput(player, note);
+                            playedAtLeastOneNote = true;
                         }
                     }
+
+                    return playedAtLeastOneNote;
                 }
             }
             else
@@ -219,10 +224,12 @@ public class InstrumentsInput : MonoBehaviour
         else if (pressed && key == 27)
         {
             _pauseMenu.TogglePauseMenuUI();
+            return true;
         }
         else if (pressed && key == 82)
         {
             _playersManager.ProcessInput(-1, -1);
+            return true;
         }
         else if (!fKeysOn)
         {
@@ -256,6 +263,8 @@ public class InstrumentsInput : MonoBehaviour
                 }
             }
         }
+
+        return false;
     }
 
     public void TogglePause(bool paused)

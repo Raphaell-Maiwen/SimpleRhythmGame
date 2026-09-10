@@ -5,6 +5,8 @@ using UnityEngine.Timeline;
 
 public class TutorialInstrumentsInput : InstrumentsInput
 {
+    private List<int> _keysPressed = new List<int>();
+    
     [SerializeField] private TutorialStepsManager _stepsManager;
 
     private new void Awake()
@@ -25,18 +27,28 @@ public class TutorialInstrumentsInput : InstrumentsInput
         _stepsManager = stepsManager;
     }
 
+    //Double check that this triggers correctly for a simple keyboard
     private void OnAny()
     {
         _stepsManager.AnyKeyPressed();
     }
 
-    public new void ProcessKeytarInput(int device, int key, bool pressed)
+    public new bool ProcessKeytarInput(int device, int key, bool pressed)
     {
-        base.ProcessKeytarInput(device, key, pressed);
+        bool madeAnAction = base.ProcessKeytarInput(device, key, pressed);
 
-        if (pressed)
+        if (pressed && !_keysPressed.Contains(key) && !madeAnAction)
         {
+            Debug.Log(key + " pressed");
             OnAny();
+            _keysPressed.Add(key);
         }
+        else if (!pressed)
+        {
+            Debug.Log(key + " released");
+            _keysPressed.Remove(key);
+        }
+        
+        return madeAnAction;
     }
 }

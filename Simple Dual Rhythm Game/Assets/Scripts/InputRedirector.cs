@@ -18,7 +18,7 @@ public class InputRedirector : MonoBehaviour
     const int RIM_TYPEKEYBOARD = 1;
     const ushort kSpaceScanCode = 0x39;
     
-    private static Action<int, int, bool> _onAnyKeyPressed;
+    private static Func<int, int, bool, bool> _onAnyKeyPressed;
 
     struct WNDCLASSEXW
     {
@@ -159,7 +159,7 @@ public class InputRedirector : MonoBehaviour
             throw new Win32Exception(Marshal.GetLastWin32Error(), "Failed to register mouse and keyboard for Raw Input.");
     }
 
-    public void Init(Action<int, int, bool> OnKeyPressedAction)
+    public void Init(Func<int, int, bool, bool> OnKeyPressedAction)
     {
         _onAnyKeyPressed = null;
         _onAnyKeyPressed += OnKeyPressedAction;
