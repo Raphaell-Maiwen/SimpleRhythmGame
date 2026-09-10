@@ -161,6 +161,7 @@ public class InputRedirector : MonoBehaviour
 
     public void Init(Action<int, int, bool> OnKeyPressedAction)
     {
+        _onAnyKeyPressed = null;
         _onAnyKeyPressed += OnKeyPressedAction;
     }
 

@@ -43,6 +43,8 @@ public class InstrumentsInput : MonoBehaviour
         if (_inputMode == InputMode.keytar)
         {
             SetUpKeytars();
+            OnFretPressed = null;
+            OnFretReleased = null;
         }
         else
         {            

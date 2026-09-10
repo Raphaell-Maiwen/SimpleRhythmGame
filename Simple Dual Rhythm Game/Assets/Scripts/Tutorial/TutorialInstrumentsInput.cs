@@ -14,6 +14,7 @@ public class TutorialInstrumentsInput : InstrumentsInput
         if (_inputMode == InputMode.keytar)
         {
             SetUpInputRedirector(ProcessKeytarInput);
+            
             OnFretPressed += _stepsManager.OnFretPressed;
             OnFretReleased += _stepsManager.OnFretReleased;
         }
