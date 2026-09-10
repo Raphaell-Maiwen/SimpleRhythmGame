@@ -17,6 +17,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("Race");
     }
 
+    public void StartControlsTutorial()
+    {
+        SceneManager.LoadScene("ControlsTutorial");
+    }
+
     public void QuitGame()
     {
         Application.Quit();

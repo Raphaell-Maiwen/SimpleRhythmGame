@@ -25,4 +25,9 @@ public class EndOfGameScreen : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1f;
     }
+
+    public void Tutorial()
+    {
+        SceneManager.LoadScene("ControlsTutorial");
+    }
 }
