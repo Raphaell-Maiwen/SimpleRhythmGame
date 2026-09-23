@@ -752,6 +752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4447acee4121e9429419ca81deac445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pauseChannel: {fileID: 11400000, guid: 746f83a741497f74ebcc275e378bfd22, type: 2}
   _container: {fileID: 3660981818547338231}
   _onGamePausedOrUnpaused:
     m_PersistentCalls:

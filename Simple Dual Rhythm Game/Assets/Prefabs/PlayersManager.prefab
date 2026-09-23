@@ -56,6 +56,7 @@ MonoBehaviour:
   score1: {fileID: 0}
   score2: {fileID: 0}
   _gameManager: {fileID: 0}
+  _pauseChannel: {fileID: 11400000, guid: 746f83a741497f74ebcc275e378bfd22, type: 2}
 --- !u!114 &7880243775233281832
 MonoBehaviour:
   m_ObjectHideFlags: 0

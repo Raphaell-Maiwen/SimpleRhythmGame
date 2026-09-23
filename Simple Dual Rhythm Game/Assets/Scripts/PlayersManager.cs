@@ -29,6 +29,7 @@ public class PlayersManager : MonoBehaviour
     public Text score2;
 
     [SerializeField] private GameManager _gameManager;
+    [SerializeField] private PauseChannel _pauseChannel;
 
     public class Player {
         public int points;
@@ -85,7 +86,7 @@ public class PlayersManager : MonoBehaviour
                 metronome.OnRPressed(playerIndex, _currentPlayer.index);
             }
         }
-        else
+        else if(!_pauseChannel.IsPaused)
         {
             _gameLoopScript.PlayNote(note, playerIndex, _currentPlayer.index);
         }

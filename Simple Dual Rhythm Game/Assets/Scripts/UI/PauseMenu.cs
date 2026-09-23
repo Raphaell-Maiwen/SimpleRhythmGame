@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class PauseMenu : MonoBehaviour
 {
+    [SerializeField] private PauseChannel _pauseChannel;
     [SerializeField] private GameObject _container;
     bool _isActive = false;
     bool _isPaused = false;
@@ -39,7 +40,8 @@ public class PauseMenu : MonoBehaviour
     public void TogglePauseMenuBehaviour()
     {
         _isPaused = !_isPaused;
-
+        _pauseChannel.IsPaused = _isPaused;
+        
         Time.timeScale = _isPaused ? 0 : 1;
 
         //TODO: Have a centralized audio system
