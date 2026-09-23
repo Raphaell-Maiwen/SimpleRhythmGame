@@ -319,7 +319,21 @@ public class Metronome : GameLoop
             }
             else {
                 madeMistake = true;
-                int penalty = ((riffLength * (riffLength + 1)) / 2 * 10) / riffLength;
+                //int penalty = ((riffLength * (riffLength + 1)) / 2 * 10) / riffLength;
+
+                int penalty = 0;
+                switch (riffLength)
+                {
+                    case < 4: penalty = 10;
+                        break;
+                    case < 10: penalty = 20;
+                        break;
+                    case < 25: penalty = 50;
+                        break;
+                    default: penalty = 100;
+                        break;
+                }
+                
                 playersScript.MakePoints(-penalty);
                 _audioManager.PlaySound("WrongNote");
             }
