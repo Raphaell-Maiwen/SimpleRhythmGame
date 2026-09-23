@@ -17419,7 +17419,7 @@ MonoBehaviour:
   stopGame:
     m_PersistentCalls:
       m_Calls: []
-  solosToDo: 2
+  solosToDo: 3
   metronomeScript: {fileID: 6642081753353289859}
 --- !u!1001 &1513310820
 PrefabInstance:

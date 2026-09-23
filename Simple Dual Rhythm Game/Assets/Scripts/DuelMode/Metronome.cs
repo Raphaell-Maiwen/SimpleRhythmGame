@@ -148,6 +148,12 @@ public class Metronome : GameLoop
 
     void NextPhase()
     {
+        //For test
+        if (currentState == GameState.Recording)
+        {
+            Debug.Log("Break");
+        }
+
         if (currentState == GameState.Recording && riffLength == 0)
         {
             EmptyRiffAlert();
@@ -163,7 +169,7 @@ public class Metronome : GameLoop
             playersScript.changeCurrentPlayer();
             ChangeState(currentStateIndex + 1);
         }
-        if (currentState == GameState.Recording) {
+        if (nextState == GameState.Recording) {
             riffLength = 0;
         }
         else if (currentState == GameState.Playing) {
