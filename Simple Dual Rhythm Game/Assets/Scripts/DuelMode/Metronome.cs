@@ -148,12 +148,6 @@ public class Metronome : GameLoop
 
     void NextPhase()
     {
-        //For test
-        if (currentState == GameState.Recording)
-        {
-            Debug.Log("Break");
-        }
-
         if (currentState == GameState.Recording && riffLength == 0)
         {
             EmptyRiffAlert();
@@ -368,9 +362,9 @@ public class Metronome : GameLoop
     }
 
     //Double-check that this doesn't interact with regular pause
-    public void OnRPressed() 
+    public void OnRPressed(int playerIndex, int currentPlayerIndex) 
     {
-        if(_isPausingForEmptySolo)
+        if(_isPausingForEmptySolo && (playerIndex == -1 || playerIndex == currentPlayerIndex))
         {
             Time.timeScale = 1;
 

@@ -226,9 +226,10 @@ public class InstrumentsInput : MonoBehaviour
             _pauseMenu.TogglePauseMenuUI();
             return true;
         }
+        //Press R : reset
         else if (pressed && key == 82)
         {
-            _playersManager.ProcessInput(-1, -1);
+            _playersManager.ProcessInput(player, -1);
             return true;
         }
         else if (!fKeysOn)

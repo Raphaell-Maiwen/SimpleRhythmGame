@@ -77,15 +77,17 @@ public class PlayersManager : MonoBehaviour
     }
 
     public void ProcessInput(int playerIndex, int note) {
-        _gameLoopScript.PlayNote(note, playerIndex, _currentPlayer.index);
-
-        if (playerIndex == -1 && note == -1) {
+        if (note == -1) {
             Metronome metronome = _gameLoopScript as Metronome;
 
             if (metronome != null)
             {
-                metronome.OnRPressed();
+                metronome.OnRPressed(playerIndex, _currentPlayer.index);
             }
+        }
+        else
+        {
+            _gameLoopScript.PlayNote(note, playerIndex, _currentPlayer.index);
         }
     }
 
