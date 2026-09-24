@@ -11,7 +11,7 @@ public class ExhibitionsControlsTutorialStep04 : TutorialStep
 
     public override void ProcessEvent(EventType eventType, int code)
     {
-        if (eventType == EventType.FretReleased)
+        if (eventType == EventType.FretReleased && code == 0)
         {
             notesPressedInARow = 0;
             //Showcase "don't release fret!" message

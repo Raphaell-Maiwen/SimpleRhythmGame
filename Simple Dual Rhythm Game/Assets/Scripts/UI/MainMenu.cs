@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] private TutorialConfigChannel _tutorialConfigChannel;
+    [SerializeField] private TutorialConfig _tutorialConfig;
+    
     public void PlayGame()
     {
         WindowsDeviceApiService.ListWindowsRawDeviceApiDevicesToConsole();
@@ -19,6 +22,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartControlsTutorial()
     {
+        _tutorialConfigChannel.SetConfig(_tutorialConfig);
         SceneManager.LoadScene("ControlsTutorial");
     }
 

@@ -3887,6 +3887,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac4b0f490d32284aad5ee711413cb5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tutorialConfigChannel: {fileID: 11400000, guid: 0a8b2f345eaf6954bb0fa3ea8a0d3891,
+    type: 2}
+  _tutorialConfig: {fileID: 11400000, guid: b546e31deabcac344a4e56a09ec5395e, type: 2}
 --- !u!1 &845304753
 GameObject:
   m_ObjectHideFlags: 0
@@ -7806,7 +7809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1776051148
 RectTransform:
   m_ObjectHideFlags: 0

@@ -7,19 +7,24 @@ public class TutorialInstrumentsInput : InstrumentsInput
 {
     private List<int> _keysPressed = new List<int>();
     
-    [SerializeField] private TutorialStepsManager _stepsManager;
+    private TutorialStepsManager _stepsManager;
 
-    private new void Awake()
+    protected override void Awake()
     {
         base.Awake();
 
         if (_inputMode == InputMode.keytar)
         {
             SetUpInputRedirector(ProcessKeytarInput);
-            
-            OnFretPressed += _stepsManager.OnFretPressed;
-            OnFretReleased += _stepsManager.OnFretReleased;
         }
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        
+        OnFretPressed += _stepsManager.OnFretPressed;
+        OnFretReleased += _stepsManager.OnFretReleased;
     }
 
     public void SetManager(TutorialStepsManager stepsManager)
@@ -39,13 +44,11 @@ public class TutorialInstrumentsInput : InstrumentsInput
 
         if (pressed && !_keysPressed.Contains(key) && !madeAnAction)
         {
-            Debug.Log(key + " pressed");
             OnAny();
             _keysPressed.Add(key);
         }
         else if (!pressed)
         {
-            Debug.Log(key + " released");
             _keysPressed.Remove(key);
         }
         

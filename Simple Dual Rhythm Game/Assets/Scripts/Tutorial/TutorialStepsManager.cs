@@ -126,7 +126,6 @@ public class TutorialStepsManager : GameLoop
 
     public void AnyKeyPressed()
     {
-        Debug.Log("AnyKeyPressed");
         NotifyStep(EventType.AnyKeyPressed);
     }
 

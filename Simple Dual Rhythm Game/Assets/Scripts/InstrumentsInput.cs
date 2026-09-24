@@ -35,7 +35,7 @@ public class InstrumentsInput : MonoBehaviour
         _pauseMenu = pauseMenu;
     }
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         _inputMode = _parameters.inputMode;
         
@@ -61,7 +61,7 @@ public class InstrumentsInput : MonoBehaviour
         }
     }
 
-    void Start()
+    protected virtual void Start()
     {
         if (_keyboardsAlreadyRegistered)
         {

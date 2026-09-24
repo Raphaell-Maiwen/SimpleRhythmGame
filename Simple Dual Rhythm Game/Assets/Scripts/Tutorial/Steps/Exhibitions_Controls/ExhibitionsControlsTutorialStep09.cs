@@ -33,7 +33,7 @@ public class ExhibitionsControlsTutorialStep09 : TutorialStep
             }
             else
             {
-                Debug.Log("That's not a chord!");
+                Debug.LogError("That's not a chord!");
                 //Show error message
             }
         }
