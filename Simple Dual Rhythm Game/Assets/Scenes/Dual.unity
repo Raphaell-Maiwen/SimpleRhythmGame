@@ -8274,7 +8274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &780926255
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13110,11 +13110,6 @@ MonoBehaviour:
   _nextStateMessagePanel: {fileID: 780926254}
   _nextPlayerText: {fileID: 22481109}
   _nextPhaseText: {fileID: 1024616548}
-  _nextPlayerIcon:
-  - {fileID: 0}
-  - {fileID: 0}
-  _recordIcon: {fileID: 0}
-  _playIcon: {fileID: 0}
   _forgotRecordUI: {fileID: 911326584}
   _countdownNumbers:
   - {fileID: 619391456}

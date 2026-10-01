@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,5 +18,17 @@ public abstract class TutorialStep : MonoBehaviour
     public void OnCompleted()
     {
         _stepsManager.IncrementStep();
+    }
+
+    private void Start()
+    {
+        foreach (var obj in _stepData.ObjectToSpawns)
+        {
+            var spawnedObject = Instantiate(obj.Prefab);
+            spawnedObject.transform.position = obj.TutorialObjectPos;
+            spawnedObject.transform.localScale = new Vector3(obj.Scale, obj.Scale, obj.Scale);
+            
+            spawnedObject.transform.parent = transform;
+        }
     }
 }

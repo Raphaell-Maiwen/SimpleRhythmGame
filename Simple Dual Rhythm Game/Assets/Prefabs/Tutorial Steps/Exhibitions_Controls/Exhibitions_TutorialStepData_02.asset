@@ -16,3 +16,8 @@ MonoBehaviour:
     guitar.
   _panelPos: {x: 0, y: 0}
   _pressAnyKeyToContinueWindow: 0
+  _objectToSpawns:
+  - _prefab: {fileID: 7238977702187599154, guid: 8be9ed64cc1be3c40b572db7a8bada9e,
+      type: 3}
+    _tutorialObjectPos: {x: -0.27, y: 3.24}
+    _scale: 11.6
