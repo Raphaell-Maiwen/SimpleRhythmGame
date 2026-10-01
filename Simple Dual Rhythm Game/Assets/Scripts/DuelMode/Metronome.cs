@@ -128,8 +128,10 @@ public class Metronome : GameLoop
             ChangeState(currentStateIndex + 1);
             ChangeNextState(nextStateIndex + 1);
             
+            bool playAgain = GetPreviousState(currentStateIndex) == GameState.ChangePlayer;
+            
             UIScript.ClearCountdown();
-            UIScript.ChangeNextStateMessage(nextState);
+            UIScript.ChangeNextStateMessage(nextState, playAgain);
         }
         //Check if we're at the beginning of a new cycle
         else if (metronomeCounter % (beatPerBar * bars + beatPerBar) == 0)
@@ -218,10 +220,26 @@ public class Metronome : GameLoop
         }
     }
 
+    GameState GetPreviousState(int newStateIndex)
+    {
+        int previousStateIndex = newStateIndex;
+        previousStateIndex--;
+
+        if (previousStateIndex < 0)
+        {
+            previousStateIndex = statesSeries.Length - 1;
+        }
+        
+        return  statesSeries[previousStateIndex];
+    }
+
     private void SetNextBar()
     {
         UIScript.NewBar(nextState);
-        UIScript.ChangeNextStateMessage(nextState);
+
+        bool playAgain = GetPreviousState(currentStateIndex) != GameState.ChangePlayer && nextState == GameState.Playing;
+        
+        UIScript.ChangeNextStateMessage(nextState, playAgain);
     }
 
     void Update()

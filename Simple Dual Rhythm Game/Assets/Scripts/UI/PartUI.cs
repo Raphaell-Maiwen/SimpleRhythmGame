@@ -21,9 +21,6 @@ public class PartUI : MonoBehaviour
     [SerializeField] private GameObject _nextStateMessagePanel;
     [SerializeField] private TextMeshProUGUI _nextPlayerText;
     [SerializeField] private TextMeshProUGUI _nextPhaseText;
-    [SerializeField] private GameObject[] _nextPlayerIcon;
-    [SerializeField] private GameObject _recordIcon;
-    [SerializeField] private GameObject _playIcon;
     [SerializeField] private GameObject _forgotRecordUI;
 
     [SerializeField] private GameObject[] _countdownNumbers;
@@ -114,36 +111,25 @@ public class PartUI : MonoBehaviour
         }
     }
 
-    public void ChangeNextStateMessage(GameState nextState)
+    public void ChangeNextStateMessage(GameState nextState, bool playAgain)
     {
-        foreach (var icon in _nextPlayerIcon)
-        {
-            icon.SetActive(false);
-        }
-
         if (nextState == GameState.Recording)
         {
             _nextStateMessagePanel.SetActive(true);
             _nextPlayerText.text = "Player " + (_playersManager.CurrentPlayer.index + 1);
             _nextPlayerText.color = _playersManager.CurrentPlayer.index == 0 ? _player1UIColor : _player2UIColor;
             _nextPhaseText.text = ": Prepare to record";
-            _nextPlayerIcon[_playersManager.CurrentPlayer.index].SetActive(true);
-            _recordIcon.SetActive(true);
         }
         else if (nextState == GameState.Playing)
         {
             _nextStateMessagePanel.SetActive(true);
             _nextPlayerText.text = "Player " + (_playersManager.CurrentPlayer.index + 1);
             _nextPlayerText.color = _playersManager.CurrentPlayer.index == 0 ? _player1UIColor : _player2UIColor;
-            _nextPhaseText.text = ": Prepare to play";
-            _nextPlayerIcon[_playersManager.CurrentPlayer.index].SetActive(true);
-            _playIcon.SetActive(true);
+            _nextPhaseText.text = ": Prepare to play" + (playAgain ? " AGAIN!" : "");
         }
         else if (nextState == GameState.Silence)
         {
             _nextStateMessagePanel.SetActive(false);
-            _playIcon.SetActive(false);
-            _recordIcon.SetActive(false);
         }
     }
 
