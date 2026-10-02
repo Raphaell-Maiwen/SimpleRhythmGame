@@ -590,3 +590,417 @@ AssetImportParameters requested are different than current active one (requested
   custom:CustomObjectIndexerAttribute: 3ead1caaecf1c488f20bcfeb224b6af5 -> 
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1328.460287 seconds.
+  path: Assets/Scripts/Tutorial/TutorialStepsManager.cs
+  artifactKey: Guid(f69820d8ffec9f84ebe56703358ae161) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Tutorial/TutorialStepsManager.cs using Guid(f69820d8ffec9f84ebe56703358ae161) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '3fca1e78055aa27d722a7c3950c7a524') in 0.013480 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 8.541477 seconds.
+  path: Assets/Prefabs/Tutorial Configs/TutorialConfig_Controls_Exhibitions.asset
+  artifactKey: Guid(b546e31deabcac344a4e56a09ec5395e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Configs/TutorialConfig_Controls_Exhibitions.asset using Guid(b546e31deabcac344a4e56a09ec5395e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'de11dc02376906d15bbc4eab1dc7cf61') in 0.022830 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 108
+========================================================================
+Received Import Request.
+  Time since last request: 11.153055 seconds.
+  path: Assets/Prefabs/Tutorial Configs/TutorialConfig_Duel.asset
+  artifactKey: Guid(98912038756ac58448e21a84ef10a970) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Configs/TutorialConfig_Duel.asset using Guid(98912038756ac58448e21a84ef10a970) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '4e5396edbdd64ced0b3ac3021b5c905c') in 0.001132 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 29.035587 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel
+  artifactKey: Guid(9415e50337fcdf540928c78b89fcd4ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel using Guid(9415e50337fcdf540928c78b89fcd4ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '8c588074ada5e2faec7089a549e404db') in 0.000877 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 6.978301 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/TutorialStep_Template.prefab
+  artifactKey: Guid(053f0548e9729e948a3497cd604937ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/TutorialStep_Template.prefab using Guid(053f0548e9729e948a3497cd604937ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '538c003b703176718e1d86bc464e7983') in 0.014392 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 22.503462 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/TutorialStep_Template 1.prefab
+  artifactKey: Guid(67fe32c35cef52740a23dc3d2cde6a45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/TutorialStep_Template 1.prefab using Guid(67fe32c35cef52740a23dc3d2cde6a45) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '027b5f1bec614125db42027b462969f2') in 0.001984 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 5.837415 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/TutorialStep_Dual_00.prefab
+  artifactKey: Guid(67fe32c35cef52740a23dc3d2cde6a45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/TutorialStep_Dual_00.prefab using Guid(67fe32c35cef52740a23dc3d2cde6a45) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '3b9e015061433dbaf3819b35d1a8a1c5') in 0.001868 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 23.537827 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStep_00.prefab
+  artifactKey: Guid(67fe32c35cef52740a23dc3d2cde6a45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStep_00.prefab using Guid(67fe32c35cef52740a23dc3d2cde6a45) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'a16979fb731b891acd1ef57e2ba018f5') in 0.002440 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 10.032373 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Exhibitions_TutorialStepData_00.asset
+  artifactKey: Guid(d05d4b7c9ad2ea34b8efc1ff928ec4e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Exhibitions_TutorialStepData_00.asset using Guid(d05d4b7c9ad2ea34b8efc1ff928ec4e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'f15b572be89f8347a6dd6b8f154d6894') in 0.001160 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 5.093921 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00.asset
+  artifactKey: Guid(d05d4b7c9ad2ea34b8efc1ff928ec4e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00.asset using Guid(d05d4b7c9ad2ea34b8efc1ff928ec4e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'f063b4ea287eb050613cd8d9b628c978') in 0.001189 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 13.313960 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStep_00.prefab
+  artifactKey: Guid(67fe32c35cef52740a23dc3d2cde6a45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStep_00.prefab using Guid(67fe32c35cef52740a23dc3d2cde6a45) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '328c6b90e8e42f6cf8ddefc6057b75ee') in 0.002852 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 6
+========================================================================
+Received Import Request.
+  Time since last request: 21.421382 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00.asset
+  artifactKey: Guid(d05d4b7c9ad2ea34b8efc1ff928ec4e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00.asset using Guid(d05d4b7c9ad2ea34b8efc1ff928ec4e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'ead8aed6718506f021275a7d8f0220e9') in 0.001131 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 12.977798 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00 1.asset
+  artifactKey: Guid(de9d3b08afcb5df4a9643eaa84a9c5bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00 1.asset using Guid(de9d3b08afcb5df4a9643eaa84a9c5bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '09ddfbe957dcf0eff177dc7b25227dc2') in 0.001354 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 148.942005 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00 2.asset
+  artifactKey: Guid(58b77e181f53bff4a83fb4fc9774ef52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00 2.asset using Guid(58b77e181f53bff4a83fb4fc9774ef52) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'a30a1cd7821a2f9a482779b2c7f4bcaf') in 0.001338 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 13.473233 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00 1.asset
+  artifactKey: Guid(de9d3b08afcb5df4a9643eaa84a9c5bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00 1.asset using Guid(de9d3b08afcb5df4a9643eaa84a9c5bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '8fcf9df0c336b9f8077286d6a951a5ab') in 0.001250 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 19.281335 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00 3.asset
+  artifactKey: Guid(38e7c08dda285fe40879fa5eadd1216c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00 3.asset using Guid(38e7c08dda285fe40879fa5eadd1216c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '566ed6621b7e1ee5c136023c8281b6f4') in 0.001234 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 5.850686 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00 3.asset
+  artifactKey: Guid(38e7c08dda285fe40879fa5eadd1216c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00 3.asset using Guid(38e7c08dda285fe40879fa5eadd1216c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '213f6c54a9ef7fa37566f235cffe3a09') in 0.001075 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 4.838549 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_0.asset
+  artifactKey: Guid(de9d3b08afcb5df4a9643eaa84a9c5bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_0.asset using Guid(de9d3b08afcb5df4a9643eaa84a9c5bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '193eb1d132b888b2b512af303dadd2e2') in 0.001337 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 2.620467 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_01.asset
+  artifactKey: Guid(de9d3b08afcb5df4a9643eaa84a9c5bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_01.asset using Guid(de9d3b08afcb5df4a9643eaa84a9c5bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '3923a7478cd4d3a17a3a94587c19c22e') in 0.001204 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.779255 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00 2.asset
+  artifactKey: Guid(58b77e181f53bff4a83fb4fc9774ef52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_00 2.asset using Guid(58b77e181f53bff4a83fb4fc9774ef52) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '0fc22ee3f3e19a0e964b435e3254af87') in 0.001148 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 3.075523 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_02.asset
+  artifactKey: Guid(58b77e181f53bff4a83fb4fc9774ef52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_02.asset using Guid(58b77e181f53bff4a83fb4fc9774ef52) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'c5b7acef1f0fda641e882d021e71f42b') in 0.001234 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 3.566692 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_03.asset
+  artifactKey: Guid(38e7c08dda285fe40879fa5eadd1216c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_03.asset using Guid(38e7c08dda285fe40879fa5eadd1216c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'a948447b8f8ad0f0e2d1c91e599bf15e') in 0.001203 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 11.562841 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_03.asset
+  artifactKey: Guid(38e7c08dda285fe40879fa5eadd1216c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_03.asset using Guid(38e7c08dda285fe40879fa5eadd1216c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'a3ba171faa5058a3ab3cbe7568876bc9') in 0.001267 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 26.584408 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_03 1.asset
+  artifactKey: Guid(29260929f272e2c4e857a1929e2bbec5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_03 1.asset using Guid(29260929f272e2c4e857a1929e2bbec5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'c04e8d5ed084ee6b75f5d5b22800e171') in 0.001155 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 2.615139 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_04.asset
+  artifactKey: Guid(29260929f272e2c4e857a1929e2bbec5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_04.asset using Guid(29260929f272e2c4e857a1929e2bbec5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '9103edcc9e45eb9ad01365c80a55513c') in 0.001085 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 43.790146 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_04 1.asset
+  artifactKey: Guid(e5e416250b4393d4cbb52ecd59c389e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_04 1.asset using Guid(e5e416250b4393d4cbb52ecd59c389e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'fb3e258534ecddcaeefe003b281dcebb') in 0.001432 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 3.945459 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_05.asset
+  artifactKey: Guid(e5e416250b4393d4cbb52ecd59c389e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_05.asset using Guid(e5e416250b4393d4cbb52ecd59c389e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'a0e40a028d6c07859354412083602310') in 0.001109 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 27.802598 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_05.asset
+  artifactKey: Guid(e5e416250b4393d4cbb52ecd59c389e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_05.asset using Guid(e5e416250b4393d4cbb52ecd59c389e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '3729c13a75ca2e9bd5f294480b757279') in 0.001416 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 1.162614 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_05 1.asset
+  artifactKey: Guid(ff30216a8ede7fd4bb76623a2c629bcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_05 1.asset using Guid(ff30216a8ede7fd4bb76623a2c629bcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '3d7e5de7b5ffff70613b63f3484d5883') in 0.001133 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 2.413380 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_06.asset
+  artifactKey: Guid(ff30216a8ede7fd4bb76623a2c629bcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_06.asset using Guid(ff30216a8ede7fd4bb76623a2c629bcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '660a5543aea6af069d64c6a7ad4c7cc2') in 0.001081 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 4.711141 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_06.asset
+  artifactKey: Guid(ff30216a8ede7fd4bb76623a2c629bcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_06.asset using Guid(ff30216a8ede7fd4bb76623a2c629bcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'f86f864249a61f7e73b2028e53f2083f') in 0.001122 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 1.656408 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_06 1.asset
+  artifactKey: Guid(d370a7d582042134798e697aac2ac278) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_06 1.asset using Guid(d370a7d582042134798e697aac2ac278) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '7a774dd6668612c121e992dfe0056d13') in 0.001121 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 2.543462 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_07.asset
+  artifactKey: Guid(d370a7d582042134798e697aac2ac278) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_07.asset using Guid(d370a7d582042134798e697aac2ac278) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '50b1e547037a56f86522b5275dc98429') in 0.001132 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 25.300950 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_07 1.asset
+  artifactKey: Guid(66eeec18ba473c24280787164f089211) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_07 1.asset using Guid(66eeec18ba473c24280787164f089211) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '2ab0c44ca6f8815b6dd84a05cd84e80f') in 0.001140 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 2.183719 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_07.asset
+  artifactKey: Guid(d370a7d582042134798e697aac2ac278) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_07.asset using Guid(d370a7d582042134798e697aac2ac278) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '1eb12ffa69518a79e27f30161e1ec0fa') in 0.001158 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 37.043694 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_08.asset
+  artifactKey: Guid(66eeec18ba473c24280787164f089211) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_08.asset using Guid(66eeec18ba473c24280787164f089211) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '467ca6d07b2e8bb1dbaa7201fbb9f888') in 0.001175 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 41.207052 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_08 1.asset
+  artifactKey: Guid(fcc5c8581c3006f43afe8439f8a592bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_08 1.asset using Guid(fcc5c8581c3006f43afe8439f8a592bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '04a4ddba539937d2bad03c34b0638d69') in 0.001117 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 4.885661 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_09.asset
+  artifactKey: Guid(fcc5c8581c3006f43afe8439f8a592bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_09.asset using Guid(fcc5c8581c3006f43afe8439f8a592bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'a99035e2a2d83fe29d3cfd003fca5239') in 0.001274 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 52.537137 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_09.asset
+  artifactKey: Guid(fcc5c8581c3006f43afe8439f8a592bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_09.asset using Guid(fcc5c8581c3006f43afe8439f8a592bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '313ab9780b53da544575d2634e02a7c5') in 0.001178 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 9.901786 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_09 1.asset
+  artifactKey: Guid(3f458011e2b155640a18ad9d0ae00b81) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_09 1.asset using Guid(3f458011e2b155640a18ad9d0ae00b81) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'c0b5a5eb984df59141f1c19d421f1fff') in 0.001146 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 42.535321 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_08.asset
+  artifactKey: Guid(66eeec18ba473c24280787164f089211) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_08.asset using Guid(66eeec18ba473c24280787164f089211) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '5ebdb1d67dcc69eebb8e7de55ad2c9a3') in 0.001153 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 0.284066 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_07.asset
+  artifactKey: Guid(d370a7d582042134798e697aac2ac278) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_07.asset using Guid(d370a7d582042134798e697aac2ac278) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '848dcb8b7a498e1d48f1591fc63c4955') in 0.001790 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 16.835503 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_08_UNNECESSARYMAYBE.asset
+  artifactKey: Guid(66eeec18ba473c24280787164f089211) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_08_UNNECESSARYMAYBE.asset using Guid(66eeec18ba473c24280787164f089211) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '6cd89685825b3ecb707f82a911cb360d') in 0.001191 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 6.116833 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_10.asset
+  artifactKey: Guid(3f458011e2b155640a18ad9d0ae00b81) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_10.asset using Guid(3f458011e2b155640a18ad9d0ae00b81) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'f06798630fd425c34ad8a92aeacda82f') in 0.001235 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 16.422476 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_10.asset
+  artifactKey: Guid(3f458011e2b155640a18ad9d0ae00b81) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_10.asset using Guid(3f458011e2b155640a18ad9d0ae00b81) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: 'de3c57275f2e9ebb348b376b0b7c2351') in 0.001233 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time since last request: 3.760202 seconds.
+  path: Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_04.asset
+  artifactKey: Guid(29260929f272e2c4e857a1929e2bbec5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Tutorial Steps/Duel/Duel_TutorialStepData_04.asset using Guid(29260929f272e2c4e857a1929e2bbec5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '0bc4e2fce2d3c15d00c1ba0766fe2093') in 0.001140 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
