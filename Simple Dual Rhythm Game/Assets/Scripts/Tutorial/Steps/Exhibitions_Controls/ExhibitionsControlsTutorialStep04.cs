@@ -15,9 +15,19 @@ public class ExhibitionsControlsTutorialStep04 : TutorialStep
         {
             notesPressedInARow = 0;
             //Showcase "don't release fret!" message
+
+            foreach (var note in _tutorialNotesList)
+            {
+                note.ResetColor();
+            }
+        }
+        else if (eventType == EventType.FretPressed && code == 0)
+        {
+            _tutorialNotesList[notesPressedInARow].SetPressed();
         }
         else if (eventType == EventType.NotePlayed && code == 0)
         {
+            _tutorialNotesList[notesPressedInARow].SetPlayed();
             notesPressedInARow++;
         }
 

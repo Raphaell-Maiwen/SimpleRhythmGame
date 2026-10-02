@@ -9,6 +9,8 @@ public abstract class TutorialStep : MonoBehaviour
     public TutorialStepData StepData => _stepData;
     protected TutorialStepsManager _stepsManager;
 
+    protected List<TutorialNote> _tutorialNotesList = new List<TutorialNote>();
+
     public void Init(TutorialStepsManager tutorialStepsManager)
     { 
         _stepsManager = tutorialStepsManager;
@@ -29,6 +31,13 @@ public abstract class TutorialStep : MonoBehaviour
             spawnedObject.transform.localScale = new Vector3(obj.Scale, obj.Scale, obj.Scale);
             
             spawnedObject.transform.parent = transform;
+
+            spawnedObject.TryGetComponent(out TutorialNote note);
+
+            if (note != null)
+            {
+                _tutorialNotesList.Add(note);
+            }
         }
     }
 }
