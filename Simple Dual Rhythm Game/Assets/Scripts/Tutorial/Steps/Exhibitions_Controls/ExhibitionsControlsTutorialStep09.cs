@@ -26,6 +26,11 @@ public class ExhibitionsControlsTutorialStep09 : TutorialStep
                 _fretsPressed.Add(code);
                 _tutorialNotesList[code].SetPressed();
             }
+
+            if (_fretsPressed.Count > 1)
+            {
+                HideErrorMessage();
+            }
         }
         else if (eventType == EventType.NotePlayed)
         {
@@ -35,8 +40,7 @@ public class ExhibitionsControlsTutorialStep09 : TutorialStep
             }
             else
             {
-                Debug.LogError("That's not a chord!");
-                //Show error message
+                ShowErrorMessage("notChord");
             }
         }
     }

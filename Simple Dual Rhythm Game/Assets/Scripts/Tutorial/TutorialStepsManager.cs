@@ -15,8 +15,11 @@ public class TutorialStepsManager : GameLoop
     private int _currentStepIndex;
 
     [SerializeField] private TextMeshProUGUI _instructions;
-    [SerializeField] private GameObject _panel;
+    [SerializeField] private RectTransform _panel;
     [SerializeField] private GameObject _pressAnyKeyPrompt;
+
+    [SerializeField] private TextMeshProUGUI _errorMsg;
+    [SerializeField] private RectTransform _errorMsgPanel;
     
     //Later todo cleanup: remove list from individuals steps
     private List<int> _keysPressed = new List<int>();
@@ -74,9 +77,10 @@ public class TutorialStepsManager : GameLoop
 
         if (stepData.Instructions != "")
         {
-            _panel.SetActive(true);
-            _panel.transform.position = stepData.PanelPos;
+            _panel.gameObject.SetActive(true);
+            _panel.anchoredPosition = stepData.PanelPos;
             _instructions.text = stepData.Instructions;
+            _errorMsgPanel.transform.localPosition = stepData.ErrorMsgPos;
 
             if (stepData.PressAnyKeyToContinueWindow)
             {
@@ -89,10 +93,27 @@ public class TutorialStepsManager : GameLoop
         }
         else
         {
-            _panel.SetActive(false);
+            _panel.gameObject.SetActive(false);
         }
+        
+        _errorMsgPanel.gameObject.SetActive(false);
+        _errorMsg.text = "";
 
         _currentStepIndex++;
+        
+        _errorMsgPanel.anchoredPosition = stepData.ErrorMsgPos;
+    }
+
+    public void ShowErrorMessage(string message)
+    {
+        _errorMsg.text = message;
+        _errorMsgPanel.gameObject.SetActive(true);
+    }
+
+    public void HideErrorMessage()
+    {
+        _errorMsg.text = "";
+        _errorMsgPanel.gameObject.SetActive(false);
     }
 
     private void NotifyStep(EventType eventType, int code) 

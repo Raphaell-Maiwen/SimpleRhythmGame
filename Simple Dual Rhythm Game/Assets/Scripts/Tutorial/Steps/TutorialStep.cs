@@ -40,4 +40,14 @@ public abstract class TutorialStep : MonoBehaviour
             }
         }
     }
+
+    protected void ShowErrorMessage(string messageKey)
+    {
+        _stepsManager.ShowErrorMessage(_stepData._errorMessagesDictionary[messageKey]);
+    }
+
+    protected void HideErrorMessage()
+    {
+        _stepsManager.HideErrorMessage();
+    }
 }

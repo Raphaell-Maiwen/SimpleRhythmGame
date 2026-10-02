@@ -5,8 +5,6 @@ using UnityEngine;
 public class ExhibitionsControlsTutorialStep04 : TutorialStep
 {
     private int notesPressedInARow = 0;
-    //Add a "don't release it!" message
-    
     //reset notesPressedInARow
 
     public override void ProcessEvent(EventType eventType, int code)
@@ -14,7 +12,7 @@ public class ExhibitionsControlsTutorialStep04 : TutorialStep
         if (eventType == EventType.FretReleased && code == 0)
         {
             notesPressedInARow = 0;
-            //Showcase "don't release fret!" message
+            ShowErrorMessage("dontRelease");
 
             foreach (var note in _tutorialNotesList)
             {
@@ -24,6 +22,7 @@ public class ExhibitionsControlsTutorialStep04 : TutorialStep
         else if (eventType == EventType.FretPressed && code == 0)
         {
             _tutorialNotesList[notesPressedInARow].SetPressed();
+            HideErrorMessage();
         }
         else if (eventType == EventType.NotePlayed && code == 0)
         {

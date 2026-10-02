@@ -15,6 +15,11 @@ MonoBehaviour:
   _instructions: Now, let's play all the notes! Hold the 1 key and press enter, then
     do the same with the 2 key, up until 4, ONE AT A TIME!
   _panelPos: {x: 0, y: 0}
+  _errorMsgPos: {x: 0, y: -90}
+  _errorMessagesDictionary:
+    _serializedList:
+    - Key: chord
+      Value: Hey rockstar! Just hold down ONE number key at a time. No chord allowed!
   _pressAnyKeyToContinueWindow: 0
   _objectToSpawns:
   - _prefab: {fileID: 1198711585565915656, guid: 8be9ed64cc1be3c40b572db7a8bada9e,

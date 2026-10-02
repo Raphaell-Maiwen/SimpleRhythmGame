@@ -22,8 +22,11 @@ public class ExhibitionsControlsTutorialStep06 : TutorialStep
         if (eventType == EventType.FretReleased)
         {
             _fretsPressed.Remove(code);
-            
-            //if not played only??
+            if (_fretsPressed.Count == 1)
+            {
+                HideErrorMessage();
+            }
+
             if (!_notesPlayed.Contains(code))
             {
                 _tutorialNotesList[code].ResetColor();
@@ -52,8 +55,7 @@ public class ExhibitionsControlsTutorialStep06 : TutorialStep
             }
             else if (_fretsPressed.Count > 1)
             {
-                Debug.Log("Non non, that's a chord.");
-                //Show error message
+                ShowErrorMessage("chord");
             }
         }
 
