@@ -17,12 +17,14 @@ public class ExhibitionsControlsTutorialStep09 : TutorialStep
         if (eventType == EventType.FretReleased)
         {
             _fretsPressed.Remove(code);
+            _tutorialNotesList[code].ResetColor();
         }
         else if (eventType == EventType.FretPressed)
         {
             if (!_fretsPressed.Contains(code))
             {
                 _fretsPressed.Add(code);
+                _tutorialNotesList[code].SetPressed();
             }
         }
         else if (eventType == EventType.NotePlayed)

@@ -16,3 +16,20 @@ MonoBehaviour:
     do the same with the 2 key, up until 4, ONE AT A TIME!
   _panelPos: {x: 0, y: 0}
   _pressAnyKeyToContinueWindow: 0
+  _objectToSpawns:
+  - _prefab: {fileID: 1198711585565915656, guid: 8be9ed64cc1be3c40b572db7a8bada9e,
+      type: 3}
+    _tutorialObjectPos: {x: -3.5, y: 3.24}
+    _scale: 11.6
+  - _prefab: {fileID: 1198711585565915656, guid: 4dbd46cce8430254a83cb16a150c5757,
+      type: 3}
+    _tutorialObjectPos: {x: -1.17, y: 3.24}
+    _scale: 11.6
+  - _prefab: {fileID: 1198711585565915656, guid: d38237a41fe2820409945967ea459cf6,
+      type: 3}
+    _tutorialObjectPos: {x: 1.16, y: 3.24}
+    _scale: 11.6
+  - _prefab: {fileID: 1198711585565915656, guid: e38caa3b634381449a461354b85ed3c8,
+      type: 3}
+    _tutorialObjectPos: {x: 3.5, y: 3.24}
+    _scale: 11.6
