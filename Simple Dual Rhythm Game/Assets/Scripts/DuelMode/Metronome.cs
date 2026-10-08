@@ -31,7 +31,8 @@ public class Metronome : MonoBehaviour
     [SerializeField] private PlayersManager playersScript;
 
     bool firstTick = true;
-    
+
+    public Action<int,int> OnTempoChanged;
     public Action OnFirstTick;
     public Action<int> OnTick;
     public Action OnNextPhase;
@@ -72,12 +73,12 @@ public class Metronome : MonoBehaviour
         mod = 0;
         initialTime = Time.time;
         
+        OnTempoChanged?.Invoke(bpm, beatPerBar);
         _audioManager.SetBeatSpeed(bpm);
     }
 
     void Tick()
     {
-        //THAT
         if (firstTick) {
             firstTick = false;
             OnFirstTick?.Invoke();

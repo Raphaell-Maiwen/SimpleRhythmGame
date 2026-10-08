@@ -36,6 +36,7 @@ public class DuelMode : GameLoop
         _metronome.OnFirstTick += FirstTick;
         _metronome.OnTick += Tick;
         _metronome.OnNewBar += NewBar;
+        _metronome.OnTempoChanged += ChangeTempo;
     }
 
     private void Start()
@@ -312,15 +313,14 @@ public class DuelMode : GameLoop
         }
     }
 
-    public void ChangeTempo()
+    public void ChangeTempo(int bpm, int beatPerBar)
     {
-        UIScript.ChangeTempo(_parameters.bpm, _parameters.beatPerBar);
+        UIScript.ChangeTempo(bpm, beatPerBar);
     }
 
     public void SetLastSolo()
     {
         _isLastSolo = true;
-        ChangeTempo();
     }
     
     void EndGame() 
