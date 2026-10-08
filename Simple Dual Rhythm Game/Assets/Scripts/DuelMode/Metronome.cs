@@ -12,6 +12,8 @@ public class Metronome : MonoBehaviour
     [SerializeField] private AudioManager _audioManager;
     [SerializeField] private PauseMenu _pauseMenu;
     
+    [SerializeField] private PartUI UIScript;
+    
     public int bpm;
 
     [HideInInspector]
@@ -31,11 +33,8 @@ public class Metronome : MonoBehaviour
     public float weakTick;
 
     [SerializeField] private PlayersManager playersScript;
-    [SerializeField] private PartUI UIScript;
 
     private List<NoteIcon> _currentTrackedNotes = new List<NoteIcon>();
-
-    private int riffLength;
 
     bool firstTick = true;
     bool madeMistake = false;
@@ -45,12 +44,12 @@ public class Metronome : MonoBehaviour
     private bool _isPausingForEmptySolo;
     private bool _isGameEnded;
 
-    GameState currentState = GameState.Playing;
-    GameState nextState = GameState.Playing;
-
     public GameState[] statesSeries;
     int currentStateIndex;
     private int nextStateIndex;
+    
+    public GameState currentState = GameState.Playing;
+    public GameState nextState = GameState.Playing;
 
     private void Awake() 
     {
@@ -142,12 +141,12 @@ public class Metronome : MonoBehaviour
 
     void NextPhase()
     {
-        if (currentState == GameState.Recording && riffLength == 0)
+        /*if (currentState == GameState.Recording && riffLength == 0)
         {
             EmptyRiffAlert();
             metronomeCounter++;
             return;
-        }
+        }*/
 
         ChangeState(currentStateIndex + 1);
         ChangeNextState(nextStateIndex + 1);
@@ -158,9 +157,10 @@ public class Metronome : MonoBehaviour
             ChangeState(currentStateIndex + 1);
         }
         if (nextState == GameState.Recording) {
-            riffLength = 0;
+            //riffLength = 0;
         }
         else if (currentState == GameState.Playing) {
+            //Actual comment
             //riffCounter = 0;
         }
         else {
@@ -228,9 +228,9 @@ public class Metronome : MonoBehaviour
     {
         UIScript.NewBar(nextState);
 
-        bool playAgain = GetPreviousState(currentStateIndex) != GameState.ChangePlayer && nextState == GameState.Playing;
+        /*bool playAgain = GetPreviousState(currentStateIndex) != GameState.ChangePlayer && nextState == GameState.Playing;
         
-        UIScript.ChangeNextStateMessage(nextState, playAgain);
+        UIScript.ChangeNextStateMessage(nextState, playAgain);*/
     }
 
     void Update()
@@ -244,15 +244,15 @@ public class Metronome : MonoBehaviour
 
     public void AddTrackedNote(NoteIcon noteIcon) 
     {
-        if (currentState == GameState.Playing || (currentState == GameState.Silence && nextState == GameState.Playing)) 
+        /*if (currentState == GameState.Playing || (currentState == GameState.Silence && nextState == GameState.Playing)) 
         {
             _currentTrackedNotes.Add(noteIcon);
-        }
+        }*/
     }
 
     public void RemoveTrackedIcon(NoteIcon noteIcon) 
     {
-        if (currentState == GameState.Playing)
+        /*if (currentState == GameState.Playing)
         {
             if (noteIcon.GetState() == NoteState.Unplayed) 
             {
@@ -260,12 +260,12 @@ public class Metronome : MonoBehaviour
             }
 
             _currentTrackedNotes.Remove(noteIcon);
-        }
+        }*/
     }
 
     bool IsRightNote(int noteIndex) 
     {
-        float smallestSqrDistance = 1000f;
+        /*float smallestSqrDistance = 1000f;
         NoteIcon closestIcon = null;
 
         foreach(NoteIcon note in _currentTrackedNotes)
@@ -289,22 +289,9 @@ public class Metronome : MonoBehaviour
         {
             closestIcon.ChangeState(NoteState.Wrong);
             _currentTrackedNotes.Remove(closestIcon);
-        }
+        }*/
 
         return false;
-    }
-
-    
-
-    private void PlayNoteSound(int noteIndex) {
-        if (!_isLastSolo)
-        {
-            _audioManager.PlayNote(playersScript.CurrentPlayer.index, noteIndex);
-        }
-        else
-        {
-            _audioManager.PlayFinaleNote(playersScript.CurrentPlayer.index, noteIndex);
-        }
     }
 
     private void OnGamePaused(bool paused) 
@@ -320,11 +307,11 @@ public class Metronome : MonoBehaviour
 
     private void EmptyRiffAlert() 
     {
-        _isPausingForEmptySolo = true;
+        /*_isPausingForEmptySolo = true;
         _pauseMenu.TogglePauseMenuBehaviour();
         UIScript.SetForgotRecordUI(true);
 
-        Time.timeScale = 0;
+        Time.timeScale = 0;*/
     }
 
     //Double-check that this doesn't interact with regular pause
@@ -340,10 +327,8 @@ public class Metronome : MonoBehaviour
 
             _pauseMenu.TogglePauseMenuBehaviour();
             _isPausingForEmptySolo = false;
-            UIScript.SetForgotRecordUI(false);
-
-            //??
-            UIScript.currentTracker = null;
+            /*UIScript.SetForgotRecordUI(false);
+            UIScript.currentTracker = null;*/
         }
     }
 }

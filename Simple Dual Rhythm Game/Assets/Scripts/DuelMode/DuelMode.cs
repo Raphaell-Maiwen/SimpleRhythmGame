@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class DuelMode : GameLoop
 {
+    [SerializeField] private PartUI UIScript;
+    [SerializeField] private Metronome _metronome;
+    
+    
+    private int riffLength;
+    
     public override void PlayNote(int noteIndex, int playerIndex, int currentPlayerIndex) 
     {
-        Debug.Log("noteIndex");
-        /*if (playerIndex != currentPlayerIndex) return;
+        if (playerIndex != currentPlayerIndex) return;
 
         //Maybe modify with timing, or collision or something
-        if (currentState == GameState.Silence && nextState == GameState.Recording) return;
+        if (_metronome.currentState == GameState.Silence && _metronome.nextState == GameState.Recording) return;
         
-        if (currentState == GameState.Recording) {
+        if (_metronome.currentState == GameState.Recording) {
             riffLength++;
             UIScript.DrawNewNote(noteIndex);
 
             PlayNoteSound(noteIndex);
         }
-        else if (currentState == GameState.Playing || nextState == GameState.Playing) {
+        /*else if (currentState == GameState.Playing || nextState == GameState.Playing) {
             if (IsRightNote(noteIndex)) {
                 notesSucceeded++;
                 int points = notesSucceeded * 10;
@@ -57,6 +62,17 @@ public class DuelMode : GameLoop
                 playersScript.MakePoints(-penalty);
                 _audioManager.PlaySound("WrongNote");
             }
+        }*/
+    }
+    
+    private void PlayNoteSound(int noteIndex) {
+        /*if (!_isLastSolo)
+        {
+            _audioManager.PlayNote(playersScript.CurrentPlayer.index, noteIndex);
+        }
+        else
+        {
+            _audioManager.PlayFinaleNote(playersScript.CurrentPlayer.index, noteIndex);
         }*/
     }
 }

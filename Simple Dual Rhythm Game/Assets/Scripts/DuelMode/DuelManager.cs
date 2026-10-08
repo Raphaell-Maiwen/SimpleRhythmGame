@@ -32,6 +32,5 @@ public class DuelManager : GameManager{
         metronomeScript.bpm += (metronomeScript.bpm / 5);
         metronomeScript.ChangeTempo();
         metronomeScript.SetLastSolo();
-        //TODO: Change visuals?
     }
 }
