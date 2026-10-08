@@ -12,10 +12,10 @@ public class DuelMode : GameLoop
     [SerializeField] private PlayersManager playersScript;
     
     public GameState[] statesSeries;
-    public GameState currentState = GameState.Playing;
-    public GameState nextState = GameState.Playing;
-    public int currentStateIndex;
-    public int nextStateIndex;
+    GameState currentState = GameState.Playing;
+    GameState nextState = GameState.Playing;
+    int currentStateIndex;
+    int nextStateIndex;
     
     private int _riffLength;
     private int notesSucceeded;
