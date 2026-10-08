@@ -8,6 +8,7 @@ public class DuelMode : GameLoop
     [SerializeField] private Parameters _parameters;
     [SerializeField] private PartUI UIScript;
     [SerializeField] private Metronome _metronome;
+    [SerializeField] private DuelManager _gameManager;
     [SerializeField] private PlayersManager playersScript;
     
     public GameState[] statesSeries;
@@ -29,11 +30,13 @@ public class DuelMode : GameLoop
         
         _metronome.OnNextPhase += NextPhase;
         _metronome.OnTick += Tick;
+        _metronome.OnNewBar += NewBar;
     }
 
     private void Start()
     {
         UIScript.SetUp(_parameters.bpm, _parameters.beatPerBar, AddTrackedNote, RemoveTrackedIcon);
+        //_gameManager.stopGame.AddListener(EndGame);
     }
 
     public override void PlayNote(int noteIndex, int playerIndex, int currentPlayerIndex) 
@@ -49,7 +52,7 @@ public class DuelMode : GameLoop
 
             PlayNoteSound(noteIndex);
         }
-        /*else if (currentState == GameState.Playing || nextState == GameState.Playing) {
+        else if (currentState == GameState.Playing || nextState == GameState.Playing) {
             if (IsRightNote(noteIndex)) {
                 notesSucceeded++;
                 int points = notesSucceeded * 10;
@@ -61,7 +64,7 @@ public class DuelMode : GameLoop
                 }
 
                 //Bonus points for a perfect solo
-                if (notesSucceeded == riffLength && !madeMistake) {
+                if (notesSucceeded == _riffLength && !madeMistake) {
                     //Should be 200 for composer and 400 for the other, will change at some point
                     playersScript.MakePoints(400);
                 }
@@ -73,7 +76,7 @@ public class DuelMode : GameLoop
                 //int penalty = ((riffLength * (riffLength + 1)) / 2 * 10) / riffLength;
 
                 int penalty = 0;
-                switch (riffLength)
+                switch (_riffLength)
                 {
                     case < 4: penalty = 10;
                         break;
@@ -88,9 +91,14 @@ public class DuelMode : GameLoop
                 playersScript.MakePoints(-penalty);
                 _audioManager.PlaySound("WrongNote");
             }
-        }*/
+        }
     }
-    
+
+    public override bool GetEntryGatePosition()
+    {
+        return currentState == GameState.Silence;
+    }
+
     bool IsRightNote(int noteIndex) 
     {
         float smallestSqrDistance = 1000f;
@@ -132,8 +140,6 @@ public class DuelMode : GameLoop
     
     void NextPhase()
     {
-        Debug.Log("Next Phase");
-        
         /*if (currentState == GameState.Recording && riffLength == 0)
         {
             EmptyRiffAlert();
@@ -141,13 +147,14 @@ public class DuelMode : GameLoop
             return;
         }*/
 
-        _metronome.ChangeState(currentStateIndex + 1);
-        _metronome.ChangeNextState(nextStateIndex + 1);
+        ChangeState(currentStateIndex + 1);
+        ChangeNextState(nextStateIndex + 1);
+        
         //Reset the riff if we're recording again, change player if it's a silence...
         //TODO: How to take the error margin into account?
         if (currentState == GameState.ChangePlayer) {
             playersScript.changeCurrentPlayer();
-            _metronome.ChangeState(currentStateIndex + 1);
+            ChangeState(currentStateIndex + 1);
         }
         if (nextState == GameState.Recording) {
             _riffLength = 0;
@@ -172,6 +179,49 @@ public class DuelMode : GameLoop
         madeMistake = false;
     }
     
+    public void ChangeState(int newStateIndex)
+    {
+        currentStateIndex = newStateIndex;
+
+        if (currentStateIndex == statesSeries.Length)
+        {
+            currentStateIndex = 0;
+            UIScript.EraseAllNotes();
+            _gameManager.AddSolo();
+        }
+
+        currentState = statesSeries[currentStateIndex];
+    }
+    
+    public void ChangeNextState(int newStateIndex)
+    {
+        nextStateIndex = newStateIndex;
+        
+        if (nextStateIndex == statesSeries.Length)
+        {
+            nextStateIndex = 0;
+        }
+        
+        nextState = statesSeries[nextStateIndex];
+        
+        if (nextState == GameState.ChangePlayer)
+        {
+            nextStateIndex++;
+            nextState = statesSeries[nextStateIndex];
+        }
+    }
+
+    private void NewBar()
+    {
+        ChangeState(currentStateIndex + 1);
+        ChangeNextState(nextStateIndex + 1);
+            
+        bool playAgain = _metronome.GetPreviousState(currentStateIndex) == GameState.ChangePlayer;
+            
+        UIScript.ClearCountdown();
+        UIScript.ChangeNextStateMessage(nextState, playAgain);
+    }
+
     private void SetNextBar()
     {
         UIScript.NewBar(nextState);

@@ -134,6 +134,11 @@ public class TutorialStepsManager : GameLoop
         _audioManager.PlayNote(playerIndex, noteIndex);
     }
 
+    public override bool GetEntryGatePosition()
+    {
+        return true;
+    }
+
     public void OnFretPressed(int noteIndex, int playerIndex)
     {
         //Something to do with currentPlayerIndex and playerIndex

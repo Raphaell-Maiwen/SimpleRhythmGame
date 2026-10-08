@@ -89,6 +89,11 @@ public class RaceMode : GameLoop
         }
     }
 
+    public override bool GetEntryGatePosition()
+    {
+        return true;
+    }
+
     public void PlaySound(int soundIndex) 
     {
         if (soundIndex > -1)

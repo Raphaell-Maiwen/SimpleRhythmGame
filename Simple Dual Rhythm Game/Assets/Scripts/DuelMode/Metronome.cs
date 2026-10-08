@@ -8,7 +8,7 @@ using UnityEngine.Audio;
 public class Metronome : MonoBehaviour
 {
     [SerializeField] private Parameters _parameters;
-    [SerializeField] private DuelManager _gameManager;
+    
     [SerializeField] private DuelMode _duelMode;
     [SerializeField] private AudioManager _audioManager;
     [SerializeField] private PauseMenu _pauseMenu;
@@ -42,6 +42,7 @@ public class Metronome : MonoBehaviour
     
     public Action<int> OnTick;
     public Action OnNextPhase;
+    public Action OnNewBar;
 
     private void Awake() 
     {
@@ -61,7 +62,6 @@ public class Metronome : MonoBehaviour
 
         //Cleaner: register itself through a SO?
         _pauseMenu._onGamePausedOrUnpaused.AddListener(OnGamePaused);
-        _gameManager.stopGame.AddListener(EndGame);
     }
 
     public void SetUp()
@@ -102,16 +102,9 @@ public class Metronome : MonoBehaviour
         }
 
         //Check if we're at the beginning of a new bar
-        if (metronomeCounter % beatPerBar == 0 && _duelMode.currentState == GameState.Silence)
+        if (metronomeCounter % beatPerBar == 0 && _duelMode.GetEntryGatePosition())
         {
-            Debug.Log("New Bar");
-            ChangeState(_duelMode.currentStateIndex + 1);
-            ChangeNextState(_duelMode.nextStateIndex + 1);
-            
-            bool playAgain = GetPreviousState(_duelMode.currentStateIndex) == GameState.ChangePlayer;
-            
-            UIScript.ClearCountdown();
-            UIScript.ChangeNextStateMessage(_duelMode.nextState, playAgain);
+            OnNewBar?.Invoke();
         }
         //Check if we're at the beginning of a new cycle
         else if (metronomeCounter % (beatPerBar * bars + beatPerBar) == 0)
@@ -125,39 +118,7 @@ public class Metronome : MonoBehaviour
         metronomeCounter++;
     }
 
-    public void ChangeState(int newStateIndex)
-    {
-        _duelMode.currentStateIndex = newStateIndex;
-
-        if (_duelMode.currentStateIndex == _duelMode.statesSeries.Length)
-        {
-            _duelMode.currentStateIndex = 0;
-            UIScript.EraseAllNotes();
-            _gameManager.AddSolo();
-        }
-
-        _duelMode.currentState = _duelMode.statesSeries[_duelMode.currentStateIndex];
-    }
-
-    public void ChangeNextState(int newStateIndex)
-    {
-        _duelMode.nextStateIndex = newStateIndex;
-        
-        if (_duelMode.nextStateIndex == _duelMode.statesSeries.Length)
-        {
-            _duelMode.nextStateIndex = 0;
-        }
-        
-        _duelMode.nextState = _duelMode.statesSeries[_duelMode.nextStateIndex];
-        
-         if (_duelMode.nextState == GameState.ChangePlayer)
-        {
-            _duelMode.nextStateIndex++;
-            _duelMode.nextState = _duelMode.statesSeries[_duelMode.nextStateIndex];
-        }
-    }
-
-    GameState GetPreviousState(int newStateIndex)
+    public GameState GetPreviousState(int newStateIndex)
     {
         int previousStateIndex = newStateIndex;
         previousStateIndex--;
@@ -206,8 +167,8 @@ public class Metronome : MonoBehaviour
         {
             Time.timeScale = 1;
 
-            ChangeState(0);
-            ChangeNextState(1);
+            _duelMode.ChangeState(0);
+            //ChangeNextState(1);
             //SetNextBar();
 
             _pauseMenu.TogglePauseMenuBehaviour();

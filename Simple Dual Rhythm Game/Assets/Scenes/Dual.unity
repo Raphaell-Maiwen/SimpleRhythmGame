@@ -663,6 +663,7 @@ MonoBehaviour:
   _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   UIScript: {fileID: 1179943225}
   _metronome: {fileID: 6642081753353289859}
+  _gameManager: {fileID: 1498790762}
   playersScript: {fileID: 1840136374}
   statesSeries: 02000000000000000200000001000000030000000200000001000000
   currentState: 1
