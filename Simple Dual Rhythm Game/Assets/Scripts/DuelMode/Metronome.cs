@@ -33,8 +33,6 @@ public class Metronome : MonoBehaviour
 
     [SerializeField] private PlayersManager playersScript;
 
-    private List<NoteIcon> _currentTrackedNotes = new List<NoteIcon>();
-
     bool firstTick = true;
     
     private bool _isLastSolo;
@@ -69,7 +67,6 @@ public class Metronome : MonoBehaviour
     public void SetUp()
     {
         frequency = 60f / bpm;
-        UIScript.SetUp(this.bpm, this.beatPerBar, AddTrackedNote, RemoveTrackedIcon);
         initialTime = Time.time;
         metronomeCounter = 0;
     }
@@ -180,58 +177,6 @@ public class Metronome : MonoBehaviour
         if (timeSpent >= frequency * metronomeCounter + mod) {
             Tick();
         }
-    }
-
-    public void AddTrackedNote(NoteIcon noteIcon) 
-    {
-        /*if (currentState == GameState.Playing || (currentState == GameState.Silence && nextState == GameState.Playing)) 
-        {
-            _currentTrackedNotes.Add(noteIcon);
-        }*/
-    }
-
-    public void RemoveTrackedIcon(NoteIcon noteIcon) 
-    {
-        /*if (currentState == GameState.Playing)
-        {
-            if (noteIcon.GetState() == NoteState.Unplayed) 
-            {
-                noteIcon.ChangeState(NoteState.Missed);
-            }
-
-            _currentTrackedNotes.Remove(noteIcon);
-        }*/
-    }
-
-    bool IsRightNote(int noteIndex) 
-    {
-        /*float smallestSqrDistance = 1000f;
-        NoteIcon closestIcon = null;
-
-        foreach(NoteIcon note in _currentTrackedNotes)
-        {
-            if (note.GetState() == NoteState.Unplayed) 
-            {
-                if (note.GetIndex() == noteIndex)
-                {
-                    note.ChangeState(NoteState.Played);
-                    _currentTrackedNotes.Remove(note);
-                    return true;
-                }
-                else if (Vector3.SqrMagnitude(note.transform.position - UIScript.currentTracker.transform.position) < smallestSqrDistance)
-                { 
-                    closestIcon = note;
-                }
-            }
-        }
-
-        if (closestIcon != null)
-        {
-            closestIcon.ChangeState(NoteState.Wrong);
-            _currentTrackedNotes.Remove(closestIcon);
-        }*/
-
-        return false;
     }
 
     private void OnGamePaused(bool paused) 

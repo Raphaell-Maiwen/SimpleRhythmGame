@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class DuelMode : GameLoop
 {
+    [SerializeField] private Parameters _parameters;
     [SerializeField] private PartUI UIScript;
     [SerializeField] private Metronome _metronome;
     [SerializeField] private PlayersManager playersScript;
@@ -18,6 +19,8 @@ public class DuelMode : GameLoop
     private int _riffLength;
     private int notesSucceeded;
     bool madeMistake = false;
+    
+    private List<NoteIcon> _currentTrackedNotes = new List<NoteIcon>();
 
     private void Awake()
     {
@@ -26,6 +29,11 @@ public class DuelMode : GameLoop
         
         _metronome.OnNextPhase += NextPhase;
         _metronome.OnTick += Tick;
+    }
+
+    private void Start()
+    {
+        UIScript.SetUp(_parameters.bpm, _parameters.beatPerBar, AddTrackedNote, RemoveTrackedIcon);
     }
 
     public override void PlayNote(int noteIndex, int playerIndex, int currentPlayerIndex) 
@@ -81,6 +89,37 @@ public class DuelMode : GameLoop
                 _audioManager.PlaySound("WrongNote");
             }
         }*/
+    }
+    
+    bool IsRightNote(int noteIndex) 
+    {
+        float smallestSqrDistance = 1000f;
+        NoteIcon closestIcon = null;
+
+        foreach(NoteIcon note in _currentTrackedNotes)
+        {
+            if (note.GetState() == NoteState.Unplayed)
+            {
+                if (note.GetIndex() == noteIndex)
+                {
+                    note.ChangeState(NoteState.Played);
+                    _currentTrackedNotes.Remove(note);
+                    return true;
+                }
+                else if (Vector3.SqrMagnitude(note.transform.position - UIScript.currentTracker.transform.position) < smallestSqrDistance)
+                {
+                    closestIcon = note;
+                }
+            }
+        }
+
+        if (closestIcon != null)
+        {
+            closestIcon.ChangeState(NoteState.Wrong);
+            _currentTrackedNotes.Remove(closestIcon);
+        }
+
+        return false;
     }
 
     private void Tick(int beat)
@@ -151,6 +190,27 @@ public class DuelMode : GameLoop
         {
             _audioManager.PlayFinaleNote(playersScript.CurrentPlayer.index, noteIndex);
         }*/
+    }
+    
+    public void AddTrackedNote(NoteIcon noteIcon) 
+    {
+        if (currentState == GameState.Playing || (currentState == GameState.Silence && nextState == GameState.Playing))
+        {
+            _currentTrackedNotes.Add(noteIcon);
+        }
+    }
+
+    public void RemoveTrackedIcon(NoteIcon noteIcon) 
+    {
+        if (currentState == GameState.Playing)
+        {
+            if (noteIcon.GetState() == NoteState.Unplayed)
+            {
+                noteIcon.ChangeState(NoteState.Missed);
+            }
+
+            _currentTrackedNotes.Remove(noteIcon);
+        }
     }
 }
 

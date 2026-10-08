@@ -660,6 +660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioManager: {fileID: 673865401}
   _pauseMenu: {fileID: 1318553705777774472}
+  _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
   UIScript: {fileID: 1179943225}
   _metronome: {fileID: 6642081753353289859}
   playersScript: {fileID: 1840136374}
