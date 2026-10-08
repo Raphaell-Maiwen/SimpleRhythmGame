@@ -159,7 +159,7 @@ public class PartUI : MonoBehaviour
         }
     }
 
-    public void NewBar(Metronome.GameState gameState)
+    public void NewBar(GameState gameState)
     {
         firstTick = true;
 
