@@ -23,6 +23,7 @@ public class DuelMode : GameLoop
     
     private List<NoteIcon> _currentTrackedNotes = new List<NoteIcon>();
     
+    private bool _isPausingForEmptySolo;
     private bool _isLastSolo;
     private bool _isGameEnded;
 
@@ -142,12 +143,12 @@ public class DuelMode : GameLoop
     
     void NextPhase()
     {
-        /*if (currentState == GameState.Recording && riffLength == 0)
+        if (currentState == GameState.Recording && _riffLength == 0)
         {
             EmptyRiffAlert();
-            metronomeCounter++;
+            _metronome.IncreaseMetronomeCounter();
             return;
-        }*/
+        }
 
         ChangeState(currentStateIndex + 1);
         ChangeNextState(nextStateIndex + 1);
@@ -181,7 +182,7 @@ public class DuelMode : GameLoop
         madeMistake = false;
     }
     
-    public void ChangeState(int newStateIndex)
+    void ChangeState(int newStateIndex)
     {
         currentStateIndex = newStateIndex;
 
@@ -195,7 +196,7 @@ public class DuelMode : GameLoop
         currentState = statesSeries[currentStateIndex];
     }
     
-    public void ChangeNextState(int newStateIndex)
+    void ChangeNextState(int newStateIndex)
     {
         nextStateIndex = newStateIndex;
         
@@ -257,7 +258,7 @@ public class DuelMode : GameLoop
         }
     }
     
-    public void AddTrackedNote(NoteIcon noteIcon) 
+    void AddTrackedNote(NoteIcon noteIcon) 
     {
         if (currentState == GameState.Playing || (currentState == GameState.Silence && nextState == GameState.Playing))
         {
@@ -265,7 +266,7 @@ public class DuelMode : GameLoop
         }
     }
 
-    public void RemoveTrackedIcon(NoteIcon noteIcon) 
+    void RemoveTrackedIcon(NoteIcon noteIcon) 
     {
         if (currentState == GameState.Playing)
         {
@@ -278,17 +279,43 @@ public class DuelMode : GameLoop
         }
     }
     
+    private void EmptyRiffAlert() 
+    {
+        _isPausingForEmptySolo = true;
+        _pauseMenu.TogglePauseMenuBehaviour();
+        UIScript.SetForgotRecordUI(true);
+
+        Time.timeScale = 0;
+    }
+
+    //Double-check that this doesn't interact with regular pause
+    public void OnRPressed(int playerIndex, int currentPlayerIndex) 
+    {
+        if(_isPausingForEmptySolo && (playerIndex == -1 || playerIndex == currentPlayerIndex))
+        {
+            Time.timeScale = 1;
+
+            ChangeState(0);
+            ChangeNextState(1);
+            SetNextBar();
+
+            _pauseMenu.TogglePauseMenuBehaviour();
+            _isPausingForEmptySolo = false;
+            UIScript.SetForgotRecordUI(false);
+            UIScript.currentTracker = null;
+        }
+    }
+    
     public void SetLastSolo()
     {
         _isLastSolo = true;
     }
     
-    public void EndGame() 
+    void EndGame() 
     {
         _isGameEnded = true;
-        
-        //Put this in metronome?
         enabled = false;
+        _metronome.EndGame();
     }
 }
 

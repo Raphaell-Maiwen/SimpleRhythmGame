@@ -34,8 +34,6 @@ public class Metronome : MonoBehaviour
     [SerializeField] private PlayersManager playersScript;
 
     bool firstTick = true;
-
-    private bool _isPausingForEmptySolo;
     
     public Action<int> OnTick;
     public Action OnNextPhase;
@@ -83,6 +81,8 @@ public class Metronome : MonoBehaviour
 
     void Tick()
     {
+        
+        //THAT
         if (firstTick) {
             firstTick = false;
             _audioManager.PlayBeat();
@@ -102,6 +102,11 @@ public class Metronome : MonoBehaviour
         OnTick?.Invoke(metronomeCounter % beatPerBar);
 
         //TODO: Reset counter at 0 instead??
+        metronomeCounter++;
+    }
+
+    public void IncreaseMetronomeCounter()
+    {
         metronomeCounter++;
     }
 
@@ -125,30 +130,10 @@ public class Metronome : MonoBehaviour
         }
     }
 
-    private void EmptyRiffAlert() 
+    
+
+    public void EndGame()
     {
-        /*_isPausingForEmptySolo = true;
-        _pauseMenu.TogglePauseMenuBehaviour();
-        UIScript.SetForgotRecordUI(true);
-
-        Time.timeScale = 0;*/
-    }
-
-    //Double-check that this doesn't interact with regular pause
-    public void OnRPressed(int playerIndex, int currentPlayerIndex) 
-    {
-        if(_isPausingForEmptySolo && (playerIndex == -1 || playerIndex == currentPlayerIndex))
-        {
-            Time.timeScale = 1;
-
-            _duelMode.ChangeState(0);
-            //ChangeNextState(1);
-            //SetNextBar();
-
-            _pauseMenu.TogglePauseMenuBehaviour();
-            _isPausingForEmptySolo = false;
-            /*UIScript.SetForgotRecordUI(false);
-            UIScript.currentTracker = null;*/
-        }
+        enabled = false;
     }
 }
