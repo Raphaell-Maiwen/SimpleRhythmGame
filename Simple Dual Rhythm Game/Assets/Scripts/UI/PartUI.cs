@@ -8,6 +8,9 @@ using static Metronome;
 
 public class PartUI : MonoBehaviour
 {
+    //Variable for 1 player mode?
+    
+    
     [SerializeField] private Camera _camera;
     [SerializeField] private float[] _orthographicSizeArray;
     
@@ -78,7 +81,10 @@ public class PartUI : MonoBehaviour
         GenerateBars();
         SetupAnchorsAndCamera();
 
-        _playersManager.OnCurrentPlayerChanged.AddListener(ChangeBarsColor);
+        if (_parameters.numberOfPlayers > 1)
+        {
+            _playersManager.OnCurrentPlayerChanged.AddListener(ChangeBarsColor);
+        }
     }
 
     public void SetUp(float bpm, float beatPerBar, UnityAction<NoteIcon> AddTrackedNote, UnityAction<NoteIcon> RemoveTrackedNote) {
@@ -263,13 +269,16 @@ public class PartUI : MonoBehaviour
         trackerAnchorEnd.transform.position = trackerAnchorEndPos;
 
         Difference = trackerAnchorEnd.transform.position - trackerAnchor.transform.position;
+
+        if (_parameters.bars > 1)
+        {
+            Vector3 cameraPos = _camera.transform.position;
         
-        Vector3 cameraPos = _camera.transform.position;
+            cameraPos.x = barLength / 2 * (_parameters.bars - 1);
+            _camera.transform.position = cameraPos;
         
-        cameraPos.x = barLength / 2 * (_parameters.bars - 1);
-        _camera.transform.position = cameraPos;
-        
-        _camera.orthographicSize = _orthographicSizeArray[_parameters.bars - 1];
+            _camera.orthographicSize = _orthographicSizeArray[_parameters.bars - 1];
+        }
     }
 
     [System.Serializable]

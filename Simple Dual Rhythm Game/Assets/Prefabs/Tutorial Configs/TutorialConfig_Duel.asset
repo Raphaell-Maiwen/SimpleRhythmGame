@@ -12,5 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93426e3238db9754f8a04c5317ec4e10, type: 3}
   m_Name: TutorialConfig_Duel
   m_EditorClassIdentifier: 
-  _tutorialSteps: []
+  _tutorialSteps:
+  - {fileID: 2824199098190150042, guid: 67fe32c35cef52740a23dc3d2cde6a45, type: 3}
+  - {fileID: 2824199098190150042, guid: 99d8017cb0da6d448b1378880828a91a, type: 3}
+  - {fileID: 2824199098190150042, guid: 68eee6f66a4847c44985a09a592d35ed, type: 3}
+  - {fileID: 2824199098190150042, guid: 85af67e221de94b43aaab263f3da3160, type: 3}
+  - {fileID: 2824199098190150042, guid: de0f1f50d0cd88e4b8c37aa37cb24581, type: 3}
+  - {fileID: 2824199098190150042, guid: 3cf13c4fb4997564899fe77902fd0982, type: 3}
+  - {fileID: 2824199098190150042, guid: 13717845ac55fe44b8b4c5607acb3355, type: 3}
+  - {fileID: 2824199098190150042, guid: 4a7e71f97abd0024ea81da57a0da155b, type: 3}
+  - {fileID: 2824199098190150042, guid: 402cef35e3b42964cb7002340314936c, type: 3}
+  - {fileID: 2824199098190150042, guid: 15508077c3f663c40b24e9885a8b9588, type: 3}
+  - {fileID: 2824199098190150042, guid: 9c02f5c1ce12f154a9b755c230e6cbbb, type: 3}
   _sceneToLoad: Dual

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
+using UnityEngine.Search;
 
 [CreateAssetMenu(fileName = "TutorialStepData", menuName = "ScriptableObjects/TutorialStepData", order = 1)]
 public class TutorialStepData : ScriptableObject
@@ -23,12 +24,15 @@ public class TutorialStepData : ScriptableObject
 
     [SerializeField] private List<TutorialObjectToSpawn> _objectToSpawns;
     public  List<TutorialObjectToSpawn> ObjectToSpawns => _objectToSpawns;
+    
+    [SerializeField] private List<TutorialObjectToSpawn> _persistentObjectsToSpawn;
+    public  List<TutorialObjectToSpawn> PersistentObjectsToSpawn => _persistentObjectsToSpawn;
 }
 
 [Serializable]
 public class TutorialObjectToSpawn
 {
-    [SerializeField] private GameObject _prefab;
+    [SearchContext("t:prefab")] [SerializeField] private GameObject _prefab;
     [SerializeField] private Vector2 _tutorialObjectPos;
     [SerializeField] private float _scale;
     

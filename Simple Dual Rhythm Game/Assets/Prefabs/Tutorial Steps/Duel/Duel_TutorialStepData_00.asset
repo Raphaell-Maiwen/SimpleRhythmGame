@@ -19,3 +19,16 @@ MonoBehaviour:
     _serializedList: []
   _pressAnyKeyToContinueWindow: 1
   _objectToSpawns: []
+  _persistentObjectsToSpawn:
+  - _prefab: {fileID: 1196355328531543671, guid: b95afcfeeef096542814d45d7029db59,
+      type: 3}
+    _tutorialObjectPos: {x: 0, y: 0}
+    _scale: 1
+  - _prefab: {fileID: 4377957868355423749, guid: c7e807b079db62e4e8b081c5a762e1f8,
+      type: 3}
+    _tutorialObjectPos: {x: 200, y: 0}
+    _scale: 1
+  - _prefab: {fileID: 1940690598101865296, guid: 85d1ab9f884152c4f99871ddbb96d971,
+      type: 3}
+    _tutorialObjectPos: {x: 220, y: 0}
+    _scale: 1

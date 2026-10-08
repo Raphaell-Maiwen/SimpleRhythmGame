@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5306543776695045967}
-  - component: {fileID: 1257548848854307102}
+  - component: {fileID: -2083906775622747154}
   m_Layer: 0
-  m_Name: Duel_TutorialStep_00
+  m_Name: Duel_TutorialStep_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1257548848854307102
+--- !u!114 &-2083906775622747154
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2824199098190150042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6299dae713cac24595e46fcf223b82e, type: 3}
+  m_Script: {fileID: 11500000, guid: 14d3c4fb9fe2f1c46a9f9864b8218bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stepData: {fileID: 11400000, guid: d05d4b7c9ad2ea34b8efc1ff928ec4e9, type: 2}
+  _stepData: {fileID: 11400000, guid: e5e416250b4393d4cbb52ecd59c389e6, type: 2}

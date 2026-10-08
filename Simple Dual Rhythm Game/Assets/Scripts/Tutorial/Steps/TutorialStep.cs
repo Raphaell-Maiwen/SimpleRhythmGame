@@ -39,6 +39,15 @@ public abstract class TutorialStep : MonoBehaviour
                 _tutorialNotesList.Add(note);
             }
         }
+
+        foreach (var obj in _stepData.PersistentObjectsToSpawn)
+        {
+            var spawnedObject = Instantiate(obj.Prefab);
+            spawnedObject.transform.position = obj.TutorialObjectPos;
+            spawnedObject.transform.localScale = new Vector3(obj.Scale, obj.Scale, obj.Scale);
+            
+            spawnedObject.transform.parent = null;
+        }
     }
 
     protected void ShowErrorMessage(string messageKey)

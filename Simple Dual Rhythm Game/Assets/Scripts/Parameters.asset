@@ -23,4 +23,4 @@ MonoBehaviour:
   _player1SoundSetValue: 0
   _player2SoundSetValue: 0
   numberOfNotes: 25
-  numberOfPlayers: 2
+  numberOfPlayers: 1
