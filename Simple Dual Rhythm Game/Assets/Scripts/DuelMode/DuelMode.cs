@@ -33,6 +33,7 @@ public class DuelMode : GameLoop
         nextStateIndex = 0;
         
         _metronome.OnNextPhase += NextPhase;
+        _metronome.OnFirstTick += FirstTick;
         _metronome.OnTick += Tick;
         _metronome.OnNewBar += NewBar;
     }
@@ -140,7 +141,12 @@ public class DuelMode : GameLoop
             UIScript.UpdateCountdown(beat);
         }
     }
-    
+
+    private void FirstTick()
+    {
+        _audioManager.PlayBeat();
+    }
+
     void NextPhase()
     {
         if (currentState == GameState.Recording && _riffLength == 0)
@@ -305,10 +311,16 @@ public class DuelMode : GameLoop
             UIScript.currentTracker = null;
         }
     }
-    
+
+    public void ChangeTempo()
+    {
+        UIScript.ChangeTempo(_parameters.bpm, _parameters.beatPerBar);
+    }
+
     public void SetLastSolo()
     {
         _isLastSolo = true;
+        ChangeTempo();
     }
     
     void EndGame() 

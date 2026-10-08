@@ -8,12 +8,9 @@ using UnityEngine.Audio;
 public class Metronome : MonoBehaviour
 {
     [SerializeField] private Parameters _parameters;
-    
-    [SerializeField] private DuelMode _duelMode;
+    [SerializeField] private GameLoop _gameLoop;
     [SerializeField] private AudioManager _audioManager;
     [SerializeField] private PauseMenu _pauseMenu;
-    
-    [SerializeField] private PartUI UIScript;
     
     public int bpm;
 
@@ -35,6 +32,7 @@ public class Metronome : MonoBehaviour
 
     bool firstTick = true;
     
+    public Action OnFirstTick;
     public Action<int> OnTick;
     public Action OnNextPhase;
     public Action OnNewBar;
@@ -73,23 +71,20 @@ public class Metronome : MonoBehaviour
         metronomeCounter = 0;
         mod = 0;
         initialTime = Time.time;
-
-        //THIS
-        UIScript.ChangeTempo(bpm, beatPerBar);
+        
         _audioManager.SetBeatSpeed(bpm);
     }
 
     void Tick()
     {
-        
         //THAT
         if (firstTick) {
             firstTick = false;
-            _audioManager.PlayBeat();
+            OnFirstTick?.Invoke();
         }
 
         //Check if we're at the beginning of a new bar
-        if (metronomeCounter % beatPerBar == 0 && _duelMode.GetEntryGatePosition())
+        if (metronomeCounter % beatPerBar == 0 && _gameLoop.GetEntryGatePosition())
         {
             OnNewBar?.Invoke();
         }

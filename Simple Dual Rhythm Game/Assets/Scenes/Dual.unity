@@ -4229,6 +4229,7 @@ MonoBehaviour:
       m_Calls: []
   solosToDo: 2
   metronomeScript: {fileID: 6642081753353289859}
+  _duelMode: {fileID: 216581237}
 --- !u!114 &1513310822 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7103932738987268777, guid: c7e807b079db62e4e8b081c5a762e1f8,
@@ -8139,6 +8140,11 @@ PrefabInstance:
     - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
         type: 3}
       propertyPath: _duelMode
+      value: 
+      objectReference: {fileID: 216581237}
+    - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
+        type: 3}
+      propertyPath: _gameLoop
       value: 
       objectReference: {fileID: 216581237}
     - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
