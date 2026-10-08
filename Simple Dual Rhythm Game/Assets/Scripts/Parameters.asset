@@ -15,7 +15,7 @@ MonoBehaviour:
   bpm: 120
   beatPerBar: 4
   bars: 1
-  inputMode: 2
+  inputMode: 1
   fKeysOn: 0
   _soundSetsSO: {fileID: 11400000, guid: 9fb7fde16aac76d43920fc4a00829cdb, type: 2}
   player1SoundsSet: Default
@@ -23,4 +23,4 @@ MonoBehaviour:
   _player1SoundSetValue: 0
   _player2SoundSetValue: 0
   numberOfNotes: 25
-  numberOfPlayers: 1
+  numberOfPlayers: 2

@@ -15,7 +15,7 @@ public class Tracker : MonoBehaviour
     public UnityEvent<NoteIcon> OnNoteTriggerEnter;
     public UnityEvent<NoteIcon> OnNoteTriggerExit;
 
-    private Metronome.GameState _trackerState; 
+    private DuelMode.GameState _trackerState; 
 
     private void Start() {
         player1Icon.SetActive(false);
@@ -36,17 +36,17 @@ public class Tracker : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<NoteIcon>(out NoteIcon noteIcon) && _trackerState != Metronome.GameState.Silence) 
+        if (other.TryGetComponent<NoteIcon>(out NoteIcon noteIcon) && _trackerState != DuelMode.GameState.Silence) 
         {
             OnNoteTriggerExit?.Invoke(noteIcon);
         }
     }
 
-    public void AssignState(Metronome.GameState gameState, bool player1)
+    public void AssignState(DuelMode.GameState gameState, bool player1)
     {
-        silenceIcon.SetActive(gameState == Metronome.GameState.Silence);
+        silenceIcon.SetActive(gameState == DuelMode.GameState.Silence);
 
-        if (gameState != Metronome.GameState.Silence)
+        if (gameState != DuelMode.GameState.Silence)
         {
             player1Icon.SetActive(player1);
             player2Icon.SetActive(!player1);

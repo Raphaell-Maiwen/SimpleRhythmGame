@@ -117,23 +117,23 @@ public class PartUI : MonoBehaviour
         }
     }
 
-    public void ChangeNextStateMessage(GameState nextState, bool playAgain)
+    public void ChangeNextStateMessage(DuelMode.GameState nextState, bool playAgain)
     {
-        if (nextState == GameState.Recording)
+        if (nextState == DuelMode.GameState.Recording)
         {
             _nextStateMessagePanel.SetActive(true);
             _nextPlayerText.text = "Player " + (_playersManager.CurrentPlayer.index + 1);
             _nextPlayerText.color = _playersManager.CurrentPlayer.index == 0 ? _player1UIColor : _player2UIColor;
             _nextPhaseText.text = ": Prepare to record";
         }
-        else if (nextState == GameState.Playing)
+        else if (nextState == DuelMode.GameState.Playing)
         {
             _nextStateMessagePanel.SetActive(true);
             _nextPlayerText.text = "Player " + (_playersManager.CurrentPlayer.index + 1);
             _nextPlayerText.color = _playersManager.CurrentPlayer.index == 0 ? _player1UIColor : _player2UIColor;
             _nextPhaseText.text = ": Prepare to play" + (playAgain ? " AGAIN!" : "");
         }
-        else if (nextState == GameState.Silence)
+        else if (nextState == DuelMode.GameState.Silence)
         {
             _nextStateMessagePanel.SetActive(false);
         }
@@ -152,20 +152,20 @@ public class PartUI : MonoBehaviour
         }
     }
 
-    public void ChangeTempo(float bpm, float beatPerBar) {
+    public void ChangeTempo(int bpm, int beatPerBar) {
         trackerSpeed = 60 / bpm * beatPerBar * (2 + _parameters.bars);
         foreach (TrackerData b in trackers) {
             b.timer /= 1.2f;
         }
     }
 
-    public void NewBar(Metronome.GameState gameState)
+    public void NewBar(DuelMode.GameState gameState)
     {
         firstTick = true;
 
         TrackerData newTrackerData = trackers.Dequeue();
 
-        if (gameState != GameState.Silence)
+        if (gameState != DuelMode.GameState.Silence)
         {
             newTrackerData.startingPos = trackerAnchor.transform.position;
             newTrackerData.trackerGO.transform.position = newTrackerData.startingPos;

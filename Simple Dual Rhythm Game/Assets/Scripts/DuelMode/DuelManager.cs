@@ -8,6 +8,7 @@ public class DuelManager : GameManager{
     private int soloIndex;
     [SerializeField] private int solosToDo;
     [SerializeField] private Metronome metronomeScript;
+    [SerializeField] private DuelMode _duelMode;
 
     public void AddSolo() 
     {
@@ -18,7 +19,7 @@ public class DuelManager : GameManager{
             EndOfGame();
     }
 
-    private void Awake() 
+    private new void Awake() 
     {
         base.Awake();
 
@@ -31,7 +32,7 @@ public class DuelManager : GameManager{
     {
         metronomeScript.bpm += (metronomeScript.bpm / 5);
         metronomeScript.ChangeTempo();
-        metronomeScript.SetLastSolo();
+        _duelMode.SetLastSolo();
         //TODO: Change visuals?
     }
 }

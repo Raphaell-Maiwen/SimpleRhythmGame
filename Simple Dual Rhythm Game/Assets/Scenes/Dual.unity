@@ -4125,6 +4125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1498790761}
   - component: {fileID: 1498790762}
+  - component: {fileID: 1498790763}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4173,6 +4174,27 @@ MonoBehaviour:
       m_Calls: []
   solosToDo: 2
   metronomeScript: {fileID: 6642081753353289859}
+  _duelMode: {fileID: 1498790763}
+--- !u!114 &1498790763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498790759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98d759b4959bf3246a3e66ba231d6aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioManager: {fileID: 673865401}
+  _pauseMenu: {fileID: 1318553705777774472}
+  _gameManager: {fileID: 1498790762}
+  playersScript: {fileID: 1840136374}
+  _metronome: {fileID: 6642081753353289859}
+  UIScript: {fileID: 1179943225}
+  _parameters: {fileID: 11400000, guid: a81dc9dbbe1494946b7cb4d1a8c13516, type: 2}
+  statesSeries: 02000000000000000200000001000000030000000200000001000000
 --- !u!114 &1513310822 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7103932738987268777, guid: c7e807b079db62e4e8b081c5a762e1f8,
@@ -6447,7 +6469,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _gameLoopScript
       value: 
-      objectReference: {fileID: 6642081753353289859}
+      objectReference: {fileID: 1498790763}
     - target: {fileID: 1538531165152987841, guid: 09830e195313fef42aea4c65a5641ca8,
         type: 3}
       propertyPath: _playerJoinText

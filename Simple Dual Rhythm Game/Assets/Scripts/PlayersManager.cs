@@ -80,11 +80,11 @@ public class PlayersManager : MonoBehaviour
     public void ProcessInput(int playerIndex, int note) {
         //Replace by events? Something?
         if (note == -1) {
-            Metronome metronome = _gameLoopScript as Metronome;
+            DuelMode duelMode = _gameLoopScript as DuelMode;
 
-            if (metronome != null)
+            if (duelMode != null)
             {
-                metronome.OnRPressed(playerIndex, _currentPlayer.index);
+                duelMode.OnRPressed(playerIndex, _currentPlayer.index);
             }
         }
         else if(!_pauseChannel.IsPaused)
