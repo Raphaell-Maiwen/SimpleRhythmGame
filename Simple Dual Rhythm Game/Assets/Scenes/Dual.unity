@@ -660,6 +660,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioManager: {fileID: 673865401}
   _pauseMenu: {fileID: 1318553705777774472}
+  UIScript: {fileID: 1179943225}
+  _metronome: {fileID: 6642081753353289859}
+  playersScript: {fileID: 1840136374}
+  statesSeries: 02000000000000000200000001000000030000000200000001000000
+  currentState: 1
+  nextState: 1
+  currentStateIndex: 0
+  nextStateIndex: 0
 --- !u!4 &216581238
 Transform:
   m_ObjectHideFlags: 0
@@ -8126,6 +8134,11 @@ PrefabInstance:
       propertyPath: UIScript
       value: 
       objectReference: {fileID: 1179943225}
+    - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
+        type: 3}
+      propertyPath: _duelMode
+      value: 
+      objectReference: {fileID: 216581237}
     - target: {fileID: 6642081752224650847, guid: 2b6a243861a43b0489ce4453aa17da40,
         type: 3}
       propertyPath: _playIcon

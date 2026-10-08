@@ -26,8 +26,6 @@ public class Metronome : MonoBehaviour
 
     private float initialTime;
 
-    private int notesSucceeded;
-
     [Range(0, 1)]
     public float strongTick;
     [Range(0, 1)]
@@ -38,24 +36,17 @@ public class Metronome : MonoBehaviour
     private List<NoteIcon> _currentTrackedNotes = new List<NoteIcon>();
 
     bool firstTick = true;
-    bool madeMistake = false;
-
+    
     private bool _isLastSolo;
 
     private bool _isPausingForEmptySolo;
     private bool _isGameEnded;
-
-    public GameState[] statesSeries;
-    int currentStateIndex;
-    private int nextStateIndex;
-
+    
     public Action<int> OnTick;
+    public Action OnNextPhase;
 
     private void Awake() 
     {
-        currentStateIndex = statesSeries.Length - 1;
-        nextStateIndex = 0;
-
         enabled = false;
     }
 
@@ -116,10 +107,11 @@ public class Metronome : MonoBehaviour
         //Check if we're at the beginning of a new bar
         if (metronomeCounter % beatPerBar == 0 && _duelMode.currentState == GameState.Silence)
         {
-            ChangeState(currentStateIndex + 1);
-            ChangeNextState(nextStateIndex + 1);
+            Debug.Log("New Bar");
+            ChangeState(_duelMode.currentStateIndex + 1);
+            ChangeNextState(_duelMode.nextStateIndex + 1);
             
-            bool playAgain = GetPreviousState(currentStateIndex) == GameState.ChangePlayer;
+            bool playAgain = GetPreviousState(_duelMode.currentStateIndex) == GameState.ChangePlayer;
             
             UIScript.ClearCountdown();
             UIScript.ChangeNextStateMessage(_duelMode.nextState, playAgain);
@@ -127,7 +119,7 @@ public class Metronome : MonoBehaviour
         //Check if we're at the beginning of a new cycle
         else if (metronomeCounter % (beatPerBar * bars + beatPerBar) == 0)
         {
-            NextPhase();
+            OnNextPhase?.Invoke();
         }
 
         OnTick?.Invoke(metronomeCounter % beatPerBar);
@@ -136,75 +128,35 @@ public class Metronome : MonoBehaviour
         metronomeCounter++;
     }
 
-    void NextPhase()
+    public void ChangeState(int newStateIndex)
     {
-        /*if (currentState == GameState.Recording && riffLength == 0)
+        _duelMode.currentStateIndex = newStateIndex;
+
+        if (_duelMode.currentStateIndex == _duelMode.statesSeries.Length)
         {
-            EmptyRiffAlert();
-            metronomeCounter++;
-            return;
-        }*/
-
-        ChangeState(currentStateIndex + 1);
-        ChangeNextState(nextStateIndex + 1);
-        //Reset the riff if we're recording again, change player if it's a silence...
-        //TODO: How to take the error margin into account?
-        if (_duelMode.currentState == GameState.ChangePlayer) {
-            playersScript.changeCurrentPlayer();
-            ChangeState(currentStateIndex + 1);
-        }
-        if (_duelMode.nextState == GameState.Recording) {
-            //riffLength = 0;
-        }
-        else if (_duelMode.currentState == GameState.Playing) {
-            //Actual comment
-            //riffCounter = 0;
-        }
-        else {
-            UIScript.UnPlayedAllNotes();
-        }
-
-        if (_isGameEnded) 
-        {
-            return;
-        }
-
-        SetNextBar();
-
-        //Change this code slightly when supporting multiple bars
-        notesSucceeded = 0;
-        madeMistake = false;
-    }
-
-    void ChangeState(int newStateIndex)
-    {
-        currentStateIndex = newStateIndex;
-
-        if (currentStateIndex == statesSeries.Length)
-        {
-            currentStateIndex = 0;
+            _duelMode.currentStateIndex = 0;
             UIScript.EraseAllNotes();
             _gameManager.AddSolo();
         }
 
-        _duelMode.currentState = statesSeries[currentStateIndex];
+        _duelMode.currentState = _duelMode.statesSeries[_duelMode.currentStateIndex];
     }
 
-    void ChangeNextState(int newStateIndex)
+    public void ChangeNextState(int newStateIndex)
     {
-        nextStateIndex = newStateIndex;
+        _duelMode.nextStateIndex = newStateIndex;
         
-        if (nextStateIndex == statesSeries.Length)
+        if (_duelMode.nextStateIndex == _duelMode.statesSeries.Length)
         {
-            nextStateIndex = 0;
+            _duelMode.nextStateIndex = 0;
         }
         
-        _duelMode.nextState = statesSeries[nextStateIndex];
+        _duelMode.nextState = _duelMode.statesSeries[_duelMode.nextStateIndex];
         
          if (_duelMode.nextState == GameState.ChangePlayer)
         {
-            nextStateIndex++;
-            _duelMode.nextState = statesSeries[nextStateIndex];
+            _duelMode.nextStateIndex++;
+            _duelMode.nextState = _duelMode.statesSeries[_duelMode.nextStateIndex];
         }
     }
 
@@ -215,19 +167,10 @@ public class Metronome : MonoBehaviour
 
         if (previousStateIndex < 0)
         {
-            previousStateIndex = statesSeries.Length - 1;
+            previousStateIndex = _duelMode.statesSeries.Length - 1;
         }
         
-        return  statesSeries[previousStateIndex];
-    }
-
-    private void SetNextBar()
-    {
-        UIScript.NewBar(_duelMode.nextState);
-
-        /*bool playAgain = GetPreviousState(currentStateIndex) != GameState.ChangePlayer && nextState == GameState.Playing;
-        
-        UIScript.ChangeNextStateMessage(nextState, playAgain);*/
+        return  _duelMode.statesSeries[previousStateIndex];
     }
 
     void Update()
@@ -320,7 +263,7 @@ public class Metronome : MonoBehaviour
 
             ChangeState(0);
             ChangeNextState(1);
-            SetNextBar();
+            //SetNextBar();
 
             _pauseMenu.TogglePauseMenuBehaviour();
             _isPausingForEmptySolo = false;

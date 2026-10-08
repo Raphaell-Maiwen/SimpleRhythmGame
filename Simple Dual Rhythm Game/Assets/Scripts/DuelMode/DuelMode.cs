@@ -7,13 +7,24 @@ public class DuelMode : GameLoop
 {
     [SerializeField] private PartUI UIScript;
     [SerializeField] private Metronome _metronome;
+    [SerializeField] private PlayersManager playersScript;
+    
+    public GameState[] statesSeries;
     public GameState currentState = GameState.Playing;
     public GameState nextState = GameState.Playing;
+    public int currentStateIndex;
+    public int nextStateIndex;
     
-    private int riffLength;
+    private int _riffLength;
+    private int notesSucceeded;
+    bool madeMistake = false;
 
     private void Awake()
     {
+        currentStateIndex = statesSeries.Length - 1;
+        nextStateIndex = 0;
+        
+        _metronome.OnNextPhase += NextPhase;
         _metronome.OnTick += Tick;
     }
 
@@ -25,7 +36,7 @@ public class DuelMode : GameLoop
         if (currentState == GameState.Silence && nextState == GameState.Recording) return;
         
         if (currentState == GameState.Recording) {
-            riffLength++;
+            _riffLength++;
             UIScript.DrawNewNote(noteIndex);
 
             PlayNoteSound(noteIndex);
@@ -78,6 +89,57 @@ public class DuelMode : GameLoop
         {
             UIScript.UpdateCountdown(beat);
         }
+    }
+    
+    void NextPhase()
+    {
+        Debug.Log("Next Phase");
+        
+        /*if (currentState == GameState.Recording && riffLength == 0)
+        {
+            EmptyRiffAlert();
+            metronomeCounter++;
+            return;
+        }*/
+
+        _metronome.ChangeState(currentStateIndex + 1);
+        _metronome.ChangeNextState(nextStateIndex + 1);
+        //Reset the riff if we're recording again, change player if it's a silence...
+        //TODO: How to take the error margin into account?
+        if (currentState == GameState.ChangePlayer) {
+            playersScript.changeCurrentPlayer();
+            _metronome.ChangeState(currentStateIndex + 1);
+        }
+        if (nextState == GameState.Recording) {
+            _riffLength = 0;
+        }
+        else if (currentState == GameState.Playing) {
+            //Actual comment
+            //riffCounter = 0;
+        }
+        else {
+            UIScript.UnPlayedAllNotes();
+        }
+
+        /*if (_isGameEnded) 
+        {
+            return;
+        }*/
+
+        SetNextBar();
+
+        //Change this code slightly when supporting multiple bars
+        notesSucceeded = 0;
+        madeMistake = false;
+    }
+    
+    private void SetNextBar()
+    {
+        UIScript.NewBar(nextState);
+
+        /*bool playAgain = GetPreviousState(currentStateIndex) != GameState.ChangePlayer && nextState == GameState.Playing;
+
+        UIScript.ChangeNextStateMessage(nextState, playAgain);*/
     }
 
     private void PlayNoteSound(int noteIndex) {
