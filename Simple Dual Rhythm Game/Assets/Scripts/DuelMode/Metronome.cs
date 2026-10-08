@@ -34,11 +34,8 @@ public class Metronome : MonoBehaviour
     [SerializeField] private PlayersManager playersScript;
 
     bool firstTick = true;
-    
-    private bool _isLastSolo;
 
     private bool _isPausingForEmptySolo;
-    private bool _isGameEnded;
     
     public Action<int> OnTick;
     public Action OnNextPhase;
@@ -79,19 +76,9 @@ public class Metronome : MonoBehaviour
         mod = 0;
         initialTime = Time.time;
 
+        //THIS
         UIScript.ChangeTempo(bpm, beatPerBar);
         _audioManager.SetBeatSpeed(bpm);
-    }
-
-    public void SetLastSolo()
-    {
-        _isLastSolo = true;
-    }
-
-    public void EndGame() 
-    {
-        _isGameEnded = true;
-        enabled = false;
     }
 
     void Tick()
@@ -116,19 +103,6 @@ public class Metronome : MonoBehaviour
 
         //TODO: Reset counter at 0 instead??
         metronomeCounter++;
-    }
-
-    public GameState GetPreviousState(int newStateIndex)
-    {
-        int previousStateIndex = newStateIndex;
-        previousStateIndex--;
-
-        if (previousStateIndex < 0)
-        {
-            previousStateIndex = _duelMode.statesSeries.Length - 1;
-        }
-        
-        return  _duelMode.statesSeries[previousStateIndex];
     }
 
     void Update()

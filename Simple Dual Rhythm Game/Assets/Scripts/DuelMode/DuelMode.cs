@@ -22,6 +22,9 @@ public class DuelMode : GameLoop
     bool madeMistake = false;
     
     private List<NoteIcon> _currentTrackedNotes = new List<NoteIcon>();
+    
+    private bool _isLastSolo;
+    private bool _isGameEnded;
 
     private void Awake()
     {
@@ -36,7 +39,7 @@ public class DuelMode : GameLoop
     private void Start()
     {
         UIScript.SetUp(_parameters.bpm, _parameters.beatPerBar, AddTrackedNote, RemoveTrackedIcon);
-        //_gameManager.stopGame.AddListener(EndGame);
+        _gameManager.stopGame.AddListener(EndGame);
     }
 
     public override void PlayNote(int noteIndex, int playerIndex, int currentPlayerIndex) 
@@ -73,7 +76,6 @@ public class DuelMode : GameLoop
             }
             else {
                 madeMistake = true;
-                //int penalty = ((riffLength * (riffLength + 1)) / 2 * 10) / riffLength;
 
                 int penalty = 0;
                 switch (_riffLength)
@@ -167,10 +169,10 @@ public class DuelMode : GameLoop
             UIScript.UnPlayedAllNotes();
         }
 
-        /*if (_isGameEnded) 
+        if (_isGameEnded) 
         {
             return;
-        }*/
+        }
 
         SetNextBar();
 
@@ -216,30 +218,43 @@ public class DuelMode : GameLoop
         ChangeState(currentStateIndex + 1);
         ChangeNextState(nextStateIndex + 1);
             
-        bool playAgain = _metronome.GetPreviousState(currentStateIndex) == GameState.ChangePlayer;
+        bool playAgain = GetPreviousState(currentStateIndex) == GameState.ChangePlayer;
             
         UIScript.ClearCountdown();
         UIScript.ChangeNextStateMessage(nextState, playAgain);
+    }
+    
+    GameState GetPreviousState(int newStateIndex)
+    {
+        int previousStateIndex = newStateIndex;
+        previousStateIndex--;
+
+        if (previousStateIndex < 0)
+        {
+            previousStateIndex = statesSeries.Length - 1;
+        }
+        
+        return  statesSeries[previousStateIndex];
     }
 
     private void SetNextBar()
     {
         UIScript.NewBar(nextState);
 
-        /*bool playAgain = GetPreviousState(currentStateIndex) != GameState.ChangePlayer && nextState == GameState.Playing;
+        bool playAgain = GetPreviousState(currentStateIndex) != GameState.ChangePlayer && nextState == GameState.Playing;
 
-        UIScript.ChangeNextStateMessage(nextState, playAgain);*/
+        UIScript.ChangeNextStateMessage(nextState, playAgain);
     }
 
     private void PlayNoteSound(int noteIndex) {
-        /*if (!_isLastSolo)
+        if (!_isLastSolo)
         {
             _audioManager.PlayNote(playersScript.CurrentPlayer.index, noteIndex);
         }
         else
         {
             _audioManager.PlayFinaleNote(playersScript.CurrentPlayer.index, noteIndex);
-        }*/
+        }
     }
     
     public void AddTrackedNote(NoteIcon noteIcon) 
@@ -261,6 +276,19 @@ public class DuelMode : GameLoop
 
             _currentTrackedNotes.Remove(noteIcon);
         }
+    }
+    
+    public void SetLastSolo()
+    {
+        _isLastSolo = true;
+    }
+    
+    public void EndGame() 
+    {
+        _isGameEnded = true;
+        
+        //Put this in metronome?
+        enabled = false;
     }
 }
 
