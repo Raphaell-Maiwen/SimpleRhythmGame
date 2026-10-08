@@ -9,6 +9,7 @@ public class Metronome : MonoBehaviour
 {
     [SerializeField] private Parameters _parameters;
     [SerializeField] private DuelManager _gameManager;
+    [SerializeField] private DuelMode _duelMode;
     [SerializeField] private AudioManager _audioManager;
     [SerializeField] private PauseMenu _pauseMenu;
     
@@ -47,9 +48,8 @@ public class Metronome : MonoBehaviour
     public GameState[] statesSeries;
     int currentStateIndex;
     private int nextStateIndex;
-    
-    public GameState currentState = GameState.Playing;
-    public GameState nextState = GameState.Playing;
+
+    public Action<int> OnTick;
 
     private void Awake() 
     {
@@ -114,7 +114,7 @@ public class Metronome : MonoBehaviour
         }
 
         //Check if we're at the beginning of a new bar
-        if (metronomeCounter % beatPerBar == 0 && currentState == GameState.Silence)
+        if (metronomeCounter % beatPerBar == 0 && _duelMode.currentState == GameState.Silence)
         {
             ChangeState(currentStateIndex + 1);
             ChangeNextState(nextStateIndex + 1);
@@ -122,7 +122,7 @@ public class Metronome : MonoBehaviour
             bool playAgain = GetPreviousState(currentStateIndex) == GameState.ChangePlayer;
             
             UIScript.ClearCountdown();
-            UIScript.ChangeNextStateMessage(nextState, playAgain);
+            UIScript.ChangeNextStateMessage(_duelMode.nextState, playAgain);
         }
         //Check if we're at the beginning of a new cycle
         else if (metronomeCounter % (beatPerBar * bars + beatPerBar) == 0)
@@ -130,10 +130,7 @@ public class Metronome : MonoBehaviour
             NextPhase();
         }
 
-        if (currentState == GameState.Silence)
-        {
-            UIScript.UpdateCountdown(metronomeCounter % beatPerBar);
-        }
+        OnTick?.Invoke(metronomeCounter % beatPerBar);
 
         //TODO: Reset counter at 0 instead??
         metronomeCounter++;
@@ -152,14 +149,14 @@ public class Metronome : MonoBehaviour
         ChangeNextState(nextStateIndex + 1);
         //Reset the riff if we're recording again, change player if it's a silence...
         //TODO: How to take the error margin into account?
-        if (currentState == GameState.ChangePlayer) {
+        if (_duelMode.currentState == GameState.ChangePlayer) {
             playersScript.changeCurrentPlayer();
             ChangeState(currentStateIndex + 1);
         }
-        if (nextState == GameState.Recording) {
+        if (_duelMode.nextState == GameState.Recording) {
             //riffLength = 0;
         }
-        else if (currentState == GameState.Playing) {
+        else if (_duelMode.currentState == GameState.Playing) {
             //Actual comment
             //riffCounter = 0;
         }
@@ -190,7 +187,7 @@ public class Metronome : MonoBehaviour
             _gameManager.AddSolo();
         }
 
-        currentState = statesSeries[currentStateIndex];
+        _duelMode.currentState = statesSeries[currentStateIndex];
     }
 
     void ChangeNextState(int newStateIndex)
@@ -202,12 +199,12 @@ public class Metronome : MonoBehaviour
             nextStateIndex = 0;
         }
         
-        nextState = statesSeries[nextStateIndex];
+        _duelMode.nextState = statesSeries[nextStateIndex];
         
-         if (nextState == GameState.ChangePlayer)
+         if (_duelMode.nextState == GameState.ChangePlayer)
         {
             nextStateIndex++;
-            nextState = statesSeries[nextStateIndex];
+            _duelMode.nextState = statesSeries[nextStateIndex];
         }
     }
 
@@ -226,7 +223,7 @@ public class Metronome : MonoBehaviour
 
     private void SetNextBar()
     {
-        UIScript.NewBar(nextState);
+        UIScript.NewBar(_duelMode.nextState);
 
         /*bool playAgain = GetPreviousState(currentStateIndex) != GameState.ChangePlayer && nextState == GameState.Playing;
         

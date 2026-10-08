@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,18 +7,24 @@ public class DuelMode : GameLoop
 {
     [SerializeField] private PartUI UIScript;
     [SerializeField] private Metronome _metronome;
-    
+    public GameState currentState = GameState.Playing;
+    public GameState nextState = GameState.Playing;
     
     private int riffLength;
-    
+
+    private void Awake()
+    {
+        _metronome.OnTick += Tick;
+    }
+
     public override void PlayNote(int noteIndex, int playerIndex, int currentPlayerIndex) 
     {
         if (playerIndex != currentPlayerIndex) return;
 
         //Maybe modify with timing, or collision or something
-        if (_metronome.currentState == GameState.Silence && _metronome.nextState == GameState.Recording) return;
+        if (currentState == GameState.Silence && nextState == GameState.Recording) return;
         
-        if (_metronome.currentState == GameState.Recording) {
+        if (currentState == GameState.Recording) {
             riffLength++;
             UIScript.DrawNewNote(noteIndex);
 
@@ -64,7 +71,15 @@ public class DuelMode : GameLoop
             }
         }*/
     }
-    
+
+    private void Tick(int beat)
+    {
+        if (currentState == GameState.Silence)
+        {
+            UIScript.UpdateCountdown(beat);
+        }
+    }
+
     private void PlayNoteSound(int noteIndex) {
         /*if (!_isLastSolo)
         {
