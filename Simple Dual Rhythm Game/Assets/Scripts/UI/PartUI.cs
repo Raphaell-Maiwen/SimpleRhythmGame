@@ -158,7 +158,15 @@ public class PartUI : MonoBehaviour
         }
     }
 
-    public void NewBar(GameState gameState)
+    public void NewBar()
+    {
+        bool playAgain = PhasesManager.GetPreviousState(PhasesManager.CurrentStateIndex) == GameState.ChangePlayer;
+            
+        ClearCountdown();
+        ChangeNextStateMessage(PhasesManager.NextState, playAgain);
+    }
+
+    public void SetNextBar(GameState gameState)
     {
         firstTick = true;
 

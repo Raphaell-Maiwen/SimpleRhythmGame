@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class PhasesManager: MonoBehaviour
 {
-    [ReadOnly] public List<GameState> statesSeries = new List<GameState>();
+    [ReadOnly] public static List<GameState> statesSeries = new List<GameState>();
     
-    public GameState CurrentState = GameState.Playing;
-    public GameState NextState = GameState.Playing;
-    public  int CurrentStateIndex;
-    public int NextStateIndex;
+    public static GameState CurrentState = GameState.Playing;
+    public static GameState NextState = GameState.Playing;
+    public static  int CurrentStateIndex;
+    public static int NextStateIndex;
 
     public void Init(List<GameState> states, Metronome metronome)
     {
@@ -19,7 +19,20 @@ public class PhasesManager: MonoBehaviour
         CurrentStateIndex = statesSeries.Count - 1;
         NextStateIndex = 0;
         
-        //Assign metronome
+        //Assign metronome?
+    }
+    
+    public static GameState GetPreviousState(int newStateIndex)
+    {
+        int previousStateIndex = newStateIndex;
+        previousStateIndex--;
+
+        if (previousStateIndex < 0)
+        {
+            previousStateIndex = statesSeries.Count - 1;
+        }
+        
+        return  statesSeries[previousStateIndex];
     }
 }
 
