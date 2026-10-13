@@ -22,6 +22,24 @@ public class PhasesManager: MonoBehaviour
         //Assign metronome?
     }
     
+    public void ChangeNextState(int newStateIndex)
+    {
+        NextStateIndex = newStateIndex;
+        
+        if (NextStateIndex == statesSeries.Count)
+        {
+            NextStateIndex = 0;
+        }
+        
+        NextState = statesSeries[NextStateIndex];
+        
+        if (NextState == GameState.ChangePlayer)
+        {
+            NextStateIndex++;
+            NextState = statesSeries[NextStateIndex];
+        }
+    }
+    
     public static GameState GetPreviousState(int newStateIndex)
     {
         int previousStateIndex = newStateIndex;

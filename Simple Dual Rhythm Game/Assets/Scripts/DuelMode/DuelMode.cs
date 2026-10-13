@@ -159,7 +159,7 @@ public class DuelMode : GameLoop
         }
 
         ChangeState(PhasesManager.CurrentStateIndex + 1);
-        ChangeNextState(PhasesManager.NextStateIndex + 1);
+        _phasesManager.ChangeNextState(PhasesManager.NextStateIndex + 1);
         
         //Reset the riff if we're recording again, change player if it's a silence...
         //TODO: How to take the error margin into account?
@@ -200,29 +200,11 @@ public class DuelMode : GameLoop
 
         PhasesManager.CurrentState = PhasesManager.statesSeries[PhasesManager.CurrentStateIndex];
     }
-    
-    void ChangeNextState(int newStateIndex)
-    {
-        PhasesManager.NextStateIndex = newStateIndex;
-        
-        if (PhasesManager.NextStateIndex == PhasesManager.statesSeries.Count)
-        {
-            PhasesManager.NextStateIndex = 0;
-        }
-        
-        PhasesManager.NextState = PhasesManager.statesSeries[PhasesManager.NextStateIndex];
-        
-        if (PhasesManager.NextState == GameState.ChangePlayer)
-        {
-            PhasesManager.NextStateIndex++;
-            PhasesManager.NextState = PhasesManager.statesSeries[PhasesManager.NextStateIndex];
-        }
-    }
 
     private void NewBar()
     {
         ChangeState(PhasesManager.CurrentStateIndex + 1);
-        ChangeNextState(PhasesManager.NextStateIndex + 1);
+        _phasesManager.ChangeNextState(PhasesManager.NextStateIndex + 1);
     }
 
     private void PlayNoteSound(int noteIndex) {
@@ -276,7 +258,7 @@ public class DuelMode : GameLoop
             Time.timeScale = 1;
 
             ChangeState(0);
-            ChangeNextState(1);
+            _phasesManager.ChangeNextState(1);
             UIScript.SetNextBar();
 
             _pauseMenu.TogglePauseMenuBehaviour();
