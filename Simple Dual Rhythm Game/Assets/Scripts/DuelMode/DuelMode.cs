@@ -33,6 +33,7 @@ public class DuelMode : GameLoop
         _metronome.OnTempoChanged += ChangeTempo;
 
         _metronome.OnNewBar += UIScript.NewBar;
+        //_metronome.OnNextPhase += UIScript.SetNextBar;
         
         _phasesManager = _metronome.SpawnPhasesManager(statesSeries);
     }
@@ -179,7 +180,7 @@ public class DuelMode : GameLoop
         }
 
         //Conditional here? Or called from PhasesManager event???
-        SetNextBar();
+        UIScript.SetNextBar();
 
         //Change this code slightly when supporting multiple bars
         notesSucceeded = 0;
@@ -222,18 +223,6 @@ public class DuelMode : GameLoop
     {
         ChangeState(PhasesManager.CurrentStateIndex + 1);
         ChangeNextState(PhasesManager.NextStateIndex + 1);
-            
-        /*bool playAgain = PhasesManager.GetPreviousState(PhasesManager.CurrentStateIndex) == GameState.ChangePlayer;
-            
-        UIScript.ClearCountdown();
-        UIScript.ChangeNextStateMessage(PhasesManager.NextState, playAgain);*/
-    }
-
-    private void SetNextBar()
-    {
-        bool playAgain = PhasesManager.GetPreviousState(PhasesManager.CurrentStateIndex) != GameState.ChangePlayer && PhasesManager.NextState == GameState.Playing;
-        UIScript.SetNextBar(PhasesManager.NextState);
-        UIScript.ChangeNextStateMessage(PhasesManager.NextState, playAgain);
     }
 
     private void PlayNoteSound(int noteIndex) {
@@ -280,13 +269,15 @@ public class DuelMode : GameLoop
     //Double-check that this doesn't interact with regular pause
     public void OnRPressed(int playerIndex, int currentPlayerIndex) 
     {
+        //Send an event?
+        
         if(_isPausingForEmptySolo && (playerIndex == -1 || playerIndex == currentPlayerIndex))
         {
             Time.timeScale = 1;
 
             ChangeState(0);
             ChangeNextState(1);
-            SetNextBar();
+            UIScript.SetNextBar();
 
             _pauseMenu.TogglePauseMenuBehaviour();
             _isPausingForEmptySolo = false;

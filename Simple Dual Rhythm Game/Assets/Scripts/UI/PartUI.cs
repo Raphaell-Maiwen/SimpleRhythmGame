@@ -166,13 +166,13 @@ public class PartUI : MonoBehaviour
         ChangeNextStateMessage(PhasesManager.NextState, playAgain);
     }
 
-    public void SetNextBar(GameState gameState)
+    public void SetNextBar()
     {
         firstTick = true;
 
         TrackerData newTrackerData = trackers.Dequeue();
 
-        if (gameState != GameState.Silence)
+        if (PhasesManager.NextState != GameState.Silence)
         {
             newTrackerData.startingPos = trackerAnchor.transform.position;
             newTrackerData.trackerGO.transform.position = newTrackerData.startingPos;
@@ -180,9 +180,12 @@ public class PartUI : MonoBehaviour
             newTrackerData.percent = 0;
         }
 
-        newTrackerData.trackerGO.GetComponent<Tracker>().AssignState(gameState, _playersManager.CurrentPlayer.index == 0 );
+        newTrackerData.trackerGO.GetComponent<Tracker>().AssignState(PhasesManager.NextState, _playersManager.CurrentPlayer.index == 0 );
         
         trackers.Enqueue(newTrackerData);
+        
+        bool playAgain = PhasesManager.GetPreviousState(PhasesManager.CurrentStateIndex) != GameState.ChangePlayer && PhasesManager.NextState == GameState.Playing;
+        ChangeNextStateMessage(PhasesManager.NextState, playAgain);
     }
 
     public void UpdateCountdown(int metronomeCounter)
