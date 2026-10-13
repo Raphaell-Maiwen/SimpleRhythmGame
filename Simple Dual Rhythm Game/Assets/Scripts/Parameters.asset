@@ -19,7 +19,7 @@ MonoBehaviour:
   fKeysOn: 0
   _soundSetsSO: {fileID: 11400000, guid: 9fb7fde16aac76d43920fc4a00829cdb, type: 2}
   player1SoundsSet: Default
-  player2SoundsSet: Default
+  player2SoundsSet: Placeholder
   _player1SoundSetValue: 0
   _player2SoundSetValue: 0
   numberOfNotes: 25

@@ -8,7 +8,6 @@ public class Metronome : MonoBehaviour
 {
     [SerializeField] private Parameters _parameters;
     [SerializeField] private GameLoop _gameLoop;
-    [SerializeField] private AudioManager _audioManager;
     [SerializeField] private PauseMenu _pauseMenu;
     
     public int bpm;
@@ -51,8 +50,8 @@ public class Metronome : MonoBehaviour
         bars = _parameters.bars;
 
         SetUp();
-        _audioManager.SetBeat("4/4Beat1");
-        _audioManager.SetBeatSpeed(bpm);
+        AudioManager.Instance.SetBeat("4/4Beat1");
+        AudioManager.Instance.SetBeatSpeed(bpm);
         enabled = true;
 
         //Cleaner: register itself through a SO?
@@ -82,7 +81,7 @@ public class Metronome : MonoBehaviour
         initialTime = Time.time;
         
         OnTempoChanged?.Invoke(bpm, beatPerBar);
-        _audioManager.SetBeatSpeed(bpm);
+        AudioManager.Instance.SetBeatSpeed(bpm);
     }
 
     void Tick()
@@ -127,10 +126,10 @@ public class Metronome : MonoBehaviour
     {
         if (paused)
         {
-            _audioManager.PauseBeat();  
+            AudioManager.Instance.PauseBeat();
         }
         else {
-            _audioManager.UnPauseBeat();
+            AudioManager.Instance.UnPauseBeat();
         }
     }
 

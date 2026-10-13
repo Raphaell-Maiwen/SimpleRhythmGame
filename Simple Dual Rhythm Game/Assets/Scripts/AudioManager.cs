@@ -10,6 +10,8 @@ using static SoundSets;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance { get; private set; }
+
     [SerializeField] private Parameters _parameters;
 
     public SerializedDictionary<string, AudioClip> _gameAudioClips;
@@ -24,6 +26,10 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null) { Destroy(gameObject); return; }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        
         foreach(var sound in _gameAudioClips)
         {
             AddSound(sound.Key, sound.Value);
@@ -31,6 +37,11 @@ public class AudioManager : MonoBehaviour
 
         SetUpNotes(_parameters.player1SoundsSet, 0);
         SetUpNotes(_parameters.player2SoundsSet, 1);
+    }
+    
+    private void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
     }
 
     private void SetUpNotes(string playerSoundsSet, int playerInt)

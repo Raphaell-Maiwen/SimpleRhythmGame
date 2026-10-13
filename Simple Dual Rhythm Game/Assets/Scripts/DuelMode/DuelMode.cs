@@ -92,7 +92,7 @@ public class DuelMode : GameLoop
                 }
                 
                 playersScript.MakePoints(-penalty);
-                _audioManager.PlaySound("WrongNote");
+                AudioManager.Instance.PlaySound("WrongNote");
             }
         }
     }
@@ -143,7 +143,7 @@ public class DuelMode : GameLoop
 
     private void FirstTick()
     {
-        _audioManager.PlayBeat();
+        AudioManager.Instance.PlayBeat();
     }
 
     void NextPhase()
@@ -252,11 +252,11 @@ public class DuelMode : GameLoop
     private void PlayNoteSound(int noteIndex) {
         if (!_isLastSolo)
         {
-            _audioManager.PlayNote(playersScript.CurrentPlayer.index, noteIndex);
+            AudioManager.Instance.PlayNote(playersScript.CurrentPlayer.index, noteIndex);
         }
         else
         {
-            _audioManager.PlayFinaleNote(playersScript.CurrentPlayer.index, noteIndex);
+            AudioManager.Instance.PlayFinaleNote(playersScript.CurrentPlayer.index, noteIndex);
         }
     }
     

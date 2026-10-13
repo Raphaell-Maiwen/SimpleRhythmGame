@@ -131,7 +131,7 @@ public class TutorialStepsManager : GameLoop
         //Something to do with currentPlayerIndex and playerIndex
         NotifyStep(EventType.NotePlayed, noteIndex);
         
-        _audioManager.PlayNote(playerIndex, noteIndex);
+        AudioManager.Instance.PlayNote(playerIndex, noteIndex);
     }
 
     public override bool GetEntryGatePosition()
