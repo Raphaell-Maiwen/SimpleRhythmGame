@@ -666,10 +666,6 @@ MonoBehaviour:
   _gameManager: {fileID: 1498790762}
   playersScript: {fileID: 1840136374}
   statesSeries: 02000000000000000200000001000000030000000200000001000000
-  currentState: 1
-  nextState: 1
-  currentStateIndex: 0
-  nextStateIndex: 0
 --- !u!4 &216581238
 Transform:
   m_ObjectHideFlags: 0

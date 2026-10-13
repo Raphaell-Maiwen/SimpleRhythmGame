@@ -10,12 +10,9 @@ public class DuelMode : GameLoop
     [SerializeField] private Metronome _metronome;
     [SerializeField] private DuelManager _gameManager;
     [SerializeField] private PlayersManager playersScript;
+    [SerializeField] private List<GameState> statesSeries = new List<GameState>();
     
-    public GameState[] statesSeries;
-    GameState currentState = GameState.Playing;
-    GameState nextState = GameState.Playing;
-    int currentStateIndex;
-    int nextStateIndex;
+    private PhasesManager _phasesManager;
     
     private int _riffLength;
     private int notesSucceeded;
@@ -29,14 +26,13 @@ public class DuelMode : GameLoop
 
     private void Awake()
     {
-        currentStateIndex = statesSeries.Length - 1;
-        nextStateIndex = 0;
-        
         _metronome.OnNextPhase += NextPhase;
         _metronome.OnFirstTick += FirstTick;
         _metronome.OnTick += Tick;
         _metronome.OnNewBar += NewBar;
         _metronome.OnTempoChanged += ChangeTempo;
+        
+        _phasesManager = _metronome.SpawnPhasesManager(statesSeries);
     }
 
     private void Start()
@@ -50,21 +46,23 @@ public class DuelMode : GameLoop
         if (playerIndex != currentPlayerIndex) return;
 
         //Maybe modify with timing, or collision or something
-        if (currentState == GameState.Silence && nextState == GameState.Recording) return;
+        if (_phasesManager.CurrentState == GameState.Silence 
+            && _phasesManager.CurrentState == GameState.Recording) return;
         
-        if (currentState == GameState.Recording) {
+        if (_phasesManager.CurrentState == GameState.Recording) {
             _riffLength++;
             UIScript.DrawNewNote(noteIndex);
 
             PlayNoteSound(noteIndex);
         }
-        else if (currentState == GameState.Playing || nextState == GameState.Playing) {
+        else if (_phasesManager.CurrentState == GameState.Playing 
+                 || _phasesManager.NextState == GameState.Playing) {
             if (IsRightNote(noteIndex)) {
                 notesSucceeded++;
                 int points = notesSucceeded * 10;
                 playersScript.MakePoints(points);
 
-                if (currentState == GameState.Silence)
+                if (_phasesManager.CurrentState == GameState.Silence)
                 {
                     Debug.Log("Made points in silence");
                 }
@@ -101,7 +99,7 @@ public class DuelMode : GameLoop
 
     public override bool GetEntryGatePosition()
     {
-        return currentState == GameState.Silence;
+        return _phasesManager.CurrentState == GameState.Silence;
     }
 
     bool IsRightNote(int noteIndex) 
@@ -137,7 +135,7 @@ public class DuelMode : GameLoop
 
     private void Tick(int beat)
     {
-        if (currentState == GameState.Silence)
+        if (_phasesManager.CurrentState == GameState.Silence)
         {
             UIScript.UpdateCountdown(beat);
         }
@@ -150,30 +148,26 @@ public class DuelMode : GameLoop
 
     void NextPhase()
     {
-        if (currentState == GameState.Recording && _riffLength == 0)
+        if (_phasesManager.CurrentState == GameState.Recording && _riffLength == 0)
         {
             EmptyRiffAlert();
             _metronome.IncreaseMetronomeCounter();
             return;
         }
 
-        ChangeState(currentStateIndex + 1);
-        ChangeNextState(nextStateIndex + 1);
+        ChangeState(_phasesManager.CurrentStateIndex + 1);
+        ChangeNextState(_phasesManager.NextStateIndex + 1);
         
         //Reset the riff if we're recording again, change player if it's a silence...
         //TODO: How to take the error margin into account?
-        if (currentState == GameState.ChangePlayer) {
+        if (_phasesManager.CurrentState == GameState.ChangePlayer) {
             playersScript.changeCurrentPlayer();
-            ChangeState(currentStateIndex + 1);
+            ChangeState(_phasesManager.CurrentStateIndex + 1);
         }
-        if (nextState == GameState.Recording) {
+        if (_phasesManager.NextState == GameState.Recording) {
             _riffLength = 0;
         }
-        else if (currentState == GameState.Playing) {
-            //Actual comment
-            //riffCounter = 0;
-        }
-        else {
+        else if(_phasesManager.CurrentState != GameState.Playing) {
             UIScript.UnPlayedAllNotes();
         }
 
@@ -182,6 +176,7 @@ public class DuelMode : GameLoop
             return;
         }
 
+        //Conditional here? Or called from PhasesManager event???
         SetNextBar();
 
         //Change this code slightly when supporting multiple bars
@@ -191,45 +186,45 @@ public class DuelMode : GameLoop
     
     void ChangeState(int newStateIndex)
     {
-        currentStateIndex = newStateIndex;
+        _phasesManager.CurrentStateIndex = newStateIndex;
 
-        if (currentStateIndex == statesSeries.Length)
+        if (_phasesManager.CurrentStateIndex == _phasesManager.statesSeries.Count)
         {
-            currentStateIndex = 0;
+            _phasesManager.CurrentStateIndex = 0;
             UIScript.EraseAllNotes();
             _gameManager.AddSolo();
         }
 
-        currentState = statesSeries[currentStateIndex];
+        _phasesManager.CurrentState = _phasesManager.statesSeries[_phasesManager.CurrentStateIndex];
     }
     
     void ChangeNextState(int newStateIndex)
     {
-        nextStateIndex = newStateIndex;
+        _phasesManager.NextStateIndex = newStateIndex;
         
-        if (nextStateIndex == statesSeries.Length)
+        if (_phasesManager.NextStateIndex == _phasesManager.statesSeries.Count)
         {
-            nextStateIndex = 0;
+            _phasesManager.NextStateIndex = 0;
         }
         
-        nextState = statesSeries[nextStateIndex];
+        _phasesManager.NextState = _phasesManager.statesSeries[_phasesManager.NextStateIndex];
         
-        if (nextState == GameState.ChangePlayer)
+        if (_phasesManager.NextState == GameState.ChangePlayer)
         {
-            nextStateIndex++;
-            nextState = statesSeries[nextStateIndex];
+            _phasesManager.NextStateIndex++;
+            _phasesManager.NextState = _phasesManager.statesSeries[_phasesManager.NextStateIndex];
         }
     }
 
     private void NewBar()
     {
-        ChangeState(currentStateIndex + 1);
-        ChangeNextState(nextStateIndex + 1);
+        ChangeState(_phasesManager.CurrentStateIndex + 1);
+        ChangeNextState(_phasesManager.NextStateIndex + 1);
             
-        bool playAgain = GetPreviousState(currentStateIndex) == GameState.ChangePlayer;
+        bool playAgain = GetPreviousState(_phasesManager.CurrentStateIndex) == GameState.ChangePlayer;
             
         UIScript.ClearCountdown();
-        UIScript.ChangeNextStateMessage(nextState, playAgain);
+        UIScript.ChangeNextStateMessage(_phasesManager.NextState, playAgain);
     }
     
     GameState GetPreviousState(int newStateIndex)
@@ -239,19 +234,19 @@ public class DuelMode : GameLoop
 
         if (previousStateIndex < 0)
         {
-            previousStateIndex = statesSeries.Length - 1;
+            previousStateIndex = _phasesManager.statesSeries.Count - 1;
         }
         
-        return  statesSeries[previousStateIndex];
+        return  _phasesManager.statesSeries[previousStateIndex];
     }
 
     private void SetNextBar()
     {
-        UIScript.NewBar(nextState);
+        UIScript.NewBar(_phasesManager.NextState);
 
-        bool playAgain = GetPreviousState(currentStateIndex) != GameState.ChangePlayer && nextState == GameState.Playing;
+        bool playAgain = GetPreviousState(_phasesManager.CurrentStateIndex) != GameState.ChangePlayer && _phasesManager.NextState == GameState.Playing;
 
-        UIScript.ChangeNextStateMessage(nextState, playAgain);
+        UIScript.ChangeNextStateMessage(_phasesManager.NextState, playAgain);
     }
 
     private void PlayNoteSound(int noteIndex) {
@@ -265,9 +260,9 @@ public class DuelMode : GameLoop
         }
     }
     
-    void AddTrackedNote(NoteIcon noteIcon) 
+    void AddTrackedNote(NoteIcon noteIcon)
     {
-        if (currentState == GameState.Playing || (currentState == GameState.Silence && nextState == GameState.Playing))
+        if (_phasesManager.CurrentState == GameState.Playing || (_phasesManager.CurrentState == GameState.Silence && _phasesManager.NextState == GameState.Playing))
         {
             _currentTrackedNotes.Add(noteIcon);
         }
@@ -275,7 +270,7 @@ public class DuelMode : GameLoop
 
     void RemoveTrackedIcon(NoteIcon noteIcon) 
     {
-        if (currentState == GameState.Playing)
+        if (_phasesManager.CurrentState == GameState.Playing)
         {
             if (noteIcon.GetState() == NoteState.Unplayed)
             {
@@ -330,11 +325,3 @@ public class DuelMode : GameLoop
         _metronome.EndGame();
     }
 }
-
-public enum GameState
-{
-    Recording,
-    Playing,
-    Silence,
-    ChangePlayer
-};

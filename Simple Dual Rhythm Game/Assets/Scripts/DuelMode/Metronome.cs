@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -30,7 +29,7 @@ public class Metronome : MonoBehaviour
 
     [SerializeField] private PlayersManager playersScript;
 
-    bool firstTick = true;
+    bool firstTick;
 
     public Action<int,int> OnTempoChanged;
     public Action OnFirstTick;
@@ -45,6 +44,8 @@ public class Metronome : MonoBehaviour
 
     public void StartGame()
     {
+        firstTick = true;
+        
         bpm = _parameters.bpm;
         beatPerBar = _parameters.beatPerBar;
         bars = _parameters.bars;
@@ -63,6 +64,13 @@ public class Metronome : MonoBehaviour
         frequency = 60f / bpm;
         initialTime = Time.time;
         metronomeCounter = 0;
+    }
+
+    public PhasesManager SpawnPhasesManager(List<GameState> states)
+    {
+        PhasesManager phasesManager = gameObject.AddComponent<PhasesManager>();
+        phasesManager.Init(states, this);
+        return  phasesManager;
     }
 
     public void ChangeTempo()

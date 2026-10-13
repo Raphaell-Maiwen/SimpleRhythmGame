@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class GameLoop: MonoBehaviour
 {
-    //public void ProcessInput(int playerIndex, int note);
     [SerializeField] protected AudioManager _audioManager;
 
     [SerializeField] protected PauseMenu _pauseMenu;

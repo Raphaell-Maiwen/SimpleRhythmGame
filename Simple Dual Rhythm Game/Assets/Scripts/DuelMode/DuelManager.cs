@@ -28,6 +28,11 @@ public class DuelManager : GameManager{
         startGame.AddListener(metronomeScript.StartGame);
     }
 
+    void OnDestroy()
+    {
+        startGame.RemoveListener(metronomeScript.StartGame);
+    }
+
     void LastSolo() 
     {
         metronomeScript.bpm += (metronomeScript.bpm / 5);

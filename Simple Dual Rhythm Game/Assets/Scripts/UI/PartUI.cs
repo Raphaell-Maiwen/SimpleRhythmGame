@@ -10,7 +10,6 @@ public class PartUI : MonoBehaviour
 {
     //Variable for 1 player mode?
     
-    
     [SerializeField] private Camera _camera;
     [SerializeField] private float[] _orthographicSizeArray;
     
