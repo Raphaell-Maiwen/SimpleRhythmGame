@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -12,6 +13,8 @@ public class PhasesManager: MonoBehaviour
     public static  int CurrentStateIndex;
     public static int NextStateIndex;
 
+    public Action OnAllPhasesCycledThrough;
+
     public void Init(List<GameState> states, Metronome metronome)
     {
         statesSeries = states;
@@ -20,6 +23,19 @@ public class PhasesManager: MonoBehaviour
         NextStateIndex = 0;
         
         //Assign metronome?
+    }
+    
+    public void ChangeState(int newStateIndex)
+    {
+        CurrentStateIndex = newStateIndex;
+
+        if (CurrentStateIndex == statesSeries.Count)
+        {
+            CurrentStateIndex = 0;
+            OnAllPhasesCycledThrough?.Invoke();
+        }
+
+        CurrentState = statesSeries[CurrentStateIndex];
     }
     
     public void ChangeNextState(int newStateIndex)

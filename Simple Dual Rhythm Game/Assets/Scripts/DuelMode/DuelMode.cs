@@ -26,6 +26,12 @@ public class DuelMode : GameLoop
 
     private void Awake()
     {
+        SetUpMetronome();
+        SetUpPhasesManager();
+    }
+
+    private void SetUpMetronome()
+    {
         _metronome.OnNextPhase += NextPhase;
         _metronome.OnFirstTick += FirstTick;
         _metronome.OnTick += Tick;
@@ -34,8 +40,13 @@ public class DuelMode : GameLoop
 
         _metronome.OnNewBar += UIScript.NewBar;
         //_metronome.OnNextPhase += UIScript.SetNextBar;
-        
+    }
+
+    private void SetUpPhasesManager()
+    {
         _phasesManager = _metronome.SpawnPhasesManager(statesSeries);
+        _phasesManager.OnAllPhasesCycledThrough += UIScript.EraseAllNotes;
+        _phasesManager.OnAllPhasesCycledThrough += _gameManager.AddSolo;
     }
 
     private void Start()
@@ -158,14 +169,14 @@ public class DuelMode : GameLoop
             return;
         }
 
-        ChangeState(PhasesManager.CurrentStateIndex + 1);
+        _phasesManager.ChangeState(PhasesManager.CurrentStateIndex + 1);
         _phasesManager.ChangeNextState(PhasesManager.NextStateIndex + 1);
         
         //Reset the riff if we're recording again, change player if it's a silence...
         //TODO: How to take the error margin into account?
         if (PhasesManager.CurrentState == GameState.ChangePlayer) {
             playersScript.changeCurrentPlayer();
-            ChangeState(PhasesManager.CurrentStateIndex + 1);
+            _phasesManager.ChangeState(PhasesManager.CurrentStateIndex + 1);
         }
         if (PhasesManager.NextState == GameState.Recording) {
             _riffLength = 0;
@@ -173,6 +184,8 @@ public class DuelMode : GameLoop
         else if(PhasesManager.CurrentState != GameState.Playing) {
             UIScript.UnPlayedAllNotes();
         }
+        
+        //A generic "phase changed" event
 
         if (_isGameEnded) 
         {
@@ -186,24 +199,10 @@ public class DuelMode : GameLoop
         notesSucceeded = 0;
         madeMistake = false;
     }
-    
-    void ChangeState(int newStateIndex)
-    {
-        PhasesManager.CurrentStateIndex = newStateIndex;
-
-        if (PhasesManager.CurrentStateIndex == PhasesManager.statesSeries.Count)
-        {
-            PhasesManager.CurrentStateIndex = 0;
-            UIScript.EraseAllNotes();
-            _gameManager.AddSolo();
-        }
-
-        PhasesManager.CurrentState = PhasesManager.statesSeries[PhasesManager.CurrentStateIndex];
-    }
 
     private void NewBar()
     {
-        ChangeState(PhasesManager.CurrentStateIndex + 1);
+        _phasesManager.ChangeState(PhasesManager.CurrentStateIndex + 1);
         _phasesManager.ChangeNextState(PhasesManager.NextStateIndex + 1);
     }
 
@@ -257,7 +256,7 @@ public class DuelMode : GameLoop
         {
             Time.timeScale = 1;
 
-            ChangeState(0);
+            _phasesManager.ChangeState(0);
             _phasesManager.ChangeNextState(1);
             UIScript.SetNextBar();
 
