@@ -214,7 +214,7 @@ public class PartUI : MonoBehaviour
         }
     }
 
-    public NoteIcon DrawNewNote(int i) {
+    public void DrawNewNote(int i) {
         var noteIconsList = _currentPool[i].noteIcons;
 
         Vector3 notePos = noteIconsList[0].transform.position;
@@ -226,8 +226,6 @@ public class PartUI : MonoBehaviour
 
         note.transform.position = notePos;
         note.Init(i, notePos);
-
-        return note;
     }
 
     public void EraseAllNotes() {

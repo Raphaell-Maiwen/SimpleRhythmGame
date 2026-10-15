@@ -13,7 +13,7 @@ public class PhasesManager: MonoBehaviour
     public static  int CurrentStateIndex;
     public static int NextStateIndex;
 
-    public Action OnAllPhasesCycledThrough;
+    public static Action OnAllPhasesCycledThrough;
 
     public void Init(List<GameState> states, Metronome metronome)
     {
@@ -25,20 +25,21 @@ public class PhasesManager: MonoBehaviour
         //Assign metronome?
     }
     
-    public void ChangeState(int newStateIndex)
+    public static void ChangeState(int newStateIndex)
     {
         CurrentStateIndex = newStateIndex;
 
         if (CurrentStateIndex == statesSeries.Count)
         {
             CurrentStateIndex = 0;
+            //REgister event for tutorial here
             OnAllPhasesCycledThrough?.Invoke();
         }
 
         CurrentState = statesSeries[CurrentStateIndex];
     }
     
-    public void ChangeNextState(int newStateIndex)
+    public static void ChangeNextState(int newStateIndex)
     {
         NextStateIndex = newStateIndex;
         
