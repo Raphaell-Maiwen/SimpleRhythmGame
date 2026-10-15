@@ -21,7 +21,7 @@ public class DuelMode : GameLoop
     private List<NoteIcon> _currentTrackedNotes = new List<NoteIcon>();
     
     private bool _isPausingForEmptySolo;
-    private bool _isLastSolo;
+    private bool _isLastRiff;
     private bool _isGameEnded;
 
     private void Awake()
@@ -32,7 +32,7 @@ public class DuelMode : GameLoop
 
     private void SetUpMetronome()
     {
-        _metronome.OnNextPhase += NextPhase;
+        _metronome.OnNextPhase += GameStateChanged;
         _metronome.OnFirstTick += FirstTick;
         _metronome.OnTick += Tick;
         _metronome.OnNewBar += NewBar;
@@ -46,7 +46,7 @@ public class DuelMode : GameLoop
     {
         _phasesManager = _metronome.SpawnPhasesManager(statesSeries);
         _phasesManager.OnAllPhasesCycledThrough += UIScript.EraseAllNotes;
-        _phasesManager.OnAllPhasesCycledThrough += _gameManager.AddSolo;
+        _phasesManager.OnAllPhasesCycledThrough += _gameManager.AddRiff;
     }
 
     private void Start()
@@ -160,7 +160,7 @@ public class DuelMode : GameLoop
         AudioManager.Instance.PlayBeat();
     }
 
-    void NextPhase()
+    void GameStateChanged()
     {
         if (PhasesManager.CurrentState == GameState.Recording && _riffLength == 0)
         {
@@ -207,7 +207,7 @@ public class DuelMode : GameLoop
     }
 
     private void PlayNoteSound(int noteIndex) {
-        if (!_isLastSolo)
+        if (!_isLastRiff)
         {
             AudioManager.Instance.PlayNote(playersScript.CurrentPlayer.index, noteIndex);
         }
@@ -272,9 +272,9 @@ public class DuelMode : GameLoop
         UIScript.ChangeTempo(bpm, beatPerBar);
     }
 
-    public void SetLastSolo()
+    public void SetLastRiff()
     {
-        _isLastSolo = true;
+        _isLastRiff = true;
     }
     
     void EndGame() 

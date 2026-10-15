@@ -3,19 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class DuelManager : GameManager{
-    private int soloIndex;
-    [SerializeField] private int solosToDo;
+    private int riffIndex;
+    [FormerlySerializedAs("solosToDo")]
+    [SerializeField] private int riffsToDo;
     [SerializeField] private Metronome metronomeScript;
     [SerializeField] private DuelMode _duelMode;
 
-    public void AddSolo() 
+    public void AddRiff() 
     {
-        soloIndex++;
-        if (soloIndex == solosToDo - 1)
-            LastSolo();
-        else if (soloIndex == solosToDo + 1)
+        riffIndex++;
+        if (riffIndex == riffsToDo - 1)
+            LastRiff();
+        else if (riffIndex == riffsToDo + 1)
             EndOfGame();
     }
 
@@ -24,7 +26,7 @@ public class DuelManager : GameManager{
         base.Awake();
 
         //So that each player plays the required amount of solos
-        solosToDo *= 2;
+        riffsToDo *= 2;
         startGame.AddListener(metronomeScript.StartGame);
     }
 
@@ -33,10 +35,10 @@ public class DuelManager : GameManager{
         startGame.RemoveListener(metronomeScript.StartGame);
     }
 
-    void LastSolo() 
+    void LastRiff() 
     {
         metronomeScript.bpm += (metronomeScript.bpm / 5);
         metronomeScript.ChangeTempo();
-        _duelMode.SetLastSolo();
+        _duelMode.SetLastRiff();
     }
 }
