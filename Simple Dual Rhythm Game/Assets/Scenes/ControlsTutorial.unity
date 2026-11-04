@@ -325,18 +325,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dbd985607ebe42479f9e05b3dbf27ba, type: 3}
---- !u!114 &55384112 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8442640890819651827, guid: 9dbd985607ebe42479f9e05b3dbf27ba,
-    type: 3}
-  m_PrefabInstance: {fileID: 55384111}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfd11c500ac7103418782ce4dce0d53b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &90868964 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4620246805057893795, guid: 7c1edca172641f54bb1ef9af40256d48,
@@ -2612,7 +2600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69820d8ffec9f84ebe56703358ae161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioManager: {fileID: 55384112}
   _pauseMenu: {fileID: 1318553705777774471}
   _testTutorialConfig: {fileID: 11400000, guid: 98912038756ac58448e21a84ef10a970,
     type: 2}
@@ -2640,7 +2627,6 @@ MonoBehaviour:
   _playersManager: {fileID: 1532682734}
   _instrumentsInputPrefab: {fileID: 7996664582601979656, guid: a2894d300b5a1ed4ea3d746db3be0fe3,
     type: 3}
-  _audioManager: {fileID: 55384112}
   startGame:
     m_PersistentCalls:
       m_Calls: []

@@ -19,3 +19,8 @@ MonoBehaviour:
     _serializedList: []
   _pressAnyKeyToContinueWindow: 0
   _objectToSpawns: []
+  _persistentObjectsToSpawn:
+  - _prefab: {fileID: 6642081752224650846, guid: 2b6a243861a43b0489ce4453aa17da40,
+      type: 3}
+    _tutorialObjectPos: {x: 0, y: 0}
+    _scale: 1

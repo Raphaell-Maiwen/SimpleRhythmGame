@@ -155,6 +155,11 @@ public class TutorialStepsManager : GameLoop
         NotifyStep(EventType.AnyKeyPressed);
     }
 
+    public void OnBarFinished()
+    {
+        NotifyStep(EventType.BarFinished);
+    }
+
     private void EndOfTutorial()
     {
 #if UNITY_EDITOR
@@ -174,6 +179,6 @@ public enum EventType
     FretPressed,
     FretReleased,
     NotePlayed,
-    SuccessfulNote, //One will have a private int with amount of notes to play?
+    SuccessfulNote,
     BarFinished
 }

@@ -56,7 +56,7 @@ public class PhasesManager: MonoBehaviour
             NextState = statesSeries[NextStateIndex];
         }
     }
-    
+
     public static GameState GetPreviousState(int newStateIndex)
     {
         int previousStateIndex = newStateIndex;
