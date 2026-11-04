@@ -33,8 +33,7 @@ public class TutorialStepsManager : GameLoop
         {
             foreach (var step in _testTutorialConfig.TutorialSteps)
             {
-                var instantiatedStep = Instantiate(step.gameObject);
-                _tutorialSteps.Add(instantiatedStep);
+                InstantiateStep(step);
             }
             
             IncrementStep();
@@ -44,11 +43,17 @@ public class TutorialStepsManager : GameLoop
 
         foreach (var step in _tutorialConfigChannel.GetConfig().TutorialSteps)
         {
-            var instantiatedStep = Instantiate(step.gameObject);
-            _tutorialSteps.Add(instantiatedStep);
+            InstantiateStep(step);
         }
         
         IncrementStep();
+    }
+
+    private void InstantiateStep(GameObject step)
+    {
+        var instantiatedStep = Instantiate(step.gameObject);
+        _tutorialSteps.Add(instantiatedStep);
+        instantiatedStep.SetActive(false);
     }
 
     public void InjectManager(PlayerInput input)
