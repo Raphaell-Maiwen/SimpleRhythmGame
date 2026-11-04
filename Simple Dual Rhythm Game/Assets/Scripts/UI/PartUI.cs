@@ -168,8 +168,6 @@ public class PartUI : MonoBehaviour
 
     public void SetNextBar()
     {
-        firstTick = true;
-
         TrackerData newTrackerData = trackers.Dequeue();
 
         if (PhasesManager.NextState != GameState.Silence)
@@ -187,6 +185,13 @@ public class PartUI : MonoBehaviour
         bool playAgain = PhasesManager.GetPreviousState(PhasesManager.CurrentStateIndex) != GameState.ChangePlayer && PhasesManager.NextState == GameState.Playing;
         ChangeNextStateMessage(PhasesManager.NextState, playAgain);
     }
+
+    public void FirstTick()
+    {
+        firstTick = true;
+        
+    }
+
 
     public void UpdateCountdown(int metronomeCounter)
     {

@@ -86,6 +86,7 @@ public class Metronome : MonoBehaviour
 
     void Tick()
     {
+        //Add logs here
         if (firstTick) {
             firstTick = false;
             OnFirstTick?.Invoke();

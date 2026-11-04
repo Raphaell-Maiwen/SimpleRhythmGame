@@ -94,6 +94,7 @@ public class DuelMode : GameLoop
     private void FirstTick()
     {
         AudioManager.Instance.PlayBeat();
+        UIScript.FirstTick();
     }
 
     private void NewBar()
