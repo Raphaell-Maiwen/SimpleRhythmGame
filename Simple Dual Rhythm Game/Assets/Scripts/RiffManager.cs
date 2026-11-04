@@ -109,9 +109,14 @@ public class RiffManager : MonoBehaviour
                     _currentTrackedNotes.Remove(note);
                     return true;
                 }
-                else if (Vector3.SqrMagnitude(note.transform.position - UIScript.currentTracker.transform.position) < smallestSqrDistance)
+                else
                 {
-                    closestIcon = note;
+                    var distance = Vector3.SqrMagnitude(note.transform.position - UIScript.currentTracker.transform.position);
+                    if (distance < smallestSqrDistance)
+                    {
+                        closestIcon = note;
+                        smallestSqrDistance = distance;
+                    }
                 }
             }
         }
