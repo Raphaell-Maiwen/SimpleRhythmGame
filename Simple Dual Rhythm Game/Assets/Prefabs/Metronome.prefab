@@ -48,7 +48,7 @@ MonoBehaviour:
     type: 2}
   _parameters: {fileID: 0}
   _gameLoop: {fileID: 0}
-  _pauseMenu: {fileID: 0}
+  _pauseChannel: {fileID: 11400000, guid: 746f83a741497f74ebcc275e378bfd22, type: 2}
   bpm: 90
   frequency: 0
   beatPerBar: 4

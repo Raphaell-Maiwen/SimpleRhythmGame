@@ -8,7 +8,7 @@ public class Metronome : MonoBehaviour
     [SerializeField] private MetronomeEventChannel _metronomeEventChannel;
     [SerializeField] private Parameters _parameters;
     [SerializeField] private GameLoop _gameLoop;
-    [SerializeField] private PauseMenu _pauseMenu;
+    [SerializeField] private PauseChannel _pauseChannel;
     
     public int bpm;
 
@@ -57,12 +57,11 @@ public class Metronome : MonoBehaviour
         AudioManager.Instance.SetBeat("4/4Beat1");
         AudioManager.Instance.SetBeatSpeed(bpm);
         enabled = true;
-
-        //Cleaner: register itself through a SO?
-        _pauseMenu._onGamePausedOrUnpaused.AddListener(OnGamePaused);
+        
+        _pauseChannel._onGamePausedOrUnpaused.AddListener(OnGamePaused);
     }
 
-    public void TutorialStartGame(TutorialStepsManager stepsManager)
+    public void TutorialStartGame(TutorialStepsManager stepsManager, Action onfirstTick)
     {
         Debug.Log("TutorialStartGame");
         _gameLoop = stepsManager;
@@ -71,12 +70,14 @@ public class Metronome : MonoBehaviour
         bpm = _tutorialBPM;
         bars = _tutorialbars;
         
-        //SetUp?
+        SetUp();
         AudioManager.Instance.SetBeat("4/4Beat1");
         AudioManager.Instance.SetBeatSpeed(bpm);
         enabled = true;
         
-        _pauseMenu._onGamePausedOrUnpaused.AddListener(OnGamePaused);
+        OnFirstTick += onfirstTick;
+        
+        _pauseChannel._onGamePausedOrUnpaused.AddListener(OnGamePaused);
     }
 
     public void SetUp()

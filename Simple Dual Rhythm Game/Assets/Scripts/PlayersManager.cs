@@ -74,7 +74,7 @@ public class PlayersManager : MonoBehaviour
     {
         var instrumentsInput = input.GetComponent<InstrumentsInput>();
         instrumentsInput.Init(this, _gameLoopScript.PauseMenu);
-        _gameLoopScript.PauseMenu._onGamePausedOrUnpaused.AddListener(instrumentsInput.TogglePause);
+        _pauseChannel._onGamePausedOrUnpaused.AddListener(instrumentsInput.TogglePause);
     }
 
     public void ProcessInput(int playerIndex, int note) {

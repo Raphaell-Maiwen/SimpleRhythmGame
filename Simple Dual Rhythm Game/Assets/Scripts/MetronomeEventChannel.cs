@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,8 +15,8 @@ public class MetronomeEventChannel : ScriptableObject
         _metronome = metronome;
     }
 
-    public void OnStartTutorial(TutorialStepsManager stepsManager)
+    public void OnStartTutorial(TutorialStepsManager stepsManager, Action firstTick)
     {
-        _metronome.TutorialStartGame(stepsManager);
+        _metronome.TutorialStartGame(stepsManager, firstTick);
     }
 }

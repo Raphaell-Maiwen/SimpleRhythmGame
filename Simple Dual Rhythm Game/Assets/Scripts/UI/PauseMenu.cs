@@ -12,8 +12,6 @@ public class PauseMenu : MonoBehaviour
     bool _isActive = false;
     bool _isPaused = false;
 
-    public UnityEvent<bool> _onGamePausedOrUnpaused;
-
     private void Update()
     {
         if(Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -45,7 +43,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = _isPaused ? 0 : 1;
 
         //TODO: Have a centralized audio system
-        _onGamePausedOrUnpaused?.Invoke(_isPaused);
+        _pauseChannel.OnPauseToggle(_isPaused);
     }
 
     public void PlayAgain()

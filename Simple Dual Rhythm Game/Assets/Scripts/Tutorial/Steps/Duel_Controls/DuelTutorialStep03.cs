@@ -13,7 +13,18 @@ public class DuelTutorialStep03 : TutorialStep
     public override void Start()
     {
         base.Start();
-        _metronomeEventChannel.OnStartTutorial(_stepsManager);
+        _metronomeEventChannel.OnStartTutorial(_stepsManager, FirstTick);
+    }
+
+    private void OnDisable()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void FirstTick()
+    {
+        AudioManager.Instance.PlayBeat();
+        //UIScript.FirstTick();
     }
 
     public override void ProcessEvent(EventType eventType, int code = -1)
