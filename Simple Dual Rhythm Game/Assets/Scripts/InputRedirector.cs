@@ -262,6 +262,7 @@ public class InputRedirector : MonoBehaviour
         // too slow with high input polling rate devices
         while (true)
         {
+            sizeofRawInputBuffer = s_RawInputBuffer.Length; 
             var rawInputCount = GetRawInputBuffer(s_RawInputBuffer, ref sizeofRawInputBuffer, kRawInputHeaderSize);
             if (rawInputCount == 0)
                 break;
@@ -331,9 +332,17 @@ public class InputRedirector : MonoBehaviour
                     // Releasing space key will toggle whether we forward events to Unity
                     bool keyPressed = (keyboard.Flags & RawKeyboardFlags.RI_KEY_BREAK) == 0;
 
+                    Debug.Log($"dev={header.hDevice} vk={keyboard.VKey} down={keyPressed}");
                     //TODO Send notification here
                     //Device key pressed
-                    _onAnyKeyPressed?.Invoke((int)header.hDevice, keyboard.VKey , keyPressed);
+                    try
+                    {
+                        _onAnyKeyPressed?.Invoke((int)header.hDevice, keyboard.VKey, keyPressed);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogException(e);
+                    }
                     
                     if (!keyPressed && keyboard.MakeCode == kSpaceScanCode)
                         s_RedirectingInputToUnity = !s_RedirectingInputToUnity;

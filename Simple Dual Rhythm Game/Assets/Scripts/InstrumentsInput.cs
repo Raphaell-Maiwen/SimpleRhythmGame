@@ -27,7 +27,7 @@ public class InstrumentsInput : MonoBehaviour
 
     public Action<int, int> OnFretPressed;
     public Action<int, int> OnFretReleased;
-    private bool _isEnterKeyDown;
+    private readonly bool[] _isEnterKeyDown = new bool[2];
 
     public void Init(PlayersManager playersManager, PauseMenu pauseMenu)
     {
@@ -192,18 +192,19 @@ public class InstrumentsInput : MonoBehaviour
             return true;
         }
 
-        int player = deviceMapping[device];
+        if (!deviceMapping.TryGetValue(device, out var player))
+            return false;
 
         //If we press enter
         if (key == 13)
         {
             if (pressed)
             {
-                if (!_isEnterKeyDown)
+                if (!_isEnterKeyDown[player])
                 {
                     bool playedAtLeastOneNote = false;
                     
-                    _isEnterKeyDown = true;
+                    _isEnterKeyDown[player] = true;
                     foreach (var note in keytarChord[player].Keys)
                     {
                         if (keytarChord[player][note])
@@ -218,7 +219,7 @@ public class InstrumentsInput : MonoBehaviour
             }
             else
             {
-                _isEnterKeyDown = false;
+                _isEnterKeyDown[player] = false;
             }
         }
         else if (pressed && key == 27)
