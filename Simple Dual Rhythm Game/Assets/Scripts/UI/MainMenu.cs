@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private TutorialConfigChannel _tutorialConfigChannel;
     [SerializeField] private TutorialConfig _tutorialConfig;
     
-    public void PlayGame()
+    public void PlayDuel()
     {
         WindowsDeviceApiService.ListWindowsRawDeviceApiDevicesToConsole();
 
