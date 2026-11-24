@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class TutorialStep : MonoBehaviour
 {
-    [SerializeField] private TutorialStepData _stepData;
+    [SerializeField] protected TutorialStepData _stepData;
     public TutorialStepData StepData => _stepData;
     protected TutorialStepsManager _stepsManager;
 
@@ -22,7 +22,7 @@ public abstract class TutorialStep : MonoBehaviour
         _stepsManager.IncrementStep();
     }
 
-    private void Start()
+    public virtual void Start()
     {
         foreach (var obj in _stepData.ObjectToSpawns)
         {

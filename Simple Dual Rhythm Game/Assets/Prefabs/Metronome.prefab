@@ -44,16 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9d4e314e24b184fa485a022c6da9f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioManager: {fileID: 0}
-  _pauseMenu: {fileID: 0}
+  _metronomeEventChannel: {fileID: 11400000, guid: 7f01d6c58f935e044b302549deceb095,
+    type: 2}
   _parameters: {fileID: 0}
-  _gameManager: {fileID: 0}
+  _gameLoop: {fileID: 0}
+  _pauseMenu: {fileID: 0}
   bpm: 90
   frequency: 0
   beatPerBar: 4
   bars: 2
+  _tutorialBPM: 60
+  _tutorialbars: 1
   strongTick: 1
   weakTick: 0.071
   playersScript: {fileID: 0}
-  UIScript: {fileID: 0}
-  statesSeries: 020000000000000001000000020000000300000001000000

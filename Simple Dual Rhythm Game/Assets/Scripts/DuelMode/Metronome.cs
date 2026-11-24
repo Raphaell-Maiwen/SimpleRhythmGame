@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 
 public class Metronome : MonoBehaviour
 {
+    [SerializeField] private MetronomeEventChannel _metronomeEventChannel;
     [SerializeField] private Parameters _parameters;
     [SerializeField] private GameLoop _gameLoop;
     [SerializeField] private PauseMenu _pauseMenu;
@@ -17,6 +18,9 @@ public class Metronome : MonoBehaviour
     public int bars = 1;
     private int metronomeCounter = 0;
     private int mod = 1;
+
+    [SerializeField] private int _tutorialBPM = 60;
+    [SerializeField] private int _tutorialbars = 1;
 
     private float initialTime;
 
@@ -38,6 +42,7 @@ public class Metronome : MonoBehaviour
     private void Awake() 
     {
         enabled = false;
+        _metronomeEventChannel.RegisterMetronome(this);
     }
 
     public void StartGame()
@@ -54,6 +59,23 @@ public class Metronome : MonoBehaviour
         enabled = true;
 
         //Cleaner: register itself through a SO?
+        _pauseMenu._onGamePausedOrUnpaused.AddListener(OnGamePaused);
+    }
+
+    public void TutorialStartGame(TutorialStepsManager stepsManager)
+    {
+        Debug.Log("TutorialStartGame");
+        _gameLoop = stepsManager;
+        firstTick = true;
+        
+        bpm = _tutorialBPM;
+        bars = _tutorialbars;
+        
+        //SetUp?
+        AudioManager.Instance.SetBeat("4/4Beat1");
+        AudioManager.Instance.SetBeatSpeed(bpm);
+        enabled = true;
+        
         _pauseMenu._onGamePausedOrUnpaused.AddListener(OnGamePaused);
     }
 

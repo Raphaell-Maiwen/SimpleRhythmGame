@@ -45,3 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stepData: {fileID: 11400000, guid: 38e7c08dda285fe40879fa5eadd1216c, type: 2}
+  _metronomeEventChannel: {fileID: 11400000, guid: 7f01d6c58f935e044b302549deceb095,
+    type: 2}
